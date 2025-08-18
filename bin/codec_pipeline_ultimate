@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$HOME/sanctiforge"
+SRC="$ROOT/inbox"
+DST="$ROOT/exports"
+LOG="$ROOT/logs"
+mkdir -p "$SRC" "$DST" "$LOG"
+
+ulog(){ printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" | tee -a "$LOG/codec_pipeline.log"; }
+
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 inputfile.ext"
+  echo "Place source in $SRC or anywhere. Outputs go to $DST. Log: $LOG/codec_pipeline.log"
+  exit 1
+fi
+
+INFILE="$1"
+NAME="$(basename "${INFILE%.*}")"
+ulog "SOURCE: $INFILE"
+
+ARCH="$DST/${NAME}_archive.mkv"
+ffmpeg -hide_banner -y -i "$INFILE" \
+  -c:v ffv1 -level 3 -g 1 -coder 1 -context 1 -slicecrc 1 \
+  -c:a flac \
+  -map 0 \
+  "$ARCH"
+ulog "ARCHIVAL LOSSLESS: $ARCH"
+
+MP4="$DST/${NAME}_h264_aac.mp4"
+ffmpeg -hide_banner -y -i "$INFILE" \
+  -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p \
+  -c:a aac -b:a 192k \
+  -movflags +faststart \
+  "$MP4"
+ulog "WEB/UNIVERSAL MP4: $MP4"
+
+SHARE="$DST/${NAME}_share.mp4"
+ffmpeg -hide_banner -y -i "$INFILE" \
+  -vf "scale=-2:720" -t 60 \
+  -c:v libx264 -preset veryfast -crf 28 -c:a aac -b:a 96k \
+  -movflags +faststart \
+  "$SHARE"
+ulog "SHARE VERSION: $SHARE"
+
+if ffprobe -hide_banner "$INFILE" 2>&1 | grep -q "Audio:" ; then
+  AUD="$DST/${NAME}_audio.flac"
+  ffmpeg -hide_banner -y -i "$INFILE" -vn -c:a flac "$AUD"
+  ulog "AUDIO FLAC: $AUD"
+fi
+
+ulog "COMPLETE: $INFILE → [$ARCH, $MP4, $SHARE, (audio optional)]"
