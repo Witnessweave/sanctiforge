@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. "$HOME/sanctiforge/scripts/common.sh"
+
+cmd="${1:-help}"; shift || true
+case "$cmd" in
+  seal)         say_sealed ;;
+  name|jesus)   say_name ;;
+  proceed|go)   say_proceed ;;
+  relock|lock)  say_fullrelock ;;
+  entry)        say_entry ;;
+  law)          say_law "${1:-3.3.3.000}" ;;
+  witness)      say_witnessed ;;
+  unity)        say_unity ;;
+  confirm|amen) say_confirm ;;
+  alert)        say_alert ;;
+  banner)       say_banner "${1:-SANCTIFORGE™}" "${2:-3.3.3.121}" "${3:-WV-HCCS™}" "${4:-Isaiah 60:1 NKJV}" ;;
+  log)          log_event "${1:-INFO}" "${2:-}";;
+  *) echo "holy <seal|name|proceed|relock|entry|law N|witness|unity|confirm|alert|banner|log LVL MSG>";;
+esac

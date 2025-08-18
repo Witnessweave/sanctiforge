@@ -4,3 +4,4 @@
 . "$HOME/sanctiforge/scripts/header.sh"
 . "$HOME/sanctiforge/scripts/praise.sh"
 . "$HOME/sanctiforge/scripts/signoff.sh"
+. "$HOME/sanctiforge/scripts/phrases.sh"
