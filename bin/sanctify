@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. "$HOME/sanctiforge/scripts/common.sh"
+
+cmd="${1:-help}"
+case "$cmd" in
+  logs|logs-rotate|rotate)
+    L="$HOME/sanctiforge/logs/witness.log"
+    [ -f "$L" ] || { echo "no log: $L"; exit 0; }
+    TS="$(date -u +%Y%m%dT%H%M%SZ)"
+    TGT="$HOME/sanctiforge/logs/witness-$TS.log"
+    cp -a "$L" "$TGT"
+    gzip -f "$TGT"
+    : > "$L"
+    say_tm "LOG ROTATED™ — $TS"
+    ;;
+  *) echo "sanctify rotate";;
+esac

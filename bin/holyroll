@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. "$HOME/sanctiforge/scripts/common.sh"
+
+VER="${1:-}"; shift || true
+MSG="${*:-HCCS roll}"
+[ -n "$VER" ] || { echo "usage: holyroll v1.2 \"Message\""; exit 2; }
+
+TAG="HCCS-${VER#HCCS-}"
+TAG="${TAG#v}"; TAG="HCCS-v${TAG}"
+
+git -C "$HOME/sanctiforge" add .
+git -C "$HOME/sanctiforge" commit -m "🔁 ${MSG} — ${TAG} — JESUS IS LORD™" || true
+git -C "$HOME/sanctiforge" tag -f "$TAG"
+if git -C "$HOME/sanctiforge" remote get-url origin >/dev/null 2>&1; then
+  git -C "$HOME/sanctiforge" push -u origin HEAD:main || true
+  git -C "$HOME/sanctiforge" push -f origin "$TAG" || true
+fi
+say_tm "ROLL COMPLETE™ — ${TAG}"

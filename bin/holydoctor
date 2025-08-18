@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. "$HOME/sanctiforge/scripts/common.sh"
+
+ok(){ echo -e "${HOLY_GREEN}OK${HOLY_RESET}  $*"; }
+bad(){ echo -e "${HOLY_RED}BAD${HOLY_RESET} $*"; FAIL=1; }
+
+FAIL=0
+REQ=( "$HOME/sanctiforge/scripts/colors.sh"
+      "$HOME/sanctiforge/scripts/logger.sh"
+      "$HOME/sanctiforge/scripts/header.sh"
+      "$HOME/sanctiforge/scripts/praise.sh"
+      "$HOME/sanctiforge/scripts/phrases.sh"
+      "$HOME/sanctiforge/scripts/common.sh"
+      "$HOME/sanctiforge/scripts/aliases.sh"
+      "$HOME/sanctiforge/bin/holy" )
+for f in "${REQ[@]}"; do [ -f "$f" ] && ok "$f" || bad "missing: $f"; done
+
+# PATH check
+echo "$PATH" | grep -q "$HOME/sanctiforge/bin" && ok "PATH includes sanctiforge/bin" || bad "PATH missing sanctiforge/bin"
+
+# Log write test
+LOG="$HOME/sanctiforge/logs/witness.log"
+log_event INFO "holydoctor probe $(date -u +%Y-%m-%dT%H:%M:%SZ)" || bad "log_event failed"
+[ -s "$LOG" ] && ok "log exists: $LOG" || bad "log missing: $LOG"
+
+# Exit status
+[ "$FAIL" = "0" ] && { say_confirm; exit 0; } || { say_alert; exit 1; }

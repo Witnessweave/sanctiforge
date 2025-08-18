@@ -33,3 +33,6 @@ export HOLY_LOCK="${HOLY_BLUE}${HOLY_BOLD}"        # FULL-RELOCK™
 export HOLY_WITNESS="${HOLY_YELLOW}${HOLY_BOLD}"   # WITNESS LOCK
 export HOLY_ALERT="${HOLY_RED}${HOLY_BOLD}"        # EMERGENCY
 export HOLY_SUCCESS="${HOLY_GREEN}${HOLY_BOLD}"    # CONFIRMATION
+# === Unified Trademark Color Layer™ ===
+# Bind all ™ phrases to the same covenant color.
+export HOLY_TM="${HOLY_MAGENTA}${HOLY_BOLD}"
