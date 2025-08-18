@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+UTC(){ date -u +%Y-%m-%dT%H:%M:%SZ; }
+
+ROOT_DEFAULT="$HOME/sanctiforge/brands/AI.ENGINEWRIGHT_v1"
+ROOT="${AI_ENGINEWRIGHT_ROOT:-$ROOT_DEFAULT}"
+SVG="$ROOT/svg"; PNG="$ROOT/png"; DOC="$ROOT/docs"; TMP="$ROOT/tmp"; LOG="$ROOT/build.log"
+
+IRON_DEFAULT="#111111"; GOLD_DEFAULT="#D4AF37"; PEARL_DEFAULT="#F4F1EC"
+IRON="${IRON:-$IRON_DEFAULT}"; FORGE_GOLD="${FORGE_GOLD:-$GOLD_DEFAULT}"; PEARL="${PEARL:-$PEARL_DEFAULT}"
+
+need(){ command -v "$1" >/dev/null 2>&1; }
+
+# Try to ensure a converter exists
+ensure_converter(){
+  if need inkscape || need rsvg-convert; then return 0; fi
+  # Try python+cairosvg path
+  python3 -c 'import cairosvg' >/dev/null 2>&1 && return 0
+  # Last resort: attempt user-scope install (may fail if offline)
+  python3 -m pip install --user --quiet cairosvg >/dev/null 2>&1 || true
+  python3 -c 'import cairosvg' >/dev/null 2>&1 && return 0
+  return 1
+}
+
+convert_svg_to_png(){ # in out dpi
+  local in="$1" out="$2" dpi="${3:-384}"
+  if need inkscape; then
+    inkscape "$in" --export-type=png --export-filename="$out" --export-dpi="$dpi" >/dev/null 2>&1
+  elif python3 -c 'import cairosvg' >/dev/null 2>&1; then
+    python3 - "$in" "$out" "$dpi" <<'PYCODE'
+import sys, cairosvg
+cairosvg.svg2png(url=sys.argv[1], write_to=sys.argv[2], dpi=float(sys.argv[3]))
+PYCODE
+  elif need rsvg-convert; then
+    rsvg-convert -d "$dpi" -p "$dpi" -o "$out" "$in"
+  else
+    echo "[ERROR] No SVG->PNG converter available (inkscape/cairosvg/rsvg-convert)." >&2
+    exit 1
+  fi
+}
+
+ensure_dirs(){ mkdir -p "$SVG" "$PNG" "$DOC" "$TMP"; }
+log(){ printf '%s %s\n' "$(UTC)" "$*" | tee -a "$LOG" >/dev/null; }
+
+cmd_verify(){
+  ensure_dirs
+  log "verify ROOT=$ROOT"
+  if [ ! -s "$DOC/checksums.sha256.txt" ]; then
+    (cd "$ROOT" && find svg png -type f -print0 | sort -z | xargs -0 sha256sum) > "$DOC/checksums.sha256.txt" || true
+  fi
+  if command -v tree >/dev/null 2>&1; then tree -a "$ROOT"; else find "$ROOT" -maxdepth 2 -type f | sed "s|$ROOT/||"; fi
+  [ -f "$DOC/checksums.sha256.txt" ] && (cd "$ROOT" && sha256sum -c "$DOC/checksums.sha256.txt" || true)
+  if command -v identify >/dev/null 2>&1; then find "$PNG" -type f -name '*.png' -print0 | xargs -0 identify || true; fi
+  log "verify done"
+}
+
+cmd_export_favicons(){
+  ensure_dirs
+  ensure_converter || { echo "[ERROR] need inkscape/cairosvg/rsvg-convert"; exit 1; }
+  local src="$PNG/AI.ENGINEWRIGHT_mark_monogram_2048.png"
+  [ -f "$src" ] || { echo "[ERROR] missing $src"; exit 1; }
+  local OUT="$ROOT/web"; mkdir -p "$OUT"
+  for s in 16 32 48 96 180 192 512; do convert "$src" -resize "${s}x${s}" "$OUT/favicon-${s}.png"; done
+  convert "$OUT/favicon-16.png" "$OUT/favicon-32.png" "$OUT/favicon-48.png" "$OUT/favicon.ico"
+  cp "$OUT/favicon-180.png" "$OUT/apple-touch-icon.png"
+  cat >"$OUT/site.webmanifest" <<JSON
+{
+  "name": "AI.ENGINEWRIGHT™",
+  "short_name": "ENGINEWRIGHT",
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#111111",
+  "background_color": "#F4F1EC",
+  "display": "standalone"
+}
+JSON
+  log "favicons -> $OUT"; echo "$OUT"
+}
+
+cmd_export_sizes(){
+  ensure_dirs
+  local src="$PNG/AI.ENGINEWRIGHT_wordmark_2400x600.png"
+  [ -f "$src" ] || { echo "[ERROR] missing $src"; exit 1; }
+  local OUT="$ROOT/exports"; mkdir -p "$OUT"
+  convert "$src" -resize 1600x400 "$OUT/wordmark_1600x400.png"
+  convert "$src" -resize 1200x300 "$OUT/wordmark_1200x300.png"
+  convert "$src" -resize 800x200  "$OUT/wordmark_800x200.png"
+  if [ -f "$PNG/AI.ENGINEWRIGHT_wordmark_light_2400x600.png" ]; then
+    convert "$PNG/AI.ENGINEWRIGHT_wordmark_light_2400x600.png" -resize 1200x300 "$OUT/wordmark_light_1200x300.png"
+  fi
+  log "sizes -> $OUT"; echo "$OUT"
+}
+
+cmd_bump_palette(){ # [IRON] [GOLD] [PEARL]
+  ensure_dirs
+  local iron="${1:-$IRON}" gold="${2:-$FORGE_GOLD}" pearl="${3:-$PEARL}"
+  log "bump_palette IRON=$iron GOLD=$gold PEARL=$pearl"
+  for f in "$SVG"/*.svg; do [ -f "$f" ] || continue
+    sed -i -e "s/#111111/$iron/Ig" -e "s/#D4AF37/$gold/Ig" -e "s/#F4F1EC/$pearl/Ig" "$f"
+  done
+  for s in "$SVG"/*.svg; do
+    b="$(basename "$s" .svg)"
+    convert_svg_to_png "$s" "$PNG/${b}_2048.png" 384
+    convert "$PNG/${b}_2048.png" -resize 512x512 "$PNG/${b}_512.png"
+  done
+  (cd "$ROOT" && find svg png -type f -print0 | sort -z | xargs -0 sha256sum) > "$DOC/checksums.sha256.txt"
+  log "bump_palette done"
+}
+
+cmd_package(){
+  ensure_dirs
+  local rel="AI.ENGINEWRIGHT_v1_$(UTC | tr -d ':-')"
+  local OUT="$ROOT/releases"; mkdir -p "$OUT"
+  local TAR="$OUT/${rel}.tar.gz"
+  tar -C "$ROOT" -czf "$TAR" svg png docs
+  (cd "$OUT" && sha256sum "$(basename "$TAR")" > "${rel}.sha256.txt")
+  log "package -> $TAR"; echo "$TAR"
+}
+
+cmd_current_symlink(){
+  local LINK="$HOME/sanctiforge/brands/current"
+  mkdir -p "$(dirname "$LINK")"
+  ln -sfn "$ROOT" "$LINK"
+  log "current_symlink $LINK -> $ROOT"
+  echo "$LINK -> $ROOT"
+}
+
+cmd_help(){
+cat <<H
+ai_enginewright_logo — AI.ENGINEWRIGHT™ brand ops (UTC logs)
+USAGE:
+  ai_enginewright_logo verify
+  ai_enginewright_logo export-favicons
+  ai_enginewright_logo export-sizes
+  ai_enginewright_logo bump-palette [IRON] [FORGE_GOLD] [PEARL]
+  ai_enginewright_logo package
+  ai_enginewright_logo current-symlink
+H
+}
+
+case "${1:-help}" in
+  verify) cmd_verify ;;
+  export-favicons) cmd_export_favicons ;;
+  export-sizes) cmd_export_sizes ;;
+  bump-palette) shift; cmd_bump_palette "${1:-}" "${2:-}" "${3:-}" ;;
+  package) cmd_package ;;
+  current-symlink) cmd_current_symlink ;;
+  help|--help|-h) cmd_help ;;
+  *) echo "[ERROR] unknown command: ${1:-}"; cmd_help; exit 2 ;;
+esac

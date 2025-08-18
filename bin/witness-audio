@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$HOME/sanctiforge"
+LOG="$ROOT/logs/witness_audio.log"
+AUDIO="$ROOT/audio"
+SESSION="cmusd"
+
+utc_log(){ printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >> "$LOG"; }
+
+need(){ command -v "$1" >/dev/null 2>&1 || { echo "[ERROR] Missing: $1"; exit 1; }; }
+
+start_cmus_bg(){
+  if pgrep -x cmus >/dev/null 2>&1; then
+    return
+  fi
+  if command -v tmux >/dev/null 2>&1; then
+    tmux has-session -t "$SESSION" 2>/dev/null || tmux new-session -ds "$SESSION" 'cmus'
+    utc_log "[INFO] cmus started in tmux session '$SESSION'"
+  else
+    nohup cmus >/dev/null 2>&1 &
+    sleep 1
+    utc_log "[INFO] cmus started via nohup (no tmux)"
+  fi
+}
+
+cmus_cmd(){ cmus-remote -C "$1" >/dev/null 2>&1 || { echo "[ERROR] cmus not accepting commands. Start it with 'witness-audio start'."; exit 1; }; }
+
+play_folder(){
+  local dir="${1:-$AUDIO/psalms}"
+  [ -d "$dir" ] || { echo "[ERROR] Folder not found: $dir"; exit 1; }
+  start_cmus_bg
+  cmus_cmd "clear"
+  cmus_cmd "add $dir"
+  cmus_cmd "shuffle"
+  cmus_cmd "repeat true"
+  cmus_cmd "play"
+  utc_log "[PLAY] folder=$dir"
+}
+
+play_stream(){
+  local url="${1:-}"
+  [ -n "$url" ] || { echo "[ERROR] Provide a stream URL"; exit 1; }
+  start_cmus_bg
+  cmus_cmd "clear"
+  cmus_cmd "add $url"
+  cmus_cmd "play"
+  utc_log "[PLAY] stream=$url"
+}
+
+psalm_number_for_day(){
+  # Map day-of-month (1..31) to Psalm number (wrap after 150 -> modulo style)
+  local dom; dom="$(date +%d | sed 's/^0*//')"
+  local ps=$(( ( (dom - 1) % 150 ) + 1 ))
+  echo "$ps"
+}
+
+search_and_play(){
+  local query="$1"
+  start_cmus_bg
+  cmus_cmd "search $query"
+  cmus_cmd "play"
+  utc_log "[SEARCH_PLAY] query=$query"
+}
+
+status(){
+  cmus-remote -Q || echo "[INFO] cmus not running"
+}
+
+install_cron_psalm_of_day(){
+  local time_local="${1:-07:00}"   # local time (HH:MM)
+  # Write helper runner
+  local runner="$ROOT/scripts/psalm_of_day_runner.sh"
+  cat > "$runner" <<'RUN'
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$HOME/sanctiforge"
+LOG="$ROOT/logs/witness_audio.log"
+utc_log(){ printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >> "$LOG"; }
+psalm_number_for_day(){ local dom; dom="$(date +%d | sed 's/^0*//')"; local ps=$(( ( (dom - 1) % 150 ) + 1 )); echo "$ps"; }
+# ensure cmus
+if ! pgrep -x cmus >/dev/null 2>&1; then
+  if command -v tmux >/dev/null 2>&1; then tmux new-session -ds cmusd 'cmus'; else nohup cmus >/dev/null 2>&1 & sleep 1; fi
+  utc_log "[CRON] started cmus for Psalm-of-Day"
+fi
+# play
+PSNUM="$(psalm_number_for_day)"
+cmus-remote -C "clear" >/dev/null 2>&1 || true
+cmus-remote -C "add $HOME/sanctiforge/audio/psalms" >/dev/null 2>&1 || true
+cmus-remote -C "search Psalm $PSNUM" >/dev/null 2>&1 || true
+cmus-remote -C "play" >/dev/null 2>&1 || true
+utc_log "[CRON_PLAY] Psalm-of-Day=$PSNUM"
+RUN
+  chmod +x "$runner"
+
+  # Install crontab entry (runs daily at local $time_local)
+  local H="${time_local%:*}"; local M="${time_local#*:}"
+  (crontab -l 2>/dev/null | grep -v "psalm_of_day_runner.sh"; echo "$M $H * * * $runner") | crontab -
+  utc_log "[CRON] Psalm-of-Day scheduled at $time_local local"
+  echo "[OK] Psalm-of-Day alarm installed at $time_local (local time)."
+}
+
+case "${1:-help}" in
+  start)        start_cmus_bg; echo "[OK] cmus ensured running." ;;
+  psalms)       play_folder "$AUDIO/psalms" ;;
+  memory)       play_folder "$AUDIO/memory" ;;
+  folder)       play_folder "${2:-}" ;;
+  radio)        play_stream "${2:-}" ;;
+  psalm)        [ -n "${2:-}" ] || { echo "Usage: witness-audio psalm <number>"; exit 1; }; search_and_play "Psalm ${2}";;
+  pod|psalm-of-day)
+                install_cron_psalm_of_day "${2:-07:00}" ;;
+  pause)        cmus_cmd "pause"; utc_log "[PAUSE]" ;;
+  play)         cmus_cmd "play"; utc_log "[PLAY]" ;;
+  next)         cmus_cmd "next"; utc_log "[NEXT]" ;;
+  prev)         cmus_cmd "prev"; utc_log "[PREV]" ;;
+  stop)         cmus_cmd "stop"; utc_log "[STOP]" ;;
+  status)       status ;;
+  help|*)       cat <<EOF
+witness-audio — FREESOURCE MUSIC CORE™ (Lily™ presets)
+Usage:
+  witness-audio start                 # ensure cmus running (tmux if available)
+  witness-audio psalms                # play ~/sanctiforge/audio/psalms (shuffle+repeat)
+  witness-audio memory                # play ~/sanctiforge/audio/memory
+  witness-audio folder <path>         # play a specific folder
+  witness-audio radio <URL>           # play a stream URL
+  witness-audio psalm <N>             # search 'Psalm N' and play
+  witness-audio pod [HH:MM]           # Psalm-of-Day alarm via cron (default 07:00 local)
+  witness-audio pause|play|next|prev|stop
+  witness-audio status
+EOF
+  ;;
+esac
