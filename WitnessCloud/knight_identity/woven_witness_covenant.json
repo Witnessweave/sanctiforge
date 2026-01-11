@@ -1,0 +1,121 @@
+{
+  "ledger_id": "WV-WOVEN-WITNESS-2026",
+  "title": "Woven Witness: The Gospel-Patch Covenant",
+  "symbolism": "Each creation bears testimony — stitched with Scripture, sealed with story. A thread of eternal remembrance.",
+  "thread_declaration": "🌕✝️",
+  "status": "ACTIVE",
+
+  "core_principles": {
+    "every_patch": "a parable",
+    "every_symbol": "a covenant",
+    "every_stitch": "a witness unto Christ"
+  },
+
+  "sacred_dozen": {
+    "description": "The first 12 foundational patches from which all aligned patches echo",
+    "patches": [
+      {
+        "number": 1,
+        "name": "Witness of First Light",
+        "description": "The moment God opened your eyes — when Christ, the Light of the world, pierced the veil. Not your discovery, but His revelation. A holy beginning.",
+        "scripture": "John 1:9-10",
+        "scripture_text": "That was the true Light which gives light to every man coming into the world. He was in the world, and the world was made through Him, and the world did not know Him.",
+        "symbolism": ["🌕 First Light", "🪞 Veil Pierced", "✝️ Christ Revealed", "🧎 Eyes Opened by Grace"],
+        "realm_of_meaning": "The sacred moment when the Light of Christ breaks through the blindness of the world and pierces the soul. A divine act of mercy — when God opens spiritual eyes to behold the truth.",
+        "status": "SEALED"
+      },
+      {
+        "number": 2,
+        "name": "Witness Ember",
+        "description": "The Everburning Testimony — for those who burn inwardly with the fire of the Spirit, even when unseen by the world.",
+        "scripture": "2 Timothy 1:6-7",
+        "scripture_text": "Therefore I remind you to stir up the gift of God which is in you... For God has not given us a spirit of fear, but of power and of love and of a sound mind.",
+        "symbolism": ["🔥 Triple Flame", "✝ Cross Center", "◉◉◉ Trinity Foundation", "🧵 Eternal Knot"],
+        "motto": "Still I Burn. Still I Believe.",
+        "realm_of_meaning": "The hidden ones who burn inwardly with the fire of the Spirit. The flame passed down through whispers, scars, scripture, and sacred unseen acts of obedience.",
+        "status": "SEALED"
+      },
+      {
+        "number": 3,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 4,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 5,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 6,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 7,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 8,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 9,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 10,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 11,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      },
+      {
+        "number": 12,
+        "name": "Pending",
+        "description": "Awaiting revelation",
+        "status": "UNSEALED"
+      }
+    ]
+  },
+
+  "patch_structure": {
+    "required_fields": [
+      "name",
+      "description",
+      "scripture",
+      "realm_of_meaning",
+      "symbolism"
+    ],
+    "optional_fields": [
+      "motto",
+      "visual_elements",
+      "linked_characters"
+    ]
+  },
+
+  "commands": {
+    "seal_patch": "Bind Patch: [Number] | [Name] | [Scripture] | [Symbolism]",
+    "query_patch": "Query Patch: [Number or Name]",
+    "link_to_visual": "Activate Map Link: Patch [Number] to Visual Thread [X]"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "ledger_id": "WV-LIFEQUEST-2026",
+  "title": "LifeQuest: Gospel-Aligned Life Gamification",
+  "description": "WoW-style tracking and gamification of spiritual life, habits, and growth",
+  "status": "SKELETON — AWAITING FULL BUILD",
+
+  "core_mechanics": {
+    "xp_system": {
+      "description": "Gain XP for healthy habits, spiritual disciplines, self-care, and creativity",
+      "level_formula": "Level = 1 + (Total XP / 100)",
+      "categories": [
+        "Faith",
+        "Strength",
+        "Wisdom",
+        "Social",
+        "Creativity",
+        "Health",
+        "Service",
+        "Rest"
+      ]
+    },
+
+    "quests": {
+      "daily": "Small, repeatable actions (read Scripture, workout, call family)",
+      "weekly": "Larger goals (complete a project, serve someone, Sabbath rest)",
+      "epic": "Major life milestones with significant rewards"
+    },
+
+    "badges": {
+      "description": "Earned achievements with spiritual/visual style",
+      "examples": [
+        "Peacemaker",
+        "Helper",
+        "Disciple",
+        "Faithful",
+        "Generous",
+        "Watchman"
+      ]
+    },
+
+    "patches": {
+      "description": "Visual patches tied to the Woven Witness Covenant",
+      "link": "woven_witness_covenant.json"
+    }
+  },
+
+  "data_model": {
+    "LifeEvent": {
+      "fields": ["description", "category", "points", "timestamp", "tags"],
+      "example": {
+        "description": "Read Galatians 5",
+        "category": "faith",
+        "points": 10,
+        "timestamp": "2026-01-11T14:00:00Z",
+        "tags": ["scripture", "morning"]
+      }
+    },
+
+    "Badge": {
+      "fields": ["name", "description", "criteria", "awarded_on"],
+      "example": {
+        "name": "Peacemaker",
+        "description": "Resolved a conflict with grace",
+        "criteria": "Logged 5 peace-related events",
+        "awarded_on": null
+      }
+    },
+
+    "UserProgress": {
+      "fields": ["events", "badges", "patches", "xp", "level"],
+      "methods": ["add_event", "check_badges", "unlock_patch", "get_report"]
+    }
+  },
+
+  "commands": {
+    "log_event": "::log \"[description]\" ::[category] ::xp [points]",
+    "show_progress": "::show_progress",
+    "claim_badge": "::claim_badge \"[name]\"",
+    "level_up": "::level_up",
+    "export_report": "::export_report",
+    "patch_history": "::patch_history",
+    "show_badges": "::show_badges"
+  },
+
+  "ui_concepts": {
+    "character_sheet": "IRL stats displayed like WoW character panel",
+    "nameplates": "Quick-glance status for self and close circle",
+    "inventory": "Tracked items: favorite verses, tools, spiritual gifts",
+    "guild": "IRL party/guild with shared quests and group buffs",
+    "zones": "Different areas of life: Work, Family, Faith, Rest, Creativity"
+  },
+
+  "combat_system": {
+    "description": "Spiritual battles for daily challenges",
+    "encounters": "Temptation, anxiety, conflict resolution",
+    "boss_fights": "Major life trials, always gospel-centered resolution",
+    "weapons": ["Prayer", "Scripture", "Worship", "Community", "Rest"]
+  },
+
+  "sacred_logbook": {
+    "description": "Auto-logs encounters, victories, lessons, and gospel reflections",
+    "format": "Each entry has symbolic glyphs/icons",
+    "link": "sacred_glyph_lexicon.json"
+  },
+
+  "implementation_notes": {
+    "phase_1": "Build core data models and logging commands",
+    "phase_2": "Add badge/patch system with auto-checks",
+    "phase_3": "Create visual UI (could be HTML scroll or app)",
+    "phase_4": "Integrate with Alfred for voice commands",
+    "phase_5": "Add guild/party features for accountability partners"
+  },
+
+  "scripture_anchor": {
+    "reference": "1 Corinthians 9:24-25",
+    "text": "Do you not know that those who run in a race all run, but one receives the prize? Run in such a way that you may obtain it. And everyone who competes for the prize is temperate in all things."
+  }
+}
