@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Threads On Fire — GlowWord Scroll (Phase I)</title>
+<meta name="description" content="Threads On Fire — interactive scroll, GlowWords, product gallery & wax seal overlays" />
+
+<!-- Inline critical CSS for quick preview -->
+<style>
+  :root{
+    --bg:#fff;
+    --ink:#111;
+    --muted:#666;
+    --accent:#d94a2a; /* ember red */
+    --accent-2:#f9d673; /* radiant gold */
+    --glow: 0 10px 30px rgba(217,74,42,0.14);
+    --max-width:1100px;
+    --mono: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:var(--mono);
+    color:var(--ink);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.55;
+    padding-bottom:120px; /* room for witness footer */
+  }
+
+  .container{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:28px 20px;
+  }
+
+  header.site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo img{height:56px; width:auto;}
+  .main-title{
+    font-size:28px;
+    margin:22px 0;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  /* HERO / ABOUT SCROLL */
+  .scroll-card{
+    background:linear-gradient(180deg, rgba(249,214,115,0.03), rgba(0,0,0,0.0));
+    border-radius:10px;
+    padding:26px;
+    box-shadow:var(--glow);
+    margin-bottom:26px;
+  }
+  .lead{
+    font-size:18px;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .story p{ margin: 12px 0; }
+
+  /* GlowWord inline trigger */
+  .glowword{
+    display:inline-block;
+    color:var(--accent);
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    position:relative;
+    padding:2px 6px;
+    border-radius:6px;
+    transition:all .18s ease;
+  }
+  .glowword:hover{
+    box-shadow: 0 6px 18px rgba(217,74,42,0.18);
+    transform:translateY(-3px);
+  }
+
+  /* Product grid */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+    margin:18px 0 36px;
+  }
+  @media(min-width:900px){
+    .product-grid{ grid-template-columns:repeat(4,1fr); }
+  }
+  .product{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    padding:10px;
+    border:1px solid #eee;
+  }
+  .product img{ width:100%; height:220px; object-fit:cover; display:block; border-radius:6px; }
+  .caption{ font-size:14px; margin-top:8px; color:var(--muted); }
+
+  /* Wax seal overlay */
+  .wax-seal{
+    position:relative;
+    margin:14px 0;
+  }
+  .wax-seal .wax{
+    position:absolute;
+    right:18px;
+    bottom:-18px;
+    width:72px;
+    opacity:0.95;
+    transform:rotate(-8deg);
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+  }
+
+  /* GlowWord modal / mini-scroll overlay */
+  .modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg, rgba(10,10,10,0.45), rgba(10,10,10,0.7));
+    z-index:1200;
+  }
+  .modal.active{ display:flex; }
+  .modal .panel{
+    width:min(920px, 94%);
+    max-height:86vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.55);
+    position:relative;
+    animation:pop .18s ease;
+  }
+  @keyframes pop{ from{transform:translateY(10px) scale(.98) } to{transform:none} }
+
+  .modal .panel h3{ margin-top:0; color:var(--accent); }
+  .modal .close{
+    position:absolute;
+    right:10px;
+    top:10px;
+    background:#111;
+    color:#fff;
+    border-radius:6px;
+    padding:6px 10px;
+    cursor:pointer;
+  }
+
+  /* Footer witness seal */
+  footer.witness{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#111;
+    color:#fff;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    z-index:1000;
+  }
+  footer.witness .seal{ display:flex; align-items:center; gap:10px;}
+  footer.witness .seal img{ height:36px; width:auto; filter:brightness(1.08); }
+
+  /* small helpers */
+  .muted{ color:var(--muted); font-size:14px; }
+  .hr{ height:1px; background:#eee; margin:18px 0; border-radius:2px; }
+</style>
+</head>
+
+<body>
+  <header class="site-header container" role="banner">
+    <div class="logo" aria-hidden="true">
+      <img src="https://i.postimg.cc/ZnxYcwTF/23Legend-Gray-Sweatsuit-AJ4-49c04b52-7215-429e-9578-b87adaea8400.png" alt="Threads On Fire logo placeholder" />
+      <div>
+        <strong>Threads On Fire</strong>
+        <div class="muted">ScrollForge • GlowWord Template</div>
+      </div>
+    </div>
+    <nav aria-label="Primary">
+      <button id="openMenu" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <div class="scroll-card" id="aboutScroll">
+      <div class="main-title">
+        <span>🔥 From Swap Meet Hustle to Streetwear Brand</span>
+      </div>
+
+      <div class="lead">My name is <strong>Abel Arreola</strong>, and Threads On Fire began with a single stack of tees and a relentless inner fire.</div>
+
+      <section class="story" aria-labelledby="storyHeading">
+        <h2 id="storyHeading" style="margin-top:0;">The Story</h2>
+        <p>I grew up in a low-income Mexican-American home where nothing was handed out — everything was earned. Back in 2012, I hit rock bottom. I had just lost my job. My car was gone. No savings. No plan. But I had one thing left — <span class="glowword" data-glow="fire">fire</span>. That inner fire to create something bigger than my situation.</p>
+
+        <p>So I hit the local swap meet. Every weekend, I’d wake up early, set up my table in the hot sun, and hustle. I started by flipping second-hand gear with my own twist. I wasn’t chasing trends — I was building a vibe. Matching fits with clean sneakers, studying fashion, understanding the culture. My booth grew into a brand because people saw the vision before the logo existed.</p>
+
+        <div class="hr"></div>
+
+        <h3>⚡ The Spark Behind the Brand</h3>
+        <p>By 2015, I leveled up. I launched my first website and started shipping gear coast to coast. What started under a pop-up tent became a growing streetwear movement — backed by style, substance, and heritage. I rebranded as <strong>Threads On Fire</strong> — a name that speaks to the passion that kept me pushing when everything else burned down.</p>
+
+        <p>We don't sell hype. We build confidence with clean, sneaker-matching streetwear that stands on culture — not clout. <span class="glowword" data-glow="roots">Our roots</span> are real. The work is real. The story is our guarantee.</p>
+      </section>
+
+      <!-- Wax seal overlay (positioned inside the card) -->
+      <div class="wax-seal" aria-hidden="true">
+        <img src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="" class="wax" />
+      </div>
+    </div>
+
+    <!-- GlowWord triggers quick list (preview) -->
+    <section class="scroll-card" aria-labelledby="glowHeading" style="margin-bottom:28px;">
+      <h3 id="glowHeading">GlowWords — quick keys</h3>
+      <p class="muted">Tap a GlowWord to open its mini-scroll and read the deeper witness.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <!-- nine glowwords example -->
+        <a role="button" class="glowword" data-glow="roots">Real Roots</a>
+        <a role="button" class="glowword" data-glow="fire">Fire</a>
+        <a role="button" class="glowword" data-glow="hustle">Hustle</a>
+        <a role="button" class="glowword" data-glow="sneaker">Sneaker-Match</a>
+        <a role="button" class="glowword" data-glow="heritage">Heritage</a>
+        <a role="button" class="glowword" data-glow="vibe">Vibe</a>
+        <a role="button" class="glowword" data-glow="stamp">Stamp</a>
+        <a role="button" class="glowword" data-glow="seal">Seal</a>
+        <a role="button" class="glowword" data-glow="community">For the People</a>
+      </div>
+    </section>
+
+    <!-- Product gallery using the exact image links you gave in order -->
+    <section aria-labelledby="shopHeading">
+      <h3 id="shopHeading">Product Preview</h3>
+      <div class="product-grid" id="productGrid">
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/ZnxYcwTF/23Legend-Gray-Sweatsuit-AJ4-49c04b52-7215-429e-9578-b87adaea8400.png" alt="23Legend Gray Sweatsuit" />
+          <div class="caption">23Legend Gray Sweatsuit</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/mZYrBgQ4/23Legend-Grey-Blk-Red-Full-Sweatsuit-AJ4Bred-Reimagined.png" alt="23Legend Grey Black Red Full Sweatsuit" />
+          <div class="caption">23Legend Grey Black Red Full Sweatsuit</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/sfY2sgpV/23T-Shirt5-0b784573-8a24-4660-9963-a290e6262af5.png" alt="23 T-Shirt design" />
+          <div class="caption">23 T-Shirt — Black 23</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="Black 23 with stamp" />
+          <div class="caption">Black 23 with Stamp</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/59Btb2wt/Bred-Sweatsuit-AJ4Bred.png" alt="Bred Sweatsuit" />
+          <div class="caption">Bred Sweatsuit — AJ4Bred</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/1RGzs3pw/Bred-Sweatsuit-Blk-Red-Wht-no-logo.png" alt="Bred sweatsuit no logo" />
+          <div class="caption">Bred Sweatsuit — No Logo Variant</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="Threads on Fire wax seal" />
+          <div class="caption">Wax Seal — Brand Stamp</div>
+        </div>
+
+        <div class="product">
+          <img loading="lazy" src="https://i.postimg.cc/SQ6KkxW9/GOAT23Navy-Hoodie-Joggers-Sweatsuit-Jersey-Puf-AJ4.png" alt="GOAT23 Navy Hoodie Joggers" />
+          <div class="caption">GOAT23 Navy Hoodie + Joggers</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="muted">
+      <p>Notes: images used above are placeholders from your PostImage gallery; these are already ordered and ready for alpha publishing. Wax seal is intentionally displayed as overlay and in product listing to show signature usage.</p>
+    </section>
+  </main>
+
+  <!-- GlowWord Modal (re-uses content from data store) -->
+  <div class="modal" id="glowModal" role="dialog" aria-modal="true" aria-labelledby="glowTitle">
+    <div class="panel" role="document">
+      <button class="close" id="modalClose">Close</button>
+      <h3 id="glowTitle"></h3>
+      <div id="glowBody" style="color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <!-- Witness footer -->
+  <footer class="witness" role="contentinfo" aria-label="Witness Footer">
+    <div class="seal">
+      <img src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="Threads on Fire wax seal" />
+      <div>
+        <div style="font-weight:700;">Witness Lock — Threads On Fire</div>
+        <div class="muted">FULL-RELOCK™ — JESUS IS LORD™ — PROCEED™✔</div>
+      </div>
+    </div>
+    <div class="muted">© Threads On Fire — ScrollForge Alpha</div>
+  </footer>
+
+<script>
+/*
+  Core GlowWord mini-scroll engine
+  - Nine glowwords are defined here as data.* Each glowword contains title & content.
+  - Clicking any .glowword opens the modal with the corresponding content.
+  - This engine intentionally keeps content inline so the template can be server-rendered later.
+*/
+
+const GLOWWORDS = {
+  roots: {
+    title: "Real Roots",
+    body: `<p><strong>Real Roots.</strong> Mexican-American built. West Coast raised. This brand stands on grit, heritage, and hustle. We trace every stitch back to a small table at a swap meet — the original lab for our vision.</p>`
+  },
+  fire: {
+    title: "Fire",
+    body: `<p><strong>Fire.</strong> Not the kind that destroys, but the kind that refines. Fire is urgency, instinct, and heat-to-craft. It’s the inner conviction that keeps us turning up when others fold.</p>`
+  },
+  hustle: {
+    title: "Hustle",
+    body: `<p><strong>Hustle.</strong> Early mornings, late nights, turning small wins into systems. Hustle is a muscle — we flex it with respect, humility, and consistency.</p>`
+  },
+  sneaker: {
+    title: "Sneaker-Match",
+    body: `<p><strong>Sneaker-Match.</strong> Every drop is optimized to pair with classic Jordans and clean silhouettes. We design around kicks — we honor sneaker culture.</p>`
+  },
+  heritage: {
+    title: "Heritage",
+    body: `<p><strong>Heritage.</strong> The story we wear. When you put on TOF, you're not buying a shirt. You're wearing a history, a location, a family.</p>`
+  },
+  vibe: {
+    title: "Vibe",
+    body: `<p><strong>Vibe.</strong> The invisible code that tells people you belong. Built through silhouettes, fit, and subtle markings that nod to authenticity.</p>`
+  },
+  stamp: {
+    title: "Stamp",
+    body: `<p><strong>Stamp.</strong> Graphic seal used as final sign-off on premium pieces; a tactile mark of quality, often applied as a wax-like render or pressed stamp.</p>`
+  },
+  seal: {
+    title: "Seal",
+    body: `<p><strong>Seal.</strong> Our wax seal expresses covenant — the promise of care, limited runs, and a story behind every drop.</p>`
+  },
+  community: {
+    title: "For the People",
+    body: `<p><strong>For the People.</strong> TOF serves the underdogs — the go-getters chasing legacy. Community comes before clout.</p>`
+  }
+};
+
+// modal wiring
+const modal = document.getElementById('glowModal');
+const glowTitle = document.getElementById('glowTitle');
+const glowBody = document.getElementById('glowBody');
+const modalClose = document.getElementById('modalClose');
+
+function openGlow(id){
+  const key = GLOWWORDS[id];
+  if(!key) return;
+  glowTitle.innerText = key.title;
+  glowBody.innerHTML = key.body;
+  modal.classList.add('active');
+  modal.querySelector('.panel').focus();
+}
+
+modalClose.addEventListener('click', ()=> modal.classList.remove('active'));
+modal.addEventListener('click', (e)=> { if(e.target === modal) modal.classList.remove('active'); });
+
+// attach triggers
+document.querySelectorAll('.glowword').forEach(el=>{
+  el.addEventListener('click', (ev)=>{
+    const g = el.getAttribute('data-glow');
+    openGlow(g);
+  });
+});
+
+// accessibility: escape to close
+document.addEventListener('keydown', (ev)=>{
+  if(ev.key === 'Escape') modal.classList.remove('active');
+});
+
+/* Lazy-load helper: ensure images are loaded on intersection */
+if('IntersectionObserver' in window){
+  const imgs = document.querySelectorAll('img[loading="lazy"]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        const img = ent.target;
+        if(img.dataset.src){ img.src = img.dataset.src; }
+        io.unobserve(img);
+      }
+    });
+  }, {rootMargin:'200px'});
+  imgs.forEach(i=> io.observe(i));
+}
+</script>
+</body>
+</html>

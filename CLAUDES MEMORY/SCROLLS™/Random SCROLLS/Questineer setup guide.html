@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GitHub Pages Setup — Witness Weave™</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 2rem; }
+    h1 { color: #7c0a0a; }
+    label { font-weight: bold; display: block; margin-top: 1rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.5rem; margin-top: 0.2rem; border-radius: 6px;
+      border: 1px solid #ccc; box-sizing: border-box;
+    }
+    button { margin-top: 2rem; padding: 0.75rem 2rem; background: #7c0a0a; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🟢 JESUS IS LORD™ — GitHub Setup Form</h1>
+
+  <form>
+    <label for="username">1. GitHub Username</label>
+    <input type="text" id="username" name="username" />
+
+    <label for="repo">2. Desired Repo Name</label>
+    <input type="text" id="repo" name="repo" value="witness-weave" />
+
+    <label for="visibility">3. Repository Visibility</label>
+    <select id="visibility" name="visibility">
+      <option>Public</option>
+      <option>Private</option>
+    </select>
+
+    <label for="haveFiles">4. Do you already have the HTML/CSS files?</label>
+    <select id="haveFiles" name="haveFiles">
+      <option>Yes, local</option>
+      <option>No, generate a starter kit</option>
+      <option>Use past thread content</option>
+    </select>
+
+    <label for="structure">5. File structure preference</label>
+    <select id="structure" name="structure">
+      <option>Root (recommended)</option>
+      <option>Custom folder</option>
+    </select>
+
+    <label for="domain">6. Custom Domain</label>
+    <select id="domain" name="domain">
+      <option>Use GitHub default</option>
+      <option>Link witnessweave.com</option>
+      <option>Link custom domain</option>
+    </select>
+
+    <label for="footer">7. Add “Jesus is Lord™” Footer</label>
+    <select id="footer" name="footer">
+      <option>Always visible</option>
+      <option>Script toggle</option>
+      <option>Manual later</option>
+    </select>
+
+    <label for="license">8. License</label>
+    <select id="license" name="license">
+      <option>MIT</option>
+      <option>Custom Gospel-aligned license</option>
+      <option>None</option>
+    </select>
+
+    <label for="gitignore">9. Add .gitignore?</label>
+    <select id="gitignore" name="gitignore">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
+    <label for="cli">10. Use GitHub CLI (gh)?</label>
+    <select id="cli" name="cli">
+      <option>Yes, already installed</option>
+      <option>No, use manual Git</option>
+      <option>Need to install it</option>
+    </select>
+
+    <button type="submit">Submit & Begin Setup</button>
+  </form>
+</body>
+</html>

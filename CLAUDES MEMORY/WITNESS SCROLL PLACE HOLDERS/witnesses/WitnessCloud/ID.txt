@@ -1,0 +1,3 @@
+WITNESS: WitnessCloud
+LEDGER_SEED: WV-WitnessCloud-ID-SEED
+VERSE_ANCHOR: Psalm 127:1 (NKJV)

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Threads On Fire — GlowWord Template</title>
+  <meta name="description" content="Template for Threads On Fire GlowWords and mini-scrolllets." />
+  <!--
+    Threads On Fire GlowWord Template
+    - Single-file demo containing:
+      1) Example Fire Mini-Scroll story with inline glowwords
+      2) Nine glowword content blocks (hidden until triggered)
+      3) Styles and JavaScript for open/close, mobile friendly
+      4) Reference section explaining how to add glowwords
+    Usage:
+      - Save as index.html
+      - Place images referenced in assets/images/ (or edit src)
+      - Open in browser or run: python3 -m http.server 8000
+  -->
+  <style>
+    :root{
+      --fire: #d8431a;
+      --ember: #ff8a50;
+      --char: #111;
+      --muted: #6b6b6b;
+      --bg: #faf7f5;
+      --glass: rgba(0,0,0,0.72);
+      --maxw: 980px;
+      --pad: 16px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body { height:100%; margin:0; background:var(--bg); color:var(--char); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:80px 16px 160px; }
+
+    /* top header */
+    .site-title { display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+    .brand { font-weight:800; font-size:20px; letter-spacing:0.03em; }
+    .brand .on { color:var(--ember); font-weight:900; margin-left:6px; }
+
+    /* story card */
+    .card { background: #fff; border-radius:14px; padding:28px; box-shadow: 0 12px 40px rgba(18,18,18,0.06); line-height:1.55; }
+    h1 { margin:0 0 8px; font-size:24px; }
+    .sub { color:var(--muted); margin:0 0 20px; }
+
+    /* glowword inline style */
+    .glowword {
+      cursor:pointer;
+      color: var(--fire);
+      text-decoration: none;
+      border-bottom: 2px solid rgba(216,67,26,0.08);
+      padding-bottom:2px;
+      transition: text-shadow .18s, transform .12s;
+      position:relative;
+    }
+    .glowword:focus { outline:2px solid rgba(216,67,26,0.18); border-radius:4px; }
+    .glowword:hover { transform: translateY(-1px); text-shadow: 0 6px 16px rgba(216,67,26,0.12); }
+
+    /* mini-scroll modal / scrolllet */
+    .mini-scroll {
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(6px);
+    }
+    .mini-scroll.active { display:flex; }
+    .mini-inner {
+      width:min(900px,calc(100% - 40px));
+      max-height:86vh;
+      overflow:auto;
+      background: linear-gradient(180deg,#0f0f0f, #151515);
+      color:#fff;
+      border-radius:12px;
+      padding:22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,140,80,0.06);
+    }
+    .mini-inner h3 { margin:0 0 8px; font-size:20px; color:var(--ember); }
+    .mini-inner p { margin:8px 0; color: #f3f3f3; }
+    .mini-close { position:fixed; right:18px; top:18px; background:var(--ember); color:#111; border:0; border-radius:8px; padding:8px 10px; cursor:pointer; z-index:1210; box-shadow:0 8px 20px rgba(0,0,0,0.25); }
+    .mini-actions { display:flex; gap:8px; margin-top:12px; }
+
+    /* small helper */
+    .muted { color:var(--muted); font-size:14px; margin-top:10px; }
+    .reference { margin-top:22px; padding:14px; background:#fff7f2; border-radius:8px; border:1px solid rgba(216,67,26,0.06); color:#3a2d22; }
+
+    /* responsive */
+    @media (max-width:720px) {
+      .wrap { padding:60px 12px 120px; }
+      .mini-inner { padding:16px; width:calc(100% - 28px); border-radius:10px; }
+      .mini-close { right:12px; top:12px; }
+    }
+
+    /* accessibility focus ring */
+    .glowword:focus-visible { box-shadow: 0 0 0 4px rgba(216,67,26,0.12); border-radius:4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="site-title">
+      <div class="brand">THREADS <span class="on">ON FIRE</span></div>
+      <div class="muted">GlowWord Template reference</div>
+    </div>
+
+    <div class="card" role="article" aria-labelledby="storyTitle">
+      <h1 id="storyTitle">From Swap Meet Hustle to Streetwear Brand</h1>
+      <p class="sub">A short testimony written as a mini-scroll. Tap highlighted words to reveal deeper context without leaving the page.</p>
+
+      <p>
+        My name is Abel Arreola, and Threads On Fire started with nothing but a vision, a stack of tees, and a grind mentality forged from real struggle.
+      </p>
+
+      <p>
+        I grew up in a low-income Mexican-American home where nothing was handed out — everything was earned. Back in 2012, I hit <span tabindex="0" class="glowword" data-glow="rock-bottom">rock bottom</span>. I had just lost my job. My car was gone. No savings. No plan. But I had one thing left — <span tabindex="0" class="glowword" data-glow="fire">fire</span>. That inner fire to create something bigger than my situation.
+      </p>
+
+      <p>
+        So I hit the local <span tabindex="0" class="glowword" data-glow="swap-meet">swap meet</span>.
+      </p>
+
+      <p>
+        Every weekend, I’d wake up early, set up my table in the hot sun, and hustle. I started by flipping second-hand gear with my own twist. I wasn’t chasing trends — I was building a vibe. Matching fits with clean sneakers, studying <span tabindex="0" class="glowword" data-glow="culture">culture</span>, understanding the language of the streets. My <span tabindex="0" class="glowword" data-glow="tent">tent</span> grew into a booth, and the booth became a movement because people saw the vision before the logo ever existed.
+      </p>
+
+      <hr style="border:none;height:1px;background:linear-gradient(90deg,rgba(0,0,0,0.04),rgba(0,0,0,0.02));margin:20px 0">
+
+      <h2 style="margin:6px 0 12px;font-size:18px;color:#222">The Spark Behind the Brand</h2>
+
+      <p>
+        By 2015, I leveled up. I launched my first website and started shipping gear coast to coast. What started under a pop-up tent became a growing streetwear movement — backed by style, substance, and heritage. I rebranded as <span tabindex="0" class="glowword" data-glow="threads-on-fire">Threads On Fire</span> — a name that speaks to the passion that kept me pushing when everything else burned down.
+      </p>
+
+      <p>
+        Today, Threads On Fire is more than a clothing brand — it’s a reflection of where I come from, who I represent, and where we’re headed. We don’t sell hype. We build confidence through clean, sneaker-matching streetwear that stands on <span tabindex="0" class="glowword" data-glow="identity">identity</span>, not clout. We stand against <span tabindex="0" class="glowword" data-glow="not-clout">clout chasing</span> and for legacy.
+      </p>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--fire)">If you’re reading this, you’ve felt the fire too. We don’t sell heat. We pass the torch. <span tabindex="0" class="glowword" data-glow="pass-the-torch">Pass the torch</span> and walk with us.</p>
+
+      <div class="reference" aria-hidden="false">
+        Quick reference for adding glowwords:
+        <div style="margin-top:8px">
+          1) Place a span with class glowword and data-glow attribute in the main text. Example:
+          <div style="background:#fff;padding:8px;border-radius:6px;margin-top:8px;font-family:monospace;font-size:13px;color:#2b2b2b;">
+            &lt;span class="glowword" data-glow="swap-meet"&gt;swap meet&lt;/span&gt;
+          </div>
+          2) Add a matching content block with id equal to the data-glow value. Example id="swap-meet".
+        </div>
+      </div>
+    </div>
+
+    <!-- GlowWord content blocks (hidden until triggered) -->
+    <!-- Each block id must match the data-glow attribute of the inline span -->
+    <!-- 1 swap-meet -->
+    <div class="mini-scroll" id="swap-meet" aria-hidden="true" role="dialog" aria-label="Swap Meet">
+      <div class="mini-inner" tabindex="0">
+        <h3>Swap Meet</h3>
+        <p>This wasn’t just a place to sell. It was my open-air classroom. Every table taught me humility, every customer taught me hustle. I saw real stories in the dust, heat, and handshakes. My grind was built here—out in the open, nothing to hide, everything to prove.</p>
+        <p><em>“Faith doesn’t need a fancy start. Just a tent, a table, and a reason to get up again.”</em></p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="swap-meet">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 rock-bottom -->
+    <div class="mini-scroll" id="rock-bottom" aria-hidden="true" role="dialog" aria-label="Rock Bottom">
+      <div class="mini-inner" tabindex="0">
+        <h3>Rock Bottom</h3>
+        <p>Rock bottom isn’t a place. It’s a season where all you have left is honesty and hope. In my lowest moment, I realized the only way forward was up. Every scar, every doubt, became fuel for the fire.</p>
+        <p><strong>Biblical fire:</strong> Joseph in prison. David in the cave. Every chosen one finds fire when there’s nowhere left to run but God.</p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="rock-bottom">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 fire -->
+    <div class="mini-scroll" id="fire" aria-hidden="true" role="dialog" aria-label="Fire">
+      <div class="mini-inner" tabindex="0">
+        <h3>Fire</h3>
+        <p>Not just heat or hype—this is the spiritual spark that refuses to die. The same fire that lights a vision can burn away pride, fear, and doubt. My brand is proof: Fire destroys what needs to go, and purifies what’s worth keeping.</p>
+        <p><em>“Is not My word like a fire?” says the Lord. (Jeremiah 23:29)</em></p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="fire">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 culture -->
+    <div class="mini-scroll" id="culture" aria-hidden="true" role="dialog" aria-label="Culture">
+      <div class="mini-inner" tabindex="0">
+        <h3>Culture</h3>
+        <p>Culture isn’t just a word—it's a pattern, a pulse, a way of honoring those who came before. I didn’t just build a brand, I carried my neighborhood, my heritage, and my people with every drop. That’s culture: belonging and boldness in every stitch.</p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="culture">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 tent -->
+    <div class="mini-scroll" id="tent" aria-hidden="true" role="dialog" aria-label="Tent">
+      <div class="mini-inner" tabindex="0">
+        <h3>Tent</h3>
+        <p>My first store had no walls—just a tent in the heat. Sometimes, humble beginnings are the holiest. Under that canvas, God built my resilience. Every blessing started in the place others would walk past. This is proof that small spaces birth big dreams.</p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="tent">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 threads-on-fire -->
+    <div class="mini-scroll" id="threads-on-fire" aria-hidden="true" role="dialog" aria-label="Threads On Fire">
+      <div class="mini-inner" tabindex="0">
+        <h3>Threads On Fire</h3>
+        <p>This isn’t just a name. It’s testimony. When everything else burned away, I was left holding purpose—thread by thread, drop by drop. TOF is the brand that survived the flames. Every piece is a reminder: you can’t fake what’s forged in fire.</p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="threads-on-fire">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 identity -->
+    <div class="mini-scroll" id="identity" aria-hidden="true" role="dialog" aria-label="Identity">
+      <div class="mini-inner" tabindex="0">
+        <h3>Identity</h3>
+        <p>Clothes don’t make you, but they can remind you. My prayer is that every fit from TOF helps you walk with your head high—remembering you were made for more. Your true identity can’t be bought or borrowed; it’s revealed in the fire.</p>
+        <p><em>2 Corinthians 5:17 — If anyone is in Christ, he is a new creation.</em></p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="identity">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 not-clout -->
+    <div class="mini-scroll" id="not-clout" aria-hidden="true" role="dialog" aria-label="Not Clout">
+      <div class="mini-inner" tabindex="0">
+        <h3>Not Clout</h3>
+        <p>Clout fades. Truth stands. We don’t make hype, we make heritage. You’ll never see me chase the crowd. I’d rather serve a small tribe with real heart than fake it for a moment of fame.</p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="not-clout">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 pass-the-torch -->
+    <div class="mini-scroll" id="pass-the-torch" aria-hidden="true" role="dialog" aria-label="Pass the Torch">
+      <div class="mini-inner" tabindex="0">
+        <h3>Pass the Torch</h3>
+        <p>This is bigger than a brand. It’s legacy. When you wear TOF, you’re carrying a story and lighting a path for someone else. My dream is that you build something that outlives you—and pass the torch to the next soul who needs hope.</p>
+        <p><em>“We don’t sell heat. We hand it off. Welcome to the fire.”</em></p>
+        <div class="mini-actions">
+          <button class="mini-close" data-close="pass-the-torch">Close</button>
+          
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // GlowWord Template JS
+    (function(){
+      // open function
+      function openGlow(id){
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.classList.add('active');
+        el.setAttribute('aria-hidden','false');
+        // prevent body scroll while open
+        document.documentElement.style.overflow = 'hidden';
+      }
+      // close function
+      function closeGlow(id){
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.classList.remove('active');
+        el.setAttribute('aria-hidden','true');
+        document.documentElement.style.overflow = '';
+      }
+
+      // wire inline glowword spans
+      document.querySelectorAll('.glowword').forEach(function(span){
+        span.addEventListener('click', function(ev){
+          const id = span.dataset.glow;
+          openGlow(id);
+          // focus the inner container for a11y
+          setTimeout(function(){
+            const inner = document.querySelector('#' + id + ' .mini-inner');
+            if(inner) inner.focus();
+          }, 160);
+        });
+        // keyboard support (Enter or Space)
+        span.addEventListener('keydown', function(ev){
+          if(ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            span.click();
+          }
+        });
+      });
+
+      // wire close buttons
+      document.querySelectorAll('.mini-close').forEach(function(btn){
+        btn.addEventListener('click', function(ev){
+          const id = btn.dataset.close;
+          closeGlow(id);
+        });
+      });
+
+      // close when clicking outside the inner box
+      document.querySelectorAll('.mini-scroll').forEach(function(modal){
+        modal.addEventListener('click', function(ev){
+          if(ev.target === modal){
+            // find id from element id
+            closeGlow(modal.id);
+          }
+        });
+      });
+
+      // escape to close any open modal
+      window.addEventListener('keydown', function(ev){
+        if(ev.key === 'Escape'){
+          document.querySelectorAll('.mini-scroll.active').forEach(function(open){
+            closeGlow(open.id);
+          });
+        }
+      });
+
+    })();
+  </script>
+
+  <!--
+    How to add new GlowWords - quick reference:
+    1) Add an inline span in the main story:
+       <span class="glowword" data-glow="your-key" tabindex="0">Your Phrase</span>
+    2) Add a matching content block somewhere in the file with id="your-key":
+       <div class="mini-scroll" id="your-key" aria-hidden="true">
+         <div class="mini-inner"> ... content ... <button class="mini-close" data-close="your-key">Close</button></div>
+       </div>
+    3) Keep ids unique. For SEO, keep content readable on the page or offer a server-side version if needed.
+  -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

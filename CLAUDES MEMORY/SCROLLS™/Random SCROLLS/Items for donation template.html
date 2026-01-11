@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Threads On Fire — Living Scroll</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --paper:#f7f2ea;
+      --inferno:#ff5e00;
+      --ember:#ff8a3d;
+      --gold:#f2d18a;
+      --char:#121214;
+      --muted:#bdb7aa;
+      --max-width:1100px;
+      --radius:12px;
+    }
+
+    html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Montserrat,system-ui,Segoe UI,Roboto,Arial;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 18px;}
+
+    /* Sticky Navigation */
+    header.topbar{
+      position:sticky;top:0;z-index:150;background:linear-gradient(180deg, rgba(10,10,10,0.86), rgba(10,10,10,0.55));
+      backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,94,0,0.03);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;max-width:var(--max-width);margin:0 auto;}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo {font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);letter-spacing:0.02em}
+    .nav-links{display:flex;gap:14px;align-items:center}
+    .nav-links a{padding:8px 10px;border-radius:8px;font-weight:600;color:#fff;opacity:0.9}
+    .nav-links a:hover{background:rgba(255,94,0,0.06);color:var(--inferno)}
+
+    /* Hero */
+    .hero {
+      min-height:66vh;
+      display:flex;align-items:center;justify-content:center;
+      background-image:url('https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png');
+      background-size:cover;background-position:center;
+      position:relative;overflow:hidden;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.7));
+    }
+    .hero-inner{position:relative;z-index:2;text-align:center;padding:6vh 18px;color:#fff;max-width:900px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:44px;margin:0 0 6px;letter-spacing:0.02em;text-shadow:0 6px 28px rgba(0,0,0,0.6)}
+    .hero p{margin:0 0 18px;color:var(--muted);font-size:18px}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      background:var(--inferno);color:#111;padding:12px 20px;border-radius:999px;font-weight:700;
+      box-shadow:0 6px 22px rgba(255,94,0,0.12);border:0;cursor:pointer
+    }
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+
+    /* About blurb in hero */
+    .hero .about-blurb{background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:10px;display:inline-block;margin-top:10px;color:var(--muted)}
+
+    /* Gallery */
+    section#collection{padding:48px 0;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;align-items:start}
+    .product{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:var(--radius);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.02)}
+    .product img{width:100%;height:auto;border-radius:8px;display:block;transition:transform 260ms ease, box-shadow 260ms ease}
+    .product:hover img{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+    .caption{padding:10px 6px;text-align:center}
+    .caption h3{margin:6px 0 4px;font-size:18px;color:#fff}
+    .caption p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Wax seal corner */
+    .wax-corner{position:absolute;right:10px;top:10px;width:56px;height:56px;pointer-events:none;opacity:0.95;transition:transform 260ms ease}
+    .product:hover .wax-corner{transform:rotate(-6deg) scale(1.04);pointer-events:none}
+
+    /* Modal style (About + GlowWord) */
+    .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.86);z-index:220;align-items:center;justify-content:center;padding:20px;overflow:auto}
+    .modal-box{background:var(--paper);color:#111;max-width:820px;width:100%;border-radius:14px;padding:26px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+    .modal-close{position:absolute;right:16px;top:12px;font-size:22px;background:transparent;border:0;color:var(--inferno);cursor:pointer}
+    .modal-box h2{font-family:'Playfair Display',serif;margin:0 0 8px}
+    .modal-box p{color:#222;line-height:1.6}
+
+    /* Glowword inline style */
+    .glowword{color:var(--inferno);font-weight:700;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(255,94,0,0.08);text-underline-offset:6px}
+    .glowmodal .modal-box{max-width:640px}
+
+    /* Footer */
+    footer.fire-footer{background:linear-gradient(180deg,#0b0b0c,#111);color:#dcd6cc;padding:32px 18px;text-align:center}
+    footer .wax-seal{width:68px;margin:0 auto 12px;display:block;animation:pulse 2.8s infinite}
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:0.88}
+      50%{transform:scale(1.06);opacity:1}
+      100%{transform:scale(1);opacity:0.88}
+    }
+    footer .footer-links{display:flex;gap:12px;justify-content:center;padding:10px 0;margin:0;list-style:none}
+    footer .footer-links a{color:var(--inferno);font-weight:700}
+
+    /* Accessibility focus ring */
+    :focus{outline:3px solid rgba(255,94,0,0.14);outline-offset:3px}
+
+    /* Responsive tweaks */
+    @media (max-width:600px){
+      .hero h1{font-size:28px}
+      .nav-links{display:none}
+      .nav-toggle{display:block}
+      .container{padding:0 12px}
+      .product{padding:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar / Nav -->
+  <header class="topbar" role="banner" aria-label="Main navigation">
+    <div class="nav-inner container">
+      <div class="brand">
+        <div class="logo">Threads On Fire</div>
+        <div style="color:var(--muted);font-size:13px">firethreads23</div>
+      </div>
+
+      <nav class="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#collection">Collection</a>
+        <a href="#aboutTrigger" id="aboutTrigger">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="enterBtn">Enter the Fire</button>
+        <button class="btn secondary" id="aboutBtnMobile">About</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero" role="main" aria-labelledby="heroTitle">
+    <div class="hero-inner container">
+      <h1 id="heroTitle">Marked by Fire. Forged by Struggle.</h1>
+      <p>Threads On Fire is not hype. It is witness — a line of clothes built from real grind and sharpened by faith.</p>
+
+      <div class="cta-row">
+        <button class="btn" id="jumpToCollection">Shop the Collection</button>
+        <button class="btn secondary" id="openAbout">Read the Story</button>
+      </div>
+
+      <div class="hero about-blurb" style="margin-top:18px;">
+        Abel Arreola — swap meet to coast to coast. <span class="glowword" data-target="grind">Grind</span> turned into legacy.
+      </div>
+    </div>
+  </main>
+
+  <!-- Product Collection -->
+  <section id="collection" class="container" aria-label="Product collection" tabindex="-1" style="padding-top:28px">
+    <h2 style="color:#fff;font-family:'Playfair Display',serif;text-align:center;margin:6px 0 18px">Collection</h2>
+    <div class="gallery" role="list">
+
+      <!-- Product 1 -->
+      <article class="product" role="listitem" aria-labelledby="p1-title">
+        <img loading="lazy" src="https://i.postimg.cc/ZnxYcwTF/23Legend-Gray-Sweatsuit-AJ4-49c04b52-7215-429e-9578-b87adaea8400.png" alt="23Legend Gray Sweatsuit AJ4">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p1-title">Legend Gray Sweatsuit</h3>
+          <p>Confidence in every thread. <span class="glowword" data-target="legacy">Legacy</span></p>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product" role="listitem" aria-labelledby="p2-title">
+        <img loading="lazy" src="https://i.postimg.cc/mZYrBgQ4/23Legend-Grey-Blk-Red-Full-Sweatsuit-AJ4Bred-Reimagined.png" alt="Grey Black Red Full Sweatsuit">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p2-title">Reimagined Bred Set</h3>
+          <p>Match your kicks. <span class="glowword" data-target="vibe">Vibe</span> tuned to heritage.</p>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="product" role="listitem" aria-labelledby="p3-title">
+        <img loading="lazy" src="https://i.postimg.cc/sfY2sgpV/23T-Shirt5-0b784573-8a24-4660-9963-a290e6262af5.png" alt="23 T-Shirt">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p3-title">23 Logo Tee</h3>
+          <p>Fit before the logo. <span class="glowword" data-target="confidence">Confidence</span> sewn in.</p>
+        </div>
+      </article>
+
+      <!-- Product 4 -->
+      <article class="product" role="listitem" aria-labelledby="p4-title">
+        <img loading="lazy" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="Black 23 Tee with wax stamp">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p4-title">Stamped Black Tee</h3>
+          <p>Marked by the flame. <span class="glowword" data-target="stamp">Marked</span></p>
+        </div>
+      </article>
+
+      <!-- Product 5 -->
+      <article class="product" role="listitem" aria-labelledby="p5-title">
+        <img loading="lazy" src="https://i.postimg.cc/59Btb2wt/Bred-Sweatsuit-AJ4Bred.png" alt="Bred Sweatsuit AJ4">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p5-title">Bred Sweatsuit</h3>
+          <p>Grit built this. <span class="glowword" data-target="roots">Roots</span></p>
+        </div>
+      </article>
+
+      <!-- Product 6 -->
+      <article class="product" role="listitem" aria-labelledby="p6-title">
+        <img loading="lazy" src="https://i.postimg.cc/1RGzs3pw/Bred-Sweatsuit-Blk-Red-Wht-no-logo.png" alt="Bred Sweatsuit No Logo">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p6-title">Bred No-Logo Variant</h3>
+          <p>Even without the brand, the flame shows. <span class="glowword" data-target="movement">Movement</span></p>
+        </div>
+      </article>
+
+      <!-- Product 7 -->
+      <article class="product" role="listitem" aria-labelledby="p7-title">
+        <img loading="lazy" src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="Black-on-black product">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p7-title">Midnight Fit</h3>
+          <p>Subtle, fierce. <span class="glowword" data-target="threads">Threads</span> that speak.</p>
+        </div>
+      </article>
+
+      <!-- Product 8 -->
+      <article class="product" role="listitem" aria-labelledby="p8-title">
+        <img loading="lazy" src="https://i.postimg.cc/SQ6KkxW9/GOAT23Navy-Hoodie-Joggers-Sweatsuit-Jersey-Puf-AJ4.png" alt="GOAT23 Navy Hoodie Set">
+        <img class="wax-corner" aria-hidden="true" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="">
+        <div class="caption">
+          <h3 id="p8-title">GOAT Navy Hoodie</h3>
+          <p>Some drops were chosen. Wear the call. <span class="glowword" data-target="ash">Ash to glory</span></p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- About modal (overlay scroll) -->
+  <div id="aboutModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="aboutTitle">
+    <div class="modal-box" role="document">
+      <button class="modal-close" id="closeAbout" aria-label="Close about">×</button>
+      <h2 id="aboutTitle">The Fire Within — Abel's Story</h2>
+      <p><strong>The Spark</strong></p>
+      <p>I grew up in a low-income Mexican-American home where nothing was handed out — everything was earned. In 2012 I hit rock bottom. I had lost my job and my car. No savings. No plan. But one thing remained: a fire inside me to create something bigger than my circumstances.</p>
+
+      <p><strong>The Flame Takes Shape</strong></p>
+      <p>I started at the swap meet. Every weekend I rose early, set my table in the hot sun, and hustled. I flipped second-hand gear with a twist: I matched fits with clean sneakers and learned how to build a vibe that people felt more than they saw. By 2015 I launched my first site and began shipping coast to coast. Threads On Fire was born from that grit.</p>
+
+      <p><strong>Fire Never Dies</strong></p>
+      <p>Today Threads On Fire stands for confidence built, not bought. These garments are markers of a journey — the work of hands and the witness of a family. If you feel led, close this scroll with a prayer for the hands that stitch and the hearts they serve.</p>
+
+      <p style="margin-top:12px;color:var(--muted)">Click any highlighted word to learn more about the story and the meaning behind the brand.</p>
+    </div>
+  </div>
+
+  <!-- GlowWord modals (hidden until triggered) -->
+  <!-- Legacy -->
+  <div id="legacy" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close legacy">×</button>
+      <h2>Legacy</h2>
+      <p>Legacy is not a label. It is the inheritance of effort. Each stitch is testimony of those who labored before and beside us.</p>
+    </div>
+  </div>
+
+  <!-- Vibe -->
+  <div id="vibe" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close vibe">×</button>
+      <h2>Vibe</h2>
+      <p>Vibe means presence: how you carry yourself, how your clothes speak for you without saying a word. We craft to build that presence.</p>
+    </div>
+  </div>
+
+  <!-- Confidence -->
+  <div id="confidence" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close confidence">×</button>
+      <h2>Confidence</h2>
+      <p>Confidence is earned by showing up, by the daily practice of making your life honest and true. We make clothes that honor that practice.</p>
+    </div>
+  </div>
+
+  <!-- Stamp -->
+  <div id="stamp" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close stamp">×</button>
+      <h2>Marked</h2>
+      <p>The wax stamp is our signature: a visible promise that this piece was crafted with intention and care.</p>
+    </div>
+  </div>
+
+  <!-- Roots -->
+  <div id="roots" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close roots">×</button>
+      <h2>Roots</h2>
+      <p>Roots are where our courage grows. This brand remembers family, place, and the hands that taught us to grind.</p>
+    </div>
+  </div>
+
+  <!-- Movement -->
+  <div id="movement" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close movement">×</button>
+      <h2>Movement</h2>
+      <p>This is not a product line. It is a movement of people who choose authenticity over fashion trends.</p>
+    </div>
+  </div>
+
+  <!-- Threads -->
+  <div id="threads" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close threads">×</button>
+      <h2>Threads</h2>
+      <p>Threads are the literal and symbolic ties that hold the story together — fabric that carries meaning.</p>
+    </div>
+  </div>
+
+  <!-- Ash -->
+  <div id="ash" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close ash">×</button>
+      <h2>Ash</h2>
+      <p>From ash comes warmth. From loss comes a resolute drive. We honor the places that shaped us.</p>
+    </div>
+  </div>
+
+  <!-- Grind -->
+  <div id="grind" class="modal-backdrop glowmodal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close close-glow" aria-label="close grind">×</button>
+      <h2>Grind</h2>
+      <p>Grind is the daily practice of showing up. The swap meet, the long days, the lessons — they built the brand.</p>
+    </div>
+  </div>
+
+  <!-- Contact anchor to satisfy nav link -->
+  <section id="contact" class="container" style="padding:40px 18px 80px">
+    <h2 style="color:#fff;font-family:'Playfair Display',serif;text-align:center;margin:0 0 12px">Contact & Shop</h2>
+    <p style="text-align:center;color:var(--muted)">Email: <a href="mailto:firethreads23@gmail.com">firethreads23@gmail.com</a> — eBay: <a href="https://ebay.com/usr/firethreads23" target="_blank" rel="noopener">firethreads23</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fire-footer" role="contentinfo">
+    <img class="wax-seal" src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="Threads On Fire wax seal">
+    <div style="max-width:900px;margin:0 auto;padding:0 18px;">
+      <h4 style="margin:6px 0 6px">Threads On Fire</h4>
+      <p style="margin:0 0 12px;color:var(--muted)">Forged from faith. Built in the struggle. Worn in truth.</p>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="#aboutTrigger" id="footerAbout">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://ebay.com/usr/firethreads23" target="_blank" rel="noopener">Shop eBay</a>
+        <a href="#">Instagram</a>
+      </nav>
+      <p style="margin-top:14px;color:#888;font-size:13px">&copy; 2025 Threads On Fire. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Utility to open/close modals and trap focus
+    (function(){
+      const body = document.body;
+
+      function disableScroll(){
+        body.style.overflow = 'hidden';
+      }
+      function enableScroll(){
+        body.style.overflow = '';
+      }
+
+      // About modal
+      const aboutModal = document.getElementById('aboutModal');
+      const openAboutBtns = [document.getElementById('openAbout'), document.getElementById('aboutBtnMobile'), document.getElementById('aboutTrigger'), document.getElementById('footerAbout')];
+      const closeAboutBtn = document.getElementById('closeAbout');
+
+      openAboutBtns.forEach(b=>{
+        if(b) b.addEventListener('click', function(e){
+          e.preventDefault();
+          aboutModal.style.display = 'flex';
+          aboutModal.setAttribute('aria-hidden','false');
+          disableScroll();
+          const focusable = aboutModal.querySelector('button, a, input, [tabindex]');
+          if(focusable) focusable.focus();
+        });
+      });
+      if(closeAboutBtn){
+        closeAboutBtn.addEventListener('click', function(){
+          aboutModal.style.display = 'none';
+          aboutModal.setAttribute('aria-hidden','true');
+          enableScroll();
+        });
+      }
+      aboutModal.addEventListener('click', function(e){
+        if(e.target === aboutModal){
+          aboutModal.style.display = 'none';
+          aboutModal.setAttribute('aria-hidden','true');
+          enableScroll();
+        }
+      });
+
+      // Generic glow modals
+      document.querySelectorAll('.glowword').forEach(word=>{
+        word.addEventListener('click', function(e){
+          const id = word.getAttribute('data-target');
+          const modal = document.getElementById(id);
+          if(modal){
+            modal.style.display = 'flex';
+            modal.setAttribute('aria-hidden','false');
+            disableScroll();
+            const close = modal.querySelector('.close-glow, .modal-close');
+            if(close) close.focus();
+          }
+        });
+      });
+
+      // Close buttons
+      document.querySelectorAll('.close-glow, .modal-close').forEach(btn=>{
+        btn.addEventListener('click', function(){
+          const modal = btn.closest('.modal-backdrop');
+          if(modal){
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden','true');
+            enableScroll();
+          }
+        });
+      });
+
+      // Close on ESC
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          document.querySelectorAll('.modal-backdrop[style]').forEach(m=>{
+            if(m.style.display === 'flex' || m.style.display === 'block'){
+              m.style.display = 'none';
+              m.setAttribute('aria-hidden','true');
+            }
+          });
+          enableScroll();
+        }
+      });
+
+      // Smooth anchors
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if(href.length>1){
+            const target = document.querySelector(href);
+            if(target){
+              e.preventDefault();
+              target.scrollIntoView({behavior:'smooth',block:'start'});
+            }
+          }
+        });
+      });
+
+      // Jump to collection button
+      const jumpBtn = document.getElementById('jumpToCollection');
+      if(jumpBtn){
+        jumpBtn.addEventListener('click', function(){document.getElementById('collection').scrollIntoView({behavior:'smooth'});});
+      }
+
+      // Accessibility: ensure modals trap focus roughly (simple approach)
+      document.querySelectorAll('.modal-backdrop').forEach(modal=>{
+        modal.addEventListener('keydown', function(e){
+          if(e.key === 'Tab'){
+            const focusable = modal.querySelectorAll('a,button,input,textarea,[tabindex]:not([tabindex="-1"])');
+            if(focusable.length===0) return;
+            const first = focusable[0], last = focusable[focusable.length-1];
+            if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+            else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
+```0

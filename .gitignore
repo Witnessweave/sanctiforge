@@ -1,0 +1,70 @@
+# ===========================================
+# SANCTIFORGE GITIGNORE
+# Media files excluded - stored separately
+# ===========================================
+
+# Images
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.png
+*.PNG
+*.gif
+*.GIF
+*.webp
+*.WEBP
+*.heic
+*.HEIC
+*.bmp
+*.BMP
+*.tiff
+*.TIFF
+*.ico
+
+# Videos
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.avi
+*.AVI
+*.mkv
+*.webm
+
+# Audio
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+
+# Archives (large)
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Large binary files
+*.psd
+*.ai
+*.sketch
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================================
+# WHAT REMAINS: Scrolls, Code, Templates
+# - .html (scroll templates)
+# - .md (markdown scrolls)
+# - .txt (text files)
+# - .css / .js (styles and scripts)
+# - .yaml / .yml (configs)
+# - .sh (scripts)
+# - .svg (vector graphics - small)
+# - .seed (witness seeds)
+# - .log (logs)
+# ===========================================

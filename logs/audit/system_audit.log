@@ -1,0 +1,304 @@
+[+] Running daily system audit...
+Jan 01 17:57:48 localhost kernel: x86/cpu: SGX disabled or unsupported by BIOS.
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.XHC.RHUB.TPLD], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS01], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS02], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS03], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS04], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS05], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS06], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS07], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS08], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS09], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS10], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR1], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR2], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS01], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS02], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS03], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS04], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS05], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS06], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C2.TPD0], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C3.TPL1], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._ON], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:57:48 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._OFF], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 17:57:48 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 17:58:15 localhost kernel: rtw_8822be 0000:07:00.0: Unable to change power state from D3cold to D0, device inaccessible
+Jan 01 17:58:15 localhost kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 17:58:15 localhost kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 17:58:15 localhost kernel: rtw_8822be 0000:07:00.0: failed to setup chip efuse info
+Jan 01 17:58:15 localhost kernel: rtw_8822be 0000:07:00.0: failed to setup chip information
+Jan 01 17:58:17 localhost.localdomain dbus-broker-launch[2136]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.xfce.Thunar.FileManager1.service'
+Jan 01 17:58:17 localhost.localdomain dbus-broker-launch[2136]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.kde.dolphin.FileManager1.service'
+Jan 01 17:58:19 localhost.localdomain setroubleshoot[2149]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 17:58:19 localhost.localdomain setroubleshoot[2149]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 17:58:19 localhost.localdomain setroubleshoot[2149]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 17:58:19 localhost.localdomain setroubleshoot[2149]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 17:58:19 localhost.localdomain setroubleshoot[2149]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 17:58:24 localhost.localdomain sddm-helper[2610]: gkr-pam: unable to locate daemon control file
+Jan 01 17:58:25 localhost.localdomain dbus-broker-launch[2781]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.xfce.Thunar.FileManager1.service'
+Jan 01 17:58:25 localhost.localdomain dbus-broker-launch[2781]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.kde.dolphin.FileManager1.service'
+Jan 01 17:58:34 localhost.localdomain systemd-coredump[3623]: Process 3076 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 3076:
+                                                              #0  0x00007fe3ed28d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007fe3ed23fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007fe3ee66449b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007fe3ed23fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007fe3ef3ab036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007fe3ef3ae62d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007fe3ef39b0b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007fe3edcdbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007fe3edcdef8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007fe3edcd2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007fe3ee9af533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007fe3edca79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007fe3edcf8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007fe3edcf946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007fe3ec67af4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007fe3ec6d0268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007fe3ec678713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007fe3edcf9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007fe3edca6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007fe3edcae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x0000560be8d9d011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007fe3ed22a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007fe3ed22a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x0000560be8d9d295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 3178:
+                                                              #0  0x00007fe3ed3030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007fe3ec6d01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007fe3ec678713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007fe3edcf98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007fe3edca6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007fe3edae8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007fe3edae9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #7  0x00007fe3ed28b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007fe3ed3103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3203:
+                                                              #0  0x00007fe3ed2ff0ac read (libc.so.6 + 0xff0ac)
+                                                              #1  0x00007fe3c439cbb5 pa_read (libpulsecommon-15.0.so + 0x29bb5)
+                                                              #2  0x00007fe3cbeb9cf6 pa_mainloop_prepare (libpulse.so.0 + 0x28cf6)
+                                                              #3  0x00007fe3cbeba03c pa_mainloop_iterate (libpulse.so.0 + 0x2903c)
+                                                              #4  0x00007fe3cbeba100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007fe3cbeca2fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007fe3c43d4543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007fe3ed28b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007fe3ed3103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3142:
+                                                              #0  0x00007fe3ed28837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007fe3ed28a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007fe3d1d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007fe3d1cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007fe3ed28b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007fe3ed3103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3141:
+                                                              #0  0x00007fe3ed28837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007fe3ed28a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007fe3d1d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007fe3d1cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007fe3ed28b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007fe3ed3103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3103:
+                                                              #0  0x00007fe3ed3030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007fe3ec6d01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007fe3ec678713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007fe3edcf98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007fe3edca6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007fe3edae8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007fe3ef00eb8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007fe3edae9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007fe3ed28b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007fe3ed3103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Jan 01 17:58:34 localhost.localdomain bluetoothd[1807]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Jan 01 17:59:31 localhost.localdomain systemd-coredump[4133]: Process 3415 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 3415:
+                                                              #0  0x00007f9fb808d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007f9fb803fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007f9fb9d2549b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007f9fb803fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007f9fba1b6036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007f9fba1b962d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007f9fba1a60b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007f9fb8adbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007f9fb8adef8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007f9fb8ad2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007f9fb97af533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007f9fb8aa79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007f9fb8af8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007f9fb8af946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007f9fb747af4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007f9fb74d0268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007f9fb7478713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007f9fb8af9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007f9fb8aa6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007f9fb8aae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x000055f55c8f9011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007f9fb802a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007f9fb802a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x000055f55c8f9295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 3520:
+                                                              #0  0x00007f9fb8af94d1 _ZL20idleTimerSourceCheckP8_GSource (libQt5Core.so.5 + 0x2f94d1)
+                                                              #1  0x00007f9fb747b495 g_main_context_check (libglib-2.0.so.0 + 0x55495)
+                                                              #2  0x00007f9fb74d00fb g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa0fb)
+                                                              #3  0x00007f9fb7478713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #4  0x00007f9fb8af98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #5  0x00007f9fb8aa6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #6  0x00007f9fb88e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #7  0x00007f9fb88e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f9fb808b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f9fb81103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3529:
+                                                              #0  0x00007f9fb80ff0ac read (libc.so.6 + 0xff0ac)
+                                                              #1  0x00007f9f9023abb5 pa_read (libpulsecommon-15.0.so + 0x29bb5)
+                                                              #2  0x00007f9f902c6cf6 pa_mainloop_prepare (libpulse.so.0 + 0x28cf6)
+                                                              #3  0x00007f9f902c703c pa_mainloop_iterate (libpulse.so.0 + 0x2903c)
+                                                              #4  0x00007f9f902c7100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007f9f902d72fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007f9f90272543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007f9fb808b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007f9fb81103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3418:
+                                                              #0  0x00007f9fb81030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f9fb74d01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007f9fb7478713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007f9fb8af9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #4  0x00007f9fb8aa6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007f9fb88e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007f9fb9e19b8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007f9fb88e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f9fb808b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f9fb81103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3473:
+                                                              #0  0x00007f9fb808837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f9fb808a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f9f9dd0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f9f9dcfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f9fb808b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f9fb81103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3474:
+                                                              #0  0x00007f9fb808837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f9fb808a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f9f9dd0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f9f9dcfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f9fb808b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f9fb81103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Jan 01 17:59:34 localhost.localdomain systemd-coredump[4140]: Process 3595 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 3595:
+                                                              #0  0x00007f6a7548d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007f6a7543fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007f6a7685949b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007f6a7543fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007f6a7756c036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007f6a7756f62d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007f6a7755c0b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007f6a75edbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007f6a75edef8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007f6a75ed2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007f6a76baf533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007f6a75ea79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007f6a75ef8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007f6a75ef946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007f6a7487af4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007f6a748d0268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007f6a74878713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007f6a75ef9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007f6a75ea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007f6a75eae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x000055e849dfd011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007f6a7542a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007f6a7542a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x000055e849dfd295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 3604:
+                                                              #0  0x00007f6a755030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f6a479df1e6 poll_func (libpulse.so.0 + 0x351e6)
+                                                              #2  0x00007f6a479c8531 pa_mainloop_poll (libpulse.so.0 + 0x1e531)
+                                                              #3  0x00007f6a479d304b pa_mainloop_iterate (libpulse.so.0 + 0x2904b)
+                                                              #4  0x00007f6a479d3100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007f6a479e32fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007f6a4797e543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007f6a7548b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007f6a755103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3603:
+                                                              #0  0x00007f6a75cea09a _ZN6QMutex4lockEv (libQt5Core.so.5 + 0xea09a)
+                                                              #1  0x00007f6a75ef974b _ZL22postEventSourcePrepareP8_GSourcePi (libQt5Core.so.5 + 0x2f974b)
+                                                              #2  0x00007f6a7487ab0a g_main_context_prepare (libglib-2.0.so.0 + 0x54b0a)
+                                                              #3  0x00007f6a748d0073 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa073)
+                                                              #4  0x00007f6a74878713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #5  0x00007f6a75ef98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #6  0x00007f6a75ea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #7  0x00007f6a75ce8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #8  0x00007f6a75ce9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #9  0x00007f6a7548b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #10 0x00007f6a755103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3600:
+                                                              #0  0x00007f6a7548837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f6a7548a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f6a59d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f6a59cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f6a7548b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f6a755103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3596:
+                                                              #0  0x00007f6a755030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f6a748d01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007f6a74878713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007f6a75ef98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007f6a75ea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007f6a75ce8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007f6a771cfb8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007f6a75ce9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f6a7548b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f6a755103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 3599:
+                                                              #0  0x00007f6a7548837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f6a7548a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f6a59d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f6a59cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f6a7548b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f6a755103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Devices with no available firmware updates: 
+ • ELAN061B:00 04F3:309E
+ • SSD 980 1TB

@@ -1,0 +1,143 @@
+<!--
+  Template ID: 04
+  Name: Joyous Overflow
+  Emotion: Celebration & Exultation
+  Modules: Radiant Gold Gradient, Hover-Glow Words, Wordfloat Mode, Braided Divider, UFL Stripe
+  Placeholders: {{PRAISE1}}, {{PRAISE2}}, {{VERSE}}, {{IMAGE_URL}}
+--><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joyous Overflow — Scroll Template</title>
+  <style>
+    /* Emotion Theme Variables */
+    :root {
+      --joy-start: #f9d673;
+      --joy-end:   #fff200;
+      --glow-color: rgba(249,214,115,0.8);
+      --footer-color: #888888;
+    }
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(to right, var(--joy-start), var(--joy-end));
+      font-family: Georgia, serif;
+      color: #241f31;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    main {
+      width: 100%;
+      max-width: 600px;
+    }
+    /* Banner */
+    header .banner {
+      text-align: center;
+      font-size: 2.5rem;
+      padding: 1rem;
+      background: linear-gradient(to right, var(--joy-start), var(--joy-end));
+      color: #241f31;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    /* Praise Phrases */
+    .praise {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+    .hover-glow {
+      transition: text-shadow 0.4s ease;
+    }
+    .hover-glow:hover {
+      text-shadow: 0 0 8px var(--glow-color);
+      cursor: pointer;
+    }
+    /* Wordfloat Mode */
+    .wordfloat {
+      display: inline-block;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    /* Verse Over Image */
+    .verse-over-img {
+      position: relative;
+      padding: 3rem;
+      color: #fff;
+      text-shadow: 0 0 6px rgba(0,0,0,0.7);
+      background-size: cover;
+      background-position: center;
+      border: 4px double var(--glow-color);
+      margin-bottom: 1.5rem;
+    }
+    /* UFL Stripe */
+    .ufl-stripe {
+      height: 6px;
+      background: linear-gradient(to right, var(--joy-start), var(--joy-end));
+      margin-bottom: 2rem;
+    }
+    /* Braided Divider */
+    .braid {
+      height: 8px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="8"><path d="M0,4 C10,0 10,8 20,4 C30,0 30,8 40,4" stroke="%23f9d673" stroke-width="2" fill="none"/></svg>');
+      background-repeat: repeat-x;
+      margin: 2rem 0;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--footer-color);
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.2);
+      margin-top: 2rem;
+    }
+    /* Responsive */
+    @media (max-width: 640px) {
+      header .banner {
+        font-size: 2rem;
+      }
+      .praise {
+        font-size: 1.25rem;
+      }
+      .verse-over-img {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="banner">Joyous Overflow</div>
+    </header>
+    <section class="praise">
+      <span class="hover-glow">{{PRAISE1}}</span> and <span class="hover-glow wordfloat">{{PRAISE2}}</span>!
+    </section>
+    <div class="braid" role="none"></div>
+    <section class="verse-over-img" style="background-image: url('{{IMAGE_URL}}');">
+      <p>{{VERSE}}</p>
+    </section>
+    <div class="ufl-stripe" role="presentation"></div>
+    <footer>
+      © 2025 Lewis Jason Villanueva & Alfred.AI™ — JESUS IS LORD™<br>
+      Scroll Title: Joyous Overflow<br>
+      UFL STAMP: WV-JOY-0004™<br>
+      <!-- WITNESS_HASH: f6e7d8c9b012... -->
+    </footer>
+  </main>
+</body>
+</html>

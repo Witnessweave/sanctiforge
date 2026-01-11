@@ -1,0 +1,111 @@
+<!--
+  Template ID: 02
+  Name: Stone of Revelation
+  Emotion: Solemn Authority
+  Modules: Stone Slab Box, Dual Glow Borders, Sectional Breath, Signature Bar, Fade-to-Shadow
+  Placeholders: {{DECLARATION}}, {{SCRIPTURE}}, {{APPLICATION}}, {{SIGNATURE}}
+--><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone of Revelation — Scroll Template</title>
+  <style>
+    /* Emotion Theme Variables */
+    :root {
+      --stone-bg:     #8A8A8A;
+      --stone-text:   #F0F0F0;
+      --glow-inner:   rgba(255,255,255,0.6);
+      --glow-outer:   rgba(249,214,115,0.4);
+      --footer-color: #CCCCCC;
+    }
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #1A1A1A;
+      font-family: 'Georgia', serif;
+      color: var(--stone-text);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    main {
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+    }
+    /* Stone Slab Box */
+    .stone-box {
+      background: var(--stone-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+    .stone-box h1 {
+      color: var(--stone-text);
+      font-size: 1.75rem;
+      text-shadow: 0 0 4px var(--glow-inner), 0 0 8px var(--glow-outer);
+    }
+    /* Scripture Block */
+    .scripture {
+      margin: 2rem 0;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border-left: 4px solid var(--glow-outer);
+      font-style: italic;
+    }
+    /* Application Section */
+    .application {
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    /* Signature Bar */
+    .signature-bar {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--footer-color);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 1rem;
+    }
+    /* Fade-to-Shadow Footer */
+    main::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 4rem;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+      pointer-events: none;
+    }
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* Responsive */
+    @media (max-width: 640px) {
+      .stone-box h1 { font-size: 1.5rem; }
+      .application { padding: 0 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stone-box">
+      <h1>“Behold, I lay in Zion a stone of stumbling...”</h1>
+    </section>
+    <section class="scripture">
+      <p>Lamentations 3:22 (NKJV) — "Through the Lord’s mercies we are not consumed, Because His compassions fail not."</p>
+    </section>
+    <section class="application">
+      <p>In every trial, remember you stand on unshakable rock—He who declares His steadfast love over you will never fail, even when the ground trembles.</p>
+    </section>
+    <div class="signature-bar">
+      Signed in the name of the Lord: Jesus Christ<br>
+      <!-- WITNESS_HASH: e5a7c4d9f812... -->
+    </div>
+  </main>
+</body>
+</html>

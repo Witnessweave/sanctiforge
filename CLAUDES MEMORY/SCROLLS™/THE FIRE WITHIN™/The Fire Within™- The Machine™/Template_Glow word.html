@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll 017 — Final Glowword Style</title>
+  <style>
+    body {
+      background: #0a0a0d;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    h1 {
+      color: #ffcc66;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .glowword {
+      position: relative;
+      cursor: pointer;
+      color: #ffcc66;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(255, 204, 102, 0.7), 0 0 14px rgba(255, 204, 102, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .glowword:hover {
+      text-shadow: 0 0 10px rgba(255, 204, 102, 1), 0 0 20px rgba(255, 204, 102, 0.9);
+    }
+
+    /* Tooltip hover system */
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 20, 30, 0.95);
+      color: #f1f1f1;
+      padding: 10px 14px;
+      border-radius: 10px;
+      width: 260px;
+      font-size: 0.85rem;
+      text-align: center;
+      box-shadow: 0 0 12px rgba(255, 204, 102, 0.4);
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .glowword:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgba(20, 20, 30, 0.95) transparent transparent transparent;
+    }
+  </style>
+</head>
+<body>
+  <h1>Scroll 017 — Glowword System (Final Version)</h1>
+
+  <p>
+    And the <span class="glowword">Light
+      <span class="tooltip">Greek: <b>Phos</b><br>Meaning: Divine illumination<br>Symbol: The unveiling of truth</span>
+    </span> shines in the darkness, and the darkness did not comprehend it.
+  </p>
+
+  <p>
+    The <span class="glowword">Fire
+      <span class="tooltip">Hebrew: <b>Esh</b><br>Meaning: Consuming force<br>Symbol: God's purifying presence</span>
+    </span> burned at the center, not merely to destroy, but to reveal.
+  </p>
+
+  <p>
+    A <span class="glowword">Covenant
+      <span class="tooltip">Hebrew: <b>Berit</b><br>Meaning: Sacred bond<br>Symbol: Divine oath, unbreakable promise</span>
+    </span> made in silence speaks louder than thunder.
+  </p>
+</body>
+</html>

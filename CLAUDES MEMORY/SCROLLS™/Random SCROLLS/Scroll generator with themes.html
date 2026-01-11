@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ScrollForge Theme Viewer + Custom Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #0f1115;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 24px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    form, #preview, #output {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #161922;
+      border-radius: 12px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      background: #0b0d12;
+      color: #e7e7ea;
+      border: 1px solid #2a2f3c;
+      border-radius: 6px;
+    }
+    #preview {
+      transition: all 0.3s ease;
+    }
+    .verse {
+      margin: 20px 0;
+      padding: 12px;
+      border-left: 3px solid #46d46b;
+      background: #181c24;
+      font-style: italic;
+    }
+    #scrollOutput {
+      white-space: pre-wrap;
+      background: #0b0d12;
+      padding: 16px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      border: 1px solid #2a2f3c;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body><h1>🛠️ ScrollForge — Unified Theme Viewer + Generator</h1>
+<p style="text-align: center;">Choose a theme or customize your scroll settings. The preview updates live. Copy the output config below and paste back to Alfred.AI™ or take a screenshot.</p><form id="scroll-config">
+  <label for="theme">Choose a Theme:</label>
+  <select id="theme">
+    <option value="custom">-- Custom Settings --</option>
+    <option value="tron">TRON SANCTUARY™</option>
+    <option value="parchment">SANCTUM PARCHMENT™</option>
+    <option value="dreamfield">DREAMFIELD NEBULA™</option>
+    <option value="terminal">TERMINAL TRUTH™</option>
+    <option value="covenant">COVENANT GLOW™</option>
+    <option value="dreadhare">DREADHARE SHADOW™</option>
+    <option value="lighthouse">LIGHTHOUSE DAWN™</option>
+    <option value="battle">BATTLE RECORD™</option>
+    <option value="garden">GARDEN SPROUT™</option>
+    <option value="royal">ROYAL VEIL™</option>
+    <option value="witness">WITNESS GRID™</option>
+    <option value="glory">GLORY ASCENT™</option>
+  </select><label for="fontColor">Font Color:</label> <select id="fontColor"> <option value="white">White</option> <option value="gold">Radiant Gold</option> <option value="blue">Gentle Blue</option> <option value="gray">Soft Gray</option> </select>
+
+<label for="gradientStyle">Gradient Style:</label> <select id="gradientStyle"> <option value="none">None</option> <option value="sunset">Sunset Fade</option> <option value="nightfall">Nightfall Fade</option> <option value="skyline">Skyline Shift</option> </select>
+
+<label for="fontFamily">Font Family:</label> <select id="fontFamily"> <option value="serif">Classic Serif</option> <option value="sans">Modern Sans</option> <option value="mono">Monospace</option> <option value="handwritten">Handwritten</option> </select>
+
+<label for="verseStyle">Verse Block Style:</label> <select id="verseStyle"> <option value="highlight-box">Highlight Box</option> <option value="left-line">Left Line</option> <option value="muted-bg">Muted Background</option> </select>
+
+</form><div id="preview">
+  <h2 id="titlePreview">Scroll Title: The Fire Within</h2>
+  <div class="verse" id="versePreview">Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”</div>
+  <p id="bodyPreview">This is a sample body paragraph of your scroll. The styling above will adjust in real time based on your selections.</p>
+</div><div id="output">
+  <h2 style="text-align:center;">📋 Scroll Configuration Output</h2>
+  <div id="scrollOutput">(changes appear here)</div>
+</div><script>
+  const form = document.getElementById('scroll-config');
+  const preview = document.getElementById('preview');
+  const verse = document.getElementById('versePreview');
+  const output = document.getElementById('scrollOutput');
+
+  const settings = {
+    theme: 'custom',
+    fontColor: 'white',
+    gradientStyle: 'none',
+    fontFamily: 'serif',
+    verseStyle: 'highlight-box'
+  };
+
+  const colors = {
+    white: '#ffffff',
+    gold: '#f9d673',
+    blue: '#90caf9',
+    gray: '#c0c0c0'
+  };
+
+  const gradients = {
+    none: 'linear-gradient(to bottom right, #1c1f29, #10131b)',
+    sunset: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+    nightfall: 'linear-gradient(to right, #232526, #414345)',
+    skyline: 'linear-gradient(to right, #83a4d4, #b6fbff)'
+  };
+
+  const fonts = {
+    serif: 'Georgia, serif',
+    sans: 'system-ui, sans-serif',
+    mono: 'Courier New, monospace',
+    handwritten: 'Brush Script MT, cursive'
+  };
+
+  form.addEventListener('change', (e) => {
+    const formData = new FormData(form);
+    for (const [key, value] of formData.entries()) {
+      settings[key] = value;
+    }
+
+    // Apply changes
+    preview.style.color = colors[settings.fontColor];
+    preview.style.background = gradients[settings.gradientStyle];
+    preview.style.fontFamily = fonts[settings.fontFamily];
+
+    // Verse styling
+    if (settings.verseStyle === 'left-line') {
+      verse.style.borderLeft = '3px solid #46d46b';
+      verse.style.background = 'transparent';
+    } else if (settings.verseStyle === 'muted-bg') {
+      verse.style.borderLeft = 'none';
+      verse.style.background = '#2a2f3c';
+    } else {
+      verse.style.borderLeft = '3px solid #46d46b';
+      verse.style.background = '#181c24';
+    }
+
+    output.textContent = JSON.stringify(settings, null, 2);
+  });
+</script></body>
+</html>

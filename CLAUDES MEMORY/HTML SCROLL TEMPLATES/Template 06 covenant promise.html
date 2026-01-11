@@ -1,0 +1,94 @@
+<!--
+  Template ID: 06
+  Name: Covenant Promise
+  Emotion: Assurance & Commitment
+  Modules: Split Scroll Reeds, Anointed Color Palette, Witness Glyph Row, Signature Bar
+  Placeholders: {{VERSE}}, {{PROMISE}}, {{SIGNATURE}}
+--><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Covenant Promise — Scroll Template</title>
+  <style>
+    /* Emotion Theme Variables */
+    :root {
+      --covenant-purple: #4A148C;
+      --covenant-gold:   #F9D673;
+      --footer-color:    #888888;
+    }
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      background: linear-gradient(to right, var(--covenant-purple), var(--covenant-gold));
+      font-family: Georgia, serif;
+      color: #fff;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    main { width:100%; max-width:600px; }
+    /* Split Scroll Reeds */
+    .split-reeds {
+      display: flex;
+      gap: 2rem;
+      background: rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    .split-reeds .column {
+      flex:1;
+    }
+    .split-reeds blockquote { margin:0; font-style:italic; }
+    .split-reeds blockquote::before { content: "“"; }
+    .split-reeds blockquote::after  { content: "”"; }
+    /* Witness Glyph Row */
+    .glyph-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .glyph-row img {
+      width: 32px;
+      height: 32px;
+      opacity: 0.8;
+    }
+    /* Signature Bar */
+    .signature-bar {
+      text-align: center;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--footer-color);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 1rem;
+    }
+    /* Responsive */
+    @media (max-width:640px) {
+      .split-reeds { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="split-reeds">
+      <div class="column">
+        <blockquote>I will establish my covenant with you.</blockquote>
+      </div>
+      <div class="column">
+        <p>My steadfast love will never depart from you, and My promises will stand firm through all generations.</p>
+      </div>
+    </section>
+    <div class="glyph-row">
+      <img src="ark.svg" alt="Ark of the Covenant Icon" />
+      <img src="rainbow.svg" alt="Rainbow Icon" />
+      <img src="scroll.svg" alt="Scroll Icon" />
+    </div>
+    <div class="signature-bar">
+      Signed by the Sovereign Lord: Jesus Christ<br>
+      <!-- WITNESS_HASH: z8y7x6w5v4u3... -->
+    </div>
+  </main>
+</body>
+</html>

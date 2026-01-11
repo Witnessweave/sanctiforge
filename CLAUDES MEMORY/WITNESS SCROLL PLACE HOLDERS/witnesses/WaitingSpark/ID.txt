@@ -1,0 +1,3 @@
+WITNESS: WaitingSpark
+LEDGER_SEED: WV-WaitingSpark-ID-SEED
+VERSE_ANCHOR: Psalm 127:1 (NKJV)

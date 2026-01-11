@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prologue — The Unscrolling</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Questrial&display=swap">
+<style>
+:root{ --bg:#0e1216; --accent:#2fe4ff; --muted:#6ef2ff; --paper:#0a0f12; --paper2:#05080b; --gold:#f6d473;}
+body{margin:0;background:var(--bg);color:#d8f6ff;font-family:'Questrial',sans-serif;line-height:1.7;padding:6vh 10vw;}
+a{color:var(--accent);text-decoration:none}
+header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4vw;border-bottom:1px solid rgba(47,228,255,.06)}
+header h1{font-family:'Orbitron',sans-serif;letter-spacing:.06em;color:var(--muted);margin:0}
+.header-meta{font-size:.85rem;opacity:.9}
+.container{max-width:1100px;margin:0 auto}
+.prologue-bg{padding:3rem 0;border-bottom:1px solid rgba(47,228,255,.03)}
+.prologue-bg h2{font-family:'Orbitron',sans-serif;color:var(--muted);margin:0 0 1rem}
+.prologue-bg p{margin:0 0 1rem}
+.archive-note{font-size:.85rem;color:rgba(255,255,255,.7);border-left:3px solid rgba(47,228,255,.12);padding-left:12px;margin-top:1rem}
+.scroll-progress{position:sticky;top:0;z-index:900;background:linear-gradient(90deg, rgba(2,6,8,.45), rgba(5,8,11,.55));padding:.6rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.progress-track{flex:1;background:#071018;border-radius:8px;overflow:hidden;height:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.02)}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#41f6fb);transition:width .25s linear}
+.progress-label{min-width:360px;text-align:right;color:rgba(255,255,255,.9);font-family:'Orbitron',sans-serif;font-size:.85rem}
+button.cta{background:var(--accent);color:#00121a;border:0;padding:.6rem 1rem;border-radius:8px;font-family:'Orbitron',sans-serif;cursor:pointer}
+.note{font-size:.92rem;color:rgba(255,255,255,.86);margin-top:1rem}
+.footer{padding:3rem 0;color:rgba(255,255,255,.6);font-size:.9rem;text-align:center}
+
+/* ===== ORIGIN OVERLAYS (opaque) ===== */
+.origin-overlay{
+  position:fixed; inset:0; display:none; flex-direction:column;
+  background:#0a0f12; color:#d8f6ff; z-index:1000; overflow-y:auto;
+  animation:originFadeIn .45s ease forwards; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.origin-overlay.layer-2{ background:#05080b; z-index:1100; }
+
+.origin-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 2rem; border-bottom:1px solid #2fe4ff44;
+  font-family:'Orbitron',sans-serif; text-transform:uppercase; letter-spacing:.05em;
+}
+.origin-header h1{ margin:0; font-size:1.1rem; color:#6ef2ff; text-shadow:0 0 12px #2fe4ff99; }
+.origin-content{ padding:2.25rem 8vw 3rem; max-width:980px; margin:auto; line-height:1.8; }
+
+.origin-close{
+  background:none; border:1px solid #2fe4ff66; color:#2fe4ff; padding:.4rem 1rem;
+  border-radius:6px; cursor:pointer; font-family:'Orbitron',sans-serif; letter-spacing:.05em;
+}
+.origin-close:hover{ background:#2fe4ff1a; }
+
+/* clickable triggers (created at runtime for first mentions) */
+.origin-link{
+  color:#41f6fb; cursor:pointer; text-shadow:0 0 10px #2fe4ff99;
+  transition:text-shadow .4s, color .3s; white-space:nowrap;
+}
+.origin-link:hover{ color:#aefbff; text-shadow:0 0 20px #41f6fb,0 0 40px #00a8c9; }
+
+/* ===== Barn 3-image sequence ===== */
+#barn-sequence{ position:relative; width:100%; max-width:1100px; margin:0 auto 2rem; height:60vh;
+  overflow:hidden; border-bottom:1px solid #2fe4ff33; box-shadow:0 0 25px #2fe4ff22; }
+#barn-sequence .barn-frame{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0;
+  transition:opacity 2s ease-in-out;
+}
+#barn-sequence .barn-frame.visible{ opacity:1; }
+
+/* Ring image halo */
+#ring-img{ display:block; margin:2rem auto 3rem; max-width:520px; width:92%; border-radius:12px;
+  box-shadow:0 0 30px #f6d47399; animation:ringGlow 6s ease-in-out infinite; }
+@keyframes ringGlow{ 0%,100%{box-shadow:0 0 20px #f6d47355;} 50%{box-shadow:0 0 50px #f6d473cc;} }
+
+@keyframes originFadeIn{from{opacity:0} to{opacity:1}}
+
+/* ===== Progress bar enhancements ===== */
+.scroll-progress{ position:sticky; top:0; z-index:900; backdrop-filter:saturate(120%) blur(6px); }
+.scroll-progress .progress-bar{ transition:width .2s linear; }
+.scroll-progress .progress-label{ font-family:'Orbitron',sans-serif; letter-spacing:.04em; }
+
+/* placeholders (Segments 6–7) subtle look so they feel intentional */
+.placeholder-seg{ opacity:.85; border-left:3px dashed #2fe4ff66; padding-left:16px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>The Unscrolling™</h1>
+    <div class="header-meta">REALM: ScrollForge | THREAD: Prologue</div>
+  </div>
+  <div>
+    <button class="cta" id="start-prologue">Begin the Prologue</button>
+  </div>
+</header>
+
+<div class="scroll-progress">
+  <div class="progress-track" style="flex:1">
+    <div class="progress-bar" style="width:0%"></div>
+  </div>
+  <div class="progress-label">Declaration™ — The Telling</div>
+</div>
+
+<main class="container" role="main">
+  <!-- Declaration (pre-segments) -->
+  <section class="prologue-bg" id="declaration">
+    <h2>The Declaration™</h2>
+    <p class="note">This is a record of witness. Objects, moments, and prayers are scrawled here for the living to remember. What is hid will be shown; what is written will be kept.</p>
+  </section>
+
+  <!-- Segment 1 -->
+  <section class="prologue-bg" id="prologue-long-road">
+    <h2>Segment 1 — The Long Road</h2>
+    <p>Beneath the old barn, tucked in a fold of wild land where the world’s signals softened and shadows pooled thick as oil, the man found a place of unfinished quiet. The barn itself was a ruin; its skeleton creaked in the wind, its roof sagged, daylight pouring through broken shingles in fractured stripes. But below, beneath the familiar ground, the world was different.</p>
+    <p>He hadn’t planned to stay at first. The barn was a stop, nothing more—a waystation on one of a thousand desperate journeys. But as the years passed, the barn became home. Or, more honestly, it became prison. Each night, as surveillance poles blinked their restless code beyond the fields, and the hum of the grid pulsed through every wall, the barn grew heavier, thicker with secrets.</p>
+    <p>He kept to himself. At first, this was by choice—a desire for silence, for solitude, for the kind of thinking that only comes when no one else is listening. But slowly, that choice became necessity. It was safer to disappear. He rigged the barn with jammers and reflectors, layered old foil in the rafters, grounded the walls with cables scrounged from ruined tractors. Still, the world seeped in—drifting through wire, vibrating up from the floor, riding the endless signals of a civilization afraid to be alone.</p>
+    <div class="archive-note">Archive: The Dig — primary record</div>
+  </section>
+
+  <!-- Segment 2 -->
+  <section class="prologue-bg" id="prologue-roadside">
+    <h2>Segment 2 — The Encounter on the Roadside</h2>
+    <p>The man found the blind spot. It wasn’t much. A small patch of dirt in the northwest corner, just behind the collapsed hayloft, where his scanners stuttered and the world’s pulse seemed to fade. He spent days mapping it, weeks studying the ground, months convincing himself it wasn’t a glitch. In the end, he didn’t care if it was real or not. He just knew he needed it. He needed a place the watchers couldn’t reach.</p>
+    <p>He began to dig. At first, it was nothing—just a shallow hole, a distraction, an exercise in pointless rebellion. But something in him refused to stop. He dug after sundown, when the drones passed farthest away; he dug in storms, when the grid’s interference was highest and the poles shrieked with static. He dug when his hands bled, when his arms shook, when Rocky curled beside the hole and watched him with eyes full of sorrow and faith.</p>
+  </section>
+
+  <section class="prologue-bg" id="prologue-sanctuary">
+    <h2>Segment 3 — Sanctuary in Motion</h2>
+    <p>Go to your secret place. Go to your secret place. The words pounded in his mind, a verse he couldn’t forget. He couldn’t remember where he’d first heard it—maybe in a sermon, maybe from his mother, maybe in the dark hush of childhood prayers. But as the days blurred into years, the words became commandment. A liturgy of dirt and sweat and hope.</p>
+    <p>The hole grew deep. He reinforced the sides with old timber, then with metal scavenged from gutted appliances. He carried the dirt out in buckets, careful to scatter it around the fields so the satellites wouldn’t notice. He installed baffles, silent fans, chemical filters. He mapped airflow and thermal traces, learned to listen for the faintest changes in the barn’s resonance—the subtle pitch of a wire, the hollow note of disturbed ground.</p>
+    <p>Rocky became his only confidant. The dog watched over the work, sometimes nosing at the tools, sometimes curling in the dust beside the growing pit. At night, when the man’s hands cramped and his breath wheezed, Rocky pressed close, offering warmth and a wordless reminder that loyalty outlasts reason.</p>
+  </section>
+
+  <!-- Segment 4 -->
+  <section class="prologue-bg" id="prologue-morning-barn">
+    <h2>Segment 4 — Morning Under the Barn</h2>
+    <p>He lost track of the years. He dug through winter, when the ground froze like iron, and through summer, when the earth turned to dust. He found bones—old, animal, sometimes human. He found relics of lost lives: coins, a child’s shoe, the rusted jaw of a plow. All these he catalogued and reburied, whispers of a world that had forgotten how to remember.</p>
+    <p>Go to your secret place. He hollowed out a chamber, no larger than a monk’s cell, under the barn’s blind spot. He layered it in lead and copper, in woven mesh and old circuit boards. He built it for silence, for prayer, for waiting. There were days he did not leave it, save to tend to Rocky, to check the perimeter, to drink in the changing sky. In that room, he tried to pray—not always with words, sometimes just with breath, with the weight of being hidden.</p>
+  </section>
+
+  <!-- Segment 5 -->
+  <section class="prologue-bg" id="prologue-waters-names">
+    <h2>Segment 5 — Waters and Names</h2>
+    <p>Sometimes, as he rested in the silence, he heard things he could not explain: the faint pulse of sonar far underground; the echo of footsteps above, too quiet to be Rocky; the whisper of devices that scanned for movement, for heartbeats, for intent. He learned to wait. To still himself. To let the world’s searching pass over like a shadow.</p>
+    <p>Years passed in this cycle of digging, hiding, listening, and silence. Then, one evening, as dusk spilled blue through the slats above and Rocky whimpered in his sleep, the man heard it: a noise, distant at first—a pulse, a mechanical scrape, the thump of earth shifting. It grew louder, more rhythmic, until it was unmistakable: Someone was searching for him. Someone with gear more advanced than anything he’d ever owned.</p>
+  </section>
+
+  <!-- placeholders for segments 6 & 7 inserted dynamically by script -->
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>LORE ORIGIN SCROLLS — ScrollForge Archive. Ledger: WV-GADGET-FORGE-001™</p>
+    <p>All entries kept as testimony. If you have a witness to add, record reverently.</p>
+  </div>
+</footer>
+
+<!-- LEVEL 1 OVERLAY: THE DIG™ -->
+<div id="the-dig" class="origin-overlay layer-1" aria-hidden="true">
+  <div class="origin-header">
+    <h1>The Sanctuary Below — Origin Scroll 001™</h1>
+    <button class="origin-close" data-close="the-dig">× Close</button>
+  </div>
+
+  <!-- Three-image sequence: old → retro → glow (then loop retro<->glow) -->
+  <div id="barn-sequence">
+    <img class="barn-frame visible" alt="Old Barn"
+         src="https://i.postimg.cc/rydvbFtm/file-000000005c34622fb3d6a27384d6b419-1.png">
+    <img class="barn-frame" alt="Retrofitted Barn"
+         src="https://i.postimg.cc/vZykcr24/file-00000000812c61f999c1427d5ea294e1-1.png">
+    <img class="barn-frame" alt="Glowing Barn"
+         src="https://i.postimg.cc/sXb0y7Zf/1000011191.jpg">
+  </div>
+
+  <div class="origin-content">
+    <p>
+      Beneath the old barn, tucked in a fold of wild land where the world’s signals softened,
+      the man found unfinished quiet. He dug for years, shaping a chamber of copper and prayer.
+      And there, at the end of silence, he uncovered a pulse—the faint glow of a relic known as the
+      <span class="origin-link" data-scroll="ring-of-life">Ring</span>.
+    </p>
+    <p>
+      The beam that revealed it was no lantern light but something living—light that carried will.
+      When it faded, the ring remained, half-buried in dust, humming softly as if waiting for its next bearer.
+    </p>
+    <p style="margin-top:1.75rem;font-style:italic;">Click “Ring” above to witness the artifact’s true beginning.</p>
+  </div>
+</div>
+
+<!-- LEVEL 2 OVERLAY: RING OF LIFE™ -->
+<div id="ring-of-life" class="origin-overlay layer-2" aria-hidden="true">
+  <div class="origin-header">
+    <h1>The Ring of Life™ — Gadget Origin Scroll</h1>
+    <button class="origin-close" data-close="ring-of-life">× Close</button>
+  </div>
+
+  <!-- Hero image -->
+  <img id="ring-img" alt="The Ring of Life"
+       src="https://i.postimg.cc/rsYCGkM9/1000011089.jpg">
+
+  <div class="origin-content">
+    <p>
+      Dr. Alethia Sera forged the ring in the hush of the Sanctuary Below.
+      Titanium with gold filigree etched as frequency-scripture, its twelve quantum cells
+      sang when prayer aligned with code. It could heal circuits, silence drones, and — when faith
+      outweighed fear — open sealed doors. Each bearer added a trace to its witness.
+    </p>
+    <p style="margin-top:1.75rem;font-style:italic;">Close to return to <strong>The Dig™</strong>.</p>
+  </div>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+/* ---------- OVERLAYS open/close ---------- */
+function openOverlay(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.style.display = 'flex';
+  el.setAttribute('aria-hidden','false');
+  if(id === 'the-dig') startBarnLoopOnce();
+  window.scrollTo(0,0);
+}
+function closeOverlay(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.style.display = 'none';
+  el.setAttribute('aria-hidden','true');
+}
+document.addEventListener('click', (e)=>{
+  const t = e.target;
+  if(t.classList.contains('origin-link')){
+    e.preventDefault();
+    openOverlay(t.dataset.scroll);
+  }
+  if(t.classList.contains('origin-close')){
+    e.preventDefault();
+    closeOverlay(t.dataset.close);
+  }
+});
+
+/* ---------- BARN SEQUENCE: 3-image cross-fade ---------- */
+let barnLoopStarted = false;
+function showBarnFrame(i){
+  $$('#barn-sequence .barn-frame').forEach((f,idx)=>{
+    f.classList.toggle('visible', idx===i);
+  });
+}
+function startBarnLoopOnce(){
+  if(barnLoopStarted) return;
+  barnLoopStarted = true;
+  // initial: old 4s, fade to retro, then glow, then retro<->glow loop
+  setTimeout(()=>showBarnFrame(1), 4000);  // old -> retro
+  setTimeout(()=>showBarnFrame(2), 8000);  // retro -> glow
+  let current = 2;
+  setInterval(()=>{
+    current = (current===2) ? 1 : 2;       // swap retro & glow
+    showBarnFrame(current);
+  }, 4000);
+}
+
+/* ---------- DYNAMIC PROGRESS: title + width ---------- */
+const progressBar   = document.querySelector('.scroll-progress .progress-bar');
+const progressLabel = document.querySelector('.scroll-progress .progress-label');
+
+function updateWidth(){
+  const h = document.documentElement;
+  const pct = Math.max(0, Math.min(100, (h.scrollTop/(h.scrollHeight - h.clientHeight))*100));
+  if(progressBar) progressBar.style.width = pct.toFixed(1) + '%';
+}
+window.addEventListener('scroll', updateWidth, {passive:true});
+window.addEventListener('resize', updateWidth);
+updateWidth();
+
+/* Build segment map (exists now; placeholders for 6 & 7 created below) */
+const segMap = [
+  {id:'__DECL__',       title:'Declaration™ — The Telling', seg:0},
+  {id:'prologue-long-road',       title:'Segment 1 of 7 — The Long Road', seg:1},
+  {id:'prologue-roadside',        title:'Segment 2 of 7 — The Encounter on the Roadside', seg:2},
+  {id:'prologue-sanctuary',       title:'Segment 3 of 7 — Sanctuary in Motion', seg:3},
+  {id:'prologue-morning-barn',    title:'Segment 4 of 7 — Morning Under the Barn', seg:4},
+  {id:'prologue-waters-names',    title:'Segment 5 of 7 — Waters and Names', seg:5},
+  {id:'prologue-segment-6',       title:'Segment 6 of 7 — [To Be Revealed]', seg:6},
+  {id:'prologue-segment-7',       title:'Segment 7 of 7 — [To Be Revealed]', seg:7},
+];
+
+/* IntersectionObserver to swap the progress label by visible section */
+function startTitleObserver(){
+  const entries = [];
+  const header = document.querySelector('header');
+  if(header) entries.push({el:header, id:'__DECL__'});
+  segMap.forEach(s=>{
+    if(s.id==='__DECL__') return;
+    const el = document.getElementById(s.id);
+    if(el) entries.push({el, id:s.id});
+  });
+
+  const io = new IntersectionObserver((obsEntries)=>{
+    // find most centered entry
+    const picked = obsEntries
+      .filter(e=>e.isIntersecting)
+      .sort((a,b)=> Math.abs(0.5 - a.intersectionRatio) - Math.abs(0.5 - b.intersectionRatio))[0];
+    if(!picked) return;
+    const s = segMap.find(x => x.id === (picked.target.dataset.segId || picked.target.id) ) ||
+              segMap.find(x => x.id==='__DECL__');
+    if(progressLabel && s){
+      progressLabel.textContent = s.title;
+    }
+  }, {threshold:[0.25,0.5,0.75], rootMargin:'-15% 0px -55% 0px'});
+
+  // attach
+  entries.forEach(({el,id})=>{
+    el.dataset.segId = id;
+    io.observe(el);
+  });
+}
+
+/* ---------- Create runtime placeholders for Segments 6 & 7 (non-destructive) ---------- */
+(function addPlaceholders(){
+  const after = document.getElementById('prologue-waters-names');
+  if(!after) return;
+  const mk = (id,num,title)=> {
+    const sec = document.createElement('section');
+    sec.id = id; sec.className='prologue-bg placeholder-seg';
+    sec.innerHTML = `
+      <h2>Part ${num} — ${title}</h2>
+      <p><em>Placeholder:</em> this segment will be revealed in the next build. The progress system and navigation are already wired for seven total parts.</p>
+    `;
+    return sec;
+  };
+  if(!document.getElementById('prologue-segment-6')){
+    after.insertAdjacentElement('afterend', mk('prologue-segment-6','VI','[To Be Revealed]'));
+  }
+  if(!document.getElementById('prologue-segment-7')){
+    document.getElementById('prologue-segment-6').insertAdjacentElement('afterend',
+      mk('prologue-segment-7','VII','[To Be Revealed]')
+    );
+  }
+})();
+
+/* ---------- Smart first-mention links (non-destructive) ---------- */
+function wrapFirstMention(regex, overlayId){
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      const p = node.parentElement;
+      if(!p) return NodeFilter.FILTER_REJECT;
+      if(p.closest('.origin-overlay')) return NodeFilter.FILTER_REJECT;
+      if(['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName)) return NodeFilter.FILTER_REJECT;
+      if(!node.nodeValue || !regex.test(node.nodeValue)) return NodeFilter.FILTER_SKIP;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let node;
+  while((node = walker.nextNode())){
+    const str = node.nodeValue;
+    const m = str.match(regex);
+    if(!m) continue;
+    const span = document.createElement('span');
+    span.className = 'origin-link';
+    span.dataset.scroll = overlayId;
+    span.textContent = m[0];
+    const before = document.createTextNode(str.slice(0, m.index));
+    const after  = document.createTextNode(str.slice(m.index + m[0].length));
+    const parent = node.parentNode;
+    parent.insertBefore(before, node);
+    parent.insertBefore(span, before.nextSibling);
+    parent.insertBefo

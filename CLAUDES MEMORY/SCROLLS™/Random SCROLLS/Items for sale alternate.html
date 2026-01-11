@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Threads On Fire — Scroll</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@700&family=Montserrat:wght@400;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Basic meta -->
+  <meta name="description" content="Threads On Fire — Living scroll: story, drops, glowwords, and heritage." />
+
+  <style>
+    :root{
+      --inferno:#D8231A;
+      --ember:#FF6A1A;
+      --char:#121212;
+      --ghost:#F2F2F3;
+      --steel:#23282C;
+      --gold:#FFD97C;
+      --navy:#202849;
+      --max-width:1100px;
+      --glass: rgba(255,255,255,0.04);
+      --ease: cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--char);
+      background: linear-gradient(180deg, #0f0f10 0%, #121214 50%, #0b0b0c 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding-bottom:120px; /* room for footer blessing bar */
+    }
+
+    /* Container */
+    .wrap{
+      max-width:var(--max-width);
+      margin:36px auto;
+      padding:20px;
+    }
+
+    /* Hero */
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+      border-radius:14px;
+      padding:28px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:20px;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero h1{
+      font-family: "Anton", "Orbitron", sans-serif;
+      margin:0;
+      font-size:36px;
+      color:var(--ghost);
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+    }
+    .hero p.lead{
+      color:#e6e6e6;
+      margin-top:12px;
+      font-size:16px;
+      max-width:620px;
+    }
+    .hero .cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;
+      background:var(--inferno);
+      color:#fff;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:700;
+      text-decoration:none;
+      transition:transform .15s var(--ease), box-shadow .15s var(--ease);
+      box-shadow:0 8px 20px rgba(216,35,26,0.12);
+    }
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--ghost)}
+    .btn:focus{outline:2px solid var(--gold);outline-offset:3px}
+
+    /* Wax seal corner */
+    .wax-seal{
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width:240px;height:240px;
+      pointer-events:none;
+      opacity:0.9;
+      transform:rotate(-12deg);
+      mix-blend-mode:screen;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+    }
+
+    /* Collections grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+      margin-top:26px;
+    }
+    .tile{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+      border-radius:12px;
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+      transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .tile:focus-within, .tile:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(8,8,8,0.6)}
+    .tile img{width:100%;height:260px;object-fit:cover;border-radius:8px}
+    .tile h4{margin:10px 0 6px;color:var(--ghost);font-size:16px}
+    .tile p{margin:0;color:#d1d1d1;font-size:13px}
+
+    /* GlowWord styles */
+    .glow-phrase{
+      display:inline-block;
+      font-family:"Orbitron","Anton", sans-serif;
+      color:var(--ember);
+      border-bottom:3px solid rgba(255,106,26,0.12);
+      cursor:pointer;
+      padding-bottom:2px;
+      transition:color .12s var(--ease), text-shadow .12s var(--ease);
+      text-decoration:none;
+      outline:none;
+    }
+    .glow-phrase:focus{box-shadow:0 0 18px var(--gold);outline:none}
+    .glow-phrase:hover{color:var(--gold); text-shadow:0 0 18px rgba(255,217,124,0.16)}
+
+    /* flicker animation */
+    @keyframes fire-flicker {
+      0% { text-shadow: 0 0 6px #FF6A1A;}
+      25% { text-shadow: 0 0 18px #FFD97C;}
+      50% { text-shadow: 0 0 12px #D8231A;}
+      75% { text-shadow: 0 0 20px #FF6A1A;}
+      100% { text-shadow: 0 0 6px #FFD97C;}
+    }
+    .glow-phrase.flicker{animation:fire-flicker 2.4s infinite}
+
+    /* Mini-scroll modal */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(2,2,2,0.6);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;
+    }
+    .modal{
+      width:100%;max-width:780px;background:linear-gradient(180deg,#0f0f10,#121214);border-radius:12px;padding:22px;color:#eee;border:1px solid rgba(255,217,124,0.06);
+      box-shadow:0 20px 80px rgba(0,0,0,0.8);
+      transform:translateY(14px);opacity:0;transition:all .28s var(--ease);
+    }
+    .modal.open{transform:none;opacity:1}
+    .modal h3{margin:0;font-family:"Anton","Orbitron",sans-serif;font-size:20px;color:var(--gold)}
+    .modal p{color:#ddd}
+    .modal img{width:100%;max-height:320px;object-fit:cover;border-radius:8px;margin-top:12px}
+
+    .modal .close{
+      background:transparent;border:0;color:var(--ghost);position:absolute;right:16px;top:12px;font-size:18px;
+    }
+
+    /* Footer blessing bar */
+    footer.blessing{
+      position:fixed;left:0;right:0;bottom:0;background:linear-gradient(90deg,var(--char),var(--ember),var(--gold),var(--char));
+      color:#fff;padding:14px 18px;text-align:center;font-family:"Playfair Display",serif;z-index:9998;
+      box-shadow:0 -8px 40px rgba(0,0,0,0.6);
+    }
+
+    /* Responsive */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr; padding:18px}
+      .hero .hero-side{order:-1}
+    }
+    @media (max-width:520px){
+      .tile img{height:180px}
+    }
+
+    /* fade-in on scroll */
+    .reveal {opacity:0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease)}
+    .reveal.visible {opacity:1; transform:none}
+  </style>
+</head>
+<body>
+
+  <div class="wrap" role="main">
+    <!-- HERO -->
+    <section class="hero" aria-label="Threads On Fire Hero">
+      <div>
+        <h1>Threads On Fire — The Living Scroll</h1>
+        <p class="lead">From swap-meet hustle to streetwear testimony — every drop is a story, every stitch a witness. Scroll to meet the drops, the testimonies, and the GlowWords that carry our flame.</p>
+
+        <div class="cta-row">
+          <a href="#glowwords" class="btn">Enter the Scroll</a>
+          <a href="#collections" class="btn secondary">View Collections</a>
+        </div>
+
+        <p style="margin-top:18px;color:#cfcfcf;font-size:14px">
+          <span class="glow-phrase flicker" tabindex="0" data-glow="builtfromfire">BuiltFromFire</span>
+          — <span style="color:#bbb">a living philosophy: faith, grit, and design</span>
+        </p>
+      </div>
+
+      <div class="hero-side" aria-hidden="false">
+        <figure style="margin:0">
+          <img src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="Black 23 with seal" style="width:100%;max-width:420px;border-radius:12px">
+        </figure>
+      </div>
+
+      <!-- wax seal (corner, decorative) -->
+      <img class="wax-seal" src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="" aria-hidden="true">
+    </section>
+
+    <!-- GLOWWORDS -->
+    <section id="glowwords" style="margin-top:28px" aria-label="GlowWords Section">
+      <h2 style="color:var(--ghost);font-family:'Anton',sans-serif;margin-bottom:12px">🔥 The Scroll of Fire</h2>
+      <p style="color:#d4d4d4;max-width:900px">Tap or hover any GlowWord to read a mini-scroll. Each one unlocks a passage of story, testimony, or product lore.</p>
+
+      <div style="margin-top:12px;display:flex;gap:14px;flex-wrap:wrap">
+        <button class="glow-phrase flicker" data-glow="builtfromfire" tabindex="0">BuiltFromFire</button>
+        <button class="glow-phrase" data-glow="realroots" tabindex="0">RealRoots</button>
+        <button class="glow-phrase" data-glow="pass-the-torch" tabindex="0">PassTheTorch</button>
+        <button class="glow-phrase" data-glow="heritagemarked" tabindex="0">HeritageMarked</button>
+        <button class="glow-phrase" data-glow="no-shortcuts" tabindex="0">NoShortcuts</button>
+        <button class="glow-phrase" data-glow="thechosen" tabindex="0">TheChosenDrop</button>
+        <button class="glow-phrase" data-glow="matchthesole" tabindex="0">MatchTheSole</button>
+        <button class="glow-phrase" data-glow="pray-for-us" tabindex="0">PrayForUs</button>
+        <button class="glow-phrase" data-glow="seal-the-moment" tabindex="0">SealTheMoment</button>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS GRID -->
+    <section id="collections" class="reveal" style="margin-top:28px" aria-label="Collections">
+      <h2 style="color:var(--ghost);font-family:'Anton',sans-serif;margin-bottom:12px">Collections & Drops</h2>
+      <div class="grid">
+        <!-- 1 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/ZnxYcwTF/23Legend-Gray-Sweatsuit-AJ4-49c04b52-7215-429e-9578-b87adaea8400.png" alt="23Legend Gray Sweatsuit">
+          <h4>23Legend — Gray Sweatsuit</h4>
+          <p>Classic fit. Heavyweight. Woven from the same grit that started the brand.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="23legend">View Story</button>
+            <button class="btn secondary" data-open="23legend">Quick Preview</button>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/mZYrBgQ4/23Legend-Grey-Blk-Red-Full-Sweatsuit-AJ4Bred-Reimagined.png" alt="23Legend Grey Black Red Bred Reimagined">
+          <h4>23Legend — Bred Reimagined</h4>
+          <p>Heritage colorway. Sneaker-match built for the people who remember where they came from.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="23bred">View Story</button>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/sfY2sgpV/23T-Shirt5-0b784573-8a24-4660-9963-a290e6262af5.png" alt="23 T-Shirt flat lay">
+          <h4>23 Tee — Foundation</h4>
+          <p>Simple. Honest. The tee that started the conversation.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="23tee">Read</button>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png" alt="Black 23 with wax stamp">
+          <h4>Black 23 — Stamp Edition</h4>
+          <p>Wax-seal overlay. Each piece bears the mark of the witness.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="stamptee">Preview</button>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/59Btb2wt/Bred-Sweatsuit-AJ4Bred.png" alt="Bred Sweatsuit AJ4">
+          <h4>Bred — Legacy Set</h4>
+          <p>A set honoring history. Limited quantities.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="bredset">View</button>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/1RGzs3pw/Bred-Sweatsuit-Blk-Red-Wht-no-logo.png" alt="Bred sweatsuit no logo">
+          <h4>Bred — No Logo</h4>
+          <p>The spirit shows even without a label. Wear the flame.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="brednologo">Open</button>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png" alt="Threads On Fire seal patch">
+          <h4>Seal — Brand Mark</h4>
+          <p>The wax seal we press into the work of our hands.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="sealpatch">Inspect</button>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="tile" tabindex="0">
+          <img src="https://i.postimg.cc/SQ6KkxW9/GOAT23Navy-Hoodie-Joggers-Sweatsuit-Jersey-Puf-AJ4.png" alt="GOAT23 Navy Hoodie Set">
+          <h4>GOAT23 — Navy Set</h4>
+          <p>Chosen drop. A quiet, confident look.</p>
+          <div style="margin-top:10px">
+            <button class="btn" data-open="goat23">Preview</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STORY / TIMELINE -->
+    <section class="reveal" style="margin-top:28px" aria-label="Origin Story">
+      <h2 style="color:var(--ghost);font-family:'Anton',sans-serif;margin-bottom:8px">Origin Scroll — From Swap Meet to Scroll</h2>
+      <article style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);">
+        <p style="color:#ddd">
+          <strong>2012:</strong> Rock bottom. No car. No job. One fire left — the dream. Abel hit the swap meet, woke before dawn, and learned to sell not to sell out.
+        </p>
+        <p style="color:#ddd">
+          <strong>2015:</strong> First website launched. Local community began to show up. Threads On Fire was no longer a table — it was a movement.
+        </p>
+        <p style="color:#ddd">Each GlowWord in this scroll unlocks a memory: tap them to read the mini-scrolls and testimonies behind the drops.</p>
+      </article>
+    </section>
+
+  </div> <!-- end wrap -->
+
+  <!-- Footer Blessing Bar -->
+  <footer class="blessing" role="contentinfo">
+    Every thread is prayed over. Every drop is legacy. — Threads On Fire™
+  </footer>
+
+  <!-- Modal Backdrop (single, dynamic) -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle" tabindex="-1">
+      <button class="close" id="modalClose" aria-label="Close modal">&times;</button>
+      <h3 id="modalTitle">Title</h3>
+      <p id="modalBody">Body</p>
+      <img id="modalImg" src="" alt="" />
+    </div>
+  </div>
+
+  <script>
+    // ----------------------------
+    // Minimal, robust JS for modal + GlowWord + reveal
+    // ----------------------------
+    (function(){
+      const modalBackdrop = document.getElementById('modalBackdrop');
+      const modal = modalBackdrop.querySelector('.modal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalImg = document.getElementById('modalImg');
+      const modalClose = document.getElementById('modalClose');
+
+      // Data for mini-scrolls
+      const miniScrolls = {
+        builtfromfire:{
+          title: "Built From Fire",
+          body: "Born from the swap-meet grind — 'BuiltFromFire' celebrates the nights, the hustle, and the small wins that built a brand.",
+          img: "https://i.postimg.cc/ZnxYcwTF/23Legend-Gray-Sweatsuit-AJ4-49c04b52-7215-429e-9578-b87adaea8400.png"
+        },
+        realroots:{
+          title:"Real Roots",
+          body:"RealRoots honors family, the neighborhood, and the quiet people who raised the work ethic stitched into every seam.",
+          img:"https://i.postimg.cc/59Btb2wt/Bred-Sweatsuit-AJ4Bred.png"
+        },
+        'pass-the-torch':{
+          title:"Pass The Torch",
+          body:"This GlowWord unlocks micro testimonies from wearers who found courage wearing the brand.",
+          img:"https://i.postimg.cc/sfY2sgpV/23T-Shirt5-0b784573-8a24-4660-9963-a290e6262af5.png"
+        },
+        heritagemarked:{
+          title:"Heritage Marked",
+          body:"Pieces pressed with the wax seal are vows: they carry lineage, story and a sign of testimony.",
+          img:"https://i.postimg.cc/qBs74v8M/Black-23-with-stamp.png"
+        },
+        'no-shortcuts':{
+          title:"No Shortcuts",
+          body:"We don’t take shortcuts. That's the promise: to make it right, to finish what we start.",
+          img:"https://i.postimg.cc/1RGzs3pw/Bred-Sweatsuit-Blk-Red-Wht-no-logo.png"
+        },
+        thechosen:{
+          title:"The Chosen Drop",
+          body:"Some drops feel like destiny. The GOAT23 drop carries a quiet confidence — a chosen look.",
+          img:"https://i.postimg.cc/SQ6KkxW9/GOAT23Navy-Hoodie-Joggers-Sweatsuit-Jersey-Puf-AJ4.png"
+        },
+        matchthesole:{
+          title:"Match The Sole",
+          body:"Designed around sneaker culture. Each piece is built to match the soul of the sneaker-laced streets.",
+          img:"https://i.postimg.cc/mZYrBgQ4/23Legend-Grey-Blk-Red-Full-Sweatsuit-AJ4Bred-Reimagined.png"
+        },
+        'pray-for-us':{
+          title:"Pray For Us",
+          body:"If you feel led: drop a short prayer for the crew. We hold them and their labor up in prayer.",
+          img:"https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png"
+        },
+        'seal-the-moment':{
+          title:"Seal The Moment",
+          body:"This seal marks covenantal moments: the vision sealed by the wax stamp and the testimony within each drop.",
+          img:"https://i.postimg.cc/65Bp3x0y/file-00000000bcf861f489021181fe1cf350.png"
+        }
+      };
+
+      // Open modal function
+      function openModal(key){
+        const data = miniScrolls[key];
+        if(!data) return;
+        modalTitle.textContent = data.title;
+        modalBody.textContent = data.body;
+        modalImg.src = data.img;
+        modalImg.alt = data.title;
+        modalBackdrop.style.display = 'flex';
+        modalBackdrop.setAttribute('aria-hidden','false');
+        // small open animation
+        setTimeout(()=> modal.classList.add('open'), 20);
+        // focus management
+        modal.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        setTimeout(()=> {
+          modalBackdrop.style.display = 'none';
+          modalBackdrop.setAttribute('aria-hidden','true');
+          modalImg.src = '';
+        }, 240);
+      }
+
+      // Attach glowword buttons
+      document.querySelectorAll('.glow-phrase').forEach(btn=>{
+        btn.addEventListener('click', ()=> {
+          const key = btn.dataset.glow || btn.getAttribute('data-glow');
+          openModal(key);
+        });
+        btn.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+        });
+      });
+
+      // Attach product tile buttons
+      document.querySelectorAll('[data-open]').forEach(btn=>{
+        btn.addEventListener('click', ()=> {
+          const key = btn.dataset.open;
+          // map button keys to modal keys (simple mapping)
+          const mapping = {
+            '23legend':'builtfromfire',
+            '23bred':'matchthesole',
+            '23tee':'pass-the-torch',
+            'stamptee':'heritagemarked',
+            'bredset':'realroots',
+            'brednologo':'no-shortcuts',
+            'sealpatch':'seal-the-moment',
+            'goat23':'thechosen'
+          };
+          openModal(mapping[key] || 'builtfromfire');
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', (e)=> {
+        if(e.target === modalBackdrop) closeModal();
+      });
+      window.addEventListener('keydown', (e)=> {
+        if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal();
+      });
+
+      // IntersectionObserver reveal
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+      // accessibility: trap focus inside modal while open (lightweight)
+      document.addEventListener('focus', function(e) {
+        if(modalBackdrop.style.display === 'flex' && !modal.contains(e.target)) {
+          e.stopPropagation();
+          modal.focus();
+        }
+      }, true);
+
+    })();
+  </script>
+</body>
+</html>

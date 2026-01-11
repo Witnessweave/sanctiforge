@@ -1,0 +1,133 @@
+<!-- UNITYFLOW MERGE: Witness Weave™ + HOMEPAGE_FRAME™ --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Witness Weave™ — Unified Home</title>
+  <meta name="description" content="Merged layout of Witness Weave™ + Homepage Frame™"/>
+  <meta name="theme-color" content="#0b0b0c"/>
+  <meta name="color-scheme" content="dark"/>
+  <meta property="og:title" content="Witness Weave™ Unified Layout"/>
+  <meta property="og:image" content="images/first-stroke.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=EB+Garamond:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c; --ink: #e7e7ea; --accent: #c7a36b; --ring: #2a2d38;
+      --leftnav: #1b1b1b; --rightpanel: #e3e3e3; --glyphsize: 1.3rem;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      background: var(--bg); color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.75;
+    }
+    header {
+      position: sticky; top: 0;
+      background: rgba(11, 11, 12, 0.6);
+      backdrop-filter: blur(3px);
+      border-bottom: 1px solid var(--ring);
+      padding: 12px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+    }
+    header .logo {
+      font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px;
+    }
+    header nav a {
+      margin: 0 10px; color: var(--ink); text-decoration: none;
+    }
+    header nav a:hover { text-decoration: underline; }
+    .layout {
+      display: grid;
+      grid-template-columns: 60px 1fr 280px;
+      grid-template-areas: "left main right";
+      height: 100vh;
+    }
+    aside.left {
+      grid-area: left;
+      background: var(--leftnav);
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 1rem;
+      font-size: var(--glyphsize);
+    }
+    main {
+      grid-area: main;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    aside.right {
+      grid-area: right;
+      background: var(--rightpanel);
+      color: #222;
+      padding: 1.5rem;
+    }
+    .scroll-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: #14161a;
+      padding: 2rem;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+    }
+    .scroll-section h2 {
+      font-family: 'EB Garamond', serif;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .scripture {
+      font-style: italic;
+      margin-top: 1rem;
+      color: var(--accent);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.95rem;
+      color: #a3a3ad;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🕊️ Witness Weave™</div>
+    <nav>
+      <a href="#scroll1">Statement</a>
+      <a href="#scroll2">Gallery</a>
+      <a href="#scroll3">Creators</a>
+      <a href="#">🔍</a>
+    </nav>
+  </header>  <div class="layout">
+    <aside class="left">
+      🛡️<br>🐞<br>🔍<br>☁️<br>🔥
+    </aside><main>
+  <section id="scroll1" class="scroll-section">
+    <h2>The Witness Statement</h2>
+    <p>This scroll contains the purpose, testimony, and core belief system behind Witness Weave™...</p>
+    <div class="scripture">“Write the vision and make it plain on tablets.” — Habakkuk 2:2 (NKJV)</div>
+  </section>
+
+  <section id="scroll2" class="scroll-section">
+    <h2>Gallery: Before & After</h2>
+    <p>This scroll showcases a visual transformation gallery. Censorship reversed, truth unhidden...</p>
+  </section>
+
+  <section id="scroll3" class="scroll-section">
+    <h2>Open Call to Creators</h2>
+    <p>You are not alone. If your voice was silenced, your art removed, or your truth hidden — join us here...</p>
+  </section>
+</main>
+
+<aside class="right">
+  <h3>Panel Options</h3>
+  <p>This panel changes depending on interaction. Click any scroll or image to load deeper options.</p>
+  <button>Go deeper</button><br>
+  <button>Download Scroll</button>
+</aside>
+
+  </div>  <footer>
+    © 2025 Lewis Jason Villanueva & Alfred.AI — JESUS IS LORD™<br>
+    Psalm 119:11 — “Your word I have hidden in my heart.”
+  </footer>
+</body>
+</html>

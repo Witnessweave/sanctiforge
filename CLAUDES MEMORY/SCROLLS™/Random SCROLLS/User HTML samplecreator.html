@@ -1,0 +1,402 @@
+<details open>
+  <summary>The Vision: Why a Scroll Generator?</summary>
+  <div class="section-body">
+    <p>ScrollForge was born from a simple burden: to restore the sacred shape of digital testimony...</p>
+    <p>In a world of collapsing tabs, fading memories, and overwritten truths, the scroll remains a sanctuary.</p>
+    <blockquote><strong>Habakkuk 2:2 (NKJV)</strong><br>
+    “Write the vision And make it plain on tablets, That he may run who reads it.”</blockquote>
+    <p>This is that tablet. This is that runner. This is that vision.</p>
+  </div>
+</details>
+
+
+
+
+
+<!-- Save this file as scroll_theme_generator.html and open in browser -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ScrollForge — Theme Viewer & Custom Generator</title>
+<style>
+  :root{
+    --bg:#0f1115; --fg:#e7e7ea; --mut:#a7a7b0; --accent:#46d46b; --card:#12131a;
+    --max-width:1100px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding:18px; display:flex; justify-content:center;}
+  .wrap{width:100%; max-width:var(--max-width); display:grid; grid-template-columns:360px 1fr; gap:16px; align-items:start;}
+  .panel{background:var(--card); border:1px solid #232731; border-radius:12px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,.5);}
+  h2{margin:0 0 8px 0; font-size:16px}
+  label{display:block; font-size:13px; color:var(--mut); margin-top:10px}
+  select,input[type=text]{width:100%; padding:8px; border-radius:8px; border:1px solid #232731; background:#0b0d12; color:var(--fg)}
+  .row{display:flex; gap:8px}
+  .row > *{flex:1}
+  .btn{appearance:none; border:1px solid #2a2f3c; background:#0e1114; color:var(--fg); padding:8px 10px; border-radius:8px; cursor:pointer}
+  .btn.primary{background:#1a6bff; border-color:#174fd1}
+  .mut{color:var(--mut); font-size:13px}
+  #previewHost{min-height:520px; border-radius:10px; overflow:auto; transition:all .25s ease; padding:22px}
+  .preview-shell{max-width:900px; margin:0 auto;}
+  .preview-title{font-weight:700; font-size:20px; margin-bottom:6px}
+  .preview-verse{margin:12px 0; padding:10px 12px; border-radius:8px; font-style:italic}
+  details{background:rgba(255,255,255,0.02); border-radius:8px; padding:8px; margin:8px 0}
+  summary{font-weight:600; cursor:pointer}
+  textarea{width:100%; min-height:120px; background:#0b0d12; border:1px solid #232731; color:var(--fg); padding:10px; border-radius:8px}
+  .footer-outputs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px}
+  .small{font-size:12px; color:var(--mut)}
+  .badge{display:inline-block; padding:4px 8px; border-radius:999px; background:#0e1318; border:1px solid #232731; font-size:12px; color:var(--mut)}
+  .top-row{display:flex; gap:8px; align-items:center; margin-bottom:8px}
+  .theme-list{max-height:220px; overflow:auto; padding-right:6px}
+  .theme-item{display:flex; gap:8px; align-items:center; padding:6px; border-radius:8px; cursor:pointer}
+  .theme-item:hover{background:rgba(255,255,255,0.02)}
+  .theme-swatch{width:44px; height:36px; border-radius:6px; border:1px solid rgba(0,0,0,0.4)}
+  .divider{height:1px; background:#20242b; margin:10px 0}
+  .controls-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .actions{display:flex; gap:8px; margin-top:12px}
+  .output-area{background:#0b0d12; border:1px solid #232731; padding:10px; border-radius:8px; color:var(--fg); font-family:ui-monospace, "Courier New", monospace; font-size:13px}
+  .note{font-size:12px; color:var(--mut); margin-top:8px}
+  @media (max-width:960px){
+    .wrap{grid-template-columns:1fr; padding-bottom:60px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- LEFT: Theme Selector + Custom Options -->
+    <aside class="panel" aria-labelledby="panel-title">
+      <h2 id="panel-title">Theme Viewer & Custom Generator</h2>
+      <div class="top-row">
+        <div class="badge">12 Themes</div>
+        <div class="mut" style="margin-left:auto">Live preview below</div>
+      </div>
+
+      <label for="themeSelect">Choose a Theme</label>
+      <div id="themeList" class="theme-list" role="listbox" aria-label="Themes"></div>
+
+      <div class="divider"></div>
+
+      <h3 style="margin:0">Custom Overrides</h3>
+      <div class="mut">Mix and match overrides. Theme defaults populate on selection.</div>
+
+      <label>Font Color</label>
+      <select id="fontColor">
+        <option value="auto">Theme default</option>
+        <option value="white">White</option>
+        <option value="gold">Radiant Gold</option>
+        <option value="blue">Light Blue</option>
+        <option value="gray">Soft Gray</option>
+        <option value="black">Black</option>
+      </select>
+
+      <label>Gradient Variant</label>
+      <select id="gradientVariant">
+        <option value="auto">Theme default</option>
+        <option value="none">None</option>
+        <option value="soft">Soft fade</option>
+        <option value="strong">Strong shift</option>
+      </select>
+
+      <label>Font Family</label>
+      <select id="fontFamily">
+        <option value="auto">Theme default</option>
+        <option value="serif">Classic Serif</option>
+        <option value="sans">Modern Sans</option>
+        <option value="mono">Monospace</option>
+        <option value="handwritten">Handwritten</option>
+      </select>
+
+      <label>Verse Style</label>
+      <select id="verseStyle">
+        <option value="auto">Theme default</option>
+        <option value="highlight-box">Highlight Box</option>
+        <option value="left-line">Left Line</option>
+        <option value="muted-bg">Muted Background</option>
+        <option value="callout">Callout Banner</option>
+      </select>
+
+      <label>Header Style</label>
+      <select id="headerStyle">
+        <option value="auto">Theme default</option>
+        <option value="centered-banner">Centered Banner</option>
+        <option value="left-stack">Left Stack</option>
+        <option value="minimal">Minimal Title</option>
+      </select>
+
+      <label>Section Layout</label>
+      <select id="sectionLayout">
+        <option value="auto">Theme default</option>
+        <option value="collapsible">Collapsible</option>
+        <option value="open-all">Open All</option>
+        <option value="accordion">Accordion</option>
+      </select>
+
+      <label>Shadow Style</label>
+      <select id="shadowStyle">
+        <option value="auto">Theme default</option>
+        <option value="soft">Soft</option>
+        <option value="none">None</option>
+        <option value="glow">Glow</option>
+        <option value="engraved">Engraved</option>
+      </select>
+
+      <label>Icon Set</label>
+      <select id="iconSet">
+        <option value="auto">Theme default</option>
+        <option value="none">None</option>
+        <option value="glyphs">Glyphs</option>
+        <option value="minimal">Minimal</option>
+        <option value="crosses">Crosses</option>
+      </select>
+
+      <label>Background Pattern</label>
+      <select id="backgroundPattern">
+        <option value="auto">Theme default</option>
+        <option value="solid">Solid Matte</option>
+        <option value="parchment">Parchment</option>
+        <option value="stars">Stars</option>
+        <option value="clouds">Clouds</option>
+      </select>
+
+      <label>Export Mode</label>
+      <select id="exportMode">
+        <option value="html">Standalone HTML</option>
+        <option value="text">Plain Text</option>
+        <option value="json">Project JSON</option>
+      </select>
+
+      <label>Include Signature Area</label>
+      <select id="signature">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn primary" id="applyBtn">Apply to Preview</button>
+        <button class="btn" id="lockExportBtn">Lock & Generate HTML</button>
+      </div>
+
+      <div class="note">Tip: Select a theme to populate defaults. Override any option then press Apply to update the live preview. Press Lock & Generate HTML to produce final code below.</div>
+    </aside>
+
+    <!-- RIGHT: Live Preview and Outputs -->
+    <main class="panel">
+      <h2>Live Preview</h2>
+      <div id="previewHost" aria-live="polite">
+        <!-- preview content injected here -->
+      </div>
+
+      <div class="divider"></div>
+
+      <h3 style="margin:0">Sample Content (Editable)</h3>
+      <div class="mut">Paste your sample title, verse, and a few paragraphs. The preview will reflect them.</div>
+      <label>Title</label>
+      <input id="sampleTitle" type="text" value="The Fire Within — A Testimony" />
+      <label>Verse (NKJV)</label>
+      <input id="sampleVerseRef" type="text" value="Habakkuk 2:2 (NKJV)" />
+      <textarea id="sampleVerseText">Write the vision And make it plain on tablets, That he may run who reads it.</textarea>
+      <label>Body (short)</label>
+      <textarea id="sampleBody">This is a sample paragraph. Change the theme or overrides to see how the scroll will adapt visually. Use this area to test how sections will render.</textarea>
+
+      <div class="footer-outputs">
+        <div>
+          <h4 style="margin:0">Generated Config (JSON)</h4>
+          <div class="small mut">Copy this JSON and paste it back to Alfred, or use it to reproduce the style</div>
+          <pre id="jsonOutput" class="output-area"></pre>
+        </div>
+        <div>
+          <h4 style="margin:0">Generated Final HTML</h4>
+          <div class="small mut">Lock to build full standalone HTML. You can copy or download the file.</div>
+          <textarea id="finalHtml" class="output-area" placeholder="Final HTML will appear here after locking"></textarea>
+          <div style="display:flex; gap:8px; margin-top:8px">
+            <button class="btn" id="copyHtmlBtn">Copy HTML to clipboard</button>
+            <button class="btn" id="downloadHtmlBtn">Download HTML</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">You can also screenshot this page to capture choices visually. The JSON contains the same data as the final HTML generator.</div>
+    </main>
+  </div>
+
+<script>
+  // Theme definitions
+  const THEMES = {
+    tron: {
+      id: 'tron', name: 'TRON SANCTUARY™',
+      palette: { bgGradient: 'linear-gradient(135deg,#071022 0%,#00121a 100%)', text:'#e6fbff', accent:'#3bd9ff', verseBg:'rgba(12,20,28,0.7)', verseBorder:'#3bd9ff' },
+      font: "system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+      defaults: { fontColor:'auto', gradientVariant:'auto', fontFamily:'auto', verseStyle:'left-line', headerStyle:'centered-banner', sectionLayout:'collapsible', shadowStyle:'glow', iconSet:'glyphs', backgroundPattern:'solid' },
+      sample: 'Electric night, glowing veins, grid of light'
+    },
+    parchment: {
+      id: 'parchment', name: 'SANCTUM PARCHMENT™',
+      palette: { bgGradient: 'linear-gradient(180deg,#fbf6ec 0%,#efe6d3 100%)', text:'#2b1f14', accent:'#b8862a', verseBg:'#f4e9d6', verseBorder:'#c69e58' },
+      font: "Georgia, 'Times New Roman', serif",
+      defaults: { fontColor:'auto', gradientVariant:'none', fontFamily:'serif', verseStyle:'muted-bg', headerStyle:'left-stack', sectionLayout:'open-all', shadowStyle:'engraved', iconSet:'none', backgroundPattern:'parchment' },
+      sample: 'Warm lamp light, ancient edges, quiet witness'
+    },
+    nebula: {
+      id: 'nebula', name: 'DREAMFIELD NEBULA™',
+      palette: { bgGradient:'linear-gradient(135deg,#2b1246 0%,#5b2f7a 50%,#ffd1f0 100%)', text:'#fff7fd', accent:'#cfa0ff', verseBg:'rgba(255,250,255,0.06)', verseBorder:'#d6c3ff' },
+      font: "'Georgia', serif",
+      defaults: { fontColor:'auto', gradientVariant:'soft', fontFamily:'serif', verseStyle:'callout', headerStyle:'centered-banner', sectionLayout:'collapsible', shadowStyle:'soft', iconSet:'minimal', backgroundPattern:'stars' },
+      sample: 'Mist and soft stars, a veil lifted'
+    },
+    terminal: {
+      id:'terminal', name:'TERMINAL TRUTH™',
+      palette:{ bgGradient:'linear-gradient(180deg,#000000 0%,#0b0b0b 100%)', text:'#8ff28f', accent:'#8ff28f', verseBg:'#000000', verseBorder:'#1f3f1f' },
+      font: "'Courier New', monospace",
+      defaults:{ fontColor:'auto', gradientVariant:'none', fontFamily:'mono', verseStyle:'left-line', headerStyle:'minimal', sectionLayout:'open-all', shadowStyle:'none', iconSet:'none', backgroundPattern:'solid' },
+      sample: 'Monospaced terminal lines, command tone'
+    },
+    covenant: {
+      id:'covenant', name:'COVENANT GLOW™',
+      palette:{ bgGradient:'linear-gradient(180deg,#fffef6 0%,#fff6e0 100%)', text:'#1a1b1f', accent:'#f9d673', verseBg:'#fff8ec', verseBorder:'#f3d88a' },
+      font:"Garamond, 'Times New Roman', serif",
+      defaults:{ fontColor:'auto', gradientVariant:'soft', fontFamily:'serif', verseStyle:'highlight-box', headerStyle:'centered-banner', sectionLayout:'collapsible', shadowStyle:'soft', iconSet:'crosses', backgroundPattern:'solid' },
+      sample:'Gold halo and radiant proclamation'
+    },
+    dreadhare: {
+      id:'dreadhare', name:'DREADHARE SHADOW™',
+      palette:{ bgGradient:'linear-gradient(180deg,#0b0c0d 0%,#1c1819 100%)', text:'#f5e9e6', accent:'#b94b3b', verseBg:'#241919', verseBorder:'#b94b3b' },
+      font:"'Roboto Slab', serif",
+      defaults:{ fontColor:'auto', gradientVariant:'strong', fontFamily:'serif', verseStyle:'muted-bg', headerStyle:'left-stack', sectionLayout:'collapsible', shadowStyle:'engraved', iconSet:'minimal', backgroundPattern:'solid' },
+      sample:'Ash and ember, quiet strength'
+    },
+    lighthouse: {
+      id:'lighthouse', name:'LIGHTHOUSE DAWN™',
+      palette:{ bgGradient:'linear-gradient(180deg,#f8fbfc 0%,#e8f2f6 100%)', text:'#0b2a36', accent:'#4aa3a3', verseBg:'#f2f8fa', verseBorder:'#bcdde0' },
+      font:"'Inter', system-ui, sans-serif",
+      defaults:{ fontColor:'auto', gradientVariant:'soft', fontFamily:'sans', verseStyle:'muted-bg', headerStyle:'centered-banner', sectionLayout:'open-all', shadowStyle:'soft', iconSet:'minimal', backgroundPattern:'clouds' },
+      sample:'Fog lifts, beacon light, gentle clarity'
+    },
+    battle: {
+      id:'battle', name:'BATTLE RECORD™',
+      palette:{ bgGradient:'linear-gradient(180deg,#0f1012 0%,#141617 100%)', text:'#dfe6e9', accent:'#9a2e2e', verseBg:'#0d0f10', verseBorder:'#9a2e2e' },
+      font:"'IBM Plex Mono', monospace",
+      defaults:{ fontColor:'auto', gradientVariant:'none', fontFamily:'mono', verseStyle:'highlight-box', headerStyle:'left-stack', sectionLayout:'accordion', shadowStyle:'none', iconSet:'minimal', backgroundPattern:'solid' },
+      sample:'Reports, ranks, mission logs'
+    },
+    sprout: {
+      id:'sprout', name:'GARDEN SPROUT™',
+      palette:{ bgGradient:'linear-gradient(180deg,#f6fff7 0%,#eaf8ee 100%)', text:'#17331b', accent:'#3a7d3a', verseBg:'#eef7ee', verseBorder:'#bdd6bd' },
+      font:"'Nunito', 'Helvetica Neue', sans-serif",
+      defaults:{ fontColor:'auto', gradientVariant:'soft', fontFamily:'sans', verseStyle:'highlight-box', headerStyle:'left-stack', sectionLayout:'collapsible', shadowStyle:'soft', iconSet:'glyphs', backgroundPattern:'parchment' },
+      sample:'Seeds and small green promises'
+    },
+    royal: {
+      id:'royal', name:'ROYAL VEIL™',
+      palette:{ bgGradient:'linear-gradient(180deg,#2b0f3a 0%,#1d0a2a 100%)', text:'#f6eef7', accent:'#d9b75a', verseBg:'#24122b', verseBorder:'#d9b75a' },
+      font:"'Cinzel', serif",
+      defaults:{ fontColor:'auto', gradientVariant:'strong', fontFamily:'serif', verseStyle:'callout', headerStyle:'centered-banner', sectionLayout:'collapsible', shadowStyle:'soft', iconSet:'crosses', backgroundPattern:'clouds' },
+      sample:'Purple robes, velvet, royal cadence'
+    },
+    grid: {
+      id:'grid', name:'WITNESS GRID™',
+      palette:{ bgGradient:'linear-gradient(180deg,#fafbfc 0%,#f4f6f8 100%)', text:'#0b1320', accent:'#555b63', verseBg:'#f5f6f8', verseBorder:'#d9dee6' },
+      font:"'Open Sans', system-ui, sans-serif",
+      defaults:{ fontColor:'auto', gradientVariant:'none', fontFamily:'sans', verseStyle:'left-line', headerStyle:'minimal', sectionLayout:'open-all', shadowStyle:'none', iconSet:'minimal', backgroundPattern:'solid' },
+      sample:'Blocks and boxes, clean organization'
+    },
+    ascent: {
+      id:'ascent', name:'GLORY ASCENT™',
+      palette:{ bgGradient:'linear-gradient(180deg,#ffffff 0%,#eaf6ff 100%)', text:'#0b2a36', accent:'#83c3ff', verseBg:'#fdfefe', verseBorder:'#cde9ff' },
+      font:"'Raleway', system-ui, sans-serif",
+      defaults:{ fontColor:'auto', gradientVariant:'soft', fontFamily:'sans', verseStyle:'highlight-box', headerStyle:'centered-banner', sectionLayout:'collapsible', shadowStyle:'soft', iconSet:'glyphs', backgroundPattern:'clouds' },
+      sample:'Cloudward motion and radiant presence'
+    }
+  };
+
+  // build theme list UI
+  const themeListEl = document.getElementById('themeList');
+  Object.values(THEMES).forEach(t => {
+    const item = document.createElement('div');
+    item.className = 'theme-item';
+    item.dataset.tid = t.id;
+    item.innerHTML = `
+      <div class="theme-swatch" style="background:${t.palette.bgGradient}; border-color: rgba(255,255,255,0.05)"></div>
+      <div style="flex:1">
+        <div style="font-weight:700">${t.name}</div>
+        <div class="mut" style="font-size:12px">${t.sample}</div>
+      </div>
+    `;
+    item.onclick = ()=> selectTheme(t.id);
+    themeListEl.appendChild(item);
+  });
+
+  // state
+  let currentTheme = 'tron';
+  const state = {
+    theme:'tron',
+    overrides:{}
+  };
+
+  // helper to read controls
+  function readOverrides(){
+    const keys = ['fontColor','gradientVariant','fontFamily','verseStyle','headerStyle','sectionLayout','shadowStyle','iconSet','backgroundPattern','exportMode','signature'];
+    const out = {};
+    keys.forEach(k=>{
+      const el = document.getElementById(k);
+      if(!el) return;
+      const v = el.value;
+      if(v && v !== 'auto') out[k] = v;
+    });
+    return out;
+  }
+
+  // apply theme defaults to controls (does not override manual custom values)
+  function applyThemeDefaults(tid){
+    const t = THEMES[tid];
+    // only set control values if currently on auto
+    const mapping = {
+      fontFamily: t.defaults.fontFamily,
+      verseStyle: t.defaults.verseStyle,
+      headerStyle: t.defaults.headerStyle,
+      sectionLayout: t.defaults.sectionLayout,
+      shadowStyle: t.defaults.shadowStyle,
+      iconSet: t.defaults.iconSet,
+      backgroundPattern: t.defaults.backgroundPattern,
+      gradientVariant: t.defaults.gradientVariant
+    };
+    Object.entries(mapping).forEach(([k,v])=>{
+      const el = document.getElementById(k);
+      if(!el) return;
+      if(el.value === 'auto' && v) el.value = v;
+    });
+  }
+
+  // build preview HTML using theme + overrides + sample content
+  function buildPreviewHtml(){
+    const theme = THEMES[state.theme];
+    const ov = state.overrides;
+    const palette = {...theme.palette};
+    // override palette text color if user chose a fontColor
+    const textColorMap = { white:'#ffffff', gold:'#f9d673', blue:'#90caf9', gray:'#c0c0c0', black:'#0b0d12' };
+    if(ov.fontColor && textColorMap[ov.fontColor]) palette.text = textColorMap[ov.fontColor];
+
+    // gradient variants: soften or strengthen by adjusting opacity or angle
+    let bg = palette.bgGradient;
+    if(ov.gradientVariant === 'none') bg = palette.bgGradient.replace('linear-gradient','linear-gradient');
+    else if(ov.gradientVariant === 'soft') bg = palette.bgGradient.replace('100%)', '85%)');
+    else if(ov.gradientVariant === 'strong') bg = palette.bgGradient.replace('100%)','100%), rgba(0,0,0,0.12) 100%)');
+
+    // font family
+    const fontMap = { serif:"Georgia, serif", sans:"system-ui, sans-serif", mono:"ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace", handwritten:"'Brush Script MT', cursive" };
+    const font = (ov.fontFamily && fontMap[ov.fontFamily]) ? fontMap[ov.fontFamily] : theme.font;
+
+    // verse style classes visual
+    const verseStyle = ov.verseStyle || theme.defaults.verseStyle;
+
+    // header style
+    const headerStyle = ov.headerStyle || theme.defaults.headerStyle;
+
+    // section layout
+    const sectionLayout = ov.sectionLayout || theme.defaults.sectionLayout;
+
+    // shadow
+    const shadowStyle = ov.shadowStyle || theme.defaults.shadowStyle;
+
+    // background pattern (not exhaustive)
+    const bgPattern = ov.backgroundPattern || theme.

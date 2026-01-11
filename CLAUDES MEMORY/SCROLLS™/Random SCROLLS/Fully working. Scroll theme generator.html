@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ScrollForge — Full Config Engine (Master)</title>
+<style>
+  /* ========= Base Page ========= */
+  :root{
+    --bg-900:#0f1115;
+    --panel-800:#161922;
+    --muted-700:#10131b;
+    --text-100:#e7e7ea;
+    --accent:#4653e2;
+    --radius:12px;
+    --control-h:42px;
+  }
+  html,body{height:100%;margin:0;}
+  body{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg-900),#0b0d12 60%);
+    color:var(--text-100);
+    padding:20px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Header / Metadata area */
+  header{
+    max-width:1100px;margin:0 auto 18px auto;
+    display:flex;gap:12px;align-items:center;justify-content:space-between;
+  }
+  header .left{display:flex;gap:14px;align-items:center;}
+  h1{font-size:20px;margin:0;font-weight:700}
+  .sub{opacity:.8;font-size:13px}
+
+  /* Main layout */
+  .container{
+    max-width:1100px;margin:0 auto;display:grid;
+    grid-template-columns:380px 1fr;gap:20px;
+  }
+
+  /* Controls Panel */
+  .panel{
+    background:var(--panel-800);padding:18px;border-radius:var(--radius);
+    box-shadow:0 6px 18px rgba(0,0,0,0.45);
+  }
+  .form-row{margin-bottom:14px;}
+  label{display:block;font-weight:700;margin-bottom:8px;font-size:13px}
+  select,button,input[type="text"]{
+    width:100%;height:var(--control-h);padding:8px 12px;border-radius:8px;
+    background:#0b0d12;color:var(--text-100);border:1px solid #23262b;
+    outline:none;font-size:14px;
+  }
+  .select-with-swatch{display:flex;gap:8px;align-items:center;}
+  .swatch{width:48px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,.06);box-shadow:inset 0 -2px 6px rgba(0,0,0,.5)}
+  .small{height:36px;padding:6px 8px;font-size:13px}
+
+  /* Preview area */
+  #preview{
+    min-height:520px;border-radius:var(--radius);padding:26px;
+    background:linear-gradient(135deg,#1c1f29,#10131b);
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);overflow:auto;
+  }
+  .section-title{font-size:28px;margin:0 0 12px 0;font-weight:800}
+  .verse{
+    margin:16px 0;padding:14px;border-left:4px solid var(--accent);
+    background:#181c24;font-style:italic;border-radius:6px;
+  }
+  p{line-height:1.6;color:rgba(231,231,234,0.95);margin-bottom:10px}
+
+  /* Footer controls */
+  .row{display:flex;gap:8px}
+  .row .btn{flex:1}
+  .muted{opacity:.8;font-size:13px;margin-top:8px}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .container{grid-template-columns:1fr;padding-bottom:100px}
+    header{flex-direction:column;align-items:flex-start;gap:8px}
+  }
+
+  /* Tiny helper styles for option previews in list */
+  option[data-swatch]{padding-left:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="left">
+    <div>
+      <h1>ScrollForge — Master Config Engine</h1>
+      <div class="sub">Live real-options: colors, fonts, gradients, verse styles — with save/export</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="sub">Ledger: WV-SCROLLFORGE-FULL-V1™</div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Controls -->
+  <section class="panel" aria-labelledby="controls-heading">
+    <h2 id="controls-heading" style="margin:0 0 14px 0">Controls</h2>
+
+    <!-- Title -->
+    <div class="form-row">
+      <label for="titleInput">Scroll Title</label>
+      <input id="titleInput" type="text" value="The Fire Within" />
+    </div>
+
+    <!-- Font Color -->
+    <div class="form-row">
+      <label for="fontColor">Font Color (40)</label>
+      <div class="select-with-swatch">
+        <select id="fontColor" aria-label="Font color select"></select>
+        <div id="fontColorSwatch" class="swatch" title="Selected color"></div>
+      </div>
+    </div>
+
+    <!-- Font Family -->
+    <div class="form-row">
+      <label for="fontFamily">Font Family (40)</label>
+      <div class="select-with-swatch">
+        <select id="fontFamily" aria-label="Font family select"></select>
+        <div id="fontFamilySwatch" class="swatch" style="display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,.9)">Aa</div>
+      </div>
+    </div>
+
+    <!-- Gradient -->
+    <div class="form-row">
+      <label for="gradientStyle">Background Gradient (40)</label>
+      <div class="select-with-swatch">
+        <select id="gradientStyle" aria-label="Background gradient select"></select>
+        <div id="gradientSwatch" class="swatch"></div>
+      </div>
+    </div>
+
+    <!-- Verse Style -->
+    <div class="form-row">
+      <label for="verseStyle">Verse Style (40)</label>
+      <select id="verseStyle" aria-label="Verse style select"></select>
+    </div>
+
+    <!-- Preview Text -->
+    <div class="form-row">
+      <label for="verseInput">Verse Text</label>
+      <input id="verseInput" type="text" value='Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”' />
+    </div>
+
+    <!-- Save / Export / Import Row -->
+    <div class="form-row row" style="margin-top:12px">
+      <button id="saveBtn" class="btn small">Save (local)</button>
+      <button id="loadBtn" class="btn small">Load (local)</button>
+    </div>
+    <div class="form-row row" style="margin-top:8px">
+      <button id="exportBtn" class="btn small">Export (.scrollconfig.json)</button>
+      <input id="importFile" type="file" accept="application/json" style="display:none" />
+      <button id="importBtn" class="btn small">Import (.json)</button>
+    </div>
+
+    <div class="muted">Tip: selections update live in the preview. Use Export to share configs.</div>
+  </section>
+
+  <!-- Preview -->
+  <section id="preview" class="panel" aria-live="polite">
+    <div class="section-title" id="previewTitle">Scroll Title: The Fire Within</div>
+    <div class="verse" id="previewVerse">Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”</div>
+    <p id="previewBody">
+      This is a sample body paragraph of your scroll. The styling above will adjust in real time based on your selections.
+      Use the controls on the left to configure colors, fonts, background, and verse treatments. The engine is saved to localStorage by the Save button.
+    </p>
+  </section>
+</main>
+
+<script>
+/* ========= ScrollForge Master JS =========
+   - Populates selects with 40 options each
+   - Maintains mapping objects: colors, fonts, gradients
+   - applyVerseStyle(styleName) handles 40 variants
+   - live-binding and localStorage/export/import
+*/
+
+/* -------------------- Data maps -------------------- */
+const colorMap = {
+  white:'#ffffff', gold:'#f9d673', blue:'#90caf9', gray:'#c0c0c0', crimson:'#dc143c',
+  teal:'#008080', amber:'#ffbf00', forest:'#228b22', violet:'#ee82ee', peach:'#ffdab9',
+  indigo:'#4b0082', rose:'#ff007f', aqua:'#00ffff', copper:'#b87333', emerald:'#50c878',
+  obsidian:'#0f0f0f', silver:'#c0c0c0', sky:'#87ceeb', sunset:'#ff4500', sand:'#c2b280',
+  lavender:'#e6e6fa', plum:'#dda0dd', mint:'#98ff98', coral:'#ff7f50', bronze:'#cd7f32',
+  ruby:'#9b111e', jade:'#00a86b', topaz:'#ffc87c', sapphire:'#0f52ba', pearl:'#fdfdfe',
+  onyx:'#353839', cobalt:'#0047ab', mustard:'#ffdb58', chartreuse:'#7fff00',
+  ivory:'#fffff0', charcoal:'#36454f', khaki:'#f0e68c', magenta:'#ff00ff',
+  scarlet:'#ff2400', turquoise:'#40e0d0'
+};
+
+const fontMap = {
+  serif:'Georgia, serif',
+  sans:'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  mono:'"Courier New", Courier, monospace',
+  handwritten:'"Brush Script MT", "Segoe Script", cursive',
+  garamond:'"Garamond", serif',
+  palatino:'"Palatino Linotype", "Book Antiqua", Palatino, serif',
+  verdana:'Verdana, Geneva, sans-serif',
+  times:'"Times New Roman", Times, serif',
+  tahoma:'Tahoma, Geneva, sans-serif',
+  trebuchet:'"Trebuchet MS", Helvetica, sans-serif',
+  arial:'Arial, Helvetica, sans-serif',
+  impact:'Impact, Charcoal, sans-serif',
+  copperplate:'"Copperplate", "Copperplate Gothic Light", fantasy',
+  papyrus:'Papyrus, fantasy',
+  luminari:'"Luminari", Georgia, serif',
+  helvetica:'"Helvetica Neue", Helvetica, Arial, sans-serif',
+  notoserif:'"Noto Serif", serif',
+  notosans:'"Noto Sans", sans-serif',
+  fira:'"Fira Code", monospace',
+  jetbrains:'"JetBrains Mono", monospace',
+  poppins:'"Poppins", system-ui, sans-serif',
+  roboto:'"Roboto", system-ui, sans-serif',
+  playfair:'"Playfair Display", serif',
+  alegreya:'"Alegreya", serif',
+  raleway:'"Raleway", system-ui, sans-serif',
+  montserrat:'"Montserrat", system-ui, sans-serif',
+  lora:'"Lora", serif',
+  merriweather:'"Merriweather", serif',
+  dancing:'"Dancing Script", cursive',
+  pacifico:'"Pacifico", cursive',
+  caveat:'"Caveat", cursive',
+  indieflower:'"Indie Flower", cursive',
+  oswald:'"Oswald", system-ui, sans-serif',
+  ptserif:'"PT Serif", serif',
+  ptmono:'"PT Mono", monospace',
+  ubuntu:'"Ubuntu", system-ui, sans-serif',
+  quicksand:'"Quicksand", system-ui, sans-serif',
+  inconsolata:'"Inconsolata", monospace',
+  play:'"Play", system-ui, sans-serif',
+  abril:'"Abril Fatface", serif'
+};
+
+const gradientMap = {
+  none: 'linear-gradient(to bottom right, #1c1f29, #10131b)',
+  sunset: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+  nightfall: 'linear-gradient(to right, #232526, #414345)',
+  skyline: 'linear-gradient(to right, #83a4d4, #b6fbff)',
+  ember: 'linear-gradient(to right, #330000, #ff3300)',
+  oceanwave: 'linear-gradient(to right, #006994, #00d4ff)',
+  garden: 'linear-gradient(to right, #a8e063, #56ab2f)',
+  dreamveil: 'linear-gradient(to right, #d3cce3, #e9e4f0)',
+  desertdawn: 'linear-gradient(to right, #ffecd2, #fcb69f)',
+  snowfade: 'linear-gradient(to right, #e6dada, #274046)',
+  twilight: 'linear-gradient(to right, #0f2027, #203a43, #2c5364)',
+  neon: 'linear-gradient(to right, #12c2e9, #c471ed, #f64f59)',
+  stormpath: 'linear-gradient(to right, #485563, #29323c)',
+  sanctuaryglow: 'linear-gradient(to right, #e0eafc, #cfdef3)',
+  covenantcloud: 'linear-gradient(to right, #fbd3e9, #bb377d)',
+  midnight: 'linear-gradient(to right, #232526, #414345)',
+  lightscroll: 'linear-gradient(to right, #f6f8ff, #e0e6ed)',
+  cloudveil: 'linear-gradient(to right, #d7d2cc, #304352)',
+  templeshadow: 'linear-gradient(to right, #434343, #000000)',
+  holyfield: 'linear-gradient(to right, #56ccf2, #2f80ed)',
+  scrollvault: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
+  verdant: 'linear-gradient(to right, #56ab2f, #a8e063)',
+  windsong: 'linear-gradient(to right, #bdc3c7, #2c3e50)',
+  glasslight: 'linear-gradient(to right, #e0eafc, #cfdef3)',
+  sunray: 'linear-gradient(to right, #f6d365, #fda085)',
+  watchlight: 'linear-gradient(to right, #3a6186, #89253e)',
+  thunderline: 'linear-gradient(to right, #141e30, #243b55)',
+  dawnfade: 'linear-gradient(to right, #fbc2eb, #a6c1ee)',
+  prayerstream: 'linear-gradient(to right, #c2e9fb, #a1c4fd)',
+  witnessgrid: 'linear-gradient(to right, #373b44, #4286f4)',
+  lightstone: 'linear-gradient(to right, #d3cce3, #e9e4f0)',
+  veilbreak: 'linear-gradient(to right, #005aa7, #fffde4)',
+  sapphireglow: 'linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d)',
+  crimsonink: 'linear-gradient(to right, #642b73, #c6426e)',
+  honeygold: 'linear-gradient(to right, #f0c27b, #4b1248)',
+  mistveil: 'linear-gradient(to right, #e0eafc, #cfdef3)',
+  starlit: 'linear-gradient(to right, #0f2027, #203a43, #2c5364)',
+  flamecore: 'linear-gradient(to right, #fc4a1a, #f7b733)',
+  riverfade: 'linear-gradient(to right, #00c6ff, #0072ff)',
+  spiritpath: 'linear-gradient(to right, #fdfbfb, #ebedee)'
+};
+
+/* -------------------- Verse Styles List (40) --------------------
+   Each case below maps to a visual treatment applied to the verse element.
+*/
+const verseStyles = [
+  'highlight-box','left-line','muted-bg','glow-line','shadow-block','glass-overlay','halo-rim','scroll-fade','stone-etch','inked-seal',
+  'light-ribbon','margin-marker','parchment-glow','verse-tab','oracle-box','dashed-veil','left-stone','overline-echo','scroll-light','triple-line',
+  'seal-stamp','faint-border','gold-foil','etched-left','ribbon-flag','double-rail','soft-glow','grained-parch','anchored-tab','ink-wash',
+  'stamped-coin','folded-edge','papyrus-edge','subtle-emboss','shadow-rail','crisp-underline','scarlet-streak','silver-lining','echo-wave','covenant-rim'
+];
+
+/* -------------------- DOM refs -------------------- */
+const titleInput = document.getElementById('titleInput');
+const verseInput = document.getElementById('verseInput');
+const fontColorSelect = document.getElementById('fontColor');
+const fontFamilySelect = document.getElementById('fontFamily');
+const gradientSelect = document.getElementById('gradientStyle');
+const verseStyleSelect = document.getElementById('verseStyle');
+
+const fontColorSwatch = document.getElementById('fontColorSwatch');
+const fontFamilySwatch = document.getElementById('fontFamilySwatch');
+const gradientSwatch = document.getElementById('gradientSwatch');
+
+const previewTitle = document.getElementById('previewTitle');
+const previewVerse = document.getElementById('previewVerse');
+const previewBody = document.getElementById('previewBody');
+
+const saveBtn = document.getElementById('saveBtn');
+const loadBtn = document.getElementById('loadBtn');
+const exportBtn = document.getElementById('exportBtn');
+const importBtn = document.getElementById('importBtn');
+const importFile = document.getElementById('importFile');
+
+/* -------------------- Populate selects -------------------- */
+function populateSelect(select, map, useKeyAsLabel=false){
+  // Clear
+  select.innerHTML = '';
+  for(const key of Object.keys(map)){
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = (useKeyAsLabel ? key : humanLabel(key));
+    // Attach swatch data when color/gradient
+    if(select === fontColorSelect) opt.setAttribute('data-swatch', map[key]);
+    select.appendChild(opt);
+  }
+}
+
+function populateFontFamilySelect(){
+  fontFamilySelect.innerHTML = '';
+  Object.keys(fontMap).forEach(key=>{
+    const opt=document.createElement('option');
+    opt.value=key;
+    opt.textContent = humanLabel(key) + ' — ' + fontMap[key].split(',')[0].replace(/"/g,'');
+    fontFamilySelect.appendChild(opt);
+  });
+}
+
+function populateGradientSelect(){
+  gradientSelect.innerHTML='';
+  for(const key of Object.keys(gradientMap)){
+    const opt=document.createElement('option');
+    opt.value=key;
+    opt.textContent=humanLabel(key);
+    gradientSelect.appendChild(opt);
+  }
+}
+
+function populateVerseStyleSelect(){
+  verseStyleSelect.innerHTML='';
+  verseStyles.forEach(s=>{
+    const opt=document.createElement('option');
+    opt.value=s;
+    opt.textContent=humanLabel(s);
+    verseStyleSelect.appendChild(opt);
+  });
+}
+
+function humanLabel(s){
+  // Convert hyphen or camel to Title Case for readability
+  return s.replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+
+/* initial population */
+populateSelect(fontColorSelect, colorMap);
+populateFontFamilySelect();
+populateGradientSelect();
+populateVerseStyleSelect();
+
+/* -------------------- Apply functions -------------------- */
+function applyFontColor(key){
+  const hex = colorMap[key] || '#e7e7ea';
+  previewTitle.style.color = hex;
+  previewVerse.style.color = hex;
+  previewBody.style.color = hex;
+  fontColorSwatch.style.background = hex;
+}
+
+function applyFontFamily(key){
+  const stack = fontMap[key] || fontMap.serif;
+  previewTitle.style.fontFamily = stack;
+  previewVerse.style.fontFamily = stack;
+  previewBody.style.fontFamily = stack;
+  // show typographic sample
+  fontFamilySwatch.style.fontFamily = stack;
+}
+
+function applyGradient(key){
+  const g = gradientMap[key] || gradientMap.none;
+  document.getElementById('preview').style.background = g;
+  gradientSwatch.style.background = g;
+}
+
+/* Verse style engine: large switch/case with 40 variants */
+function applyVerseStyle(name){
+  // reset baseline
+  const v = previewVerse;
+  v.style.borderLeft = '';
+  v.style.borderTop = '';
+  v.style.borderBottom = '';
+  v.style.background = '#181c24';
+  v.style.boxShadow = 'none';
+  v.style.padding = '12px';
+  v.style.fontStyle = 'italic';
+  v.style.color = '';
+  v.style.fontWeight = '';
+  v.style.textTransform = 'none';
+  v.style.backdropFilter = '';
+
+  switch(name){
+    case 'highlight-box':
+      v.style.background = '#252a35';
+      v.style.borderLeft = '4px solid #46d46b';
+      break;
+    case 'left-line':
+      v.style.borderLeft = '6px solid #46d46b';
+      v.style.paddingLeft = '12px';
+      break;
+    case 'muted-bg':
+      v.style.background = '#2a2f3c';
+      break;
+    case 'glow-line':
+      v.style.borderLeft = '4px solid #ffe066';
+      v.style.boxShadow = '0 0 10px rgba(255,224,102,0.14)';
+      break;
+    case 'shadow-block':
+      v.style.boxShadow = '0 6px 20px rgba(0,0,0,0.5)';
+      break;
+    case 'glass-overlay':
+      v.style.background = 'rgba(255,255,255,0.04)';
+      v.style.backdropFilter = 'blur(4px)';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'halo-rim':
+      v.style.borderBottom = '3px double #fff199';
+      v.style.paddingBottom = '14px';
+      break;
+    case 'scroll-fade':
+      v.style.background = 'linear-gradient(90deg,#f0e6d2,#d1c7ae)';
+      v.style.color = '#2b2b2b';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'stone-etch':
+      v.style.background = '#323232';
+      v.style.borderLeft = '4px dashed #aaa';
+      break;
+    case 'inked-seal':
+      v.style.background = '#17171a';
+      v.style.borderLeft = '3px solid crimson';
+      v.style.fontWeight = '700';
+      break;
+    case 'light-ribbon':
+      v.style.background = 'linear-gradient(90deg,#fff0b3,#ffffff)';
+      v.style.color = '#222';
+      break;
+    case 'margin-marker':
+      v.style.borderLeft = '6px double #6699ff';
+      break;
+    case 'parchment-glow':
+      v.style.background = '#fdf6e3';
+      v.style.color = '#3b2f18';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'verse-tab':
+      v.style.borderLeft = '8px solid #55e';
+      v.style.background = '#0f1420';
+      break;
+    case 'oracle-box':
+      v.style.background = '#2c2a33';
+      v.style.border = '2px dotted rgba(224,224,255,0.06)';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'dashed-veil':
+      v.style.borderLeft = '3px dashed #999';
+      break;
+    case 'left-stone':
+      v.style.borderLeft = '4px solid #888';
+      v.style.background = '#121212';
+      break;
+    case 'overline-echo':
+      v.style.borderTop = '3px solid #7777ff';
+      break;
+    case 'scroll-light':
+      v.style.background = '#fdfaf6';
+      v.style.color = '#333';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'triple-line':
+      v.style.borderLeft = '6px double #fff';
+      v.style.borderBottom = '2px dotted #aaa';
+      break;
+
+    /* 21-40 additional stylistic treatments */
+    case 'seal-stamp':
+      v.style.background = '#271b1b';
+      v.style.borderLeft = '6px solid #aa5f3b';
+      v.style.boxShadow = 'inset 0 -6px 40px rgba(0,0,0,0.6)';
+      break;
+    case 'faint-border':
+      v.style.border = '1px solid rgba(255,255,255,0.04)';
+      break;
+    case 'gold-foil':
+      v.style.background = 'linear-gradient(90deg,#fff7e6,#fff1c9)';
+      v.style.color = '#4b3b1a';
+      v.style.fontWeight = '700';
+      break;
+    case 'etched-left':
+      v.style.borderLeft = '6px groove rgba(255,255,255,0.05)';
+      break;
+    case 'ribbon-flag':
+      v.style.background = '#0e1a1a';
+      v.style.borderLeft = '10px solid #b86bff';
+      v.style.paddingLeft = '14px';
+      break;
+    case 'double-rail':
+      v.style.borderLeft = '6px double rgba(255,255,255,0.12)';
+      break;
+    case 'soft-glow':
+      v.style.boxShadow = '0 4px 18px rgba(120,140,255,0.06)';
+      break;
+    case 'grained-parch':
+      v.style.background = 'linear-gradient(90deg,#f7efe6,#efe5d0)';
+      v.style.color = '#2e2a1f';
+      break;
+    case 'anchored-tab':
+      v.style.borderLeft = '8px solid #2fa4a7';
+      break;
+    case 'ink-wash':
+      v.style.background = 'linear-gradient(90deg, rgba(0,0,0,0.3), rgba(0,0,0,0.0))';
+      v.style.color = '#e0e0e0';
+      break;
+    case 'stamped-coin':
+      v.style.border = '3px solid rgba(255,215,0,0.08)';
+      v.style.padding = '16px';
+      break;
+    case 'folded-edge':
+      v.style.boxShadow = 'inset -10px 0 20px rgba(0,0,0,0.4)';
+      break;
+    case 'papyrus-edge':
+      v.style.background = '#efe6d3';
+      v.style.color = '#2f2a19';
+      v.style.fontStyle = 'normal';
+      break;
+    case 'subtle-emboss':
+      v.style.boxShadow = 'inset 0 6px 14px rgba(255,255,255,0.02)';
+      break;
+    case 'shadow-rail':
+      v.style.boxShadow = '0 14px 30px rgba(0,0,0,0.55)';
+      break;
+    case 'crisp-underline':
+      v.style.borderBottom = '3px solid rgba(255,255,255,0.06)';
+      break;
+    case 'scarlet-streak':
+      v.style.borderLeft = '6px solid #b11212';
+      break;
+    case 'silver-lining':
+      v.style.borderTop = '4px solid rgba(255,255,255,0.06)';
+      break;
+    case 'echo-wave':
+      v.style.background = 'linear-gradient(90deg,#151515,#1e1e1e)';
+      v.style.boxShadow = '0 6px 20px rgba(0,0,0,0.5), inset 0 -10px 20px rgba(255,255,255,0.02)';
+      break;
+    case 'covenant-rim':
+      v.style.borderLeft = '6px solid #d6b34a';
+      v.style.background = '#121216';
+      v.style.color = '#efdfb3';
+      break;
+
+    default:
+      // no-op, baseline style
+      break;
+  }
+}
+
+/* -------------------- Live binding -------------------- */
+function refreshPreview(){
+  // Title & verse text
+  const t = titleInput.value.trim() || 'Untitled Scroll';
+  const verseText = verseInput.value.trim() || '';
+  previewTitle.textContent = t;
+  previewVerse.textContent = verseText;
+
+  // Apply current selections
+  const colorKey = fontColorSelect.value;
+  const fontKey = fontFamilySelect.value;
+  const gradKey = gradientSelect.value;
+  const vStyle = verseStyleSelect.value;
+
+  applyFontColor(colorKey);
+  applyFontFamily(fontKey);
+  applyGradient(gradKey);
+  applyVerseStyle(vStyle);
+}
+
+/* attach event listeners */
+[titleInput,verseInput].forEach(el=>{
+  el.addEventListener('input', refreshPreview);
+});
+
+[fontColorSelect,fontFamilySelect,gradientSelect,verseStyleSelect].forEach(s=>{
+  s.addEventListener('change', refreshPreview);
+});
+
+/* set defaults on first load */
+(function setDefaults(){
+  // default values chosen to match initial preview
+  fontColorSelect.value = 'pearl';
+  fontFamilySelect.value = 'serif';
+  gradientSelect.value = 'none';
+  verseStyleSelect.value = 'left-line';
+  titleInput.value = 'The Fire Within';
+  verseInput.value = 'Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”';
+  refreshPreview();
+})();
+
+/* -------------------- localStorage Save / Load -------------------- */
+const STORAGE_KEY = 'scrollforge_v1_config';
+
+saveBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const cfg = {
+    title: titleInput.value,
+    verse: verseInput.value,
+    fontColor: fontColorSelect.value,
+    fontFamily: fontFamilySelect.value,
+    gradient: gradientSelect.value,
+    verseStyle: verseStyleSelect.value,
+    timestamp: new Date().toISOString()
+  };
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+    saveBtn.textContent = 'Saved ✓';
+    setTimeout(()=>saveBtn.textContent='Save (local)',1200);
+  }catch(err){
+    alert('Save failed: ' + (err && err.message));
+  }
+});
+
+loadBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  try{
+    const json = localStorage.getItem(STORAGE_KEY);
+    if(!json){ alert('No saved config found.'); return; }
+    const cfg = JSON.parse(json);
+    titleInput.value = cfg.title || titleInput.value;
+    verseInput.value = cfg.verse || verseInput.value;
+    fontColorSelect.value = cfg.fontColor || fontColorSelect.value;
+    fontFamilySelect.value = cfg.fontFamily || fontFamilySelect.value;
+    gradientSelect.value = cfg.gradient || gradientSelect.value;
+    verseStyleSelect.value = cfg.verseStyle || verseStyleSelect.value;
+    refreshPreview();
+    loadBtn.textContent = 'Loaded ✓';
+    setTimeout(()=>loadBtn.textContent='Load (local)',1200);
+  }catch(err){
+    alert('Load failed: ' + (err && err.message));
+  }
+});
+
+/* -------------------- Export / Import -------------------- */
+exportBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const cfg = {
+    title: titleInput.value,
+    verse: verseInput.value,
+    fontColor: fontColorSelect.value,
+    fontFamily: fontFamilySelect.value,
+    gradient: gradientSelect.value,
+    verseStyle: verseStyleSelect.value,
+    builtAt: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(cfg,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'scrollconfig.scrollconfig.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+importBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  importFile.click();
+});
+importFile.addEventListener('change', (ev)=>{
+  const f = ev.target.files && ev.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    try{
+      const cfg = JSON.parse(evt.target.result);
+      titleInput.value = cfg.title || titleInput.value;
+      verseInput.value = cfg.verse || verseInput.value;
+      fontColorSelect.value = cfg.fontColor || fontColorSelect.value;
+      fontFamilySelect.value = cfg.fontFamily || fontFamilySelect.value;
+      gradientSelect.value = cfg.gradient || gradientSelect.value;
+      verseStyleSelect.value = cfg.verseStyle || verseStyleSelect.value;
+      refreshPreview();
+      importBtn.textContent = 'Imported ✓';
+      setTimeout(()=>importBtn.textContent='Import (.json)',1200);
+    }catch(err){
+      alert('Import failed: invalid json');
+    }
+  };
+  reader.readAsText(f);
+});
+
+/* -------------------- Accessibility: keyboard-friendly quick picks -------------------- */
+/* Press 1-5 to cycle fonts/colors quickly (developer helper) */
+document.addEventListener('keydown', (ev)=>{
+  if(ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA') return;
+  if(ev.key === '1'){ fontColorSelect.selectedIndex = (fontColorSelect.selectedIndex+1) % fontColorSelect.options.length; refreshPreview();}
+  if(ev.key === '2'){ fontFamilySelect.selectedIndex = (fontFamilySelect.selectedIndex+1) % fontFamilySelect.options.length; refreshPreview();}
+  if(ev.key === '3'){ gradientSelect.selectedIndex = (gradientSelect.selectedIndex+1) % gradientSelect.options.length; refreshPreview();}
+  if(ev.key === '4'){ verseStyleSelect.selectedIndex = (verseStyleSelect.selectedIndex+1) % verseStyleSelect.options.length; refreshPreview();}
+});
+
+/* -------------------- End of engine -------------------- */
+</script>
+</body>
+</html>
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ScrollForge — Page 2: Structure & Presentation (2.2a)</title>
+<style>
+  :root{
+    --bg-900:#0f1115;
+    --panel-800:#161922;
+    --muted-700:#0b0d12;
+    --text-100:#e7e7ea;
+    --accent:#4653e2;
+    --radius:12px;
+    --control-h:44px;
+  }
+  html,body{height:100%;margin:0}
+  body{
+    background:linear-gradient(180deg,var(--bg-900),#0b0d12 60%);
+    color:var(--text-100);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    -webkit-font-smoothing:antialiased;padding:18px;
+  }
+  .header{max-width:1100px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  h1{font-size:20px;margin:0}
+  .sub{opacity:.8;font-size:13px}
+
+  .container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:380px 1fr;gap:20px}
+  .panel{background:var(--panel-800);padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.5)}
+  label{display:block;font-weight:700;margin-bottom:8px;font-size:13px}
+  select,input[type="text"],input[type="number"],textarea{
+    width:100%;padding:8px 10px;border-radius:8px;background:#0b0d12;color:var(--text-100);
+    border:1px solid #23262b;outline:none;font-size:14px;box-sizing:border-box;
+  }
+  .small{height:36px;padding:6px 8px;font-size:13px}
+  .form-row{margin-bottom:14px}
+
+  /* structure panels */
+  .division-list{margin-top:8px;display:flex;flex-direction:column;gap:10px}
+  .division{
+    border-radius:10px;padding:12px;background:linear-gradient(180deg,#0c0f12,#0a0c10);
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .division h3{margin:0 0 8px 0;font-size:15px}
+  .row{display:flex;gap:8px}
+  .row .col{flex:1}
+  .muted{opacity:.8;font-size:13px;margin-top:8px}
+
+  /* preview */
+  #previewPanel{min-height:520px;border-radius:var(--radius);padding:18px;background:linear-gradient(135deg,#1c1f29,#10131b);box-shadow:0 8px 30px rgba(0,0,0,0.6);overflow:auto}
+  .toc{list-style:none;padding-left:12px;margin:12px 0}
+  .toc li{padding:6px 8px;border-radius:6px;margin-bottom:6px;background:rgba(255,255,255,0.02)}
+  .toc .sub{font-size:13px;color:rgba(231,231,234,0.85)}
+
+  /* nav */
+  .nav-row{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:16px}
+  .btn{padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,#4653e2,#6f7ce2);color:white;font-weight:700;cursor:pointer}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+  .btn.warn{background:linear-gradient(90deg,#ff7e5f,#feb47b);color:#111}
+  .big-next{padding:14px 20px;font-size:16px;box-shadow:0 8px 24px rgba(70,83,226,0.15)}
+
+  /* compact helpers */
+  .inline{display:inline-block;margin-right:8px}
+  .collapse-toggle{cursor:pointer;color:var(--accent);font-weight:700}
+  .hint{font-size:12px;opacity:.75;margin-top:6px}
+
+  @media (max-width:980px){
+    .container{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>ScrollForge — Structure & Presentation (Page 2.2a)</h1>
+      <div class="sub">Define Parts, Chapters, Sections and how your scroll will be organized. Values persist and travel to Page 3.</div>
+    </div>
+    <div class="sub">Ledger: WV-SCROLLFORGE-V2-PAGE2A</div>
+  </div>
+
+  <main class="container" role="main">
+    <!-- left controls -->
+    <section class="panel" aria-labelledby="structure-heading">
+      <h2 id="structure-heading" style="margin:0 0 12px 0">Structure Configuration</h2>
+
+      <div class="form-row">
+        <label for="structureSelect">Structure Type</label>
+        <select id="structureSelect" class="small" aria-label="Structure type">
+          <option value="parts">Parts (recommended for epic scrolls)</option>
+          <option value="chapters">Chapters (classic)</option>
+          <option value="sections">Sections (scientific / articles)</option>
+          <option value="scrolls">Scrolls / Tablets</option>
+          <option value="scenes">Scenes / Beats</option>
+          <option value="custom">Custom (name your own)</option>
+          <option value="scientific">Scientific Modules</option>
+        </select>
+      </div>
+
+      <div class="form-row" id="customNameRow" style="display:none">
+        <label for="customStructureName">Custom Structure Name</label>
+        <input id="customStructureName" type="text" placeholder="e.g., Visions, Episodes, Fragments" />
+      </div>
+
+      <div class="form-row">
+        <label for="divisionCount">How many main divisions?</label>
+        <select id="divisionCount" class="small"></select>
+        <div class="hint">Choose between 1 and 12 (you can change later)</div>
+      </div>
+
+      <div class="form-row">
+        <label for="defaultSegments">Default segments per division (optional)</label>
+        <select id="defaultSegments" class="small">
+          <option value="0">0 — no segments</option>
+          <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option>
+          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+        </select>
+        <div class="hint">If you choose 0 segments, Page 3 will show only main divisions for content insertion.</div>
+      </div>
+
+      <div class="form-row">
+        <label for="includePrologue">Include Prologue / Opening Section?</label>
+        <select id="includePrologue" class="small">
+          <option value="none">No</option>
+          <option value="prologue">Prologue</option>
+          <option value="preface">Preface</option>
+        </select>
+      </div>
+
+      <div class="form-row" id="prologueEditor" style="display:none">
+        <label for="prologueText">Prologue placeholder text</label>
+        <textarea id="prologueText" rows="4" placeholder="A short opening paragraph — optional"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>Structure Template (optional)</label>
+        <select id="structureTemplate" class="small">
+          <option value="none">-- Use a template? --</option>
+          <option value="threePart">Three-Part (Beginning / Middle / End)</option>
+          <option value="fiveEpic">Five-Part Epic</option>
+          <option value="bible">Bible-style (Books & Chapters)</option>
+          <option value="journal">Journal (Entries / Dates)</option>
+          <option value="scientific">Scientific (Abstract / Methods / Results)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Preview Options</label>
+        <div class="row" style="margin-top:6px">
+          <div class="col"><label><input type="checkbox" id="collapseByDefault" /> Collapse divisions by default</label></div>
+        </div>
+      </div>
+
+      <div style="border-top:1px dashed rgba(255,255,255,0.03);padding-top:12px;margin-top:8px">
+        <label>Division details</label>
+        <div class="muted">After you choose the number of divisions, fields will appear below for renaming and per-division segment counts.</div>
+      </div>
+
+      <div class="division-list form-row" id="divisionsContainer" aria-live="polite"></div>
+
+      <div class="muted">Tip: You can save this structure (Export) and import it later in Page 3 when composing content.</div>
+
+      <div class="nav-row">
+        <button id="saveStructureBtn" class="btn ghost">Save (local)</button>
+        <div style="display:flex;gap:8px">
+          <button id="exportStructureBtn" class="btn">Export JSON</button>
+          <button id="importStructureBtn" class="btn ghost">Import JSON</button>
+          <input id="importStructureFile" type="file" accept="application/json" style="display:none">
+        </div>
+      </div>
+    </section>
+
+    <!-- right preview -->
+    <section id="previewPanel" class="panel" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2 style="margin:0">Preview — Table of Contents</h2>
+          <div class="sub" style="margin-top:6px">This live preview will reflect your structure choices in real time.</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="backBtn" class="btn ghost">Back</button>
+          <button id="nextBtn" class="btn big-next">NEXT →</button>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:80px"><strong>Title</strong></div>
+          <div id="previewTitle" style="font-weight:700">The Fire Within</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:12px;align-items:center">
+          <div style="width:80px"><strong>Subtitle</strong></div>
+          <div id="previewSubtitle" class="muted">(optional subtitle)</div>
+        </div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+
+      <div style="display:flex;gap:16px">
+        <div style="flex:1">
+          <h3 style="margin:6px 0 10px 0">Structure TOC</h3>
+          <ul class="toc" id="previewTOC"></ul>
+        </div>
+        <div style="width:260px">
+          <h3 style="margin:6px 0">Details</h3>
+          <div class="muted" id="previewDetails">Select or edit divisions to see details here.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:flex-end">
+        <button id="previewWindowBtn" class="btn ghost">Open Full Preview</button>
+        <button id="saveAndOpenHTMLBtn" class="btn warn">Save & Generate HTML</button>
+      </div>
+    </section>
+  </main>
+
+<script>
+/*
+  Page 2.2a — Structure & Presentation
+  - Save structure in localStorage under key: scrollforge_structure_v1
+  - Carry appearance config if present under: scrollforge_v1_config
+*/
+
+const STRUCT_KEY = 'scrollforge_structure_v1';
+const APPEAR_KEY = 'scrollforge_v1_config'; // from Page 1 engine if present
+
+// DOM refs
+const structureSelect = document.getElementById('structureSelect');
+const customNameRow = document.getElementById('customNameRow');
+const customStructureName = document.getElementById('customStructureName');
+const divisionCount = document.getElementById('divisionCount');
+const defaultSegments = document.getElementById('defaultSegments');
+const divisionsContainer = document.getElementById('divisionsContainer');
+const includePrologue = document.getElementById('includePrologue');
+const prologueEditor = document.getElementById('prologueEditor');
+const prologueText = document.getElementById('prologueText');
+const structureTemplate = document.getElementById('structureTemplate');
+const collapseByDefault = document.getElementById('collapseByDefault');
+
+const previewTOC = document.getElementById('previewTOC');
+const previewTitle = document.getElementById('previewTitle');
+const previewSubtitle = document.getElementById('previewSubtitle');
+const previewDetails = document.getElementById('previewDetails');
+
+const saveStructureBtn = document.getElementById('saveStructureBtn');
+const exportStructureBtn = document.getElementById('exportStructureBtn');
+const importStructureBtn = document.getElementById('importStructureBtn');
+const importStructureFile = document.getElementById('importStructureFile');
+
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+const previewWindowBtn = document.getElementById('previewWindowBtn');
+const saveAndOpenHTMLBtn = document.getElementById('saveAndOpenHTMLBtn');
+
+// utilities
+function el(tag, props={}, ...children){
+  const e = document.createElement(tag);
+  for(const k in props) {
+    if(k === 'class') e.className = props[k];
+    else if(k === 'html') e.innerHTML = props[k];
+    else e.setAttribute(k, props[k]);
+  }
+  children.forEach(c => { if(c != null) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return e;
+}
+
+// populate division count 1..12
+(function fillDivisionCount(){
+  for(let i=1;i<=12;i++){
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = String(i);
+    if(i===3) o.selected = true;
+    divisionCount.appendChild(o);
+  }
+})();
+
+// load saved appearance title if present
+(function loadAppearanceIfExists(){
+  try{
+    const raw = localStorage.getItem(APPEAR_KEY);
+    if(raw){
+      const cfg = JSON.parse(raw);
+      if(cfg.title) previewTitle.textContent = cfg.title;
+      if(cfg.subtitle) previewSubtitle.textContent = cfg.subtitle || '(optional subtitle)';
+    }
+  }catch(e){}
+})();
+
+// state model
+let state = {
+  structureType: structureSelect.value,
+  customName: '',
+  divisionCount: Number(divisionCount.value),
+  defaultSegments: Number(defaultSegments.value),
+  includePrologue: includePrologue.value,
+  prologueText: '',
+  divisions: [] // {title, subtitle, segmentCount, collapsed}
+};
+
+// helpers
+function humanLabel(s){
+  return s.replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+
+function applyTemplate(templateKey){
+  // simple templates - set sensible defaults
+  if(templateKey === 'threePart'){
+    state.divisionCount = 3;
+    state.defaultSegments = 2;
+    divisionCount.value = 3;
+    defaultSegments.value = 2;
+    genDivisions();
+    state.divisions[0].title = 'Part I — The Beginning';
+    state.divisions[1].title = 'Part II — The Unscrolling';
+    state.divisions[2].title = 'Part III — The Resolve';
+  } else if(templateKey === 'fiveEpic'){
+    state.divisionCount = 5;
+    divisionCount.value = 5;
+    defaultSegments.value = 3;
+    genDivisions();
+    state.divisions.forEach((d,i)=>d.title = `Part ${i+1}`);
+  } else if(templateKey === 'bible'){
+    state.structureType = 'chapters';
+    structureSelect.value = 'chapters';
+    state.divisionCount = 10;
+    divisionCount.value = 10;
+    defaultSegments.value = 0;
+    genDivisions();
+    state.divisions.forEach((d,i)=>d.title = `Chapter ${i+1}`);
+  } else if(templateKey === 'journal'){
+    state.structureType = 'sections';
+    structureSelect.value = 'sections';
+    state.divisionCount = 7;
+    divisionCount.value = 7;
+    defaultSegments.value = 0;
+    genDivisions();
+    state.divisions.forEach((d,i)=>d.title = `Entry ${i+1}`);
+  } else if(templateKey === 'scientific'){
+    state.structureType = 'scientific';
+    structureSelect.value = 'scientific';
+    state.divisionCount = 4;
+    divisionCount.value = 4;
+    defaultSegments.value = 1;
+    genDivisions();
+    state.divisions[0].title = 'Abstract';
+    state.divisions[1].title = 'Methods';
+    state.divisions[2].title = 'Results';
+    state.divisions[3].title = 'Discussion';
+  }
+  renderDivisions();
+  updatePreview();
+}
+
+// generate divisions array from counts and defaults
+function genDivisions(){
+  const n = Number(state.divisionCount) || 1;
+  const segDefault = Number(state.defaultSegments) || 0;
+  const old = state.divisions || [];
+  state.divisions = [];
+  for(let i=0;i<n;i++){
+    const previous = old[i] || {};
+    state.divisions.push({
+      title: previous.title || `${humanLabel(state.structureType).replace(/s$/,'')} ${i+1}`,
+      subtitle: previous.subtitle || '',
+      segmentCount: previous.segmentCount != null ? previous.segmentCount : segDefault,
+      collapsed: collapseByDefault.checked
+    });
+  }
+}
+
+// render the division editor panels
+function renderDivisions(){
+  divisionsContainer.innerHTML = '';
+  state.divisions.forEach((d,i)=>{
+    const div = el('div',{class:'division'});
+    const header = el('div',{}, el('h3',{}, `${humanLabel(state.structureType).replace(/s$/,'')} ${i+1}`));
+    const titleLabel = el('label',{}, 'Title');
+    const titleInput = el('input',{type:'text',value:d.title});
+    titleInput.addEventListener('input', e=>{ state.divisions[i].title = e.target.value; updatePreview();});
+    const subtitleLabel = el('label',{}, 'Subtitle (optional)');
+    const subtitleInput = el('input',{type:'text',value:d.subtitle});
+    subtitleInput.addEventListener('input', e=>{ state.divisions[i].subtitle = e.target.value; updatePreview();});
+    const segLabel = el('label',{}, 'Segments in this division');
+    const segInput = el('input',{type:'number',min:0,max:12,value:d.segmentCount});
+    segInput.addEventListener('input', e=>{
+      const v = Number(e.target.value) || 0;
+      state.divisions[i].segmentCount = v;
+      updatePreview();
+    });
+
+    const optRow = el('div',{class:'row'}, el('div',{class:'col'}, titleLabel), el('div',{class:'col'}, segLabel));
+    const inputRow = el('div',{class:'row', style:'margin-top:6px'}, el('div',{class:'col'}, titleInput), el('div',{class:'col'}, segInput));
+    const subtitleRow = el('div',{class:'form-row'}, subtitleLabel, subtitleInput);
+
+    // small actions
+    const actions = el('div',{style:'margin-top:8px;display:flex;gap:8px;justify-content:flex-end'},
+      el('button',{class:'btn ghost', type:'button'}, 'Collapse'),
+      el('button',{class:'btn ghost', type:'button'}, 'Duplicate'),
+      el('button',{class:'btn ghost', type:'button'}, 'Remove')
+    );
+
+    // action callbacks
+    actions.children[0].addEventListener('click', ()=>{ state.divisions[i].collapsed = !state.divisions[i].collapsed; renderDivisions(); updatePreview(); });
+    actions.children[1].addEventListener('click', ()=>{
+      // duplicate division
+      const copy = JSON.parse(JSON.stringify(state.divisions[i]));
+      state.divisions.splice(i+1,0,copy);
+      state.divisionCount = state.divisions.length;
+      divisionCount.value = state.divisionCount;
+      renderDivisions(); updatePreview();
+    });
+    actions.children[2].addEventListener('click', ()=>{
+      if(confirm('Remove this division?')) {
+        state.divisions.splice(i,1);
+        state.divisionCount = state.divisions.length;
+        divisionCount.value = state.divisionCount;
+        renderDivisions(); updatePreview();
+      }
+    });
+
+    // arrangement
+    div.appendChild(header);
+    div.appendChild(optRow);
+    div.appendChild(inputRow);
+    div.appendChild(subtitleRow);
+    div.appendChild(actions);
+
+    // segments preview (not full content editor — content is Page 3)
+    const segPreview = el('div',{style:'margin-top:8px'});
+    if(d.segmentCount > 0){
+      const segList = el('div',{}, el('div',{class:'muted'}, 'Segments:' ));
+      for(let s=0;s<d.segmentCount;s++){
+        const segLine = el('div',{style:'padding:6px 8px;margin-top:6px;border-radius:6px;background:rgba(255,255,255,0.02)'},
+          el('strong',{}, `${humanLabel(state.structureType).replace(/s$/,'')} ${i+1}.${s+1}`),
+          el('div',{class:'muted', style:'font-size:13px;margin-top:4px'}, 'No body here — writing occurs on Page 3.')
+        );
+        segList.appendChild(segLine);
+      }
+      segPreview.appendChild(segList);
+    } else {
+      segPreview.appendChild(el('div',{class:'muted'}, 'No segments defined for this division.'));
+    }
+
+    if(d.collapsed){
+      // show collapsed header only
+      const collapsedView = el('div',{style:'display:flex;justify-content:space-between;align-items:center'}, el('div',{}, el('strong',{}, d.title || `${humanLabel(state.structureType)} ${i+1}`), el('div',{class:'muted', style:'margin-top:4px'}, d.subtitle || '')), el('div',{}, el('button',{class:'btn small ghost', type:'button'}, 'Edit')));
+      // edit button shows full panel
+      collapsedView.querySelector('button').addEventListener('click', ()=>{ state.divisions[i].collapsed = false; renderDivisions(); });
+      div.innerHTML = '';
+      div.appendChild(collapsedView);
+    } else {
+      div.appendChild(segPreview);
+    }
+
+    divisionsContainer.appendChild(div);
+  });
+}
+
+// update preview TOC
+function updatePreview(){
+  previewTOC.innerHTML = '';
+  if(state.includePrologue && state.includePrologue !== 'none'){
+    const li = el('li',{}, el('strong',{}, humanLabel(state.includePrologue)), el('div',{class:'sub'}, prologueText.value || ''));
+    previewTOC.appendChild(li);
+  }
+  state.divisions.forEach((d,i)=>{
+    const li = el('li',{}, el('div',{}, el('strong',{},

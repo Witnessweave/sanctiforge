@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ScrollForge Config Preview</title>
+  <style>
+    body {
+      background: #0f1115;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      padding: 20px;
+    }
+    form {
+      background: #161922;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      background: #0b0d12;
+      color: #e7e7ea;
+      border: 1px solid #2a2f3c;
+    }
+    #preview {
+      margin-top: 40px;
+      padding: 24px;
+      border-radius: 12px;
+      background: linear-gradient(to bottom right, #1c1f29, #10131b);
+      font-family: 'Georgia', serif;
+      transition: all 0.3s ease;
+    }
+    .verse {
+      margin: 20px 0;
+      padding: 12px;
+      border-left: 3px solid #4653e2;
+      background: #181c24;
+      font-style: italic;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<form id="scroll-config">
+  <h2>🛠️ Scroll Style Configuration</h2>
+
+<label for="fontColor">Font Color:</label>
+<select id="fontColor">
+  <option value="white">White</option>
+  <option value="gold">Gold</option>
+  <option value="blue">Light Blue</option>
+  <option value="gray">Soft Gray</option>
+  <option value="crimson">Crimson Red</option>
+  <option value="emerald">Emerald Green</option>
+  <option value="amber">Amber</option>
+  <option value="indigo">Indigo</option>
+  <option value="peach">Peach</option>
+  <option value="violet">Violet</option>
+  <option value="sky">Sky Blue</option>
+  <option value="forest">Forest Green</option>
+  <option value="rose">Rose Pink</option>
+  <option value="bronze">Bronze</option>
+  <option value="silver">Silver</option>
+  <option value="charcoal">Charcoal</option>
+  <option value="ivory">Ivory</option>
+  <option value="sand">Sand</option>
+  <option value="lava">Lava Orange</option>
+  <option value="plum">Plum</option>
+  <option value="turquoise">Turquoise</option>
+  <option value="mint">Mint</option>
+  <option value="cobalt">Cobalt</option>
+  <option value="ruby">Ruby</option>
+  <option value="topaz">Topaz</option>
+  <option value="onyx">Onyx</option>
+  <option value="sapphire">Sapphire</option>
+  <option value="jade">Jade</option>
+  <option value="amberlight">Amber Light</option>
+  <option value="orchid">Orchid</option>
+  <option value="ocean">Ocean</option>
+  <option value="rust">Rust</option>
+  <option value="pearl">Pearl White</option>
+  <option value="shadow">Shadow Gray</option>
+  <option value="sunflower">Sunflower Yellow</option>
+  <option value="clay">Clay Brown</option>
+  <option value="honey">Honey</option>
+  <option value="storm">Storm Blue</option>
+  <option value="ice">Ice White</option>
+  <option value="graphite">Graphite</option>
+    <option value="white">White</option>
+    <option value="gold">Gold</option>
+    <option value="blue">Light Blue</option>
+    <option value="gray">Soft Gray</option>
+  </select>
+
+  <label for="gradientStyle">Gradient Style:</label>
+<select id="gradientStyle">
+  <option value="none">None</option>
+  <option value="sunset">Sunset Fade</option>
+  <option value="nightfall">Nightfall Fade</option>
+  <option value="skyline">Skyline Shift</option>
+  <option value="ember">Ember Glow</option>
+  <option value="dawnlight">Dawnlight</option>
+  <option value="seafoam">Seafoam</option>
+  <option value="desert">Desert Heat</option>
+  <option value="aurora">Aurora</option>
+  <option value="rainbow">Rainbow Flow</option>
+  <option value="icefire">Ice & Fire</option>
+  <option value="forest">Forest Mist</option>
+  <option value="storm">Thunderstorm</option>
+  <option value="crystal">Crystal Clear</option>
+  <option value="volcano">Volcano Burst</option>
+  <option value="sandstorm">Sandstorm</option>
+  <option value="cosmic">Cosmic Field</option>
+  <option value="moonlight">Moonlight</option>
+  <option value="sunrise">Sunrise Beam</option>
+  <option value="shadow">Shadow Realm</option>
+  <option value="flame">Flame Rise</option>
+  <option value="waterfall">Waterfall Flow</option>
+  <option value="nebula">Nebula</option>
+  <option value="starfall">Starfall</option>
+  <option value="ocean">Deep Ocean</option>
+  <option value="clay">Earthen Clay</option>
+  <option value="wine">Wine Stain</option>
+  <option value="royal">Royal Veil</option>
+  <option value="garden">Garden Bloom</option>
+  <option value="glory">Glory Ascent</option>
+  <option value="terminal">Terminal Truth</option>
+  <option value="dream">Dreamfield</option>
+  <option value="lighthouse">Lighthouse Dawn</option>
+  <option value="battle">Battle Record</option>
+  <option value="parchment">Sanctum Parchment</option>
+  <option value="tron">Tron Sanctuary</option>
+  <option value="covenant">Covenant Glow</option>
+  <option value="dreadhare">Dreadhare Shadow</option>
+  <option value="temple">Temple Shadow</option>
+  <option value="return">Cloud Return</option>
+    <option value="none">None</option>
+    <option value="sunset">Sunset Fade</option>
+    <option value="nightfall">Nightfall Fade</option>
+    <option value="skyline">Skyline Shift</option>
+  </select>
+
+  <label for="fontFamily">Font Family:</label>
+<select id="fontFamily">
+  <option value="serif">Classic Serif</option>
+  <option value="sans">Modern Sans</option>
+  <option value="mono">Monospace</option>
+  <option value="handwritten">Handwritten</option>
+  <option value="garamond">Garamond</option>
+  <option value="poppins">Poppins</option>
+  <option value="fira">Fira Code</option>
+  <option value="alegreya">Alegreya</option>
+  <option value="roboto">Roboto</option>
+  <option value="openSans">Open Sans</option>
+  <option value="merriweather">Merriweather</option>
+  <option value="lora">Lora</option>
+  <option value="raleway">Raleway</option>
+  <option value="ubuntu">Ubuntu</option>
+  <option value="inconsolata">Inconsolata</option>
+  <option value="montserrat">Montserrat</option>
+  <option value="caveat">Caveat (Handwriting)</option>
+  <option value="pacifico">Pacifico</option>
+  <option value="pressStart">Press Start 2P</option>
+  <option value="abril">Abril Fatface</option>
+  <option value="notosans">Noto Sans</option>
+  <option value="notoserif">Noto Serif</option>
+  <option value="abrilDisplay">Abril Display</option>
+  <option value="comfortaa">Comfortaa</option>
+  <option value="dancing">Dancing Script</option>
+  <option value="playfair">Playfair Display</option>
+  <option value="cinzel">Cinzel</option>
+  <option value="greatVibes">Great Vibes</option>
+  <option value="tangerine">Tangerine</option>
+  <option value="cormorant">Cormorant Garamond</option>
+  <option value="exo">Exo 2</option>
+  <option value="oswald">Oswald</option>
+  <option value="spectral">Spectral</option>
+  <option value="overpass">Overpass</option>
+  <option value="libre">Libre Baskerville</option>
+  <option value="workSans">Work Sans</option>
+  <option value="oxygen">Oxygen</option>
+  <option value="karla">Karla</option>
+  <option value="vollkorn">Vollkorn</option>
+    <option value="serif">Classic Serif</option>
+    <option value="sans">Modern Sans</option>
+    <option value="mono">Monospace</option>
+    <option value="handwritten">Handwritten</option>
+  </select>
+
+  <label for="verseStyle">Verse Block Style:</label>
+  <select id="verseStyle">
+    <option value="highlight-box">Highlight Box</option>
+    <option value="left-line">Left Line</option>
+    <option value="muted-bg">Muted Background</option>
+  </select>
+</form>
+
+<div id="preview">
+  <div class="section-title">Scroll Title: The Fire Within</div>
+  <div class="verse">Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”</div>
+  <p>This is a sample body paragraph of your scroll. The styling above will adjust in real time based on your selections.</p>
+</div>
+
+<script>
+  const form = document.getElementById('scroll-config');
+  const preview = document.getElementById('preview');
+
+  const colors = {
+    white: '#ffffff',
+    gold: '#f9d673',
+    blue: '#90caf9',
+    gray: '#c0c0c0'
+  };
+
+  const gradients = {
+    none: 'linear-gradient(to bottom right, #1c1f29, #10131b)',
+    sunset: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+    nightfall: 'linear-gradient(to right, #232526, #414345)',
+    skyline: 'linear-gradient(to right, #83a4d4, #b6fbff)'
+  };
+
+  const fonts = {
+    serif: "'Georgia', serif",
+    sans: "system-ui, sans-serif",
+    mono: "'Courier New', monospace",
+    handwritten: "'Brush Script MT', cursive"
+  };
+
+  form.addEventListener('change', () => {
+    const fontColor = form.fontColor.value;
+    const gradient = form.gradientStyle.value;
+    const fontFamily = form.fontFamily.value;
+    const verseStyle = form.verseStyle.value;
+
+    // Apply font color
+    preview.style.color = colors[fontColor] || '#e7e7ea';
+
+    // Apply gradient background
+    preview.style.background = gradients[gradient] || gradients['none'];
+
+    // Apply font family
+    preview.style.fontFamily = fonts[fontFamily] || fonts['serif'];
+
+    // Verse block style
+    const verse = preview.querySelector('.verse');
+    verse.style.borderLeft = verseStyle === 'left-line' ? '3px solid #46d46b' : 'none';
+    verse.style.background = verseStyle === 'muted-bg' ? '#2a2f3c' : '#181c24';
+    verse.style.padding = '12px';
+  });
+</script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ScrollForge Config Preview</title>
+  <style>
+    body {
+      background: #0f1115;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      padding: 20px;
+    }
+    form {
+      background: #161922;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      background: #0b0d12;
+      color: #e7e7ea;
+      border: 1px solid #2a2f3c;
+    }
+    #preview {
+      margin-top: 40px;
+      padding: 24px;
+      border-radius: 12px;
+      background: linear-gradient(to bottom right, #1c1f29, #10131b);
+      font-family: 'Georgia', serif;
+      transition: all 0.3s ease;
+    }
+    .verse {
+      margin: 20px 0;
+      padding: 12px;
+      border-left: 3px solid #4653e2;
+      background: #181c24;
+      font-style: italic;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body><form id="scroll-config">
+  <h2>🛠️ Scroll Style Configuration</h2><label for="theme">Choose Theme:</label> <select id="theme"> <option value="custom">-- Custom Settings --</option> <option value="tron">TRON SANCTUARY™</option> <option value="parchment">SANCTUM PARCHMENT™</option> <option value="dreamfield">DREAMFIELD NEBULA™</option> <option value="terminal">TERMINAL TRUTH™</option> <option value="covenant">COVENANT GLOW™</option> <option value="dreadhare">DREADHARE SHADOW™</option> <option value="lighthouse">LIGHTHOUSE DAWN™</option> <option value="battle">BATTLE RECORD™</option> <option value="garden">GARDEN SPROUT™</option> <option value="royal">ROYAL VEIL™</option> <option value="witness">WITNESS GRID™</option> <option value="glory">GLORY ASCENT™</option> </select>
+
+<label for="fontColor">Font Color:</label> <select id="fontColor"> <option value="white">White</option> <option value="gold">Gold</option> <option value="blue">Light Blue</option> <option value="gray">Soft Gray</option> </select>
+
+<label for="gradientStyle">Gradient Style:</label> <select id="gradientStyle"> <option value="none">None</option> <option value="sunset">Sunset Fade</option> <option value="nightfall">Nightfall Fade</option> <option value="skyline">Skyline Shift</option> </select>
+
+<label for="fontFamily">Font Family:</label> <select id="fontFamily"> <option value="serif">Classic Serif</option> <option value="sans">Modern Sans</option> <option value="mono">Monospace</option> <option value="handwritten">Handwritten</option> </select>
+
+<label for="verseStyle">Verse Block Style:</label> <select id="verseStyle"> <option value="highlight-box">Highlight Box</option> <option value="left-line">Left Line</option> <option value="muted-bg">Muted Background</option> </select>
+
+</form><div id="preview">
+  <div class="section-title">Scroll Title: The Fire Within</div>
+  <div class="verse">Psalm 119:11 (NKJV) — “Your word I have hidden in my heart, That I might not sin against You.”</div>
+  <p>This is a sample body paragraph of your scroll. The styling above will adjust in real time based on your selections.</p>
+</div><script>
+  const form = document.getElementById('scroll-config');
+  const preview = document.getElementById('preview');
+  const verse = preview.querySelector('.verse');
+
+  const themes = {
+    tron: {
+      fontColor: '#3bd9ff', fontFamily: 'system-ui, sans-serif', gradient: 'linear-gradient(to right, #0f2027, #203a43, #2c5364)', verseBg: '#121d29', verseBorder: '3px solid #3bd9ff'
+    },
+    parchment: {
+      fontColor: '#4e3b2a', fontFamily: 'Georgia, serif', gradient: 'linear-gradient(to right, #f9f3e7, #e4d9c0)', verseBg: '#f4ebda', verseBorder: '3px solid #d6c1a2'
+    },
+    dreamfield: {
+      fontColor: '#cba6f7', fontFamily: 'Alegreya, serif', gradient: 'linear-gradient(to right, #e0c3fc, #8ec5fc)', verseBg: '#f3eaff', verseBorder: '3px solid #b282f2'
+    },
+    terminal: {
+      fontColor: '#33ff33', fontFamily: 'Courier New, monospace', gradient: 'none', verseBg: 'black', verseBorder: '3px dashed #33ff33'
+    },
+    covenant: {
+      fontColor: '#f9d673', fontFamily: 'Garamond, serif', gradient: 'linear-gradient(to bottom, #ffffff, #f9d673)', verseBg: '#fffbe9', verseBorder: '3px solid #f9d673'
+    }
+    // Add more themes as needed...
+  };
+
+  const colors = {
+    white: '#ffffff',
+    gold: '#f9d673',
+    blue: '#90caf9',
+    gray: '#c0c0c0'
+  };
+
+  const gradients = {
+    none: 'linear-gradient(to bottom right, #1c1f29, #10131b)',
+    sunset: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+    nightfall: 'linear-gradient(to right, #232526, #414345)',
+    skyline: 'linear-gradient(to right, #83a4d4, #b6fbff)'
+  };
+
+  const fonts = {
+    serif: 'Georgia, serif',
+    sans: 'system-ui, sans-serif',
+    mono: 'Courier New, monospace',
+    handwritten: 'Brush Script MT, cursive'
+  };
+
+  form.addEventListener('change', () => {
+    const theme = form.theme.value;
+    if (theme !== 'custom' && themes[theme]) {
+      const t = themes[theme];
+      preview.style.color = t.fontColor;
+      preview.style.background = t.gradient || gradients['none'];
+      preview.style.fontFamily = t.fontFamily;
+      verse.style.background = t.verseBg;
+      verse.style.borderLeft = t.verseBorder;
+    } else {
+      const fontColor = form.fontColor.value;
+      const gradient = form.gradientStyle.value;
+      const fontFamily = form.fontFamily.value;
+      const verseStyle = form.verseStyle.value;
+
+      preview.style.color = colors[fontColor] || '#e7e7ea';
+      preview.style.background = gradients[gradient] || gradients['none'];
+      preview.style.fontFamily = fonts[fontFamily] || fonts['serif'];
+
+      verse.style.borderLeft = verseStyle === 'left-line' ? '3px solid #46d46b' : 'none';
+      verse.style.background = verseStyle === 'muted-bg' ? '#2a2f3c' : '#181c24';
+      verse.style.padding = '12px';
+    }
+  });
+</script></body>
+</html>

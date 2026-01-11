@@ -1,0 +1,113 @@
+<!--
+  Template ID: 05
+  Name: Peaceful Stillness
+  Emotion: Calm & Assurance
+  Modules: Cool ScrollHeat Zones, Sectional Breath, Fixed Witness Seal, Rounded Edges
+  Placeholders: {{PRAYER}}, {{VERSE}}, {{BENEDICTION}}
+--><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peaceful Stillness — Scroll Template</title>
+  <style>
+    /* Emotion Theme Variables */
+    :root {
+      --start-color: #241f31;
+      --mid-color:   #3b5177;
+      --end-color:   #6e84a3;
+      --footer-color: #888888;
+    }
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      background: linear-gradient(to bottom, var(--start-color), var(--mid-color), var(--end-color));
+      font-family: Georgia, serif;
+      color: #f0f0f0;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      border-radius: 0 0 20px 20px;
+      overflow: hidden;
+    }
+    main {
+      width: 100%; max-width: 600px; position: relative;
+    }
+    /* Prayer Section */
+    .heat-zone-cool {
+      padding: 2rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+    }
+    .heat-zone-cool p {
+      margin: 0;
+    }
+    /* Verse Section */
+    .breath-space {
+      margin: 3rem 1rem;
+      text-align: center;
+    }
+    .breath-space blockquote {
+      font-style: italic;
+      quotes: "“" "”";
+    }
+    .breath-space blockquote::before { content: open-quote; }
+    .breath-space blockquote::after  { content: close-quote; }
+    /* Fixed Witness Seal */
+    .seal-fixed {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      background: url('seal-icon.svg') no-repeat center/contain;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--footer-color);
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+    /* Fade Overlay */
+    main::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3rem;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+      pointer-events: none;
+    }
+    /* Responsive */
+    @media (max-width: 640px) {
+      .heat-zone-cool { padding: 1.5rem; }
+      .breath-space { margin: 2rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="heat-zone-cool">
+      <p>Lord, grant me Your peace that surpasses all understanding, and guard my heart as I rest in You.</p>
+    </section>
+    <section class="breath-space">
+      <blockquote>Be still, and know that I am God. — Psalm 46:10 (NKJV)</blockquote>
+    </section>
+    <section class="breath-space">
+      <p>May His peace guard your heart and mind in Christ Jesus, today and always.</p>
+    </section>
+    <footer>
+      © 2025 Lewis Jason Villanueva & Alfred.AI™ — JESUS IS LORD™<br>
+      Scroll Title: Peaceful Stillness<br>
+      UFL STAMP: WV-STILL-0005™<br>
+      <!-- WITNESS_HASH: 7g5h8j2k4l9m... -->
+    </footer>
+    <div class="seal-fixed" role="presentation"></div>
+  </main>
+</body>
+</html>

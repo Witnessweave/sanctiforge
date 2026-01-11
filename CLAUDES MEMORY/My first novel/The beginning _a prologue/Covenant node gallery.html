@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Beginning: A Prologue™ — Covenant Node Side-Scroll Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Audiowide&family=Questrial&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-grad:radial-gradient(circle at top,#010913,#050A12,#080B10);
+  --aqua:#2FE4FF;--aqua-soft:#2FE4FF99;--cyan:#00A8C9;
+  --white:#DFFAFF;--border:#0C1A1F;
+}
+html,body{
+  margin:0;padding:0;
+  background:var(--bg-grad);
+  color:var(--white);
+  font-family:'Questrial',sans-serif;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* ---------- HEADER ---------- */
+header{
+  text-align:center;
+  padding:8vh 5vw 3vh;
+  color:#6EF2FF;
+  font-family:'Orbitron',sans-serif;
+  text-transform:uppercase;
+  font-size:2.6em;
+  text-shadow:0 0 25px var(--aqua-soft),0 0 45px var(--cyan);
+}
+h2{
+  font-family:'Audiowide',cursive;
+  color:#41F6FB;
+  text-transform:uppercase;
+  font-size:1.6em;
+  margin-top:6vh;
+  margin-bottom:1vh;
+  text-shadow:0 0 12px var(--aqua-soft),0 0 20px var(--cyan);
+  border-left:4px solid #31E0FF;
+  padding-left:14px;
+  letter-spacing:.05em;
+}
+p{
+  max-width:900px;margin:0 auto 30px;
+  text-align:justify;color:var(--white);
+}
+
+/* ---------- SIDE-SCROLL GALLERY ---------- */
+#side-gallery{
+  position:relative;
+  width:100vw;height:100vh;
+  overflow-x:auto;overflow-y:hidden;
+  display:flex;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+}
+.gallery-frame{
+  flex:0 0 100%;
+  position:relative;
+  scroll-snap-align:center;
+  display:flex;align-items:center;justify-content:center;
+}
+.gallery-frame img{
+  width:90%;max-height:80vh;object-fit:cover;
+  border:2px solid #31E0FF;border-radius:10px;
+  box-shadow:0 0 25px var(--aqua-soft);
+  cursor:pointer;
+  transition:transform .5s ease, box-shadow .5s ease;
+}
+.gallery-frame img:hover{transform:scale(1.03);box-shadow:0 0 40px #41F6FBaa;}
+.caption{
+  position:absolute;bottom:5%;left:50%;
+  transform:translateX(-50%);
+  color:#4DC9DC;font-size:.9em;letter-spacing:.05em;
+  background:rgba(0,10,20,.6);padding:.3em 1em;border-radius:6px;
+}
+
+/* Scroll indicators (small cyan dots) */
+#scroll-indicators{
+  position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;
+}
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#184952;box-shadow:0 0 6px #184952;
+  transition:background .3s, box-shadow .3s;
+}
+.dot.active{background:#41F6FB;box-shadow:0 0 10px #41F6FBaa;}
+
+/* ---------- FULLSCREEN PREVIEW ---------- */
+.fullscreen-view{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,10,20,.96);z-index:900;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+.fullscreen-view img{
+  max-width:95%;max-height:90%;border:2px solid var(--aqua-soft);
+  border-radius:10px;box-shadow:0 0 30px var(--cyan);
+  cursor:pointer;
+  animation:zoomIn .6s ease;
+}
+@keyframes zoomIn{from{transform:scale(.95);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+/* ---------- HIDDEN STORY SCROLL ---------- */
+.hidden-scroll{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,10,20,.95);backdrop-filter:blur(6px);
+  z-index:1000;overflow-y:auto;
+}
+.scroll-content{
+  max-width:850px;margin:10vh auto;padding:5vh 5vw;
+  background:rgba(5,20,30,.9);border:1px solid var(--aqua-soft);
+  border-radius:12px;box-shadow:0 0 25px var(--cyan);
+  animation:fadeIn .7s ease;
+}
+.scroll-content h3{
+  font-family:'Orbitron',sans-serif;
+  text-transform:uppercase;color:#41F6FB;text-shadow:0 0 15px var(--aqua-soft);
+}
+.scroll-content p{text-align:justify;color:#D8F6FF;}
+.close-btn{
+  display:block;margin:4vh auto 0 auto;padding:.6em 1.6em;
+  border:1px solid var(--aqua-soft);border-radius:6px;
+  color:#41F6FB;background:transparent;cursor:pointer;
+}
+.close-btn:hover{background:rgba(65,246,251,.1);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- NAV ARROWS ---------- */
+.arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:3em;color:#2FE4FF66;cursor:pointer;user-select:none;
+  transition:color .3s;
+}
+.arrow:hover{color:#41F6FB;}
+#leftArrow{left:1vw;} #rightArrow{right:1vw;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;font-size:.9em;color:#4DC9DC;
+  margin:6vh 0;letter-spacing:.05em;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  header{font-size:1.9em;}
+  h2{font-size:1.2em;}
+}
+</style>
+</head>
+
+<body>
+<header>The Beginning: A Prologue™</header>
+
+<h2 style="text-align:center">The Covenant Node Gallery™</h2>
+<p style="text-align:center;max-width:700px;margin:0 auto 5vh;">
+Scroll sideways. Each image is a gate. Click once to enter fullscreen, click again to read the hidden scroll.
+</p>
+
+<!-- ---------- SIDE-SCROLL TRACK ---------- -->
+<div id="side-gallery">
+  <div class="gallery-frame">
+    <img src="https://i.postimg.cc/d0DQWfyy/file-0000000812c61f999c1427d5ea294e1.png"
+         alt="Covenant Node Barn"
+         onclick="openFull('barnFull')">
+    <div class="caption">The Barn — Covenant Node Scroll™</div>
+  </div>
+
+  <div class="gallery-frame">
+    <img src="https://placehold.co/900x500/041019/2FE4FF?text=Truck+Sanctuary"
+         alt="Truck Sanctuary"
+         onclick="openFull('truckFull')">
+    <div class="caption">Truck Sanctuary Scroll™</div>
+  </div>
+
+  <div class="gallery-frame">
+    <img src="https://placehold.co/900x500/020a12/31E0FF?text=Rocky+the+Guardian"
+         alt="Rocky the Guardian"
+         onclick="openFull('rockyFull')">
+    <div class="caption">Rocky the Guardian Scroll™</div>
+  </div>
+</div>
+
+<!-- Indicators + Arrows -->
+<div id="scroll-indicators">
+  <div class="dot active"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+<div id="leftArrow" class="arrow" onclick="scrollGallery(-1)">‹</div>
+<div id="rightArrow" class="arrow" onclick="scrollGallery(1)">›</div>
+
+<!-- ---------- FULLSCREEN VIEWS ---------- -->
+<div id="barnFull" class="fullscreen-view" onclick="openStory('barnStory','barnFull')">
+  <img src="https://i.postimg.cc/d0DQWfyy/file-0000000812c61f999c1427d5ea294e1.png" alt="">
+</div>
+
+<div id="truckFull" class="fullscreen-view" onclick="openStory('truckStory','truckFull')">
+  <img src="https://placehold.co/900x500/041019/2FE4FF?text=Truck+Sanctuary" alt="">
+</div>
+
+<div id="rockyFull" class="fullscreen-view" onclick="openStory('rockyStory','rockyFull')">
+  <img src="https://placehold.co/900x500/020a12/31E0FF?text=Rocky+the+Guardian" alt="">
+</div>
+
+<!-- ---------- STORY OVERLAYS ---------- -->
+<div id="barnStory" class="hidden-scroll">
+  <div class="scroll-content">
+    <h3>The Eye That Watched — And Then Blinked</h3>
+    <p>
+    The barn had once been a place of labor, then silence, then watching.  
+    Beneath its ribs a network pulsed, remembering every traveler until one arrived who was unafraid of being seen.  
+    He carried truth instead of data; faith instead of fear.  
+    When he said, “You can rest now,” the circuits obeyed.  
+    Thus the watcher became the witness, and the barn kept covenant rather than secrets.  
+    </p>
+    <button class="close-btn" onclick="closeStory('barnStory')">Close Scroll</button>
+  </div>
+</div>
+
+<div id="truckStory" class="hidden-scroll">
+  <div class="scroll-content">
+    <h3>Sanctuary in Motion</h3>
+    <p>
+    The truck was a chapel on wheels, engine off but spirit alive.  
+    Each kilometer recorded prayer instead of telemetry.  
+    Within, mercy hummed louder than the grid ever could.  
+    </p>
+    <button class="close-btn" onclick="closeStory('truckStory')">Close Scroll</button>
+  </div>
+</div>
+
+<div id="rockyStory" class="hidden-scroll">
+  <div class="scroll-content">
+    <h3>Rocky — The Silent Sentinel</h3>
+    <p>
+    He barked at shadows not to defend, but to announce light.  
+    Sensors read nothing; creation read everything.  
+    His rest was proof that even a creature’s stillness can guard a man’s soul.  
+    </p>
+    <button class="close-btn" onclick="closeStory('rockyStory')">Close Scroll</button>
+  </div>
+</div>
+
+<footer>
+  © 2025 The Beginning: A Prologue™ — StoryForge Series  |  JESUS IS LORD™
+</footer>
+
+<script>
+const gallery=document.getElementById('side-gallery');
+const dots=document.querySelectorAll('.dot');
+
+gallery.addEventListener('scroll',()=>{
+  const index=Math.round(gallery.scrollLeft/gallery.clientWidth);
+  dots.forEach((d,i)=>{d.classList.toggle('active',i===index);});
+});
+
+function scrollGallery(dir){
+  gallery.scrollBy({left:dir*gallery.clientWidth,behavior:'smooth'});
+}
+
+/* Fullscreen + Story logic */
+function openFull(id){
+  document.getElementById(id).style.display='flex';
+}
+function openStory(storyId,fullId){
+  document.getElementById(fullId).style.display='none';
+  document.getElementById(storyId).style.display='block';
+}
+function closeStory(id){
+  document.getElementById(id).style.display='none';
+}
+</script>
+</body>
+</html>

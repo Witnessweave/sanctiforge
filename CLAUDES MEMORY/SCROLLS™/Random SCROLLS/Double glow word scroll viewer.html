@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Dig™ & Ring of Life™ — Origin Scroll System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Questrial&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#0e1216;
+  color:#d8f6ff;
+  font-family:'Questrial',sans-serif;
+  line-height:1.7;
+  padding:6vh 10vw;
+}
+.origin-link{
+  color:#41f6fb;
+  cursor:pointer;
+  text-shadow:0 0 10px #2fe4ff99;
+  transition:text-shadow .4s,color .3s;
+}
+.origin-link:hover{
+  color:#aefbff;
+  text-shadow:0 0 20px #41f6fb,0 0 40px #00a8c9;
+}
+.origin-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  flex-direction:column;
+  background:#0a0f12;
+  overflow-y:auto;
+  z-index:1000;
+  animation:fadeIn .5s ease forwards;
+}
+.layer-2{background:#05080b;z-index:1100;}
+.origin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  border-bottom:1px solid #2fe4ff44;
+  font-family:'Orbitron',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.origin-header h1{
+  font-size:1.2em;
+  margin:0;
+  color:#6ef2ff;
+  text-shadow:0 0 12px #2fe4ff99;
+}
+.origin-content{
+  padding:3rem 8vw;
+  max-width:900px;
+  margin:auto;
+}
+.close-btn{
+  background:none;
+  border:1px solid #2fe4ff66;
+  color:#2fe4ff;
+  padding:.4rem 1rem;
+  border-radius:6px;
+  cursor:pointer;
+  font-family:'Orbitron',sans-serif;
+  letter-spacing:.05em;
+}
+.close-btn:hover{background:#2fe4ff22;}
+
+/* ===== BARN SEQUENCE ===== */
+#barn-sequence{
+  position:relative;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto 2rem auto;
+  height:65vh;
+  overflow:hidden;
+  border-bottom:1px solid #2fe4ff33;
+  box-shadow:0 0 25px #2fe4ff22;
+}
+.barn-frame{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 2s ease-in-out;
+}
+.barn-frame.visible{opacity:1;}
+
+/* ===== RING IMAGE ===== */
+#ring-img{
+  display:block;
+  margin:2rem auto 3rem auto;
+  max-width:500px;
+  width:90%;
+  border-radius:10px;
+  box-shadow:0 0 30px #f6d47399;
+  animation:ringGlow 6s ease-in-out infinite;
+}
+@keyframes ringGlow{
+  0%,100%{box-shadow:0 0 20px #f6d47355;}
+  50%{box-shadow:0 0 50px #f6d473cc;}
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+</style>
+</head>
+
+<body>
+
+<h2>The Beginning: A Prologue™</h2>
+<p>
+Beneath the barn he found a hollow that pulsed with a silence older than steel.
+When the watchers searched, he dug deeper—until the earth itself seemed to breathe.
+One day, the wind whispered of a secret place below the fields. 
+He called it <span class="origin-link" data-scroll="the-dig">The Dig™</span>.
+</p>
+
+<!-- ========== LEVEL 1 – THE DIG™ ========== -->
+<div id="the-dig" class="origin-overlay layer-1">
+  <div class="origin-header">
+    <h1>The Sanctuary Below — Origin Scroll 001™</h1>
+    <button class="close-btn">× Close</button>
+  </div>
+
+  <!-- Barn Sequence -->
+  <div id="barn-sequence">
+    <img src="https://i.postimg.cc/rydvbFtm/file-000000005c34622fb3d6a27384d6b419-1.png" class="barn-frame visible" alt="Old Barn">
+    <img src="https://i.postimg.cc/vZykcr24/file-00000000812c61f999c1427d5ea294e1-1.png" class="barn-frame" alt="Retrofitted Barn">
+    <img src="https://i.postimg.cc/sXb0y7Zf/1000011191.jpg" class="barn-frame" alt="Glowing Barn">
+  </div>
+
+  <div class="origin-content">
+    <p>
+    Beneath the old barn, tucked in a fold of wild land where the world’s signals softened,
+    the man found unfinished quiet. He dug for years, shaping a chamber of copper and prayer.
+    And there, at the end of silence, he uncovered a pulse—the faint glow of a relic known as the
+    <span class="origin-link" data-scroll="ring-of-life">Ring of Life™</span>.
+    </p>
+
+    <p>
+    The beam that revealed it was no lantern light but something living—light that carried will.
+    When it faded, the ring remained, half buried in dust, humming softly as if waiting for its next bearer.
+    </p>
+
+    <p style="margin-top:3em;font-style:italic;">
+      Click the glowing title above to witness the artifact’s true beginning.
+    </p>
+  </div>
+</div>
+
+<!-- ========== LEVEL 2 – RING OF LIFE™ ========== -->
+<div id="ring-of-life" class="origin-overlay layer-2">
+  <div class="origin-header">
+    <h1>The Ring of Life™ — Gadget Origin Scroll</h1>
+    <button class="close-btn">× Close</button>
+  </div>
+
+  <img id="ring-img"
+       src="https://i.postimg.cc/rsYCGkM9/1000011089.jpg"
+       alt="The Ring of Life">
+
+  <div class="origin-content">
+    <p>
+    Dr. Alethia Sera forged the ring in the hush of the Sanctuary Below. 
+    Titanium and gold filigree etched with scripture, its twelve quantum cells
+    sang when prayer aligned with code. It could heal circuits, silence drones,
+    and—when faith outweighed fear—open sealed doors.
+    </p>
+
+    <p>
+    Each bearer added a trace: the Watchman’s courage, the Pilgrim’s mercy,
+    the Medic’s sacrifice. When their work was done, the ring vanished into the light again—
+    until Micah found it, exactly where the beam had struck the earth.
+    </p>
+
+    <p style="margin-top:3em;font-style:italic;">
+      Close this scroll to return to <strong>The Dig™</strong>.
+    </p>
+  </div>
+</div>
+
+<script>
+/* ===== OPEN/CLOSE ===== */
+document.querySelectorAll('.origin-link').forEach(link=>{
+  link.addEventListener('click',()=>{
+    const target=document.getElementById(link.dataset.scroll);
+    if(target){target.style.display='flex';window.scrollTo(0,0);}
+  });
+});
+document.querySelectorAll('.close-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.closest('.origin-overlay').style.display='none';
+  });
+});
+
+/* ===== BARN FADE SEQUENCE ===== */
+const frames=[...document.querySelectorAll('#barn-sequence .barn-frame')];
+function showFrame(i){
+  frames.forEach(f=>f.classList.remove('visible'));
+  frames[i].classList.add('visible');
+}
+function startBarnLoop(){
+  setTimeout(()=>showFrame(1),4000);  // old -> retro
+  setTimeout(()=>showFrame(2),8000);  // retro -> glow
+  let current=2;
+  setInterval(()=>{
+    current=current===2?1:2;          // swap between retro & glow
+    showFrame(current);
+  },4000);
+}
+window.addEventListener('load',startBarnLoop);
+</script>
+
+</body>
+</html>

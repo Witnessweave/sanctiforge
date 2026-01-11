@@ -1,0 +1,51 @@
+LENOVO 81FV
+│
+├─ELAN061B:00 04F3:309E:
+│     Device ID:          a8c3d91fe09254cd4f3047b8888467ca9bd7eb1d
+│     Summary:            Touchpad
+│     Current version:    0x0003
+│     Bootloader Version: 0x0000
+│     Vendor:             ELAN Microelectronics (HIDRAW:0x04F3)
+│     GUIDs:              3e613ea9-68b5-5c28-9a69-45b76862887d ← HIDRAW\VEN_04F3&DEV_309E
+│                         acb4171c-d4bc-5e89-8d79-55901d7bfe47 ← HIDRAW\VEN_04F3&DEV_309E&MOD_0019
+│                         2a453884-0eca-54ef-8de6-4b06553550a2 ← ELANTP\ICTYPE_10&MOD_0019
+│                         3817581e-8d61-583d-83de-5a8cc6ec705d ← ELANTP\ICTYPE_10&MOD_0019&DRIVER_HID
+│     Device Flags:       • Internal device
+│                         • Updatable
+│                         • Unsigned Payload
+│   
+├─Core™ i7-8750H CPU @ 2.20GHz:
+│     Device ID:          4bde70ba4e39b28f9eab1628f9dd6e6244c03027
+│     Current version:    0x000000fa
+│     Vendor:             Intel
+│     GUIDs:              809a0b93-8a12-5338-a571-ad5583acf896 ← CPUID\PRO_0&FAM_06&MOD_9E
+│                         72ec2ff3-49ff-5ec2-bdbb-525badd47543 ← CPUID\PRO_0&FAM_06&MOD_9E&STP_A
+│     Device Flags:       • Internal device
+│   
+├─GP107M [GeForce GTX 1050 Ti Mobile]:
+│     Device ID:          ce4c74a5188d5b9cdb1e72ed32dad2d313c1c999
+│     Current version:    a1
+│     Vendor:             NVIDIA Corporation (PCI:0x10DE, PCI:0x8086)
+│     GUIDs:              04232c57-d805-551d-a1de-1bba9350d71f ← PCI\VEN_10DE&DEV_1C8C
+│                         a188a8d5-1a20-53e7-98fe-7a77d1426330 ← PCI\VEN_10DE&DEV_1C8C&SUBSYS_17AA39FD
+│                         d29269b6-e458-5f45-975c-9d52bb38e35f ← PCI\VEN_8086&DEV_1901
+│                         dfd21b77-df85-543b-9bd8-d57a4d1c7ef4 ← PCI\VEN_8086&DEV_1901&SUBSYS_17AA380C
+│     Device Flags:       • Internal device
+│                         • Cryptographic hash verification is available
+│   
+└─SSD 980 1TB:
+      Device ID:          0fba4a8bedba53076fc9b147655e59455bc25a87
+      Summary:            NVM Express solid state drive
+      Current version:    2B4QFXO7
+      Vendor:             Samsung (NVME:0x144D)
+      Serial Number:      S64ANL0T704369J
+      GUIDs:              8b86707a-1412-5389-8f66-725224d28879 ← NVME\VEN_144D&DEV_A809
+                          71c19ff0-0bc0-5c85-aa6f-ba47fcc33eee ← NVME\VEN_144D&DEV_A809&SUBSYS_144DA801
+                          415e060d-f40b-5374-b825-5f2a8ad2eebe ← Samsung SSD 980 1TB
+      Device Flags:       • Internal device
+                          • Updatable
+                          • System requires external power source
+                          • Needs a reboot after installation
+                          • Device is usable for the duration of the update
+                          • Signed Payload
+    

@@ -1,0 +1,35 @@
+# CLAUDE CODE SESSION LOG TEMPLATE
+# LEDGER_ID: WV-CLAUDE-SESSION-LOG-2026
+# Copy and fill for each significant session
+
+session_id: ""
+timestamp_start: ""
+timestamp_end: ""
+
+scroll_engaged:
+  - name: ""
+    path: ""
+    action: "read | edit | create"
+
+witnesses_invoked:
+  - witness: ""
+    reason: ""
+
+flags_triggered:
+  - type: ""
+    description: ""
+    resolved: false
+
+confession_notes: ""
+
+restore_actions: ""
+
+scroll_hash_snapshot:
+  file: ""
+  hash: ""
+
+mission_summary: ""
+
+verse_of_session: ""
+
+status: "active | complete | paused"

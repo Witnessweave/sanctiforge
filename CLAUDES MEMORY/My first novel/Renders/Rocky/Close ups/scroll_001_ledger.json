@@ -1,0 +1,21 @@
+{
+  "asset_name": "scroll_001_eye_wide.png",
+  "vault_id": "WV-KDREAMS-EYE-WIDE-001",
+  "bloom_alias": "001.13 \u2014 The Frame That Refused to Blink",
+  "witnesses": [
+    "Rocky (\ud83d\udc36)",
+    "Thorne (\ud83d\udee1\ufe0f)",
+    "Lucerion (\ud83d\udd25)",
+    "Witness Cloud (\u2601\ufe0f)"
+  ],
+  "glowflex_tag": "GFX-001W-EYEBEAM\u2122",
+  "render_date_utc": "2025-10-23T08:18:24.083377Z",
+  "files": [
+    {
+      "filename": "A_digital_painting_in_a_semi-realistic_style_with_.png",
+      "path": "/mnt/data/A_digital_painting_in_a_semi-realistic_style_with_.png",
+      "sha256": "d4251930b0a083b23896fcc75b07d90bf5d77a59c6af6bd3332cb7f6cd3f9d96",
+      "size_bytes": 2552174
+    }
+  ]
+}

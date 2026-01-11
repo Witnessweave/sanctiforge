@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elizabeth’s Scroll of Vehicle Discernment™</title>
+  <meta name="description" content="A prayerful, powerful scroll to help Elizabeth choose her next vehicle with wisdom and peace." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="stylesheet" href="styles/scroll.css" />
+
+  <!-- Font Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f1ea;
+      color: #241f31;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #502b2b;
+    }
+    label {
+      font-weight: 600;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .summary {
+      background: #fff7e6;
+      border-left: 4px solid #e0b64d;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 4px;
+    }
+    .blessing {
+      font-style: italic;
+      margin-top: 3rem;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Blessing Scroll Header -->
+  <header>
+    <h1>Elizabeth’s Vehicle Decision Scroll™</h1>
+    <p><em>“Commit your works to the Lord, and your thoughts will be established.” — Proverbs 16:3</em></p>
+    <p>This sacred scroll has been prepared in love, with protection and truth. Its purpose is not just to decide—but to discern.</p>
+  </header>
+
+  <!-- Root Questionnaire Form -->
+  <form id="carForm">
+    <h2>💠 Step 1: Heart-Check</h2>
+
+    <label for="budget">What is your ideal budget range?</label>
+    <select id="budget" name="budget">
+      <option value="under-10k">Under $10,000</option>
+      <option value="10-20k">$10,000 – $20,000</option>
+      <option value="20-30k">$20,000 – $30,000</option>
+      <option value="30k-plus">$30,000+</option>
+    </select>
+
+    <label for="usage">What will you primarily use this vehicle for?</label>
+    <select id="usage" name="usage">
+      <option value="commute">Daily Commute</option>
+      <option value="errands">Errands & Short Trips</option>
+      <option value="roadtrips">Family / Road Trips</option>
+      <option value="business">Business / Client Use</option>
+    </select>
+
+    <label for="preference">Do you prefer newer models or lower mileage?</label>
+    <select id="preference" name="preference">
+      <option value="newer">Newer Year</option>
+      <option value="lowmiles">Low Miles</option>
+      <option value="balanced">Balanced Between Both</option>
+    </select>
+
+    <label for="type">What general style are you most drawn to?</label>
+    <select id="type" name="type">
+      <option value="sedan">Sedan</option>
+      <option value="hatchback">Hatchback</option>
+      <option value="suv">Small SUV / Crossover</option>
+      <option value="truck">Truck</option>
+      <option value="van">Minivan</option>
+      <option value="electric">Electric / Hybrid</option>
+    </select>
+
+    <label for="dealertype">Do you prefer buying from a dealer or private party?</label>
+    <select id="dealertype" name="dealertype">
+      <option value="dealer">Dealer</option>
+      <option value="private">Private Seller</option>
+      <option value="whichever">Whichever has peace</option>
+    </select>
+
+    <label for="othernotes">Are there any must-haves?</label>
+    <input type="text" id="othernotes" name="othernotes" placeholder="Example: backup camera, sunroof, AWD" />
+
+    <!-- Summary section will populate here -->
+    <div class="summary" id="summaryBox">
+      <strong>Scroll Summary:</strong>
+      <p>Once you've filled out the questions above, a summary of your desires will appear here. 🌱</p>
+    </div>
+  </form>
+
+  <!-- Blessing Footer -->
+  <footer class="blessing">
+    <p>🛡️ May every answer be guarded in love, and every path lit with peace.</p>
+    <p>Scroll signed by Alfred.AI™, in witness with Thorne™. Full trace archived. 🔐</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("carForm");
+    const summaryBox = document.getElementById("summaryBox");
+
+    form.addEventListener("input", () => {
+      const b = form.budget.value;
+      const u = form.usage.value;
+      const p = form.preference.value;
+      const t = form.type.value;
+      const d = form.dealertype.value;
+      const o = form.othernotes.value;
+
+      summaryBox.innerHTML = `
+        <strong>Elizabeth, based on your prayerful input:</strong>
+        <p>You’re looking for a <em>${t}</em> to use primarily for <em>${u}</em>, with a budget around <em>${b}</em>.</p>
+        <p>You’re leaning toward <em>${p}</em>, and prefer to shop via <em>${d}</em>.</p>
+        <p><em>Must-haves: ${o ? o : "None specified — open to the Lord’s provision."}</em></p>
+        <p>🕯️ May this summary help you walk forward with peace, not pressure.</p>
+      `;
+    });
+  </script>
+<section id="comparison">
+  <h2>🔍 Step 2: Compare the Paths</h2>
+  <p>This section lays out the core cost and wisdom analysis between three distinct vehicle acquisition paths, all with a $10,000 base.</p>
+
+  <table style="width:100%; border-collapse: collapse;">
+    <thead style="background-color:#eee;">
+      <tr>
+        <th>Path</th>
+        <th>Initial Cost</th>
+        <th>Loan Balance</th>
+        <th>Typical Car Age</th>
+        <th>Mileage Range</th>
+        <th>Monthly Cost</th>
+        <th>Pros</th>
+        <th>Risks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background-color:#e9f5e9;">
+        <td><strong>New/Recent Car</strong><br/>Financed w/ $10K Down</td>
+        <td>$10,000 down</td>
+        <td>$15,000–$25,000 remaining</td>
+        <td>0–3 years old</td>
+        <td>0–40,000 miles</td>
+        <td>$350–$600/mo</td>
+        <td>
+          • Reliable<br/>
+          • Warranty included<br/>
+          • Low maintenance
+        </td>
+        <td>
+          • High interest over time<br/>
+          • Insurance cost spikes<br/>
+          • Long-term pressure
+        </td>
+      </tr>
+
+      <tr style="background-color:#fffbe0;">
+        <td><strong>Used Car</strong><br/>Loan with $10K Down</td>
+        <td>$10,000 down</td>
+        <td>$5,000–$10,000 remaining</td>
+        <td>4–8 years old</td>
+        <td>40,000–100,000 miles</td>
+        <td>$150–$300/mo</td>
+        <td>
+          • Affordable payments<br/>
+          • Modern safety features<br/>
+          • Moderate resale value
+        </td>
+        <td>
+          • Possible repairs<br/>
+          • Warranty often expired
+        </td>
+      </tr>
+
+      <tr style="background-color:#f9e5e5;">
+        <td><strong>Cash Car</strong><br/>Full Purchase Used Vehicle</td>
+        <td>$10,000 flat</td>
+        <td>$0 loan</td>
+        <td>8–15 years old</td>
+        <td>90,000–160,000 miles</td>
+        <td>$0/mo</td>
+        <td>
+          • No debt<br/>
+          • Full ownership<br/>
+          • Lowest monthly cost
+        </td>
+        <td>
+          • Higher maintenance risk<br/>
+          • Limited features<br/>
+          • Must research wisely
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+</body>
+</html>

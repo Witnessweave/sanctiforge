@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blubsies Car Style Scroll</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fefcf8;
+      color: #241f31;
+      max-width: 850px;
+      margin: auto;
+      padding: 30px;
+      line-height: 1.6;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    label { display: block; margin-top: 20px; font-weight: bold; }
+    select, textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    textarea { resize: vertical; display: none; }
+    .btn {
+      background: #f9d673;
+      color: #241f31;
+      font-weight: bold;
+      border: none;
+      padding: 10px 16px;
+      margin-top: 30px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #summaryBox {
+      background: #fffbe6;
+      border-left: 4px solid #f9d673;
+      padding: 15px;
+      margin-top: 30px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🚗 Blubsies Vehicle Style Intake</h2>
+<p>This scroll helps you discover what kind of car feels right for this next season of life. There's no wrong answer. Just listen to peace.</p>
+
+<form id="carForm">
+  <!-- QUESTION 1 -->
+  <label>1. New or Low Miles?</label>
+  <select name="new_or_miles">
+    <option value="">— Select one —</option>
+    <option value="new">Newer car, even if higher miles</option>
+    <option value="low_miles">Older car with lower miles</option>
+    <option value="reliability">Just needs to be reliable</option>
+    <option value="open">Depends on the brand</option>
+  </select>
+
+  <!-- QUESTION 2 -->
+  <label>2. What size car feels best?</label>
+  <select name="size_preference">
+    <option value="">— Select one —</option>
+    <option value="compact">Compact / small</option>
+    <option value="midsize">Midsize SUV / crossover</option>
+    <option value="fullsize">Full-size SUV</option>
+    <option value="truck">Truck / Van</option>
+    <option value="unsure">Not sure — need to test</option>
+  </select>
+
+  <!-- QUESTION 3 -->
+  <label>3. Driving height?</label>
+  <select name="driving_height">
+    <option value="">— Select one —</option>
+    <option value="high">Prefer sitting high</option>
+    <option value="low">Prefer sitting low</option>
+    <option value="neutral">No strong preference</option>
+    <option value="discover">Still figuring that out</option>
+  </select>
+
+  <!-- QUESTION 4 -->
+  <label>4. Fuel type?</label>
+  <select name="fuel_type">
+    <option value="">— Select one —</option>
+    <option value="gas">Gas only</option>
+    <option value="hybrid">Hybrid</option>
+    <option value="electric">Electric</option>
+    <option value="compare">Compare long-term costs</option>
+  </select>
+
+  <!-- QUESTION 5 -->
+  <label>5. Style or Practicality?</label>
+  <select name="style_vs_practical">
+    <option value="">— Select one —</option>
+    <option value="style">Stylish look</option>
+    <option value="practical">Safe and practical</option>
+    <option value="mix">A mix of both</option>
+    <option value="function">Function over fashion</option>
+  </select>
+
+  <!-- QUESTION 6 -->
+  <label>6. Brand comfort?</label>
+  <select name="brand">
+    <option value="">— Select one —</option>
+    <option value="toyota">Toyota</option>
+    <option value="honda">Honda</option>
+    <option value="nissan">Nissan</option>
+    <option value="ford_chevy">Ford or Chevy</option>
+    <option value="any">Open to any brand</option>
+    <option value="research">Want to research first</option>
+  </select>
+
+  <!-- QUESTION 7 -->
+  <label>7. Budget preference?</label>
+  <select name="budget">
+    <option value="">— Select one —</option>
+    <option value="no_payments">Avoid monthly payments</option>
+    <option value="open_to_payments">Open to financing</option>
+    <option value="either">Either way works</option>
+    <option value="undecided">Undecided until test drive</option>
+  </select>
+
+  <!-- QUESTION 8 -->
+  <label>8. Interior feel?</label>
+  <select name="interior">
+    <option value="">— Select one —</option>
+    <option value="comfort">Comfort (soft & smooth)</option>
+    <option value="tech">Tech features (camera, screen)</option>
+    <option value="space">Spacious inside</option>
+    <option value="simple">Simple and clean</option>
+    <option value="unsure">Not sure yet</option>
+  </select>
+
+  <!-- QUESTION 9 -->
+  <label>9. Peace warning — what should be avoided?</label>
+  <select name="peace_warning">
+    <option value="">— Select one —</option>
+    <option value="regret">Regret</option>
+    <option value="debt">Debt</option>
+    <option value="fear">Fear</option>
+    <option value="distraction">Distraction</option>
+    <option value="settling">Settling</option>
+  </select>
+
+  <!-- QUESTION 10 -->
+  <label>10. What kind of season is this?</label>
+  <select name="season">
+    <option value="">— Select one —</option>
+    <option value="simplicity">Simplicity and rest</option>
+    <option value="boldness">Boldness and confidence</option>
+    <option value="joy">Joy and creativity</option>
+    <option value="stability">Stability and strength</option>
+    <option value="healing">Healing and restoration</option>
+    <option value="unknown">A new, undefined chapter</option>
+  </select>
+
+  <button type="button" class="btn" onclick="generateSummary()">Finish and Reflect</button>
+</form>
+
+<div id="summaryBox"></div>
+
+<script>
+  const summaryMap = {
+    new_or_miles: {
+      new: "a newer car, even if it means higher mileage",
+      low_miles: "an older car with lower mileage",
+      reliability: "a car that’s reliable above all else",
+      open: "something that depends more on the brand than the age"
+    },
+    size_preference: {
+      compact: "a compact car for easy driving and parking",
+      midsize: "a midsize vehicle that balances comfort and space",
+      fullsize: "a larger SUV or crossover",
+      truck: "a truck or van with more size and height",
+      unsure: "a size you’d feel best testing in person"
+    },
+    driving_height: {
+      high: "you prefer sitting up high, like in an SUV",
+      low: "you prefer sitting lower, like in a sedan",
+      neutral: "you don’t mind the seating height",
+      discover: "you’re open to discovering what feels right"
+    },
+    fuel_type: {
+      gas: "you prefer a gas-only vehicle",
+      hybrid: "you’d like to try a hybrid for better mileage",
+      electric: "you’re open to an electric vehicle",
+      compare: "you want to compare long-term fuel options"
+    },
+    style_vs_practical: {
+      style: "you care most about the car’s look and style",
+      practical: "you care most about practical safety features",
+      mix: "you want a healthy mix of looks and functionality",
+      function: "you’d always choose function over fashion"
+    },
+    brand: {
+      toyota: "you trust Toyota",
+      honda: "you prefer Honda",
+      nissan: "you like Nissan",
+      ford_chevy: "you lean toward Ford or Chevy",
+      any: "you’re open to any brand that feels right",
+      research: "you want to do some brand research together"
+    },
+    budget: {
+      no_payments: "you prefer to avoid monthly payments",
+      open_to_payments: "you’re open to financing if it feels worth it",
+      either: "you’re okay with either buying or financing",
+      undecided: "you’d rather wait and test drive before deciding"
+    },
+    interior: {
+      comfort: "you care most about soft seats and a smooth ride",
+      tech: "you want tech features like Bluetooth and backup cam",
+      space: "you need interior space to not feel cramped",
+      simple: "you want the inside to feel clean and simple",
+      unsure: "you’re not sure yet about interior features"
+    },
+    peace_warning: {
+      regret: "you want to avoid regret",
+      debt: "you want to avoid unnecessary debt",
+      fear: "you want to avoid fear-based decisions",
+      distraction: "you want to avoid being distracted by appearance",
+      settling: "you don’t want to settle for less than you deserve"
+    },
+    season: {
+      simplicity: "a season of simplicity and rest",
+      boldness: "a season of boldness and new confidence",
+      joy: "a season of joy and creativity",
+      stability: "a season of stability and strength",
+      healing: "a season of healing and restoration",
+      unknown: "a season that’s new and not yet defined"
+    }
+  };
+
+  function generateSummary() {
+    const form = document.forms["carForm"];
+    let parts = [];
+
+    Object.keys(summaryMap).forEach(key => {
+      const value = form[key].value;
+      if (value && summaryMap[key][value]) {
+        parts.push(summaryMap[key][value]);
+      }
+    });
+
+    document.getElementById("summaryBox").innerText =
+      parts.length > 0
+        ? `Elizabeth, based on your answers, it sounds like you're looking for ${parts.join(", ")}. Let's follow that peace together.`
+        : "Please answer a few questions to generate your reflection.";
+  }
+</script>
+
+</body>
+</html>

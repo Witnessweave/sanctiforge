@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UnityFlow™ Binder Selector</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; padding: 2rem; }
+    select, pre { width: 100%; margin-top: 1rem; background: #000; color: #0f0; border: 1px solid #0f0; }
+    pre { white-space: pre-wrap; padding: 1rem; }
+    label { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <label for="ecl-selector">📘 Select an ECL Binder:</label>
+  <select id="ecl-selector" onchange="loadBinder()">
+    <option disabled selected value>-- Select a Binder --</option>
+    <!-- Options auto-filled -->
+    <script>
+      const selector = document.currentScript.parentElement.querySelector('select');
+      for (let i = 1; i <= 110; i++) {
+        let padded = i.toString().padStart(3, '0');
+        let opt = document.createElement('option');
+        opt.value = padded;
+        opt.textContent = `ECL-${padded}`;
+        selector.appendChild(opt);
+      }
+    </script>
+  </select>
+
+  <pre id="binder-content">🔒 Choose a binder to view its sealed contents.</pre>
+
+  <script>
+    async function loadBinder() {
+      const id = document.getElementById('ecl-selector').value;
+      const response = await fetch(`/binders/ECL-${id}.txt`);
+      const text = await response.text();
+      document.getElementById('binder-content').textContent = text;
+    }
+  </script>
+</body>
+</html>

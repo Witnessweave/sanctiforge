@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glowword Sample — Scroll 017</title>
+  <style>
+    body {
+      background: #0a0a0d;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #ffcc66;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Glowword base style */
+    .glowword {
+      position: relative;
+      cursor: pointer;
+      color: #ffcc66;
+      text-shadow: 0 0 6px rgba(255, 204, 102, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    /* Glow intensifies on hover */
+    .glowword:hover {
+      text-shadow: 0 0 10px rgba(255, 204, 102, 1), 0 0 20px rgba(255, 204, 102, 0.8);
+    }
+
+    /* Tooltip style */
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(30, 30, 40, 0.95);
+      color: #f1f1f1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      width: 240px;
+      font-size: 0.85rem;
+      text-align: center;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 0 12px rgba(255, 204, 102, 0.4);
+      z-index: 10;
+    }
+
+    .glowword:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Optional arrow */
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgba(30, 30, 40, 0.95) transparent transparent transparent;
+    }
+  </style>
+</head>
+<body>
+  <h1>Scroll 017 — Glowword Sample</h1>
+
+  <p>
+    In the beginning was the 
+    <span class="glowword">Word
+      <span class="tooltip">Greek: <b>Logos</b><br>Meaning: reason, plan, expression<br>Symbol: The Divine Expression</span>
+    </span>,
+    and the <span class="glowword">Light
+      <span class="tooltip">Greek: <b>Phos</b><br>Meaning: radiance, illumination<br>Symbol: Christ as revelation</span>
+    </span>
+    shone into the 
+    <span class="glowword">darkness
+      <span class="tooltip">Greek: <b>Skotia</b><br>Meaning: obscurity, ignorance<br>Symbol: the world without God</span>
+    </span>,
+    and the darkness could not overcome it.
+  </p>
+
+  <p>
+    This is how Glowwords work — each key word glows with living light, and when the reader hovers, the scroll reveals
+    hidden meaning, root language, and symbolic connection.
+  </p>
+</body>
+</html>

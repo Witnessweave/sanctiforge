@@ -1,0 +1,1 @@
+9f7bb56fdf6781fd0c14fa0892c25cd6229fbf1daeaed5ec071740645a8b9cf9  /home/Weave/sanctiforge/scripts/rocky_outlook_stack_setup.sh

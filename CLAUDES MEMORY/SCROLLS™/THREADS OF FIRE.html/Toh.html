@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThreadsOnFire — Match the Sole</title>
+  <meta name="description" content="Abel's streetwear sets to match classic Jordans. Limited drops. Buy on eBay: firethreads23." />
+  <style>
+  /* ---------- Inlined CSS (mobile-first) ---------- */
+  :root{
+    --fire:#d8231a;
+    --char:#121212;
+    --smoke:#f2f2f3;
+    --muted:#666;
+    --radius:10px;
+    --max-width:900px;
+    --pad:16px;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color-scheme: dark light;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--smoke);
+    color:var(--char);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+    font-size:16px;
+  }
+
+  /* Topbar */
+  .topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    background:rgba(255,255,255,0.98);
+    z-index:40;
+    border-bottom:1px solid rgba(0,0,0,0.04);
+  }
+  .hamburger{background:none;border:0;font-size:20px}
+  .logo{font-weight:800;letter-spacing:0.02em}
+  .logo .dot{color:var(--fire);margin-left:6px}
+
+  /* Buffer / unroll */
+  .buffer{
+    position:fixed;inset:0;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;z-index:90;transition:opacity .45s;opacity:1;
+  }
+  .buffer.hidden{opacity:0;pointer-events:none}
+  .buffer-inner{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .buffer .buffer-text{font-weight:700;font-size:18px}
+
+  /* Hero */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    background-size:cover;background-position:center center;
+    position:relative;padding-top:56px; /* account for topbar */
+  }
+  .hero-overlay{
+    position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.36), rgba(0,0,0,0.04));pointer-events:none;
+  }
+  .hero-content{position:relative;z-index:10;text-align:center;padding:32px;max-width:720px}
+  .hero-title{font-size:28px;margin:0 0 8px;color:#fff}
+  .hero-sub{color:rgba(255,255,255,0.9);margin:0 0 16px}
+  .hero-ctas{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:10px 14px;border-radius:7px;border:1px solid rgba(0,0,0,0.06);background:#fff;color:var(--char);text-decoration:none;cursor:pointer}
+  .btn.primary{background:var(--fire);color:#fff;border:0}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.18);color:#fff}
+  .btn.small{padding:6px 8px;font-size:14px}
+
+  /* Hero swiper arrows */
+  .hero-swiper{position:absolute;left:8px;right:8px;bottom:20px;display:flex;justify-content:space-between;z-index:20}
+  .hero-swiper button{background:rgba(0,0,0,0.45);color:#fff;border:0;padding:8px 12px;border-radius:8px}
+
+  /* Sections */
+  .section-title{font-size:18px;margin:18px 16px 8px}
+  .collections{padding:16px 0}
+  .carousel{display:flex;gap:12px;overflow-x:auto;padding-left:16px;padding-bottom:8px;scroll-snap-type:x mandatory}
+  .tile{min-width:260px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);scroll-snap-align:start}
+  .tile img{width:100%;height:200px;object-fit:cover;display:block}
+  .tile-info{padding:10px}
+  .tile-actions{display:flex;gap:8px;margin-top:8px}
+
+  /* Featured */
+  .featured{padding:10px 16px;background:transparent}
+  .featured-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .featured-left img{width:100%;border-radius:8px;display:block}
+  .featured-right{padding:6px}
+  .price{font-weight:700;margin:6px 0}
+
+  /* Story */
+  .story{padding:10px 16px;background:#fff;margin-top:8px;border-top-left-radius:12px;border-top-right-radius:12px;box-shadow:0 -4px 20px rgba(0,0,0,0.03)}
+  .story-body p{margin:10px 0}
+
+  /* Witness signup */
+  .witness{padding:16px;background:linear-gradient(180deg,#fff,#fff);margin-top:12px}
+  .signup{display:flex;gap:8px;flex-wrap:wrap}
+  .signup input, .signup select{flex:1 1 auto;padding:10px;border-radius:8px;border:1px solid #ddd}
+
+  /* Footer */
+  .site-footer{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);background:#fff}
+
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:100}
+  .modal[aria-hidden="false"]{display:flex}
+  .modal-inner{background:#fff;border-radius:12px;max-width:900px;width:94%;overflow:hidden}
+  .modal-body{display:flex;flex-direction:column}
+  .modal-images img{width:100%;height:auto;display:block}
+  .modal-info{padding:12px}
+  .modal-close{position:absolute;right:12px;top:12px;background:#fff;border-radius:50%;border:0;padding:6px;cursor:pointer}
+
+  /* small screens tweaks */
+  @media(min-width:720px){
+    .featured-grid{grid-template-columns:1fr 1fr;align-items:center}
+    .hero-title{font-size:36px}
+  }
+
+  /* Minor utility */
+  .inview{transform:none;opacity:1;transition:all .6s ease}
+  .tile, .featured, .story, .witness{opacity:0;transform:translateY(10px)}
+  </style>
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <button id="navToggle" aria-label="Open menu" class="hamburger">☰</button>
+    <div class="logo">THREADS<span class="dot">ON</span>FIRE</div>
+    <a class="cart" href="#" aria-label="Cart">🛒</a>
+  </header>
+
+  <!-- Scroll Buffer / Unroll -->
+  <div id="buffer" class="buffer hidden">
+    <div class="buffer-inner">
+      <svg class="scroll-mask" viewBox="0 0 100 100" preserveAspectRatio="none" width="160" height="160" aria-hidden="true">
+        <rect width="100" height="100" fill="#111" />
+      </svg>
+      <div class="buffer-text">Unrolling the fire…</div>
+    </div>
+  </div>
+
+  <main id="site" class="site">
+
+    <!-- HERO -->
+    <section id="hero" class="hero" data-images='["assets/images/hero-walk-v1.jpg","assets/images/hero-close-v1.jpg"]' aria-label="Hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Match the Sole. Ignite the Scroll.</h1>
+        <p class="hero-sub">Street-ready sweatsuits tuned to your kicks. Built by Abel. Worn by movement.</p>
+        <div class="hero-ctas">
+          <button id="enterFire" class="btn primary">Enter the Fire</button>
+          <a class="btn ghost" href="#collections">Browse Drops</a>
+        </div>
+      </div>
+      <div class="hero-swiper">
+        <button id="heroPrev" aria-label="Previous">‹</button>
+        <button id="heroNext" aria-label="Next">›</button>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS: horizontal carousel -->
+    <section id="collections" class="collections" aria-label="Collections">
+      <h2 class="section-title">Collections</h2>
+      <div class="carousel" id="collectionCarousel" tabindex="0" role="list">
+        <article class="tile" role="listitem" data-ebay-id="EBAY_ID_1" data-title="BRED Colorway">
+          <img loading="lazy" src="assets/images/black-set.jpg" alt="BRED Colorway sweat set" />
+          <div class="tile-info">
+            <strong>BRED Colorway</strong>
+            <small>Black & red armor to match BRED Jordans</small>
+            <div class="tile-actions">
+              <button class="btn small openProduct">View</button>
+              <button class="btn small buyNow" data-ebay-id="EBAY_ID_1">Buy on eBay</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile" role="listitem" data-ebay-id="EBAY_ID_2" data-title="23 Legend Gray">
+          <img loading="lazy" src="assets/images/jogger-flat.jpg" alt="23 Legend gray set" />
+          <div class="tile-info">
+            <strong>23 Legend</strong>
+            <small>Grey legend set — subtle, clean</small>
+            <div class="tile-actions">
+              <button class="btn small openProduct">View</button>
+              <button class="btn small buyNow" data-ebay-id="EBAY_ID_2">Buy on eBay</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile" role="listitem" data-ebay-id="EBAY_ID_3" data-title="Sneaker Matching Sets">
+          <img loading="lazy" src="assets/images/shoes-bred.jpg" alt="Sneaker match visual" />
+          <div class="tile-info">
+            <strong>Sneaker Matches</strong>
+            <small>Sets paired with classic Jordans</small>
+            <div class="tile-actions">
+              <button class="btn small openProduct">View</button>
+              <button class="btn small buyNow" data-ebay-id="EBAY_ID_3">Buy on eBay</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEATURED SET -->
+    <section id="featured" class="featured" aria-label="Featured Set">
+      <h2 class="section-title">Featured Set</h2>
+      <div class="featured-grid">
+        <div class="featured-left">
+          <img loading="lazy" src="assets/images/black-set.jpg" alt="Featured black red set" />
+        </div>
+        <div class="featured-right">
+          <h3>Men's 23 Legend Black Red Sweatsuit</h3>
+          <p class="price">From $97.99</p>
+          <p class="copy">Printed with soft-hand inks, sized for layering. This drop pays honor to the court and the witness. Limited run.</p>
+          <div class="product-actions">
+            <button class="btn primary buyNow" data-ebay-id="EBAY_ID_1">Buy on eBay</button>
+            <button class="btn ghost openProduct">Quick View</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="story" aria-label="The Fire Within">
+      <h2 class="section-title">The Fire Within</h2>
+      <div class="story-body">
+        <p><strong>Abel</strong> grew up watching the soles of the city—every pair a chapter, every scuff testimony. He started ThreadsOnFire to bring a deliberate match between shoe and thread: a set that honors the sneaker and holds a witness.</p>
+        <p>Each drop is proof: we make to match, to last, and to testify. We believe clothing carries voice; wear yours loud. — <em>Abel</em></p>
+        <button class="btn small" id="readMoreStory">Read More</button>
+      </div>
+    </section>
+
+    <!-- WITNESS MOVEMENT -->
+    <section id="witness" class="witness" aria-label="Join the Witness">
+      <h2 class="section-title">Join the Witness</h2>
+      <p>Sign up for Drop Alerts and behind-the-scenes ScrollDrops.</p>
+      <form id="signupForm" class="signup">
+        <input name="email" type="email" required placeholder="Your email" aria-label="Email" />
+        <select name="size" aria-label="Size">
+          <option value="">Size (optional)</option>
+          <option>Small</option><option>Medium</option><option>Large</option><option>X-Large</option>
+        </select>
+        <button class="btn primary" type="submit">Join</button>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" aria-label="Footer">
+      <div class="footer-inner">
+        <p>Shop fulfillment via eBay: <a href="https://www.ebay.com/usr/firethreads23" target="_blank" rel="noopener">firethreads23</a></p>
+        <p>Contact: <a href="mailto:hello@threadsonfire.com">hello@threadsonfire.com</a></p>
+        <small>© ThreadsOnFire — All rights reserved</small>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal" aria-hidden="true" role="dialog" aria-label="Product Modal">
+    <div class="modal-inner">
+      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <div class="modal-images">
+          <img id="modalImg" loading="lazy" src="assets/images/black-set.jpg" alt="Product preview" />
+        </div>
+        <div class="modal-info">
+          <h3 id="modalTitle">Product Title</h3>
+          <p id="modalCopy">Product story will render here.</p>
+          <div class="modal-cta">
+            <button class="btn primary" id="modalBuy">Buy on eBay</button>
+            <button class="btn ghost" id="modalWishlist">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* ---------- Inlined JS: scroll + modal + ecommerce bridge ---------- */
+  (function(){
+    // Minimal e-commerce bridge: prefer direct eBay listing by item id, fallback to seller shop page.
+    window.EcomBridge = (function(){
+      const ebaySeller = 'firethreads23';
+      function buy(ebayId){
+        if(!ebayId){
+          const url = 'https://www.ebay.com/usr/' + ebaySeller;
+          window.open(url, '_blank', 'noopener');
+          return;
+        }
+        let url = ebayId.match(/^https?:\/\//) ? ebayId : 'https://www.ebay.com/itm/' + encodeURIComponent(ebayId);
+        window.open(url, '_blank', 'noopener');
+      }
+      return { buy };
+    })();
+
+    // DOM helpers
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+    // HERO image rotation
+    const hero = $('#hero');
+    let heroImages = [];
+    try { heroImages = JSON.parse(hero.dataset.images); } catch(e){ heroImages = []; }
+    let heroIndex = 0;
+    function setHeroImage(i){
+      const url = heroImages[i] || 'assets/images/hero-walk-v1.jpg';
+      hero.style.backgroundImage = "url('" + url + "')";
+    }
+    setHeroImage(0);
+    $('#heroNext').addEventListener('click', ()=>{ heroIndex = (heroIndex+1) % heroImages.length; setHeroImage(heroIndex); });
+    $('#heroPrev').addEventListener('click', ()=>{ heroIndex = (heroIndex-1+heroImages.length) % heroImages.length; setHeroImage(heroIndex); });
+
+    // ENTER FIRE buffer animation
+    const buffer = document.getElementById('buffer');
+    $('#enterFire').addEventListener('click', ()=>{
+      buffer.classList.remove('hidden');
+      setTimeout(()=>{ buffer.classList.add('hidden'); document.getElementById('collections').scrollIntoView({behavior:'smooth'}); }, 900);
+    });
+
+    // Collection carousel: simple pointer drag
+    const carousel = document.getElementById('collectionCarousel');
+    let isDown=false,startX,scrollLeft;
+    carousel.addEventListener('pointerdown', (e)=>{ isDown=true; carousel.setPointerCapture(e.pointerId); startX=e.clientX; scrollLeft=carousel.scrollLeft; });
+    carousel.addEventListener('pointermove', (e)=>{ if(!isDown) return; const x = e.clientX; const walk = (startX-x); carousel.scrollLeft = scrollLeft + walk; });
+    carousel.addEventListener('pointerup', (e)=>{ isDown=false; });
+
+    // Product modal logic
+    const modal = $('#productModal'), modalImg = $('#modalImg'), modalTitle = $('#modalTitle'), modalCopy = $('#modalCopy'), modalBuy = $('#modalBuy');
+    function openModal(title, imgSrc, copy, ebayId){
+      modalImg.src = imgSrc;
+      modalTitle.textContent = title;
+      modalCopy.textContent = copy;
+      modalBuy.dataset.ebayId = ebayId || '';
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){ modal.setAttribute('aria-hidden','true'); }
+    $('#modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', (ev)=>{ if(ev.target === modal) closeModal(); });
+
+    $$('.openProduct').forEach(btn=>{
+      btn.addEventListener('click', (ev)=>{
+        const tile = ev.target.closest('.tile') || ev.target.closest('.featured-grid');
+        let title = tile?.dataset?.title || 'Featured Set';
+        let img = tile?.querySelector('img')?.src || 'assets/images/black-set.jpg';
+        let copy = 'Limited drop. Crafted with care by Abel.';
+        let ebay = tile?.dataset?.ebayId || '';
+        openModal(title, img, copy, ebay);
+      });
+    });
+
+    // Buy actions (calls ecommerce bridge)
+    $$('.buyNow').forEach(b=>{
+      b.addEventListener('click', ev=>{
+        const id = ev.currentTarget.dataset.ebayId;
+        window.EcomBridge && window.EcomBridge.buy(id);
+      });
+    });
+    modalBuy.addEventListener('click', ()=>{ const id = modalBuy.dataset.ebayId; window.EcomBridge && window.EcomBridge.buy(id); });
+
+    // Signup form - simple local capture
+    $('#signupForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const email = fd.get('email');
+      alert('Thanks — Drop alerts are set: ' + email);
+      e.target.reset();
+    });
+
+    // Accessibility: close modal on Esc
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    // Intersection observer for reveal animations
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add('inview');
+      });
+    }, {threshold:0.15});
+    $$('.section-title, .tile, .featured, .story, .witness').forEach(el=>io.observe(el));
+  })();
+  </script>
+</body>
+</html>

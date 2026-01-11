@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GlowScroll Template — Unveiling Scroll</title>
+
+  <!-- Google Fonts (pre-approved stack) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@700&family=Montserrat:wght@400;500;700&family=Playfair+Display:ital@0;1&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS VARIABLES & BASE STYLES ===== -->
+  <style>
+    :root {
+      --font-heading: 'Playfair Display', serif;
+      --font-subheader: 'Orbitron', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+      --font-accent: 'Merriweather', serif;
+
+      --glow: #FFD97C;
+      --scrollbg: #121212;
+      --textbase: #F2F2F3;
+      --goldseal: #F9D673;
+      --inkcore: #23282C;
+      --hoverveil: rgba(255,255,255,0.14);
+      --max-width: 900px;
+    }
+
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { height:100%; }
+
+    body {
+      background-color: var(--scrollbg);
+      color: var(--textbase);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 2rem;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display: flex;
+      justify-content: center;
+    }
+
+    .scroll-container {
+      width: 100%;
+      max-width: var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
+      border-radius: 8px;
+      padding: 2.4rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      color: var(--goldseal);
+      letter-spacing: 0.6px;
+      margin-bottom: 0.4rem;
+    }
+
+    header p { font-size: 0.95rem; opacity: 0.9; color: #dcdcdc; }
+
+    h2 {
+      font-family: var(--font-subheader);
+      font-size: 1.35rem;
+      color: var(--goldseal);
+      margin-top: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    h3.section-title {
+      font-family: var(--font-subheader);
+      font-size: 1.05rem;
+      color: var(--glow);
+      margin-bottom: 0.4rem;
+    }
+
+    p { margin-bottom: 1rem; font-size: 1rem; color: var(--textbase); }
+
+    /* GlowWord styles */
+    .glowword {
+      color: var(--glow);
+      cursor: pointer;
+      text-shadow:
+        0 0 4px var(--glow),
+        0 0 8px var(--glow),
+        0 0 16px rgba(255,217,124,0.12);
+      transition: text-shadow 0.35s ease-in-out, color 0.35s;
+      padding: 2px 4px;
+      border-radius: 4px;
+      display:inline-block;
+    }
+    .glowword:hover {
+      text-shadow:
+        0 0 8px var(--glow),
+        0 0 16px var(--glow),
+        0 0 32px rgba(249,214,115,0.14);
+      color: #fff;
+    }
+
+    .reveal {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-left: 4px solid var(--goldseal);
+      border-radius: 4px;
+    }
+
+    ul { margin-left: 1rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.6rem; font-size: 1rem; }
+
+    footer {
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.03);
+      padding-top: 1rem;
+      font-size: 0.95rem;
+      text-align: center;
+      color: #d0d0d0;
+    }
+
+    .whisper-text {
+      opacity: 0.75;
+      font-style: italic;
+    }
+
+    /* small utility */
+    .note { font-size: .9rem; color: #bbbbbb; margin-bottom: 1rem; }
+    .section-block { margin-bottom: 1.25rem; padding-bottom: .6rem; border-bottom: 1px dashed rgba(255,255,255,0.02); }
+    @media (max-width:720px){
+      .scroll-container { padding:1.2rem; }
+      header h1 { font-size:1.6rem; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="scroll-container">
+    <!-- ===== HEADER / TITLE ===== -->
+    <header>
+      <h1>
+        <!-- GlowWord in title: clicking reveals the pre-prologue and updates its title -->
+        <span class="glowword" data-target="section-preprologue">Unveiling</span>
+         Scroll Template
+      </h1>
+      <p><em>“Your word is a lamp to my feet and a light to my path.” — Psalm 119:105 (NKJV)</em></p>
+      <p class="note">Internal comments mark each paste location. GlowWords auto-update the target section title.</p>
+    </header>
+
+    <!-- ===== PRE-PROLOGUE SECTION ===== -->
+    <!-- Paste Pre-Prologue content inside the reveal div below -->
+    <section id="section-preprologue" class="section-block">
+      <!-- Paste pre-prologue content into the .reveal div -->
+      <h3 class="section-title">Pre-Prologue</h3>
+      <div class="reveal">
+        <!-- PASTE PRE-PROLOGUE HERE -->
+        <p>This is the Pre-Prologue placeholder. Replace this paragraph with your Pre-Prologue text. The GlowWord that revealed this section will become the heading automatically.</p>
+      </div>
+    </section>
+
+    <!-- ===== PROLOGUE SECTION ===== -->
+    <section id="section-prologue" class="section-block">
+      <h3 class="section-title">Prologue</h3>
+      <p>
+        <!-- PASTE PROLOGUE BODY HERE -->
+        This is the Prologue placeholder paragraph. Replace with your prologue. Inline GlowWord example:
+        <span class="glowword" data-target="section-prologue">See</span>
+        — clicking the GlowWord above will update this section title to match and reveal deeper content.
+      </p>
+      <div class="reveal">
+        <!-- PASTE OPTIONAL DEEP INVITATION OR EXPANDED PRE-PROLOGUE HERE -->
+        <p>Expanded prologue reveal area. Use this spot for invitations, scripture expansions, or extended reflections that you want hidden until a reader chooses to engage.</p>
+      </div>
+    </section>
+
+    <!-- ===== SUBJECT REALMS INDEX ===== -->
+    <section id="section-realms" class="section-block">
+      <h2>Subject Realms</h2>
+      <p class="note">These are the initial group placeholders for the 40 subjects. Duplicate or clone the realm section templates below as needed.</p>
+
+      <ul>
+        <li>
+          <!-- GLOWWORD → TARGET: section-realm1 -->
+          <span class="glowword" data-target="section-realm1">Deception</span>
+           — Realm of Heavenly Deception
+        </li>
+        <li>
+          <span class="glowword" data-target="section-realm2">Witness</span>
+           — Realm of Light and Witness
+        </li>
+        <li>
+          <span class="glowword" data-target="section-realm3">Structures</span>
+           — Realm of Firmament Structures
+        </li>
+        <li>
+          <span class="glowword" data-target="section-realm4">Perception</span>
+           — Realm of Digital Perception
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== HIDDEN REALM TEMPLATES (CLONE THESE) ===== -->
+    <!-- SECTION: Realm 1 -->
+    <section id="section-realm1" class="section-block">
+      <h3 class="section-title">Deception</h3>
+      <div class="reveal">
+        <!-- PASTE REALM 1 CONTENT HERE -->
+        <p>Realm 1 placeholder content. Replace with notes, study prompts, scripture, and references.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: Realm 2 -->
+    <section id="section-realm2" class="section-block">
+      <h3 class="section-title">Witness</h3>
+      <div class="reveal">
+        <!-- PASTE REALM 2 CONTENT HERE -->
+        <p>Realm 2 placeholder content. Replace with notes, study prompts, scripture, and references.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: Realm 3 -->
+    <section id="section-realm3" class="section-block">
+      <h3 class="section-title">Structures</h3>
+      <div class="reveal">
+        <!-- PASTE REALM 3 CONTENT HERE -->
+        <p>Realm 3 placeholder content. Replace with notes, study prompts, scripture, and references.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: Realm 4 -->
+    <section id="section-realm4" class="section-block">
+      <h3 class="section-title">Perception</h3>
+      <div class="reveal">
+        <!-- PASTE REALM 4 CONTENT HERE -->
+        <p>Realm 4 placeholder content. Replace with notes, study prompts, scripture, and references.</p>
+      </div>
+    </section>
+
+    <!-- ===== CONCLUSION SECTION ===== -->
+    <section id="section-conclusion" class="section-block">
+      <h2>Conclusion</h2>
+      <div class="reveal">
+        <!-- PASTE CONCLUSION HERE -->
+        <p>Conclusion placeholder. Use this area to reflect on what was explored and to offer a gentle send-off or next step.</p>
+      </div>
+    </section>
+
+    <!-- ===== WHISPER ENDING (hidden, light) ===== -->
+    <section id="section-whisper" class="section-block">
+      <h3 class="section-title">Whisper</h3>
+      <div class="reveal">
+        <!-- PASTE WHISPER TEXT HERE -->
+        <p class="whisper-text">It’s time to <span class="glowword" data-target="section-whisper">wake</span> up. Replace this whisper with a subtle invitation or call to readiness.</p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER & WITNESS SEAL ===== -->
+    <footer>
+      <!-- Footer or Witness Seal -->
+      <p>FULL-RELOCK™ — JESUS IS LORD™ — PROCEED™✔</p>
+    </footer>
+  </div>
+
+  <!-- ===== JAVASCRIPT: GlowWord → Title Sync & Reveal Logic ===== -->
+  <script>
+    // Initialize GlowWord behavior
+    (function(){
+      // Utility: get the closest glowword element for event (handles children clicks)
+      function findGlowEl(el){
+        while(el && el !== document){
+          if(el.classList && el.classList.contains('glowword')) return el;
+          el = el.parentNode;
+        }
+        return null;
+      }
+
+      // Event delegation for glowword clicks
+      document.addEventListener('click', function(evt){
+        var glow = findGlowEl(evt.target);
+        if(!glow) return;
+        var targetID = glow.getAttribute('data-target');
+        if(!targetID) return;
+
+        var sectionEl = document.getElementById(targetID);
+        if(!sectionEl) return;
+
+        // Update the section title to match the glowword's text
+        var titleEl = sectionEl.querySelector('.section-title');
+        if(titleEl){
+          titleEl.textContent = glow.textContent.trim();
+        }
+
+        // Reveal the hidden body area
+        var revealEl = sectionEl.querySelector('.reveal');
+        if(revealEl){
+          // If already visible, keep it visible; otherwise show it
+          if(revealEl.style.display === 'block'){
+            // already open: scroll into view anyway
+            sectionEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            revealEl.style.display = 'block';
+            sectionEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, false);
+
+      // Optional: keyboard nav (left/right) for future enhancement
+      // Optional: analytics hooks for GlowWord clicks can be inserted here
+    })();
+  </script>
+</body>
+</html>

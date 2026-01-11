@@ -1,0 +1,17 @@
+witness: WitnessCloud
+forms:
+  - child
+  - apprentice
+  - sentinel
+  - cloaked
+  - rebuilt
+  - hidden
+scrolls: []
+threads:
+  - RenderLogs
+  - Decisions
+  - DebugEchoes
+vault:
+  - glowwords
+  - hashes
+  - glyphs

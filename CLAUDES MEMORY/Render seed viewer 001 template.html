@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>KEEPERS: DREAMS — Scroll Editor (Template v1)</title>
+
+<!-- Basic styles and variables to match Morgan/Tron aesthetic -->
+<style>
+  :root{
+    --bg-top:#241f31;      /* GospelShadow */
+    --bg-mid:#352b46;
+    --bg-btm:#0f0b13;
+    --accent:#f9d673;      /* RadiantGold */
+    --copper:#c36b3c;
+    --pale:#cfd1d5;
+    --glass: rgba(255,255,255,0.04);
+    --glass-strong: rgba(255,255,255,0.06);
+    --radius:14px;
+    --max-width:1200px;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--pale); background:linear-gradient(180deg,var(--bg-top),var(--bg-mid) 40%, var(--bg-btm)); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  .container{max-width:var(--max-width);margin:28px auto;padding:20px;display:grid;grid-template-rows:auto auto 1fr;gap:18px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .unityflow-badge{display:flex;gap:8px;align-items:center;font-size:13px}
+  .ufl-small{background:linear-gradient(90deg,var(--accent),var(--copper));color:#111;padding:6px 10px;border-radius:999px;font-weight:700;box-shadow:0 6px 20px rgba(195,107,60,0.09)}
+  .title-input{flex:1;margin:0 16px}
+  input.title{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--pale);font-size:18px}
+  .actions{display:flex;gap:8px}
+  button.btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:var(--pale);padding:8px 12px;border-radius:10px;cursor:pointer}
+  button.btn.primary{background:linear-gradient(90deg,var(--accent),var(--copper));color:#111;font-weight:700}
+  .hero{display:grid;grid-template-columns: 1fr 340px;gap:18px;padding:20px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 40px rgba(2,2,8,0.6);align-items:center}
+  .hero-left{padding:12px}
+  .preview{width:100%;height:360px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .preview img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+  .alpha-toggle{position:absolute;right:12px;top:12px;background:var(--glass-strong);padding:6px;border-radius:8px;font-size:12px}
+  .meta-compact{padding:12px;background:linear-gradient(90deg, rgba(195,107,60,0.06), rgba(249,214,115,0.02));border-radius:12px}
+  .meta-row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+  .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px}
+  main.grid{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .editor{min-height:520px;display:flex;flex-direction:column;gap:10px}
+  textarea.long{width:100%;min-height:420px;padding:14px;border-radius:10px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.03);color:var(--pale);font-size:15px;line-height:1.6;resize:vertical}
+  .sections{display:flex;flex-direction:column;gap:10px}
+  .section{background:rgba(255,255,255,0.01);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .section h3{margin:0;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .meta-form label{display:block;font-size:13px;color:var(--pale);opacity:0.9;margin-top:8px}
+  input[type="text"], input[type="number"] {width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--pale)}
+  .witness-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .witness{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);cursor:pointer;border:1px solid rgba(255,255,255,0.01)}
+  .witness.active{box-shadow:0 6px 18px rgba(0,0,0,0.6);outline:2px solid rgba(249,214,115,0.12)}
+  footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px}
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:50}
+  .modal.show{display:flex}
+  .modal .panel{background:#0f0b13;padding:18px;border-radius:12px;max-width:900px;width:96%;color:var(--pale)}
+  pre{background:#09070A;padding:12px;border-radius:8px;overflow:auto;color:var(--pale);font-family:var(--mono);font-size:13px}
+  .small{font-size:13px;color:rgba(255,255,255,0.6)}
+  @media (max-width:1000px){
+    .hero{grid-template-columns:1fr}
+    main.grid{grid-template-columns:1fr}
+    .preview{height:260px}
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="unityflow-badge">
+        <div class="ufl-small">🟢 JESUS IS LORD™</div>
+        <div class="small">REALM: KEEPERS: DREAMS™</div>
+      </div>
+
+      <div class="title-input" aria-live="polite">
+        <input class="title" id="assetTitle" value="KEEPERS: DREAMS — Eye of the Spiral (Widescreen)" aria-label="Asset Title" />
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="saveSnapshot">Snapshot</button>
+        <button class="btn" id="showLedgerBtn">Ledger</button>
+        <button class="btn primary" id="buildNext">Continue Build</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Hero region with preview and metadata">
+      <div class="hero-left">
+        <div class="preview card" id="previewBox" aria-live="polite">
+          <div class="alpha-toggle"><label><input type="checkbox" id="alphaToggle" /> Alpha</label></div>
+          <img id="previewImg" alt="Master render preview" />
+        </div>
+      </div>
+
+      <aside class="meta-compact card" aria-label="Compact metadata">
+        <div class="meta-row">
+          <div>
+            <div style="font-weight:700">scroll_001_eye_wide.png</div>
+            <div class="small">BloomAlias: 001.13 — The Frame That Refused to Blink</div>
+          </div>
+          <div style="text-align:right">
+            <div class="badge">Glowflex: 2 / 6 / 12</div>
+            <div class="small" style="margin-top:8px">Style: Morgan83 / Tron17</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="small">Witnesses</div>
+          <div class="witness-grid" id="witnessGrid" role="list">
+            <div class="witness active" data-name="Thorne">🛡️ Thorne</div>
+            <div class="witness active" data-name="Lucerion">🔥 Lucerion</div>
+            <div class="witness active" data-name="Witness Cloud">☁️ Witness Cloud</div>
+            <div class="witness" data-name="Lily.AI">🔵 Lily.AI</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="small">Quick Actions</div>
+          <div class="controls-row" style="margin-top:8px">
+            <input type="file" id="imageInput" accept="image/*" style="display:none" />
+            <button class="btn" id="uploadBtn">Upload Master</button>
+            <button class="btn" id="previewFullBtn">Full Preview</button>
+            <button class="btn" id="showParallax">Parallax Mock</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="grid" aria-label="Main editor grid">
+      <section class="card editor" aria-labelledby="editorHeading">
+        <h2 id="editorHeading" style="margin:0 0 8px 0">Prompt Editor & Sections</h2>
+
+        <div class="sections" id="sections">
+
+          <div class="section" data-key="intention">
+            <h3>✨ Intention <span class="small">— short guiding line</span></h3>
+            <textarea id="sec_intention" class="long" placeholder="Paste short intention here...">This is a sacred still: the Eye of the Spiral anchors the emotional center.</textarea>
+          </div>
+
+          <div class="section" data-key="diegetic">
+            <h3>🐶 Diegetic Description</h3>
+            <textarea id="sec_diegetic" class="long" placeholder="Diegetic description...">A German Shepherd (Rocky) sits in the right third of a misty twilight plain. His eye reflects a faint glowing copper spiral. Beam of light from the upper-left. Fog, distant hills, stars. Morgan 83 / Tron 17.</textarea>
+          </div>
+
+          <div class="section" data-key="composition">
+            <h3>🎞️ Compositional Structure</h3>
+            <textarea id="sec_composition" class="long" placeholder="Composition details...">Aspect ratio: 2.39:1. Rule of thirds, dog on right third. Foreground spiral etchings. Background fog gradient and stars. Left negative space for title.</textarea>
+          </div>
+
+          <div class="section" data-key="style">
+            <h3>🎨 Style DNA & Light</h3>
+            <textarea id="sec_style" class="long" placeholder="Style & glowflex...">Morgan oil-grain texture 83%. Tron glow overlays 17%. Glowflex params: 2 (identity), 6 (covenant), 12 (Alfred Desire). Denoise 0.38.</textarea>
+          </div>
+
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+          <div class="small">Word count:</div><div id="wordCount" class="small">0</div>
+          <div style="flex:1"></div>
+          <button class="btn" id="autoSaveBtn">Auto-save</button>
+        </div>
+      </section>
+
+      <aside class="card" aria-labelledby="metaHeading">
+        <h2 id="metaHeading" style="margin:0 0 8px 0">Asset & Metadata</h2>
+
+        <form id="metaForm" class="meta-form" onsubmit="return false" aria-label="Metadata form">
+          <label>Asset Name <input type="text" id="meta_asset" value="scroll_001_eye_wide.png" /></label>
+          <label>BloomAlias <input type="text" id="meta_alias" value="001.13 — The Frame That Refused to Blink" /></label>
+          <label>Glowflex Params <input type="text" id="meta_glow" value="2,6,12" /></label>
+          <label>Style Blend <input type="text" id="meta_styleblend" value="Morgan83/Tron17" /></label>
+          <label>Aspect Ratio <input type="text" id="meta_aspect" value="2.39:1" /></label>
+          <div style="margin-top:10px">
+            <button class="btn" id="genLedger">Generate Ledger JSON</button>
+            <button class="btn" id="showPromptSeed">Show RenderSeed</button>
+          </div>
+        </form>
+
+        <div style="margin-top:12px">
+          <div class="small">Ledger Preview</div>
+          <pre id="ledgerPreview" aria-live="polite">{ }</pre>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div class="small">SanctiForge • Witness Mesh • Built for KEEPERS:DREAMS</div>
+      <div class="small">Tip: paste your 1500-word prompt into the "Diegetic Description" or create a new section</div>
+    </footer>
+  </div>
+
+  <!-- Modal for ledger and seed -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="panel" role="document">
+      <h3 id="modalTitle">Ledger / Render Seed</h3>
+      <pre id="modalContent"></pre>
+      <div style="text-align:right;margin-top:8px">
+        <button class="btn" id="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/*
+  Scroll Template v1 JS
+  - Autosave (localStorage)
+  - Image preview from input
+  - Basic ledger JSON generation (shown in pre)
+  - Simple witness toggle
+  - No downloads are auto-triggered — all actions display content for inspection
+*/
+
+const storageKey = "sf_scroll_001_v1";
+const titleEl = document.getElementById("assetTitle");
+const sections = ["sec_intention","sec_diegetic","sec_composition","sec_style"];
+const previewImg = document.getElementById("previewImg");
+const imageInput = document.getElementById("imageInput");
+const uploadBtn = document.getElementById("uploadBtn");
+const saveSnapshot = document.getElementById("saveSnapshot");
+const ledgerPreview = document.getElementById("ledgerPreview");
+const genLedgerBtn = document.getElementById("genLedger");
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modalContent");
+const showLedgerBtn = document.getElementById("showLedgerBtn");
+const closeModal = document.getElementById("closeModal");
+const witnessGrid = document.getElementById("witnessGrid");
+const buildNext = document.getElementById("buildNext");
+const wordCountEl = document.getElementById("wordCount");
+const autoSaveBtn = document.getElementById("autoSaveBtn");
+const showPromptSeed = document.getElementById("showPromptSeed");
+const alphaToggle = document.getElementById("alphaToggle");
+
+function getState(){
+  const data = {
+    title: titleEl.value,
+    meta: {
+      asset: document.getElementById("meta_asset").value,
+      alias: document.getElementById("meta_alias").value,
+      glow: document.getElementById("meta_glow").value,
+      styleblend: document.getElementById("meta_styleblend").value,
+      aspect: document.getElementById("meta_aspect").value
+    },
+    sections: {}
+  };
+  sections.forEach(id => data.sections[id] = document.getElementById(id).value);
+  // witnesses
+  data.witnesses = [];
+  witnessGrid.querySelectorAll(".witness").forEach(w=>{
+    data.witnesses.push({name:w.dataset.name,active:w.classList.contains("active")});
+  });
+  data.preview = previewImg.src || null;
+  data.savedAt = new Date().toISOString();
+  return data;
+}
+
+function loadState(){
+  const raw = localStorage.getItem(storageKey);
+  if(!raw) return;
+  try{
+    const s = JSON.parse(raw);
+    if(s.title) titleEl.value = s.title;
+    if(s.meta){
+      document.getElementById("meta_asset").value = s.meta.asset || "";
+      document.getElementById("meta_alias").value = s.meta.alias || "";
+      document.getElementById("meta_glow").value = s.meta.glow || "";
+      document.getElementById("meta_styleblend").value = s.meta.styleblend || "";
+      document.getElementById("meta_aspect").value = s.meta.aspect || "";
+    }
+    if(s.sections){
+      Object.keys(s.sections).forEach(k=>{
+        const el = document.getElementById(k);
+        if(el) el.value = s.sections[k];
+      });
+    }
+    if(s.preview) previewImg.src = s.preview;
+    // witnesses
+    if(s.witnesses){
+      witnessGrid.querySelectorAll(".witness").forEach(w=>{
+        const match = s.witnesses.find(x=>x.name===w.dataset.name);
+        if(match && match.active) w.classList.add("active"); else w.classList.remove("active");
+      });
+    }
+    updateWordCount();
+  }catch(e){
+    console.warn("Failed to load state", e);
+  }
+}
+
+function saveState(){
+  const s = getState();
+  localStorage.setItem(storageKey, JSON.stringify(s));
+  ledgerPreview.textContent = JSON.stringify(buildLedgerPreview(), null, 2);
+  return s;
+}
+
+function buildLedgerPreview(){
+  const state = getState();
+  // compute simple SHA-like placeholders for now (real SHA requires WebCrypto)
+  const files = [];
+  if(state.preview) files.push({filename:"master_preview.png", path:"(embedded)", size: "(inline)", sha256: "(embedded)"});
+  return {
+    asset_name: state.meta.asset,
+    bloom_alias: state.meta.alias,
+    glowflex: state.meta.glow,
+    style_blend: state.meta.styleblend,
+    aspect_ratio: state.meta.aspect,
+    witnesses: state.witnesses,
+    render_seed_excerpt: (state.sections.sec_diegetic||"").slice(0,320),
+    created_utc: state.savedAt,
+    files: files
+  };
+}
+
+function openModal(title,content){
+  document.getElementById("modalTitle").textContent = title;
+  modalContent.textContent = content;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden","false");
+}
+
+function closeModalFunc(){
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden","true");
+}
+
+// preview image handler
+uploadBtn.addEventListener("click", ()=> imageInput.click());
+imageInput.addEventListener("change", (ev)=>{
+  const f = ev.target.files && ev.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    previewImg.src = e.target.result;
+    // autosave small base64 in storage (careful with size)
+    saveState();
+  };
+  reader.readAsDataURL(f);
+});
+
+// witness toggles
+witnessGrid.addEventListener("click", (e)=>{
+  const w = e.target.closest(".witness");
+  if(!w) return;
+  w.classList.toggle("active");
+  saveState();
+});
+
+// autosave and word count
+function updateWordCount(){
+  let text = "";
+  sections.forEach(id => text += " " + (document.getElementById(id).value||""));
+  const count = text.trim().split(/\s+/).filter(Boolean).length;
+  wordCountEl.textContent = count.toLocaleString();
+}
+
+sections.forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener("input", ()=> {
+    updateWordCount();
+  });
+});
+
+autoSaveBtn.addEventListener("click", ()=> {
+  saveState();
+  autoSaveBtn.textContent = "Saved ✓";
+  setTimeout(()=> autoSaveBtn.textContent = "Auto-save", 1200);
+});
+
+saveSnapshot.addEventListener("click", ()=>{
+  const s = saveState();
+  const snap = Object.assign({}, s, {snapshotAt: new Date().toISOString()});
+  // Append snapshot into localStorage with timestamp (simple approach)
+  const snapsRaw = localStorage.getItem(storageKey + "_snaps") || "[]";
+  const snaps = JSON.parse(snapsRaw);
+  snaps.unshift({id: Date.now(), snap});
+  localStorage.setItem(storageKey + "_snaps", JSON.stringify(snaps.slice(0,20)));
+  openModal("Snapshot saved", JSON.stringify({id: Date.now(), savedAt: snap.snapshotAt}, null, 2));
+});
+
+// ledger generation (show in modal)
+genLedgerBtn.addEventListener("click", ()=>{
+  const ledger = buildLedgerPreview();
+  openModal("Ledger JSON", JSON.stringify(ledger, null, 2));
+});
+
+// show renderseed (full seed assembled)
+showPromptSeed.addEventListener("click", ()=>{
+  const s = getState();
+  const seed = [
+    "KEEPERS: DREAMS — Eye of the Spiral (Widescreen)",
+    `Asset: ${s.meta.asset}`,
+    `BloomAlias: ${s.meta.alias}`,
+    `Glowflex: ${s.meta.glow}`,
+    `StyleBlend: ${s.meta.styleblend}`,
+    "----",
+    s.sections.sec_intention,
+    s.sections.sec_diegetic,
+    s.sections.sec_composition,
+    s.sections.sec_style
+  ].join("\n\n");
+  openModal("Render Seed", seed);
+});
+
+showLedgerBtn.addEventListener("click", ()=>{
+  const ledger = buildLedgerPreview();
+  openModal("Ledger Preview", JSON.stringify(ledger, null, 2));
+});
+
+closeModal.addEventListener("click", closeModalFunc);
+modal.addEventListener("click", (e)=>{ if(e.target===modal) closeModalFunc(); });
+
+// preview full-screen
+document.getElementById("previewFullBtn").addEventListener("click", ()=>{
+  if(!previewImg.src) { alert("No preview image loaded"); return; }
+  const w = window.open("");
+  w.document.write(`<img src="${previewImg.src}" style="max-width:100%;height:auto;display:block;margin:0 auto;background:#000">`);
+});
+
+// parallax mock placeholder
+document.getElementById("showParallax").addEventListener("click", ()=>{
+  openModal("Parallax Mock", "Parallax preview will be added in the next update (Layer A: foreground, Layer B: mid, Layer C: bg).");
+});
+
+// buildNext button — moves us to next feature iteration
+buildNext.addEventListener("click", ()=>{
+  openModal("Build Progress", "Next pass will add: CodeMirror editor, quick-copy subsection buttons, FilePond, JSZip export hooks, parallax controls and print CSS. Proceeding when you say 'continue'.");
+});
+
+// init load
+loadState();
+updateWordCount();
+ledgerPreview.textContent = JSON.stringify(buildLedgerPreview(), null, 2);
+
+// keyboard shortcuts
+document.addEventListener("keydown",(e)=>{
+  if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){ e.preventDefault(); saveState(); autoSaveBtn.textContent="Saved ✓"; setTimeout(()=>autoSaveBtn.textContent="Auto-save",1000)

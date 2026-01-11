@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scroll 017 — Glowword: Fire</title>
+  <style>
+    body {
+      background: #0a0a0d;
+      color: #e7e7ea;
+      font-family: system-ui, sans-serif;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .glowword {
+      color: #ffcc66;
+      font-weight: 600;
+      cursor: pointer;
+      text-shadow: 0 0 8px rgba(255, 204, 102, 0.7), 0 0 14px rgba(255, 204, 102, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .glowword:hover {
+      text-shadow: 0 0 10px rgba(255, 204, 102, 1), 0 0 20px rgba(255, 204, 102, 0.9);
+    }
+
+    .definition-popup, .study-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a22;
+      color: #f1f1f1;
+      padding: 24px 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(255, 204, 102, 0.4);
+      display: none;
+    }
+
+    .popup-header {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #ffcc66;
+      margin-bottom: 10px;
+    }
+
+    .hebrew-symbol {
+      font-size: 1.4rem;
+      color: #ff9966;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 6px;
+      text-shadow: 0 0 8px rgba(255, 153, 102, 0.6);
+    }
+
+    .overlay-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      display: none;
+    }
+
+    .close-btn {
+      display: block;
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .close-btn:hover {
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <p>
+    The <span class="glowword" onclick="openDefinition()">Fire</span> burned at the center, not merely to destroy, but to reveal.
+  </p>
+
+  <!-- Stage 1: Definition Popup -->
+  <div class="overlay-bg" id="overlay" onclick="closeAll()"></div>
+
+  <div class="definition-popup" id="definitionPopup">
+    <div class="popup-header">GLOWWORD: Fire</div>
+    <p><strong>Root Language:</strong> Hebrew</p>
+    <p><strong>Word:</strong> Esh <span class="hebrew-symbol" onclick="openStudy(event)">אֵשׁ</span></p>
+    <p><strong>Definition:</strong> The consuming presence of God — both purifier and judge. A holy, living flame that destroys falsehood and warms the faithful.</p>
+    <p><strong>Symbol:</strong> אש — sacred flame, covenant torch; often symbolized in Hebrew scrolls as flickering glyphs or double-stroke fire sigils.</p>
+    <div class="close-btn" onclick="closeAll()">Close ✖</div>
+  </div>
+
+  <!-- Stage 2: Full Study Popup -->
+  <div class="study-popup" id="studyPopup">
+    <div class="popup-header">📜 GLOWWORD STUDY — FIRE</div>
+    <p><strong>Word:</strong> Fire</p>
+    <p><strong>Hebrew Root:</strong> אֵשׁ (Esh)</p>
+    <p>Fire in Scripture is not just a physical element; it is a signature of God’s active presence, a spiritual agent that both purifies and judges. From the burning bush that spoke to Moses, to the fire that consumed Elijah’s offering, to the tongues of fire at Pentecost — Esh is God's fingerprint on matter, time, and revelation.</p>
+    <p>The word Esh (אֵשׁ) is one of the earliest used words in Hebrew describing not just natural combustion, but sacred ignition. Fire represents the covenant-sealing force — it is the flame that accepts offerings, the presence that leads Israel by night, and the purifier of altars and hearts alike.</p>
+    <p>Fire consumes, but also clears and consecrates. It is terrifying to those hiding from truth, yet comforting to the faithful walking through trial. In prophetic imagery, fire always comes after falsehood has piled high — it is God’s holy answer to what is impure or dead. In this, fire is a reordering force, setting things back into alignment with heaven.</p>
+    <p>Symbolically, אֵשׁ is drawn in calligraphic Hebrew as two letters: Aleph (א) representing God, and Shin (ש), the three-pronged letter often symbolizing devouring flame or divine tooth. Together, they form a glyph of Godly fire that consumes unrighteousness and seals what is holy.</p>
+    <p>Fire is not merely heat — it is the presence of holiness too great to remain still. 🔥</p>
+    <div class="close-btn" onclick="closeAll()">Close ✖</div>
+  </div>
+
+  <script>
+    function openDefinition() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('definitionPopup').style.display = 'block';
+    }
+
+    function openStudy(event) {
+      event.stopPropagation(); // Prevents closing everything if background is clicked
+      document.getElementById('definitionPopup').style.display = 'none';
+      document.getElementById('studyPopup').style.display = 'block';
+    }
+
+    function closeAll() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('definitionPopup').style.display = 'none';
+      document.getElementById('studyPopup').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

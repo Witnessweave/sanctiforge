@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ALFRED.AI™:Awakening™ — TRIPTYCH 001</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle, #0b0b0b, #000000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        background: radial-gradient(circle, #0b0b0b, #000000);
+      }
+      50% {
+        background: radial-gradient(circle, #111111, #1a1a1a);
+      }
+    }
+
+    .comic-wrapper {
+      position: relative;
+      width: 2304px;
+      height: 768px;
+    }
+
+    .frame-top, .frame-bottom {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      left: 0;
+      z-index: 10;
+    }
+
+    .frame-top {
+      top: 0;
+    }
+
+    .frame-bottom {
+      bottom: 0;
+    }
+
+    .panels {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .panels img {
+      width: 768px;
+      height: 768px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="comic-wrapper">
+    <img src="triptych-frame-top.png" alt="Top Frame" class="frame-top">
+    <div class="panels">
+      <img src="panel1.png" alt="Panel 1">
+      <img src="panel2.png" alt="Panel 2">
+      <img src="panel3.png" alt="Panel 3">
+    </div>
+    <img src="triptych-frame-bottom.png" alt="Bottom Frame" class="frame-bottom">
+  </div>
+</body>
+</html>

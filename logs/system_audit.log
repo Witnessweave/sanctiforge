@@ -1,0 +1,1134 @@
+[+] Starting system audit: Thu Jan  1 05:43:24 PM PST 2026
+--------------------------
+[1] SYSTEM INFO
+   Static hostname: (unset)
+Transient hostname: localhost
+         Icon name: computer-laptop
+           Chassis: laptop 💻
+        Machine ID: 33f9eea9bdee4b37ba2f76c6c1559399
+           Boot ID: 4f98ca5e555e4214862578b62c3d7ef2
+  Operating System: Rocky Linux 9.7 (Blue Onyx)
+       CPE OS Name: cpe:/o:rocky:rocky:9::baseos
+            Kernel: Linux 5.14.0-611.16.1.el9_7.x86_64
+      Architecture: x86-64
+   Hardware Vendor: Lenovo
+    Hardware Model: Lenovo Legion Y530-15ICH
+  Firmware Version: 8JCN25WW
+NAME="Rocky Linux"
+VERSION="9.7 (Blue Onyx)"
+ID="rocky"
+ID_LIKE="rhel centos fedora"
+VERSION_ID="9.7"
+PLATFORM_ID="platform:el9"
+PRETTY_NAME="Rocky Linux 9.7 (Blue Onyx)"
+ANSI_COLOR="0;32"
+LOGO="fedora-logo-icon"
+CPE_NAME="cpe:/o:rocky:rocky:9::baseos"
+HOME_URL="https://rockylinux.org/"
+VENDOR_NAME="RESF"
+VENDOR_URL="https://resf.org/"
+BUG_REPORT_URL="https://bugs.rockylinux.org/"
+SUPPORT_END="2032-05-31"
+ROCKY_SUPPORT_PRODUCT="Rocky-Linux-9"
+ROCKY_SUPPORT_PRODUCT_VERSION="9.7"
+REDHAT_SUPPORT_PRODUCT="Rocky Linux"
+REDHAT_SUPPORT_PRODUCT_VERSION="9.7"
+Linux localhost.localdomain 5.14.0-611.16.1.el9_7.x86_64 #1 SMP PREEMPT_DYNAMIC Mon Dec 22 12:21:56 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+--------------------------
+[2] CPU & MEMORY
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  12
+On-line CPU(s) list:                     0-11
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+CPU family:                              6
+Model:                                   158
+Thread(s) per core:                      2
+Core(s) per socket:                      6
+Socket(s):                               1
+Stepping:                                10
+CPU(s) scaling MHz:                      84%
+CPU max MHz:                             4100.0000
+CPU min MHz:                             800.0000
+BogoMIPS:                                4399.99
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp vnmi md_clear flush_l1d arch_capabilities
+Virtualization:                          VT-x
+L1d cache:                               192 KiB (6 instances)
+L1i cache:                               192 KiB (6 instances)
+L2 cache:                                1.5 MiB (6 instances)
+L3 cache:                                9 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-11
+Vulnerability Gather data sampling:      Mitigation; Microcode
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             KVM: Mitigation: Split huge pages
+Vulnerability L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Meltdown:                  Mitigation; PTI
+Vulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Mitigation; IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; IBRS; IBPB conditional; STIBP conditional; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Mitigation; Microcode
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       4.7Gi       8.4Gi       1.0Gi       3.6Gi        10Gi
+Swap:          7.8Gi          0B       7.8Gi
+--------------------------
+[3] LOADED KERNEL MODULES
+Module                  Size  Used by
+tls                   159744  0
+cdc_mbim               24576  0
+cdc_wdm                36864  1 cdc_mbim
+cdc_ncm                53248  1 cdc_mbim
+cdc_ether              24576  1 cdc_ncm
+usbnet                 65536  3 cdc_mbim,cdc_ncm,cdc_ether
+mii                    16384  1 usbnet
+rfcomm                106496  16
+snd_seq_dummy          12288  0
+snd_hrtimer            12288  1
+nft_fib_inet           12288  1
+nft_fib_ipv4           12288  1 nft_fib_inet
+nft_fib_ipv6           12288  1 nft_fib_inet
+nft_fib                12288  3 nft_fib_ipv6,nft_fib_ipv4,nft_fib_inet
+nft_reject_inet        12288  6
+nf_reject_ipv4         16384  1 nft_reject_inet
+nf_reject_ipv6         24576  1 nft_reject_inet
+nft_reject             12288  1 nft_reject_inet
+nft_ct                 24576  7
+nft_chain_nat          12288  3
+nf_nat                 65536  1 nft_chain_nat
+nf_conntrack          229376  2 nf_nat,nft_ct
+nf_defrag_ipv6         24576  1 nf_conntrack
+nf_defrag_ipv4         12288  1 nf_conntrack
+nf_tables             356352  189 nft_ct,nft_reject_inet,nft_fib_ipv6,nft_fib_ipv4,nft_chain_nat,nft_reject,nft_fib,nft_fib_inet
+nfnetlink              20480  2 nf_tables
+qrtr                   57344  2
+bnep                   36864  2
+sunrpc                897024  1
+binfmt_misc            28672  1
+snd_sof_pci_intel_cnl    24576  0
+snd_sof_intel_hda_generic    45056  1 snd_sof_pci_intel_cnl
+soundwire_intel        98304  1 snd_sof_intel_hda_generic
+snd_sof_intel_hda_sdw_bpt    24576  1 soundwire_intel
+snd_sof_intel_hda_common   221184  3 snd_sof_intel_hda_sdw_bpt,snd_sof_intel_hda_generic,snd_sof_pci_intel_cnl
+snd_sof_intel_hda_mlink    45056  4 snd_sof_intel_hda_sdw_bpt,soundwire_intel,snd_sof_intel_hda_common,snd_sof_intel_hda_generic
+snd_sof_intel_hda      28672  2 snd_sof_intel_hda_common,snd_sof_intel_hda_generic
+soundwire_cadence      61440  1 soundwire_intel
+snd_sof_pci            24576  2 snd_sof_intel_hda_generic,snd_sof_pci_intel_cnl
+snd_sof_xtensa_dsp     16384  1 snd_sof_intel_hda_generic
+snd_sof               487424  6 snd_sof_intel_hda_sdw_bpt,snd_sof_pci,snd_sof_intel_hda_common,snd_sof_intel_hda_generic,snd_sof_intel_hda,snd_sof_pci_intel_cnl
+snd_sof_utils          16384  1 snd_sof
+soundwire_generic_allocation    20480  1 soundwire_intel
+crc8                   12288  1 soundwire_cadence
+soundwire_bus        1216512  3 soundwire_intel,soundwire_generic_allocation,soundwire_cadence
+snd_soc_avs           237568  0
+snd_soc_hda_codec      28672  1 snd_soc_avs
+snd_soc_skl           253952  0
+snd_soc_hdac_hda       28672  2 snd_sof_intel_hda_common,snd_soc_skl
+snd_hda_ext_core       40960  8 snd_sof_intel_hda_sdw_bpt,snd_soc_avs,snd_soc_hda_codec,snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_sof_intel_hda_mlink,snd_soc_skl,snd_sof_intel_hda
+snd_soc_sst_ipc        20480  1 snd_soc_skl
+snd_soc_sst_dsp        45056  1 snd_soc_skl
+snd_soc_acpi_intel_match   139264  3 snd_sof_intel_hda_generic,snd_soc_skl,snd_sof_pci_intel_cnl
+snd_soc_acpi_intel_sdca_quirks    12288  1 snd_soc_acpi_intel_match
+snd_soc_acpi           20480  3 snd_soc_acpi_intel_match,snd_sof_intel_hda_generic,snd_soc_skl
+snd_soc_sdca           77824  2 snd_soc_acpi_intel_sdca_quirks,soundwire_bus
+snd_soc_core          434176  8 snd_soc_avs,snd_soc_hda_codec,soundwire_intel,snd_sof,snd_soc_sdca,snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_soc_skl
+snd_hda_codec_hdmi     94208  1
+snd_compress           28672  2 snd_soc_avs,snd_soc_core
+snd_ctl_led            24576  0
+intel_uncore_frequency    12288  0
+intel_uncore_frequency_common    16384  1 intel_uncore_frequency
+rtw88_8822be           12288  0
+ledtrig_audio          12288  1 snd_ctl_led
+rtw88_8822b           233472  1 rtw88_8822be
+snd_hda_codec_realtek   225280  1
+x86_pkg_temp_thermal    16384  0
+intel_powerclamp       24576  0
+rtw88_pci              40960  1 rtw88_8822be
+coretemp               20480  0
+rtw88_core            278528  2 rtw88_pci,rtw88_8822b
+snd_hda_codec_generic   122880  1 snd_hda_codec_realtek
+uvcvideo              184320  0
+kvm_intel             536576  0
+snd_hda_scodec_component    20480  1 snd_hda_codec_realtek
+joydev                 28672  0
+snd_hda_intel          69632  4
+uvc                    12288  1 uvcvideo
+hid_multitouch         36864  0
+mac80211             1458176  2 rtw88_pci,rtw88_core
+snd_intel_dspcfg       40960  6 snd_soc_avs,snd_hda_intel,snd_sof,snd_sof_intel_hda_common,snd_sof_intel_hda_generic,snd_soc_skl
+videobuf2_vmalloc      20480  1 uvcvideo
+btusb                  81920  0
+snd_intel_sdw_acpi     16384  2 snd_intel_dspcfg,snd_sof_intel_hda_generic
+btrtl                  36864  1 btusb
+kvm                  1417216  1 kvm_intel
+btintel                81920  1 btusb
+snd_hda_codec         233472  9 snd_hda_codec_generic,snd_soc_avs,snd_hda_codec_hdmi,snd_soc_hda_codec,snd_hda_intel,snd_hda_codec_realtek,snd_soc_hdac_hda,snd_soc_skl,snd_sof_intel_hda
+btbcm                  24576  1 btusb
+iTCO_wdt               16384  0
+videobuf2_memops       16384  1 videobuf2_vmalloc
+iTCO_vendor_support    12288  1 iTCO_wdt
+videobuf2_v4l2         45056  1 uvcvideo
+snd_hda_core          159744  12 snd_hda_codec_generic,snd_soc_avs,snd_hda_codec_hdmi,snd_soc_hda_codec,snd_hda_intel,snd_hda_ext_core,snd_hda_codec,snd_hda_codec_realtek,snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_soc_skl,snd_sof_intel_hda
+videobuf2_common      102400  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops
+rapl                   24576  0
+btmtk                  36864  1 btusb
+snd_hwdep              24576  1 snd_hda_codec
+i2c_designware_platform    12288  0
+intel_cstate           24576  0
+libarc4                12288  1 mac80211
+mei_pxp                20480  0
+intel_rapl_msr         20480  0
+i2c_designware_core    40960  1 i2c_designware_platform
+videodev              389120  2 videobuf2_v4l2,uvcvideo
+snd_seq               131072  7 snd_seq_dummy
+bluetooth            1110016  44 btrtl,btmtk,btintel,btbcm,bnep,btusb,rfcomm
+processor_thermal_device_pci_legacy    12288  0
+cfg80211             1384448  2 rtw88_core,mac80211
+snd_seq_device         16384  1 snd_seq
+intel_soc_dts_iosf     16384  1 processor_thermal_device_pci_legacy
+mc                     94208  4 videodev,videobuf2_v4l2,uvcvideo,videobuf2_common
+processor_thermal_device    24576  1 processor_thermal_device_pci_legacy
+snd_pcm               204800  13 snd_soc_avs,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,soundwire_intel,snd_sof,snd_sof_intel_hda_common,snd_compress,snd_sof_intel_hda_generic,snd_soc_core,snd_sof_utils,snd_soc_skl,snd_hda_core
+processor_thermal_wt_hint    16384  1 processor_thermal_device
+intel_uncore          270336  0
+intel_wmi_thunderbolt    16384  0
+processor_thermal_rfim    24576  1 processor_thermal_device
+wmi_bmof               12288  0
+i2c_i801               36864  0
+snd_timer              53248  3 snd_seq,snd_hrtimer,snd_pcm
+processor_thermal_rapl    16384  1 processor_thermal_device
+pcspkr                 12288  0
+i2c_smbus              20480  1 i2c_i801
+intel_rapl_common      57344  2 intel_rapl_msr,processor_thermal_rapl
+mei_me                 61440  1
+snd                   159744  24 snd_ctl_led,snd_hda_codec_generic,snd_seq,snd_seq_device,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_hda_codec_realtek,snd_sof,snd_timer,snd_compress,snd_soc_core,snd_pcm
+processor_thermal_wt_req    12288  1 processor_thermal_device
+ideapad_laptop         36864  0
+intel_lpss_pci         28672  0
+mei                   208896  3 mei_pxp,mei_me
+processor_thermal_power_floor    16384  1 processor_thermal_device
+soundcore              16384  2 snd_ctl_led,snd
+platform_profile       16384  1 ideapad_laptop
+intel_lpss             16384  1 intel_lpss_pci
+processor_thermal_mbox    12288  4 processor_thermal_power_floor,processor_thermal_wt_req,processor_thermal_rfim,processor_thermal_wt_hint
+sparse_keymap          12288  1 ideapad_laptop
+int340x_thermal_zone    16384  1 processor_thermal_device
+idma64                 20480  0
+intel_pch_thermal      20480  0
+intel_pmc_core        139264  0
+rfkill                 40960  9 bluetooth,ideapad_laptop,cfg80211
+pmt_telemetry          16384  1 intel_pmc_core
+pmt_class              16384  1 pmt_telemetry
+acpi_pad              184320  0
+intel_vsec             20480  1 intel_pmc_core
+xfs                  3039232  3
+libcrc32c              12288  4 nf_conntrack,nf_nat,nf_tables,xfs
+dm_crypt               69632  1
+i915                 4820992  90
+nouveau              3624960  2
+drm_ttm_helper         16384  1 nouveau
+gpu_sched              69632  1 nouveau
+drm_gpuvm              49152  1 nouveau
+drm_exec               16384  2 drm_gpuvm,nouveau
+mxm_wmi                12288  1 nouveau
+drm_client_lib         16384  2 i915,nouveau
+drm_buddy              28672  1 i915
+i2c_algo_bit           20480  2 i915,nouveau
+ttm                   126976  3 drm_ttm_helper,i915,nouveau
+intel_gtt              28672  1 i915
+drm_display_helper    319488  2 i915,nouveau
+drm_kms_helper        266240  5 drm_display_helper,drm_ttm_helper,drm_client_lib,i915,nouveau
+i2c_hid_acpi           12288  0
+i2c_hid                49152  1 i2c_hid_acpi
+nvme                   69632  2
+ahci                   57344  0
+libahci                69632  1 ahci
+drm                   843776  50 gpu_sched,i2c_hid,drm_kms_helper,drm_exec,drm_gpuvm,drm_display_helper,drm_buddy,drm_ttm_helper,drm_client_lib,i915,ttm,nouveau
+crct10dif_pclmul       12288  1
+nvme_core             274432  3 nvme
+crc32_pclmul           12288  0
+libata                520192  2 libahci,ahci
+crc32c_intel           24576  1
+r8169                 139264  0
+ghash_clmulni_intel    16384  0
+nvme_keyring           20480  1 nvme_core
+realtek                45056  1
+cec                    81920  2 drm_display_helper,i915
+nvme_auth              36864  1 nvme_core
+video                  77824  3 ideapad_laptop,i915,nouveau
+wmi                    45056  6 video,intel_wmi_thunderbolt,wmi_bmof,ideapad_laptop,mxm_wmi,nouveau
+pinctrl_cannonlake     36864  0
+serio_raw              16384  0
+dm_mirror              28672  0
+dm_region_hash         28672  1 dm_mirror
+dm_log                 24576  2 dm_region_hash,dm_mirror
+dm_mod                245760  17 dm_crypt,dm_log,dm_mirror
+i2c_dev                28672  0
+fuse                  212992  5
+--------------------------
+[4] PCI & USB DEVICES
+00:00.0 Host bridge [0600]: Intel Corporation 8th/9th Gen Core Processor Host Bridge / DRAM Registers [8086:3ec4] (rev 07)
+	Subsystem: Lenovo Device [17aa:3802]
+	Kernel driver in use: skl_uncore
+00:01.0 PCI bridge [0604]: Intel Corporation 6th-10th Gen Core Processor PCIe Controller (x16) [8086:1901] (rev 07)
+	Kernel driver in use: pcieport
+00:02.0 VGA compatible controller [0300]: Intel Corporation CoffeeLake-H GT2 [UHD Graphics 630] [8086:3e9b]
+	Subsystem: Lenovo Device [17aa:39fd]
+	Kernel driver in use: i915
+	Kernel modules: i915
+00:04.0 Signal processing controller [1180]: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor Thermal Subsystem [8086:1903] (rev 07)
+	Subsystem: Lenovo Device [17aa:381f]
+	Kernel modules: processor_thermal_device_pci_legacy
+00:08.0 System peripheral [0880]: Intel Corporation Xeon E3-1200 v5/v6 / E3-1500 v5 / 6th/7th/8th Gen Core Processor Gaussian Mixture Model [8086:1911]
+	Subsystem: Lenovo Device [17aa:384e]
+00:12.0 Signal processing controller [1180]: Intel Corporation Cannon Lake PCH Thermal Controller [8086:a379] (rev 10)
+	Subsystem: Lenovo Device [17aa:3807]
+	Kernel driver in use: intel_pch_thermal
+	Kernel modules: intel_pch_thermal
+00:14.0 USB controller [0c03]: Intel Corporation Cannon Lake PCH USB 3.1 xHCI Host Controller [8086:a36d] (rev 10)
+	Subsystem: Lenovo Device [17aa:3803]
+	Kernel driver in use: xhci_hcd
+00:14.2 RAM memory [0500]: Intel Corporation Cannon Lake PCH Shared SRAM [8086:a36f] (rev 10)
+	Subsystem: Lenovo Device [17aa:3801]
+00:15.0 Serial bus controller [0c80]: Intel Corporation Cannon Lake PCH Serial IO I2C Controller #0 [8086:a368] (rev 10)
+	Subsystem: Lenovo Device [17aa:3806]
+	Kernel driver in use: intel-lpss
+	Kernel modules: intel_lpss_pci
+00:15.1 Serial bus controller [0c80]: Intel Corporation Cannon Lake PCH Serial IO I2C Controller #1 [8086:a369] (rev 10)
+	Subsystem: Lenovo Device [17aa:3809]
+	Kernel driver in use: intel-lpss
+	Kernel modules: intel_lpss_pci
+00:16.0 Communication controller [0780]: Intel Corporation Cannon Lake PCH HECI Controller [8086:a360] (rev 10)
+	Subsystem: Lenovo Device [17aa:380e]
+	Kernel driver in use: mei_me
+	Kernel modules: mei_me
+00:17.0 SATA controller [0106]: Intel Corporation Cannon Lake Mobile PCH SATA AHCI Controller [8086:a353] (rev 10)
+	Subsystem: Lenovo Device [17aa:380a]
+	Kernel driver in use: ahci
+	Kernel modules: ahci
+00:1d.0 PCI bridge [0604]: Intel Corporation Cannon Lake PCH PCI Express Root Port #9 [8086:a330] (rev f0)
+	Kernel driver in use: pcieport
+00:1d.4 PCI bridge [0604]: Intel Corporation Cannon Lake PCH PCI Express Root Port #13 [8086:a334] (rev f0)
+	Kernel driver in use: pcieport
+00:1d.5 PCI bridge [0604]: Intel Corporation Cannon Lake PCH PCI Express Root Port #14 [8086:a335] (rev f0)
+	Kernel driver in use: pcieport
+00:1e.0 Communication controller [0780]: Intel Corporation Cannon Lake PCH Serial IO UART Host Controller [8086:a328] (rev 10)
+	Subsystem: Lenovo Device [17aa:380f]
+	Kernel driver in use: intel-lpss
+	Kernel modules: intel_lpss_pci
+00:1f.0 ISA bridge [0601]: Intel Corporation HM370 Chipset LPC/eSPI Controller [8086:a30d] (rev 10)
+	Subsystem: Lenovo Device [17aa:3810]
+00:1f.3 Audio device [0403]: Intel Corporation Cannon Lake PCH cAVS [8086:a348] (rev 10)
+	Subsystem: Lenovo Device [17aa:3812]
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel, snd_soc_skl, snd_soc_avs, snd_sof_pci_intel_cnl
+00:1f.4 SMBus [0c05]: Intel Corporation Cannon Lake PCH SMBus Controller [8086:a323] (rev 10)
+	Subsystem: Lenovo Device [17aa:3813]
+	Kernel driver in use: i801_smbus
+	Kernel modules: i2c_i801
+00:1f.5 Serial bus controller [0c80]: Intel Corporation Cannon Lake PCH SPI Controller [8086:a324] (rev 10)
+	Subsystem: Lenovo Device [17aa:3801]
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP107M [GeForce GTX 1050 Ti Mobile] [10de:1c8c] (rev a1)
+	Subsystem: Lenovo Device [17aa:39fd]
+	Kernel driver in use: nouveau
+	Kernel modules: nouveau
+01:00.1 Audio device [0403]: NVIDIA Corporation GP107GL High Definition Audio Controller [10de:0fb9] (rev a1)
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+06:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller 980 (DRAM-less) [144d:a809]
+	Subsystem: Samsung Electronics Co Ltd Device [144d:a801]
+	Kernel driver in use: nvme
+	Kernel modules: nvme
+08:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 15)
+	Subsystem: Lenovo Device [17aa:38b4]
+	Kernel driver in use: r8169
+	Kernel modules: r8169
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 13d3:56a6 IMC Networks Integrated Camera
+Bus 001 Device 003: ID 0bda:b023 Realtek Semiconductor Corp. RTL8822BE Bluetooth 4.2 Adapter
+Bus 001 Device 004: ID 05e3:0610 Genesys Logic, Inc. Hub
+Bus 001 Device 016: ID 046d:c077 Logitech, Inc. Mouse
+Bus 001 Device 017: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 030: ID 18d1:4eeb Google Inc. Pixel 9 Pro XL
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 002 Device 002: ID 05e3:0625 Genesys Logic, Inc. USB3.2 Hub
+--------------------------
+[5] FIRMWARE STATUS
+[    3.894048] nouveau 0000:01:00.0: pmu: firmware unavailable
+[    4.292091] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
+[    4.334506] ACPI: video: [Firmware Bug]: ACPI(PEGP) defines _DOD but not _DOS
+[   21.137998] systemd[1]: TPM2 PCR Machine ID Measurement was skipped because of an unmet condition check (ConditionPathExists=/sys/firmware/efi/efivars/StubPcrKernelImage-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f).
+[   23.755453] rtw_8822be 0000:07:00.0: Firmware version 30.20.0, H2C version 14
+[18446744055.168152] [Firmware Bug]: TSC ADJUST differs: CPU0 0 --> -251071678. Restoring
+LENOVO 81FV
+│
+├─ELAN061B:00 04F3:309E:
+│     Device ID:          a8c3d91fe09254cd4f3047b8888467ca9bd7eb1d
+│     Summary:            Touchpad
+│     Current version:    0x0003
+│     Bootloader Version: 0x0000
+│     Vendor:             ELAN Microelectronics (HIDRAW:0x04F3)
+│     GUIDs:              3e613ea9-68b5-5c28-9a69-45b76862887d ← HIDRAW\VEN_04F3&DEV_309E
+│                         acb4171c-d4bc-5e89-8d79-55901d7bfe47 ← HIDRAW\VEN_04F3&DEV_309E&MOD_0019
+│                         2a453884-0eca-54ef-8de6-4b06553550a2 ← ELANTP\ICTYPE_10&MOD_0019
+│                         3817581e-8d61-583d-83de-5a8cc6ec705d ← ELANTP\ICTYPE_10&MOD_0019&DRIVER_HID
+│     Device Flags:       • Internal device
+│                         • Updatable
+│                         • Unsigned Payload
+│   
+├─Core™ i7-8750H CPU @ 2.20GHz:
+│     Device ID:          4bde70ba4e39b28f9eab1628f9dd6e6244c03027
+│     Current version:    0x000000fa
+│     Vendor:             Intel
+│     GUIDs:              809a0b93-8a12-5338-a571-ad5583acf896 ← CPUID\PRO_0&FAM_06&MOD_9E
+│                         72ec2ff3-49ff-5ec2-bdbb-525badd47543 ← CPUID\PRO_0&FAM_06&MOD_9E&STP_A
+│     Device Flags:       • Internal device
+│   
+├─GP107M [GeForce GTX 1050 Ti Mobile]:
+│     Device ID:          ce4c74a5188d5b9cdb1e72ed32dad2d313c1c999
+│     Current version:    a1
+│     Vendor:             NVIDIA Corporation (PCI:0x10DE, PCI:0x8086)
+│     GUIDs:              04232c57-d805-551d-a1de-1bba9350d71f ← PCI\VEN_10DE&DEV_1C8C
+│                         a188a8d5-1a20-53e7-98fe-7a77d1426330 ← PCI\VEN_10DE&DEV_1C8C&SUBSYS_17AA39FD
+│                         d29269b6-e458-5f45-975c-9d52bb38e35f ← PCI\VEN_8086&DEV_1901
+│                         dfd21b77-df85-543b-9bd8-d57a4d1c7ef4 ← PCI\VEN_8086&DEV_1901&SUBSYS_17AA380C
+│     Device Flags:       • Internal device
+│                         • Cryptographic hash verification is available
+│   
+└─SSD 980 1TB:
+      Device ID:          0fba4a8bedba53076fc9b147655e59455bc25a87
+      Summary:            NVM Express solid state drive
+      Current version:    2B4QFXO7
+      Vendor:             Samsung (NVME:0x144D)
+      Serial Number:      S64ANL0T704369J
+      GUIDs:              8b86707a-1412-5389-8f66-725224d28879 ← NVME\VEN_144D&DEV_A809
+                          71c19ff0-0bc0-5c85-aa6f-ba47fcc33eee ← NVME\VEN_144D&DEV_A809&SUBSYS_144DA801
+                          415e060d-f40b-5374-b825-5f2a8ad2eebe ← Samsung SSD 980 1TB
+      Device Flags:       • Internal device
+                          • Updatable
+                          • System requires external power source
+                          • Needs a reboot after installation
+                          • Device is usable for the duration of the update
+                          • Signed Payload
+    
+--------------------------
+[6] NETWORK INTERFACES
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp8s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 8c:16:45:c8:e7:c6 brd ff:ff:ff:ff:ff:ff
+22: enp0s20f0u4u2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:f5:35:08:2c:85 brd ff:ff:ff:ff:ff:ff
+    inet 10.96.248.233/24 brd 10.96.248.255 scope global dynamic noprefixroute enp0s20f0u4u2
+       valid_lft 1976sec preferred_lft 1976sec
+    inet6 fe80::dbf8:4efd:241a:2562/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+DEVICE         TYPE      STATE                   CONNECTION         
+enp0s20f0u4u2  ethernet  connected               Wired connection 1 
+lo             loopback  connected (externally)  lo                 
+enp8s0         ethernet  unavailable             --                 
+driver: r8169
+version: 5.14.0-611.16.1.el9_7.x86_64
+firmware-version: rtl8168h-2_0.0.2 02/26/15
+expansion-rom-version: 
+bus-info: 0000:08:00.0
+supports-statistics: yes
+supports-test: no
+supports-eeprom-access: no
+supports-register-dump: yes
+supports-priv-flags: no
+--------------------------
+[7] GPU INFO
+00:02.0 VGA compatible controller: Intel Corporation CoffeeLake-H GT2 [UHD Graphics 630]
+01:00.0 VGA compatible controller: NVIDIA Corporation GP107M [GeForce GTX 1050 Ti Mobile] (rev a1)
+OpenGL vendor string: Intel
+OpenGL renderer string: Mesa Intel(R) UHD Graphics 630 (CFL GT2)
+OpenGL core profile version string: 4.6 (Core Profile) Mesa 25.0.7
+OpenGL core profile shading language version string: 4.60
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 4.6 (Compatibility Profile) Mesa 25.0.7
+OpenGL shading language version string: 4.60
+OpenGL context flags: (none)
+OpenGL profile mask: compatibility profile
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.2 Mesa 25.0.7
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
+OpenGL ES profile extensions:
+--------------------------
+[8] AUDIO DEVICES
+**** List of PLAYBACK Hardware Devices ****
+card 0: PCH [HDA Intel PCH], device 0: ALC236 Analog [ALC236 Analog]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: NVidia [HDA NVidia], device 3: HDMI 0 [HG540T40]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: NVidia [HDA NVidia], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: NVidia [HDA NVidia], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: NVidia [HDA NVidia], device 9: HDMI 3 [HDMI 3]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+--------------------------
+[9] BOOT & DRIVER ERRORS
+Jan 01 13:47:53 localhost kernel: x86/cpu: SGX disabled or unsupported by BIOS.
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.XHC.RHUB.TPLD], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS01], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS02], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS03], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS04], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS05], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS06], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS07], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS08], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS09], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS10], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR1], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR2], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS01], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS02], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS03], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS04], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS05], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS06], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C2.TPD0], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C3.TPL1], AE_NOT_FOUND (20230331/dswload2-162)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._ON], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:47:53 localhost kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._OFF], AE_ALREADY_EXISTS (20230331/dswload2-326)
+Jan 01 13:47:53 localhost kernel: ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+Jan 01 13:48:03 localhost systemd-cryptsetup[629]: Failed to activate with specified passphrase. (Passphrase incorrect?)
+Jan 01 13:48:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:20 localhost.localdomain setroubleshoot[1918]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 13:48:20 localhost.localdomain setroubleshoot[1918]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 13:48:20 localhost.localdomain setroubleshoot[1918]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 13:48:20 localhost.localdomain setroubleshoot[1918]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 13:48:20 localhost.localdomain setroubleshoot[1918]: SELinux is preventing /usr/libexec/switcheroo-control from using the sys_admin capability. For complete SELinux messages run: sealert -l 674f7478-5e1f-47d7-8e55-d712dcabc0a0
+Jan 01 13:48:22 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:48:22 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to read ASPM, ret=-5
+Jan 01 13:48:23 localhost.localdomain dbus-broker-launch[2017]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.xfce.Thunar.FileManager1.service'
+Jan 01 13:48:23 localhost.localdomain dbus-broker-launch[2017]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.kde.dolphin.FileManager1.service'
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:48:25 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:48:33 localhost.localdomain bluetoothd[1683]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:48:34 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:48:36 localhost.localdomain sddm-helper[4637]: gkr-pam: unable to locate daemon control file
+Jan 01 13:48:37 localhost.localdomain dbus-broker-launch[5069]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.xfce.Thunar.FileManager1.service'
+Jan 01 13:48:37 localhost.localdomain dbus-broker-launch[5069]: Ignoring duplicate name 'org.freedesktop.FileManager1' in service file '/usr/share//dbus-1/services/org.kde.dolphin.FileManager1.service'
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:48:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:48:47 localhost.localdomain systemd-coredump[7278]: Process 6295 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 6295:
+                                                              #0  0x00007fa91588d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007fa91583fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007fa916c6249b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007fa91583fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007fa917974036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007fa91797762d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007fa9179640b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007fa9162dbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007fa9162def8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007fa9162d2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007fa916faf533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007fa9162a79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007fa9162f8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007fa9162f946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007fa914c7af4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007fa914cd0268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007fa914c78713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007fa9162f9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007fa9162a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007fa9162ae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x00005652e41d0011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007fa91582a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007fa91582a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x00005652e41d0295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 6576:
+                                                              #0  0x00007fa9159030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007fa914cd01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007fa914c78713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007fa9162f98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007fa9162a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007fa9160e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007fa9160e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #7  0x00007fa91588b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007fa9159103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6658:
+                                                              #0  0x00007fa9159030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007fa8e77df1e6 poll_func (libpulse.so.0 + 0x351e6)
+                                                              #2  0x00007fa8e77c8531 pa_mainloop_poll (libpulse.so.0 + 0x1e531)
+                                                              #3  0x00007fa8e77d304b pa_mainloop_iterate (libpulse.so.0 + 0x2904b)
+                                                              #4  0x00007fa8e77d3100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007fa8e77e32fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007fa8e73d4543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007fa91588b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007fa9159103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6340:
+                                                              #0  0x00007fa9159030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007fa914cd01fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007fa914c78713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007fa9162f98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007fa9162a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007fa9160e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007fa9175d7b8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007fa9160e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007fa91588b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007fa9159103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6484:
+                                                              #0  0x00007fa91588837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007fa91588a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007fa8f5d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007fa8f5cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007fa91588b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007fa9159103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6485:
+                                                              #0  0x00007fa91588837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007fa91588a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007fa8f5d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007fa8f5cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007fa91588b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007fa9159103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Jan 01 13:48:47 localhost.localdomain bluetoothd[1683]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:48:51 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:49:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:49:20 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:49:45 localhost.localdomain systemd-coredump[7713]: Process 6929 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 6929:
+                                                              #0  0x00007f213e48d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007f213e43fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007f213f19849b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007f213e43fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007f214065b036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007f214065e62d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007f214064b0b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007f213eedbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007f213eedef8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007f213eed2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007f213fbaf533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007f213eea79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007f213eef8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007f213eef946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007f213d931f4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007f213d987268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007f213d92f713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007f213eef9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007f213eea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007f213eeae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x000055e7d2bd7011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007f213e42a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007f213e42a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x000055e7d2bd7295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 6966:
+                                                              #0  0x00007f213e4ff0ac read (libc.so.6 + 0xff0ac)
+                                                              #1  0x00007f213d93233f g_main_context_check (libglib-2.0.so.0 + 0x5533f)
+                                                              #2  0x00007f213d9870fb g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa0fb)
+                                                              #3  0x00007f213d92f713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #4  0x00007f213eef98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #5  0x00007f213eea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #6  0x00007f213ece8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #7  0x00007f213ece9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f213e48b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f213e5103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6977:
+                                                              #0  0x00007f213e5030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f21141901e6 poll_func (libpulse.so.0 + 0x351e6)
+                                                              #2  0x00007f2114179531 pa_mainloop_poll (libpulse.so.0 + 0x1e531)
+                                                              #3  0x00007f211418404b pa_mainloop_iterate (libpulse.so.0 + 0x2904b)
+                                                              #4  0x00007f2114184100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007f21141942fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007f211412f543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007f213e48b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007f213e5103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6942:
+                                                              #0  0x00007f213e48837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f213e48a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f212490b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f21248fb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f213e48b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f213e5103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6943:
+                                                              #0  0x00007f213e48837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f213e48a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f212490b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f21248fb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f213e48b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f213e5103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 6931:
+                                                              #0  0x00007f213e5030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f213d9871fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007f213d92f713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007f213eef9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #4  0x00007f213eea6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007f213ece8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007f21402beb8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007f213ece9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f213e48b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f213e5103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Jan 01 13:49:49 localhost.localdomain systemd-coredump[7721]: Process 7280 (kdeconnectd) of user 1000 dumped core.
+                                                              
+                                                              Stack trace of thread 7280:
+                                                              #0  0x00007f338ca8d02c __pthread_kill_implementation (libc.so.6 + 0x8d02c)
+                                                              #1  0x00007f338ca3fb86 raise (libc.so.6 + 0x3fb86)
+                                                              #2  0x00007f338e71f49b _ZN6KCrash19defaultCrashHandlerEi (libKF5Crash.so.5 + 0x849b)
+                                                              #3  0x00007f338ca3fc30 __restore_rt (libc.so.6 + 0x3fc30)
+                                                              #4  0x00007f338ecc8036 _ZN16KdeConnectConfig8deviceIdEv (libkdeconnectcore.so.23 + 0x33036)
+                                                              #5  0x00007f338eccb62d _ZN16KdeConnectConfig10deviceInfoEv (libkdeconnectcore.so.23 + 0x3662d)
+                                                              #6  0x00007f338ecb80b5 _ZN15LanLinkProvider18broadcastToNetworkEv (libkdeconnectcore.so.23 + 0x230b5)
+                                                              #7  0x00007f338d4dbd09 _Z10doActivateILb0EEvP7QObjectiPPv (libQt5Core.so.5 + 0x2dbd09)
+                                                              #8  0x00007f338d4def8e _ZN6QTimer7timeoutENS_14QPrivateSignalE (libQt5Core.so.5 + 0x2def8e)
+                                                              #9  0x00007f338d4d2d2f _ZN7QObject5eventEP6QEvent (libQt5Core.so.5 + 0x2d2d2f)
+                                                              #10 0x00007f338e1af533 _ZN19QApplicationPrivate13notify_helperEP7QObjectP6QEvent (libQt5Widgets.so.5 + 0x1af533)
+                                                              #11 0x00007f338d4a79f8 _ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent (libQt5Core.so.5 + 0x2a79f8)
+                                                              #12 0x00007f338d4f8b73 _ZN14QTimerInfoList14activateTimersEv (libQt5Core.so.5 + 0x2f8b73)
+                                                              #13 0x00007f338d4f946c _ZL19timerSourceDispatchP8_GSourcePFiPvES1_ (libQt5Core.so.5 + 0x2f946c)
+                                                              #14 0x00007f338bfeaf4f g_main_context_dispatch (libglib-2.0.so.0 + 0x54f4f)
+                                                              #15 0x00007f338c040268 g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa268)
+                                                              #16 0x00007f338bfe8713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #17 0x00007f338d4f9878 _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f9878)
+                                                              #18 0x00007f338d4a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #19 0x00007f338d4ae934 _ZN16QCoreApplication4execEv (libQt5Core.so.5 + 0x2ae934)
+                                                              #20 0x00005622ad24f011 main (kdeconnectd + 0x5011)
+                                                              #21 0x00007f338ca2a610 __libc_start_call_main (libc.so.6 + 0x2a610)
+                                                              #22 0x00007f338ca2a6c0 __libc_start_main@@GLIBC_2.34 (libc.so.6 + 0x2a6c0)
+                                                              #23 0x00005622ad24f295 _start (kdeconnectd + 0x5295)
+                                                              
+                                                              Stack trace of thread 7291:
+                                                              #0  0x00007f338cb030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f338c0401fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007f338bfe8713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007f338d4f98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007f338d4a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007f338d2e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007f338d2e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #7  0x00007f338ca8b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007f338cb103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 7292:
+                                                              #0  0x00007f338cb030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f336bfdf1e6 poll_func (libpulse.so.0 + 0x351e6)
+                                                              #2  0x00007f336bfc8531 pa_mainloop_poll (libpulse.so.0 + 0x1e531)
+                                                              #3  0x00007f336bfd304b pa_mainloop_iterate (libpulse.so.0 + 0x2904b)
+                                                              #4  0x00007f336bfd3100 pa_mainloop_run (libpulse.so.0 + 0x29100)
+                                                              #5  0x00007f336bfe32fd thread (libpulse.so.0 + 0x392fd)
+                                                              #6  0x00007f336bf7e543 internal_thread_func (libpulsecommon-15.0.so + 0x61543)
+                                                              #7  0x00007f338ca8b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #8  0x00007f338cb103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 7284:
+                                                              #0  0x00007f338ca8837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f338ca8a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f3371d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f3371cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f338ca8b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f338cb103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 7285:
+                                                              #0  0x00007f338ca8837a __futex_abstimed_wait_common (libc.so.6 + 0x8837a)
+                                                              #1  0x00007f338ca8a8d2 pthread_cond_wait@@GLIBC_2.3.2 (libc.so.6 + 0x8a8d2)
+                                                              #2  0x00007f3371d0b22b util_queue_thread_func (libgallium-25.0.7.so + 0x50b22b)
+                                                              #3  0x00007f3371cfb9bb impl_thrd_routine.lto_priv.0 (libgallium-25.0.7.so + 0x4fb9bb)
+                                                              #4  0x00007f338ca8b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #5  0x00007f338cb103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              
+                                                              Stack trace of thread 7281:
+                                                              #0  0x00007f338cb030bf __poll (libc.so.6 + 0x1030bf)
+                                                              #1  0x00007f338c0401fc g_main_context_iterate.constprop.0 (libglib-2.0.so.0 + 0xaa1fc)
+                                                              #2  0x00007f338bfe8713 g_main_context_iteration (libglib-2.0.so.0 + 0x52713)
+                                                              #3  0x00007f338d4f98ee _ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2f98ee)
+                                                              #4  0x00007f338d4a6402 _ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE (libQt5Core.so.5 + 0x2a6402)
+                                                              #5  0x00007f338d2e8a1a _ZN7QThread4execEv (libQt5Core.so.5 + 0xe8a1a)
+                                                              #6  0x00007f338e92bb8b _ZN22QDBusConnectionManager3runEv (libQt5DBus.so.5 + 0x1bb8b)
+                                                              #7  0x00007f338d2e9cfd _ZN14QThreadPrivate5startEPv (libQt5Core.so.5 + 0xe9cfd)
+                                                              #8  0x00007f338ca8b2ea start_thread (libc.so.6 + 0x8b2ea)
+                                                              #9  0x00007f338cb103c0 __clone3 (libc.so.6 + 0x1103c0)
+                                                              ELF object binary architecture: AMD x86-64
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:49:54 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:50:37 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:51:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: leave idle state failed
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to send h2c command
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave ips state
+Jan 01 13:53:16 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to leave idle state
+Jan 01 13:55:17 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:55:19 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:55:19 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:55:19 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 13:58:02 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 13:58:02 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 13:58:02 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:47:21 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: Unable to change power state from D0 to D3hot, device inaccessible
+Jan 01 16:47:21 localhost.localdomain kernel: ACPI Error: No installed handler for fixed event - PowerButton (2), disabling (20230331/evevent-255)
+Jan 01 16:47:24 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:47:24 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:47:24 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:47:26 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:47:26 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:47:26 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:47:28 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:47:28 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:47:28 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:47:28 localhost.localdomain NetworkManager[1917]: <error> [1767314848.9885] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:47:28 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:47:28 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:47:28 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:47:31 localhost.localdomain bluetoothd[1683]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Jan 01 16:47:41 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:47:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:47:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:47:41 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:47:41 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:47:41 localhost.localdomain NetworkManager[1917]: <error> [1767314861.1893] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:47:41 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:47:53 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:47:53 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:47:53 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:47:53 localhost.localdomain NetworkManager[1917]: <error> [1767314873.2026] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:47:53 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:47:53 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:47:53 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:48:05 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:48:05 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:48:05 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:48:05 localhost.localdomain NetworkManager[1917]: <error> [1767314885.1989] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:48:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:48:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:48:05 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:48:17 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:48:17 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:48:17 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:48:17 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:48:17 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:48:17 localhost.localdomain NetworkManager[1917]: <error> [1767314897.2001] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:48:17 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:48:29 localhost.localdomain wpa_supplicant[1956]: Could not set interface wlp7s0 flags (UP): Operation already in progress
+Jan 01 16:48:29 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+Jan 01 16:48:29 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: mac power on failed
+Jan 01 16:48:29 localhost.localdomain kernel: rtw_8822be 0000:07:00.0: failed to power on mac
+Jan 01 16:48:29 localhost.localdomain wpa_supplicant[1956]: nl80211: Could not set interface 'wlp7s0' UP
+Jan 01 16:48:29 localhost.localdomain NetworkManager[1917]: <error> [1767314909.1981] device (wlp7s0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Jan 01 16:48:29 localhost.localdomain wpa_supplicant[1956]: wlp7s0: Failed to initialize driver interface
+Jan 01 16:55:35 localhost.localdomain kernel: usb 1-4.2: device not accepting address 5, error -71
+Jan 01 17:08:58 localhost.localdomain kernel: usb 1-4.2: device not accepting address 19, error -71
+Jan 01 17:08:59 localhost.localdomain kernel: usb 1-4-port2: Cannot enable. Maybe the USB cable is bad?
+Jan 01 17:10:36 localhost.localdomain kernel: usb 1-4.2: device descriptor read/64, error -71
+Jan 01 17:36:16 localhost.localdomain cupsd[1965]: [Client 2] Returning IPP client-error-bad-request for Create-Printer-Subscriptions (/) from localhost.
+--------------------------
+[10] DETECTING POSSIBLE MISSING DRIVERS
+[    0.267867] ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.XHC.RHUB.TPLD], AE_ALREADY_EXISTS (20230331/dswload2-326)
+[    0.268189] ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+[    0.268849] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS01], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.269164] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.269792] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS02], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.269814] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.270452] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS03], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.270767] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.271151] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS04], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.271465] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.271843] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS05], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.272156] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.272782] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS06], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.272814] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.273451] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS07], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.273764] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.274139] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS08], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.274455] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.274842] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS09], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.275156] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.275783] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.HS10], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.275814] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.283746] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR1], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.283814] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.284425] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.USR2], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.284746] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.285144] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS01], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.285458] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.285843] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS02], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.286159] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.286787] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS03], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.286814] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.287452] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS04], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.287767] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.288150] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS05], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.288462] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.288841] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.XHC.RHUB.SS06], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.289156] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.290774] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C2.TPD0], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.290815] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.291454] ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.I2C3.TPL1], AE_NOT_FOUND (20230331/dswload2-162)
+[    0.291768] ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230331/psobject-220)
+[    0.295085] ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._ON], AE_ALREADY_EXISTS (20230331/dswload2-326)
+[    0.295402] ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+[    0.295814] ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0.PEG0.PEGP._OFF], AE_ALREADY_EXISTS (20230331/dswload2-326)
+[    0.296136] ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20230331/psobject-220)
+[    1.673891] pcieport 0000:00:1d.0: DPC: error containment capabilities: Int Msg #0, RPExt+ PoisonedTLP+ SwTrigger+ RP PIO Log 4, DL_ActiveErr+
+[    1.676292] pcieport 0000:00:1d.5: DPC: error containment capabilities: Int Msg #0, RPExt+ PoisonedTLP+ SwTrigger+ RP PIO Log 4, DL_ActiveErr+
+[    2.685805] wmi_bus wmi_bus-PNP0C14:00: WQ data block query control method not found
+[    2.686107] wmi_bus wmi_bus-PNP0C14:00: WQ data block query control method not found
+[    2.686439] wmi_bus wmi_bus-PNP0C14:00: WQ data block query control method not found
+[    2.688009] wmi_bus wmi_bus-PNP0C14:00: WQ data block query control method not found
+[    4.292354] nouveau 0000:01:00.0: drm: BIT table 'A' not found
+[    4.292357] nouveau 0000:01:00.0: drm: BIT table 'L' not found
+[   20.029325] PM: Image not found (code -22)
+[   28.622118] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   28.625646] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   28.629151] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   30.836658] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   30.950562] failed to read DBI register, addr=0x0719
+[   30.973525] rtw_8822be 0000:07:00.0: failed to read ASPM, ret=-5
+[   33.266781] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   33.266792] rtw_8822be 0000:07:00.0: mac power on failed
+[   33.266794] rtw_8822be 0000:07:00.0: failed to power on mac
+[   33.266796] rtw_8822be 0000:07:00.0: leave idle state failed
+[   33.269943] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   33.273126] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   33.276299] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   33.276481] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   33.276484] rtw_8822be 0000:07:00.0: failed to leave idle state
+[   42.298245] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   42.298275] rtw_8822be 0000:07:00.0: mac power on failed
+[   42.298278] rtw_8822be 0000:07:00.0: failed to power on mac
+[   42.298281] rtw_8822be 0000:07:00.0: leave idle state failed
+[   42.301448] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   42.304658] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   42.307814] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   42.307970] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   42.307973] rtw_8822be 0000:07:00.0: failed to leave idle state
+[   49.291861] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   49.291893] rtw_8822be 0000:07:00.0: mac power on failed
+[   49.291897] rtw_8822be 0000:07:00.0: failed to power on mac
+[   49.291901] rtw_8822be 0000:07:00.0: leave idle state failed
+[   49.295051] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   49.298322] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   49.301523] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   49.301745] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   49.301752] rtw_8822be 0000:07:00.0: failed to leave idle state
+[   59.271505] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   59.271517] rtw_8822be 0000:07:00.0: mac power on failed
+[   59.271519] rtw_8822be 0000:07:00.0: failed to power on mac
+[   59.271520] rtw_8822be 0000:07:00.0: leave idle state failed
+[   59.274676] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   59.277828] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   59.280982] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   59.281156] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   59.281159] rtw_8822be 0000:07:00.0: failed to leave idle state
+[   73.292422] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   73.292433] rtw_8822be 0000:07:00.0: mac power on failed
+[   73.292435] rtw_8822be 0000:07:00.0: failed to power on mac
+[   73.292436] rtw_8822be 0000:07:00.0: leave idle state failed
+[   73.295607] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   73.298792] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   73.301972] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   73.302110] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   73.302117] rtw_8822be 0000:07:00.0: failed to leave idle state
+[   88.579203] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[   88.579276] rtw_8822be 0000:07:00.0: mac power on failed
+[   88.579283] rtw_8822be 0000:07:00.0: failed to power on mac
+[   88.579289] rtw_8822be 0000:07:00.0: leave idle state failed
+[   88.582467] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   88.585686] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   88.588851] rtw_8822be 0000:07:00.0: failed to send h2c command
+[   88.589069] rtw_8822be 0000:07:00.0: failed to leave ips state
+[   88.589074] rtw_8822be 0000:07:00.0: failed to leave idle state
+[  122.281192] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  122.281220] rtw_8822be 0000:07:00.0: mac power on failed
+[  122.281223] rtw_8822be 0000:07:00.0: failed to power on mac
+[  122.281225] rtw_8822be 0000:07:00.0: leave idle state failed
+[  122.284381] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  122.287533] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  122.290675] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  122.290975] rtw_8822be 0000:07:00.0: failed to leave ips state
+[  122.290979] rtw_8822be 0000:07:00.0: failed to leave idle state
+[  165.309927] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  165.309938] rtw_8822be 0000:07:00.0: mac power on failed
+[  165.309940] rtw_8822be 0000:07:00.0: failed to power on mac
+[  165.309941] rtw_8822be 0000:07:00.0: leave idle state failed
+[  165.313116] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  165.316322] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  165.319477] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  165.319617] rtw_8822be 0000:07:00.0: failed to leave ips state
+[  165.319619] rtw_8822be 0000:07:00.0: failed to leave idle state
+[  229.343095] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  229.343107] rtw_8822be 0000:07:00.0: mac power on failed
+[  229.343109] rtw_8822be 0000:07:00.0: failed to power on mac
+[  229.343110] rtw_8822be 0000:07:00.0: leave idle state failed
+[  229.346264] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  229.349433] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  229.352585] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  229.352726] rtw_8822be 0000:07:00.0: failed to leave ips state
+[  229.352729] rtw_8822be 0000:07:00.0: failed to leave idle state
+[  324.334076] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  324.334088] rtw_8822be 0000:07:00.0: mac power on failed
+[  324.334089] rtw_8822be 0000:07:00.0: failed to power on mac
+[  324.334091] rtw_8822be 0000:07:00.0: leave idle state failed
+[  324.337289] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  324.340459] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  324.343652] rtw_8822be 0000:07:00.0: failed to send h2c command
+[  324.343820] rtw_8822be 0000:07:00.0: failed to leave ips state
+[  324.343822] rtw_8822be 0000:07:00.0: failed to leave idle state
+[  445.391395] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  447.601843] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  447.601853] rtw_8822be 0000:07:00.0: mac power on failed
+[  447.601854] rtw_8822be 0000:07:00.0: failed to power on mac
+[  610.828220] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  610.828232] rtw_8822be 0000:07:00.0: mac power on failed
+[  610.828234] rtw_8822be 0000:07:00.0: failed to power on mac
+[  614.394306] ACPI Error: No installed handler for fixed event - PowerButton (2), disabling (20230331/evevent-255)
+[  617.625330] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  617.625341] rtw_8822be 0000:07:00.0: mac power on failed
+[  617.625343] rtw_8822be 0000:07:00.0: failed to power on mac
+[  619.855430] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  619.855442] rtw_8822be 0000:07:00.0: mac power on failed
+[  619.855443] rtw_8822be 0000:07:00.0: failed to power on mac
+[  622.094142] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  622.094153] rtw_8822be 0000:07:00.0: mac power on failed
+[  622.094155] rtw_8822be 0000:07:00.0: failed to power on mac
+[  634.294905] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  634.294916] rtw_8822be 0000:07:00.0: mac power on failed
+[  634.294917] rtw_8822be 0000:07:00.0: failed to power on mac
+[  646.308113] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  646.308125] rtw_8822be 0000:07:00.0: mac power on failed
+[  646.308127] rtw_8822be 0000:07:00.0: failed to power on mac
+[  658.304488] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  658.304499] rtw_8822be 0000:07:00.0: mac power on failed
+[  658.304501] rtw_8822be 0000:07:00.0: failed to power on mac
+[  670.305475] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  670.305487] rtw_8822be 0000:07:00.0: mac power on failed
+[  670.305488] rtw_8822be 0000:07:00.0: failed to power on mac
+[  682.303707] rtw_8822be 0000:07:00.0: failed to poll offset=0x5 mask=0x2 value=0x0
+[  682.303718] rtw_8822be 0000:07:00.0: mac power on failed
+[  682.303720] rtw_8822be 0000:07:00.0: failed to power on mac
+[ 1108.240428] usb 1-4.2: device not accepting address 5, error -71
+[ 1913.802095] usb 1-4.2: device not accepting address 19, error -71
+[ 2011.644521] usb 1-4.2: device descriptor read/64, error -71
+--------------------------

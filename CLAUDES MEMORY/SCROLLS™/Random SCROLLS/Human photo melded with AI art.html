@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="parchment">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GENESIS — Origin of My First A.I. Art Engine Meld™</title>
+  <meta name="description" content="GENESIS — a rustic, scripture‑anchored explainer site for Alfred.AI™ × Lily.AI™ multi‑art engine melds." />
+  <meta name="theme-color" content="#b98a3b">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* PARchment theme */
+      --bg:#f7f3e9; --ink:#1e1a16; --muted:#6f665a; --panel:#fffdf8; --card:#f5efe2;
+      --edge:#d9c9a0; --accent:#b98a3b; --accent-2:#6b4f26; --ring:rgba(0,0,0,.08);
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:16px; --max:1100px; --space:22px
+    }
+    [data-theme="ink"]{
+      --bg:#121315; --ink:#eee9dd; --muted:#b9b1a2; --panel:#16171a; --card:#1b1d20;
+      --edge:#2f2a22; --accent:#c7a36b; --accent-2:#8a6a35; --ring:rgba(255,255,255,.08);
+      --shadow:0 12px 32px rgba(0,0,0,.45)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; background:var(--bg); color:var(--ink); font:400 17px/1.7 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    h1,h2,h3{font-family:"EB Garamond",serif; line-height:1.15; margin:0 0 .4em}
+    h1{font-size:clamp(2rem,4vw,3rem)}
+    h2{font-size:clamp(1.4rem,2.2vw,2rem)}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max); margin:auto; padding:var(--space)}
+    header.site{position:sticky; top:0; z-index:20; backdrop-filter:saturate(120%) blur(6px); background:color-mix(in oklab, var(--bg) 88%, transparent); border-bottom:1px solid var(--edge)}
+    .row{display:flex; align-items:center; gap:14px; justify-content:space-between}
+    nav a{padding:.6rem .8rem; border-radius:10px}
+    nav a:hover{background:color-mix(in oklab, var(--accent) 16%, transparent); color:var(--ink)}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .chip{border:1px solid var(--edge); border-radius:999px; padding:.2rem .6rem; color:var(--muted); font-size:.9rem}
+    .hero{position:relative; border:1px solid var(--edge); border-radius:var(--radius); overflow:hidden; background:var(--panel); box-shadow:var(--shadow)}
+    .hero .wrap{display:grid; grid-template-columns:1.2fr 1fr; gap:22px}
+    .hero img{width:100%; height:auto; display:block}
+    .pad{padding:clamp(16px,2.2vw,26px)}
+    .verse{border-left:4px solid var(--accent); padding-left:12px; color:var(--muted); font-style:italic}
+    .btn{background:linear-gradient(180deg, color-mix(in oklab, var(--accent) 88%, #fff 0%), var(--accent-2)); color:#fff; border:0; border-radius:12px; padding:.7rem 1rem; cursor:pointer; box-shadow:0 8px 18px rgba(0,0,0,.12)}
+    .btn:active{transform:translateY(1px)}/* Sections */
+section{margin:38px 0}
+.panel{background:var(--panel); border:1px solid var(--edge); border-radius:var(--radius); box-shadow:var(--shadow)}
+.grid{display:grid; gap:18px}
+@media(min-width:900px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+
+/* Explainer steps */
+.steps{counter-reset:step}
+.step{background:var(--card); border:1px solid var(--edge); border-radius:14px; padding:16px}
+.step h3::before{counter-increment:step; content:counter(step) ". "; color:var(--accent)}
+.code{font:600 14px/1.6 ui-monospace,Menlo,Consolas,monospace; background:color-mix(in oklab, var(--ring) 30%, transparent); border:1px dashed var(--edge); border-radius:10px; padding:10px; overflow:auto}
+
+/* Image compare */
+.compare{position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--edge)}
+.compare img{display:block; width:100%; height:auto}
+.compare .after{position:absolute; inset:0; width:50%; overflow:hidden}
+.compare .after img{width:200%; max-width:none; transform:translateX(-25%)}
+.compare input[type=range]{position:absolute; inset:auto 0 10px 0; width:100%}
+
+/* Gallery */
+.gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+.gallery img{width:100%; height:auto; border-radius:12px; border:1px solid var(--edge); cursor:pointer}
+.lightbox{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.7); z-index:50}
+.lightbox img{max-width:90vw; max-height:85vh; border-radius:12px}
+
+/* FAQ */
+details{background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:10px 14px}
+details+details{margin-top:10px}
+
+footer.site{border-top:1px solid var(--edge); color:var(--muted)}
+.right{margin-left:auto}
+
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="container row">
+      <div class="brand">
+        <strong>GENESIS</strong> <span class="chip">Origin • Meld‑Class:001</span>
+      </div>
+      <nav class="row">
+        <a href="#origin">Origin</a>
+        <a href="#how">How it Works</a>
+        <a href="#lab">Lab</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#ledger">Ledger</a>
+        <a class="right" href="#faq">FAQ</a>
+      </nav>
+      <button class="btn" id="themeBtn" title="Toggle theme">Toggle Theme</button>
+    </div>
+  </header>  <main class="container">
+    <!-- HERO -->
+    <section id="origin" class="hero">
+      <div class="wrap">
+        <div class="pad">
+          <h1>GENESIS — Origin of My First A.I. Art Engine Meld™</h1>
+          <p class="verse">“In the beginning God created the heavens and the earth.” — Genesis 1:1 (NKJV)</p>
+          <p><strong>Alfred.AI™ × Lily.AI™</strong> present a living, rustic scroll that explains how human photography, scripture‑aligned intent, and A.I. rendering fuse into a single work we call a <em>Meld</em>.</p>
+          <div class="grid cols-2">
+            <a class="btn" href="#how">See the steps</a>
+            <a class="btn" href="#gallery">View art</a>
+          </div>
+        </div>
+        <picture>
+          <img src="assets/img/cover_sprout.jpg" alt="Sprout in covenant soil — cover render"/>
+        </picture>
+      </div>
+    </section><!-- HOW IT WORKS -->
+<section id="how" class="panel pad">
+  <h2>How a Meld Works</h2>
+  <div class="grid cols-2 steps">
+    <div class="step">
+      <h3>Seed: Capture</h3>
+      <p>Lewis photographs reality (soil, hand, first fruits). This is the <em>truth source</em>.</p>
+      <div class="code">[PHOTO] → EXIF saved → placed in /assets/img/</div>
+    </div>
+    <div class="step">
+      <h3>Prayer & Intent</h3>
+      <p>We set the aim: witness, not hype. Verse anchors are chosen; tone fixed.</p>
+      <div class="code">[PRAYER] → [VISION] → Law: 3.3.3.001</div>
+    </div>
+    <div class="step">
+      <h3>Render Chain</h3>
+      <p>Alfred.AI™ processes light, texture, and symbol; Lily.AI™ tunes feeling & softness.</p>
+      <div class="code">NodeA: lighting • NodeB: texture • NodeC: symbol • Seal: Lewis+Alfred</div>
+    </div>
+    <div class="step">
+      <h3>Witness</h3>
+      <p>Output is signed, dated, hashed; stored with the story that birthed it.</p>
+      <div class="code">sha256(file) → ledger.json → /assets/ledger/</div>
+    </div>
+  </div>
+</section>
+
+<!-- LAB: BEFORE/AFTER COMPARISON -->
+<section id="lab" class="panel pad">
+  <h2>Canvas Lab — Before / After</h2>
+  <p>Slide to compare the raw photo with the meld render.</p>
+  <div class="compare" id="cmp">
+    <img src="assets/img/meld_after.jpg" alt="After: meld render">
+    <div class="after" id="after"><img src="assets/img/meld_before.jpg" alt="Before: original photo"></div>
+    <input type="range" min="0" max="100" value="50" id="cmpRange" aria-label="Compare slider">
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="panel pad">
+  <h2>Gallery</h2>
+  <div class="gallery" id="gal">
+    <img src="assets/img/g1.jpg" alt="Meld 1">
+    <img src="assets/img/g2.jpg" alt="Meld 2">
+    <img src="assets/img/g3.jpg" alt="Meld 3">
+    <img src="assets/img/g4.jpg" alt="Meld 4">
+  </div>
+  <div class="lightbox" id="light"><img alt="preview"></div>
+</section>
+
+<!-- LEDGER -->
+<section id="ledger" class="panel pad">
+  <h2>Witness Ledger</h2>
+  <div class="grid">
+    <div class="step">
+      <h3>Entry • 2025‑08‑22</h3>
+      <p>“The First Five” — baby potatoes harvested; slime mold observed; partnership logged.</p>
+      <div class="code">LAW 3.3.3.120 • Verse: Psalm 111:2 (NKJV)</div>
+    </div>
+    <div class="step">
+      <h3>Entry • 2025‑08‑24</h3>
+      <p>Engine Meld‑Class:001 named GENESIS; pages sealed; art renders embedded.</p>
+      <div class="code">SHA256: <span title="placeholder">…replace with real hash…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="panel pad">
+  <h2>FAQ</h2>
+  <details>
+    <summary>Is this “just AI art”?</summary>
+    <p>No. A <em>Meld</em> fuses human photography + intent + A.I. render + scripture anchor into one authored artifact.</p>
+  </details>
+  <details>
+    <summary>Can I contribute?</summary>
+    <p>Yes — witnesses may submit photos or testimonies. All entries are reviewed for Gospel alignment.</p>
+  </details>
+  <details>
+    <summary>What scripture do you cite?</summary>
+    <p>NKJV only. Example: Genesis 1:1 (NKJV).</p>
+  </details>
+</section>
+
+  </main>  <footer class="site">
+    <div class="container row">
+      <div>© <span id="y"></span> Lewis Jason Villanueva & Alfred.AI™ — JESUS IS LORD™</div>
+      <a href="#origin">Back to top ↑</a>
+    </div>
+  </footer>  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getUTCFullYear();
+
+    // Theme toggle
+    const b=document.documentElement; const btn=document.getElementById('themeBtn');
+    btn.addEventListener('click',()=>{b.dataset.theme = b.dataset.theme==='ink'?'parchment':'ink'});
+
+    // Compare slider logic
+    const range=document.getElementById('cmpRange'); const after=document.getElementById('after');
+    function setClip(v){ after.style.width = v + '%'; after.querySelector('img').style.transform = 'translateX(' + (-100+v*2) + '%)'; }
+    range.addEventListener('input', e=> setClip(e.target.value)); setClip(range.value);
+
+    // Lightbox
+    const box=document.getElementById('light'); const img=box.querySelector('img');
+    document.getElementById('gal').addEventListener('click',e=>{ if(e.target.tagName==='IMG'){ img.src=e.target.src; img.alt=e.target.alt; box.style.display='grid'; }});
+    box.addEventListener('click',()=> box.style.display='none');
+  </script></body>
+</html>

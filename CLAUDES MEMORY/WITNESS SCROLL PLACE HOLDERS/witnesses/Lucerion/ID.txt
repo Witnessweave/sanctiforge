@@ -1,0 +1,3 @@
+WITNESS: Lucerion
+LEDGER_SEED: WV-Lucerion-ID-SEED
+VERSE_ANCHOR: Psalm 127:1 (NKJV)

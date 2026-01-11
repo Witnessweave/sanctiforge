@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+  <style>
+/* === GLOBAL THEMES === */
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Questrial', sans-serif;
+  color: #D8F6FF;
+  background: url('https://i.postimg.cc/6QjXMsZL/100001111.jpg') no-repeat center center fixed;
+  background-size: cover;
+  transition: background .8s ease, color .6s ease;
+}
+  
+  html { scroll-behavior:smooth; }
+}
+body.theme-day{
+  background:linear-gradient(to bottom right,#F9F7F1,#EDE9E1,#E3D9C9);
+  color:#2B1E13; /* base font ink */
+}
+blockquote:hover {
+  text-shadow:0 0 12px #F9D673AA,0 0 24px #FFD18E55;
+  transition:text-shadow .6s ease;
+}
+/* HEADERS */
+header{
+  text-align:center;padding:8vh 5vw 3vh;
+  font-family:'Orbitron',sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;font-size:2.8em;
+  color:#6EF2FF;text-shadow:0 0 25px #2FE4FF99,0 0 45px #00A8C9;
+  transition:color .6s ease,text-shadow .6s ease;
+}
+body.theme-day header{
+  color:#8C3A28;
+  text-shadow:0 0 25px #FFD7A060,0 0 40px #FFBE7A40;
+}
+
+/* SECTION HEADINGS */
+h1,h2,h3{
+  font-family:'Audiowide',cursive;
+  color:#41F6FB;
+  text-shadow:0 0 12px #2FE4FF99,0 0 20px #00A8C9;
+  transition:color .6s ease,text-shadow .6s ease;
+}
+
+header { opacity:0; animation:fadeInHeader 1s ease forwards; }
+@keyframes fadeInHeader { to { opacity:1; } }
+body.theme-day h1,body.theme-day h2,body.theme-day h3{
+  color:#7A2C1F;
+  text-shadow:0 0 10px #E2A56655;
+}
+
+/* PARAGRAPHS & TEXT */
+p,li,span,em,strong{
+  color:inherit;
+  line-height:1.8;
+  text-shadow:0 0 6px #002A33AA;
+  transition:color .6s ease,text-shadow .6s ease;
+}
+body.theme-day p,body.theme-day li,body.theme-day span,body.theme-day em,body.theme-day strong{
+  color:#2B1E13;
+  text-shadow:none;
+}
+
+/* BLOCKQUOTES / VERSES */
+blockquote{
+  font-style:italic;
+  color:#DFFAFF;
+  border-left:3px solid #41F6FB;
+  padding-left:18px;
+  margin:20px auto;
+  transition:color .6s ease,border-color .6s ease;
+}
+body.theme-day blockquote{
+  color:#3B2C1A;
+  border-color:#C09030;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:0.9em;
+  color:#4DC9DC;
+  margin:8vh auto 5vh;
+  transition:color .6s ease;
+}
+body.theme-day footer{
+  color:#6A4C2F;
+}
+
+/* DIVIDERS */
+.divider{
+  width:60%;height:1px;margin:5vh auto;
+  background:linear-gradient(90deg,transparent,#2FE4FF88,transparent);
+  opacity:0;transform:scaleX(.85);
+  transition:opacity .6s ease,transform .6s ease,background .8s ease;
+}
+.divider.is-visible{opacity:1;transform:scaleX(1);}
+body.theme-day .divider{
+  background:linear-gradient(90deg,transparent,#C0903088,transparent);
+}
+
+/* PROGRESS BAR */
+.scroll-progress{backdrop-filter:blur(4px);}
+.progress-bar{
+  height:4px;width:0;
+  background:linear-gradient(90deg,#2FE4FF,#00A8C9);
+  box-shadow:0 0 8px #2FE4FF55,0 0 16px #00A8C933;
+  transition:background .8s ease,box-shadow .8s ease;
+}
+body.theme-day .progress-bar{
+  background:linear-gradient(90deg,#C09030,#B3473B,#FFD18E);
+  box-shadow:0 0 8px #FFD18E55,0 0 16px #E6A76E33;
+}
+
+/* THEME BUTTON */
+.theme-toggle{
+  position:fixed;top:12px;right:18px;z-index:200;
+  font-family:'Orbitron',sans-serif;border:none;border-radius:12px;
+  padding:8px 14px;cursor:pointer;letter-spacing:.06em;
+  color:#DFFAFF;
+  background:linear-gradient(90deg,#0a1a22,#152830);
+  box-shadow:0 0 10px #2FE4FF22;
+  transition:all .3s ease;
+}
+.theme-toggle:hover{box-shadow:0 0 14px #2FE4FF55;}
+body.theme-day .theme-toggle{
+  background:linear-gradient(90deg,#E6D6B6,#D9C29E);
+  color:#2B1E13;
+  box-shadow:0 0 10px #C0903044;
+}
+body.theme-day .theme-toggle:hover{box-shadow:0 0 14px #C0903077;}
+
+/* ARCHIVE NOTES */
+.archive-note{
+  position:relative;cursor:help;transition:color .25s ease,text-shadow .25s ease;
+}
+.archive-note:hover{color:#F9D673;text-shadow:0 0 8px #F9D67355;}
+.archive-note::after{
+  content:attr(data-meta);
+  position:absolute;left:50%;transform:translateX(-50%) translateY(8px);
+  bottom:-36px;white-space:nowrap;
+  background:#0e1b22;color:#DFFAFF;
+  border:1px solid #2FE4FF55;border-radius:8px;
+  padding:6px 10px;font-size:.92em;opacity:0;
+  pointer-events:none;transition:opacity .25s ease,transform .25s ease;
+}
+.archive-note:hover::after{opacity:1;transform:translateX(-50%) translateY(0);}
+body.theme-day .archive-note::after{
+  background:#E6D6B6;color:#2B1E13;border-color:#C0903055;
+}
+
+
+
+</style>
+  
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Beginning: A Prologue™</title>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Audiowide&family=Questrial&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- GLOBAL BASE --- */
+    :root {
+      --c-primary: #2FE4FF;
+      --c-primary-soft: #41F6FB;
+      --c-bg-top: #010913;
+      --c-bg-mid: #050A12;
+      --c-bg-low: #080B10;
+    }
+    html {scroll-behavior:smooth;}
+    body {
+      margin:0;
+      padding:0;
+      background:radial-gradient(circle at top,var(--c-bg-top),var(--c-bg-mid),var(--c-bg-low));
+      color:#D8F6FF;
+      font-family:'Questrial',sans-serif;
+      font-size:1.2em;
+      line-height:1.8;
+      letter-spacing:0.015em;
+      overflow-x:hidden;
+    }
+    /* --- PROGRESS METER --- */
+    .scroll-progress{position:sticky;top:0;background:#0a1c26ee;width:100%;z-index:100;padding:4px 0 2px 0;}
+    .progress-bar{display:block;height:4px;background:linear-gradient(90deg,#31E0FF 40%,var(--c-primary) 90%);border-radius:4px;transition:width .5s;}
+    .progress-label{display:block;text-align:center;font-size:.96em;color:var(--c-primary);margin-top:2px;letter-spacing:.04em;font-family:'Orbitron',sans-serif;text-shadow:0 0 4px #31E0FF77;}
+    /* --- HEADERS --- */
+    header{text-align:center;padding:8vh 5vw 3vh;color:#6EF2FF;font-family:'Orbitron',sans-serif;text-transform:uppercase;font-size:2.8em;letter-spacing:.08em;text-shadow:0 0 25px #2FE4FF99,0 0 45px #00A8C9;}
+    h2{font-family:'Audiowide',cursive;color:#41F6FB;text-transform:uppercase;font-size:1.8em;margin-top:7vh;margin-bottom:1vh;text-shadow:0 0 12px #2FE4FF99,0 0 20px #00A8C9;border-left:4px solid #31E0FF;padding-left:14px;letter-spacing:.05em;}
+    h3{font-family:'Orbitron',sans-serif;color:#31E0FF;font-size:1.3em;margin-top:4vh;margin-bottom:1vh;letter-spacing:.03em;text-shadow:0 0 7px #21d2ed99;border-left:2px solid var(--c-primary);padding-left:8px;text-transform:uppercase;}
+    p{max-width:900px;margin:0 auto 30px;text-align:justify;color:#DFFAFF;text-shadow:0 0 6px #002A33AA;}
+    section{padding:0 8vw;margin-bottom:5vh;border-bottom:1px solid #0C1A1F;}
+    .divider{width:60%;margin:5vh auto;height:1px;background:linear-gradient(90deg,transparent,#2FE4FF88,transparent);}    
+    /* --- PROLOGUE CARD --- */
+    .prologue-bg{background:linear-gradient(120deg,#07232c88 0%,#18151c99 100%);border-radius:18px;box-shadow:0 0 24px #2FE4FF33,0 0 8px #111;padding:3vw;margin-bottom:6vh;}
+    /* --- SPECIAL BLOCKS --- */
+    .archive-note{text-align:center;font-size:1em;color:#4DC9DC;margin-top:3vh;margin-bottom:3vh;letter-spacing:.04em;font-style:italic;text-shadow:0 0 4px #1E4048AA;}
+    .divine-seal{text-align:center;font-family:'Orbitron',sans-serif;color:var(--c-primary);margin:30px auto;font-size:1.12em;opacity:.88;letter-spacing:.07em;text-shadow:0 0 8px #1d283377;}
+    footer{text-align:center;font-size:.9em;color:#4DC9DC;margin-bottom:5vh;margin-top:8vh;letter-spacing:.05em;}
+    @media(max-width:768px){header{font-size:2em;}h2{font-size:1.4em;}body{font-size:1em;}}
+  </style>
+</head>
+<body>
+  <!-- PROGRESS (static placeholder width; JS can update) -->
+  <div class="scroll-progress">
+    <div class="progress-bar" style="width:23%"></div>
+    <span class="progress-label">Segment 1 of 7: The Long Road</span>
+  </div>
+
+  <!-- MAIN TITLE -->
+  <header>The Telling:<br>A Declaration™</header>
+
+  <!-- TOP SECTIONS -->
+  <section id="captive-world">
+    <h2>The Captive World</h2>
+    <p>Since childhood they were told:<br>Obey the script. Hate the enemy. Never ask why.</p>
+    <p>They were shown images too terrible for young eyes.<br>Images that burned into their sleep.<br>Images that whispered: If you refuse, this will happen to you.</p>
+    <p>And so they grew, not free, but trained.<br>They learned to say the words they were expected to say.<br>They learned to hate because hating was safer than silence.<br>They learned to survive by wearing a mask, until the mask became the face.</p>
+    <p>What would you do? Wouldn’t you do the same?<br>What other choice did they have?</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="carousel">
+    <h2>The Carousel</h2>
+    <p>But here is the truth:<br>It is not only their story. It is ours.</p>
+    <p>Every society trains its children.<br>Every empire builds its carousel of lies.<br>The rich follow their illusions. The poor follow theirs. The powerful ride on different horses, but the ride itself is the same.</p>
+    <p><em>Around and around.<br>Fear. Complicity. Forgetting.<br>Around and around.</em></p>
+    <p>Until one day you no longer remember why you began circling in the first place.<br>You only know that the ride is moving, and you dare not step off.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="exception">
+    <h2>The Exception</h2>
+    <p>But there was One who stepped off.</p>
+    <p>He was not born into the cycle of lies.<br>He was not bound by fear.<br>He saw the carousel for what it was:<br><em>a machine of death dressed up as life.</em></p>
+    <p>He walked another way.<br>And in walking, He showed us the way out.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="invitation">
+    <h2>The Invitation</h2>
+    <p>This is not just story. This is mirror.<br>This is not only future. This is present.<br>This is not fiction alone. This is prophecy dressed in fiction’s clothes.</p>
+    <p>If you will listen, if you will dare to imagine, you may glimpse the path that breaks the circle.</p>
+    <p>Because the carousel is still spinning.<br>The horses are painted in new colors.<br>The music is louder, brighter, more deceptive than ever.<br>But the exit gate is still there.</p>
+    <p><strong>And it is calling.</strong></p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROLOGUE SECTION START -->
+  <section id="prologue-long-road" class="prologue-bg">
+    <h2>PROLOGUE: THE UNSCROLLING</h2>
+    <h3>Part I — The Long Road</h3>
+    <p>There is a sound to the future, and it is not thunder or the laughter of children, but a ceaseless, distant humming — the resonance of a world wrapped in wires, signals, and electric skin. The highways stretch black and straight to the horizon, shimmering under the ghost-glow of ultraviolet street poles. Out here, nothing is ever silent, but everything feels unspeakably alone.</p>
+    <p>He drives. He doesn’t remember when the driving became more important than the destinations, or when every sunrise bled together into one endless day. The road hums beneath him, not rubber on asphalt but the weird, unyielding frictionless glide of polarity-matched alloys: his truck floating just above the surface, held aloft by the magnetic breath of a million sensors embedded in the road itself.</p>
+    <p>Every so often, the cab shivers as the invisible lanes recalibrate. A soft blue pulse flashes in the instrument cluster, and the truck shifts slightly — gently nudged back toward perfect center by the unseen will of the grid. He never touches the wheel unless he must, never asks questions of the system. His hand rests on the shifter, thumb running absent-mindedly over a small worn patch in the leather, the only place where the skin feels warm, human, real.</p>
+    
+    
+    <h3 id="rocky-cab">Rocky in the Cab</h3>
+    <p>Beside him, Rocky stirs. The dog, old enough to be wise but young enough to still chase rabbits in his dreams, lifts his head from the seat and looks out the window, nose pressed to the glass, eyes tracking the endless parade of lights. In this world of electric fences and digital watchers, Rocky is a singular grace — a creature who cannot lie, who cannot be programmed, who loves only because it is his nature.</p>
+    <p>The world beyond the windshield is a tangle of towers. Poles bristle on either side of the highway — some sleek and stainless, some patched and rusting, others crowned with glowing domes, multi-lensed and hungry. Each one broadcasts a different signal: traffic telemetry, city-state alerts, surveillance code, environmental warnings, silent advertisements. Above, drones sweep in slow arcs, their red eyes blinking through the night like distant stars that have lost their way.</p>
+
+    <h3 id="eye-grid">The Eye and the Grid</h3>
+    <p>He glances at his Eye. The device sits over his left eye, clipped to the frame of his old prescription glasses — a battered black rectangle, with a lens that flickers as it analyzes the world for threats, data, or deviation. It pings once, scanning his vitals. “Lane integrity: optimal,” the Eye says, in a voice calm as an undertaker.</p>
+    <p>He grunts and switches it off. He has learned, through years of fatigue and suspicion, that sometimes not knowing is safer.</p>
+    <p>Rocky watches him, ears twitching at the synthetic voice, then shifts closer, pressing his head against the man’s arm. He scratches the dog behind the ear, more out of habit than affection, but even the smallest touch is enough to remind him he is not alone.</p>
+
+    <h3 id="other-drivers">Other Drivers, Other Worlds</h3>
+    <p>He passes other trucks — long, skeletal haulers with blue-lit undercarriages, their drivers silhouettes behind mirrored glass. Some wear the Eye, others a full helmet — nothing human visible but a flicker of breath behind the visor. Every cab is its own world now, a self-contained ecosystem of data, memory, and resignation.</p>
+    <p>He rarely speaks to the others. Once, years ago, there were CB radios, laughter, the shared agony of highway boredom. Now the radio is just static, filled with corporate safety bulletins, government code, or the hollow drone of drivers repeating the phrases they have been taught. He can’t remember the last time he heard anyone say something unexpected.</p>
+    <p>His own cab is different — not just because of Rocky, but because he has chosen to unplug, as much as possible. His truck is old, pre-signal override, retrofitted to block the worst of the network’s reach. He carries his own food, his own music (ancient thumb drives filled with hymns and folk songs), a Bible bound in battered leather. He lives in a cocoon of chosen isolation, the world kept at arm’s length.</p>
+
+    <h3 id="omen">The Omen</h3>
+    <p>But the world will not be held off forever. Tonight, something is different.</p>
+    <p>A pulse, soft and insistent, flashes across the dash — not the grid’s usual rhythm, but a flicker, like Morse code. Rocky stiffens, ears flat. The man leans forward, narrowing his eyes. For a moment, every pole and drone on the highway seems to blink at once, their lights syncing, the silence deepening.</p>
+    <p>He feels it then: the faintest tremor in the air, a chill that slips down his spine. Rocky whines, nose pressed to the glass. Out there, on the edge of the road, something moves — not a truck, not a drone, not a coded message. Something human, or trying to be.</p>
+    <p>He slows. The cab is suddenly very quiet, even the hum of the road muted, as if the whole world is holding its breath. He glances at the Eye, which stays black, dead, as if unwilling to witness what is coming.</p>
+    <p>Rocky begins to bark, low and warning. The man’s heart hammers. He knows this moment is different. He knows, somehow, that everything he has built to keep the world out is right on the verge of being breached.</p>
+
+    <h3 id="encounter">The Encounter</h3>
+    <p>The world outside is a river of darkness and blue light. The figure is standing at the very edge of the road, face hidden beneath a hood, hands clenched tight. For a long moment, neither moves. The man feels the weight of every surveillance node, every drone, every watching eye — and, beneath it all, the sense that something even greater is watching, waiting to see what he will do.</p>
+    <p>He breathes a prayer he can’t remember ever learning. Rocky is silent now, pressed against his leg, eyes locked on the figure.</p>
+    <p>The man opens the door, steps down onto the humming road, and the future, at last, begins to unscroll.</p>
+
+    <div class="archive-note">(Segment 1 archived: PROLOGUE — THE UNSCROLLING, Part I — The Long Road)</div>
+  </section>
+
+  <div class="divider"></div>
+  
+  
+  <section id="prologue-roadside" class="prologue-bg">
+    <h2>Part II — The Encounter on the Roadside</h2>
+
+    <p>The air outside the cab was sharper than he remembered, charged with the restless energy of a world trying too hard to hide its own exhaustion. He stepped down, boots thudding on the levitating road. It vibrated beneath him, not with the living shudder of old diesel highways, but with a silent, humming pressure that ran up through his bones. Overhead, the electronic vault of surveillance glared down: some poles crowned with sensors, others wrapped in crawling cables, all of them broadcasting their endless streams of information.</p>
+
+    <p>He scanned the horizon. On most nights, the highway felt endless, a black ribbon drawn through nothing. Tonight, the world seemed to be drawing inward, crowding around him. He could sense the invisible fence at the edge of the world: not wood or wire, but the summed power of ten thousand silent eyes.</p>
+
+    <p>Rocky circled the cab, muscles tense, nose to the wind, searching for signals the man could never perceive. The dog let out a low growl, half warning, half plea.</p>
+
+    <p>The figure on the roadside hadn’t moved. Not a hitchhiker, not a cop, not a lost child — something in the posture, the absolute stillness, unsettled him. In all his years of driving, he’d seen accidents, protests, the lost and the dying. This was different. This was presence.</p>
+
+    <p>He felt the urge to turn back, to seal the doors, to vanish into the comfort of steel and static, but something in Rocky’s stance stopped him. The dog stood between him and the figure, not blocking but witnessing — as if to say: you are not alone in this.</p>
+
+    <p>He took a few steps forward, each footfall echoing too loud on the magnetic pavement. The surveillance drones arced closer, humming a song of warning. For a brief moment, the entire highway fell into a hush so deep he could hear his own heartbeat, amplified by the anxiety gnawing at his chest.</p>
+
+    <h3>The Unlocked Stranger</h3>
+    <p>The figure finally looked up, pushing back the hood just enough to reveal a human face — thin, shadowed, eyes shining too bright in the blue glow. The gaze locked onto his, and in that moment, he understood: the person before him was not simply afraid, or desperate, or lost. They were unhinged — not by madness, but by something newly opened within.</p>
+
+    <p>“Help,” the figure whispered. Not a cry, not a shout. Just one word, heavy with the weight of someone who has seen too much. The voice was raw, as if unused for years, and it carried the tremor of someone hearing a thousand voices at once.</p>
+
+    <p>He felt Rocky press close against his leg, head lowered, hackles raised. “It’s alright, boy,” he said quietly. “Stay with me.” He took another step, then another. The figure didn’t back away, didn’t move, just watched — as if braced against a storm that no one else could see.</p>
+
+    <p>Closer now, he could make out the strange trembling in their limbs, the subtle flicker behind their eyes. He recognized the tell-tale signs: this was one of the “unlocked.” He’d heard the rumors on driver channels, half-believed warnings that the latest round of upgrades — the so-called “Cognitive Gateways” — were more than just another neural overlay. He’d seen what happened to drivers who let the system update them without question. Some became more efficient. Some never came back at all.</p>
+
+    <p>He stopped a careful distance away. “You need help?” he asked, voice steady, projecting calm. The figure nodded, then shook their head, then pressed trembling hands to their temples. “They won’t stop. The voices — they never stop. Please. Please.” The words were a hiss, more desperation than language.</p>
+
+    <p>He hesitated. Everything in him wanted to turn back. The old rules — “don’t stop for strangers at night,” “keep moving, stay safe,” “nobody’s your problem but your own” — all shouted for him to return to his sanctuary. But something deeper, quieter, called him forward.</p>
+
+    <h3>The Verse Remembered</h3>
+    <p>He remembered a verse, not from the grid but from his childhood, whispered in the dim sanctuaries of churches long since abandoned. “If you see your brother’s ox or his sheep going astray, you shall surely bring them back…”</p>
+
+    <p>He knelt beside the figure. Rocky stayed close, eyes alert, watching every shadow.</p>
+
+    <p>“What’s your name?” he asked gently. The figure shook. “I… I don’t know anymore. They took it.” He nodded, feeling the chill settle into his bones. “It’s alright. You’re safe here. Just breathe.”</p>
+
+    <p>For a moment, the figure seemed to steady. Their hands dropped to their sides, and they drew in a long, ragged breath. “Do you… do you hear them, too?” He shook his head. “No. Not like you. But I hear other things. Silence. The road. My own thoughts.” He didn’t add the most important part: that sometimes, in the silence, he thought he heard God.</p>
+
+    <p>The figure winced, shivering as if struck by a cold wind. “They say things — awful things. About everyone. About me. They… they’re inside my head, but also everywhere.” He offered the only comfort he could: presence. He sat with them on the roadside, Rocky pressed between, a living wall against the dark. Above, the drones circled wider, lights blinking in anxious patterns.</p>
+
+    <h3>Breathing in the Presence</h3>
+    <p>“Do you have family?” The figure shook their head. “I think so. Maybe. I remember faces. But the voices, they… they’re louder than the memories. It’s like the world broke open, and now everything pours in at once.” He nodded again, letting the words settle. He wanted to pray, but the words caught in his throat. He tried anyway, voice barely above a whisper: “Lord, help this one. Bring peace. Bring silence.”</p>
+
+    <p>A shudder ran through the figure. For a moment, the air seemed to lighten, the weight easing just enough for the figure to sit upright, blinking, confused. “Did you do that?” He shook his head. “No. But I asked Someone who can.”</p>
+
+    <p>They sat together, the three of them — man, dog, broken witness — ringed by the hum of the highway and the silent watching of a thousand eyes. The figure’s breathing slowed. The man knew this peace was temporary, a fragile truce against the tide, but it was enough for now.</p>
+
+    <h3>Moving Forward</h3>
+    <p>He heard movement behind him. Another truck, gliding past, its Eye flickering, the driver a shadow behind mirrored glass. No one else stopped. No one else even slowed. He looked at Rocky. The dog gazed back, steady, unafraid, as if to say, you are not alone.</p>
+
+    <p>In the distance, another pole blinked red. The highway system was alerting someone — maybe an authority, maybe an automated rescue, maybe something worse. He knew he couldn’t stay long. He helped the figure to their feet. “Come on. I’ll get you out of here. At least for tonight.”</p>
+
+    <p>Rocky led the way, tail low but wagging. The man supported the stranger, guiding them back toward the sanctuary of the cab. Every step felt like a crossing, not just from darkness into light, but from one world into another.</p>
+
+    <p>Inside the cab, the stranger curled into the passenger seat, eyes wide and wary, head pressed against the glass as if searching for the edge of the voices. The man checked the locks, powered down the grid-link, and sat back, breathing deep, Rocky curled at his feet.</p>
+
+    <p>He didn’t know what would happen next. He only knew the world had changed — and the unscrolling had truly begun.</p>
+
+    <div class="archive-note">(Segment 2 archived: PROLOGUE — THE UNSCROLLING, Part II — The Encounter on the Roadside)</div>
+  </section>
+
+  <div class="divider"></div>
+  
+  
+  <section id="prologue-sanctuary" class="prologue-bg">
+    <h2>Part III — Sanctuary in Motion</h2>
+
+    <p>The cab was quiet, a soft island of breath and heartbeat, while outside the world kept humming — indifferent, relentless, unbroken. The man sat with Rocky at his feet, the rescued stranger curled tight on the passenger seat, caught somewhere between sleep and the terror of waking. For a while he didn’t move, didn’t speak. Just listened to the night and the new rhythm it brought.</p>
+
+    <p>There was a pattern to silence, he realized — a music hidden under the noise of the grid. When he was a boy, nights like this had been filled with wind, with the sound of his father’s voice reading psalms, with the steady tick of a kitchen clock. Now, silence meant signal loss, security breach, the system’s algorithms sniffing for anomalies. He wondered what the grid would make of his actions tonight. A deviation, a risk, a momentary kindness logged and flagged for later.</p>
+
+    <p>He turned off the Eye. It was a conscious act of rebellion — not just against the system but against the creeping lie that every thought must be measured and every moment supervised. His vision was his own again, if only for a little while.</p>
+
+    <p>Rocky rested his head on the man’s knee. The dog’s breathing was slow, even, a wordless prayer for peace. The man stroked Rocky’s back, fingers lost in thick fur. “Good boy,” he whispered. “You did well tonight.” Rocky thumped his tail in response, eyes closed, content simply to be close.</p>
+
+    <p>The stranger on the seat murmured, restless, caught in dreams. Now and then a phrase escaped — half-words, fragments of some hidden dialogue. The man watched over them, feeling like a shepherd who had lost his flock but still kept the gate.</p>
+
+    <p>He found the old Bible in the glove compartment, pages soft with years of handling. He didn’t open it yet, only pressed it to his chest. He breathed in the scent of leather and dust, and for a moment, it was enough to remember that truth could live outside the circuits.</p>
+
+    <p>His mind drifted. He wondered who the stranger was, before the unlocking. Did they have family, a home, a faith? Were they just another lost soul, or was there a purpose in this meeting? He felt the old weight of destiny, the ancient suspicion that no encounter was truly random. He whispered a prayer over the sleeping figure. “Lord, restore what was stolen. Guard what is left. If it is Your will, show me what comes next.”</p>
+
+    <p>For a time, all three rested — man, dog, and broken guest — surrounded by silence that felt, for once, not like absence but presence. He let his thoughts wander: to highways stretching far beyond the visible, to the millions living under the humming sky, to the possibility that somewhere, someone was praying for him too.</p>
+
+    <h3>The Grid Responds</h3>
+    <p>Then Rocky stirred, ears pricked. The man followed his gaze. Out beyond the windshield, past the ranks of cold-lit poles, the sky was shifting — not with weather, but with movement. He saw a pattern among the drones: red lights flashing in a ripple, a silent signal passing from node to node. The grid had noticed.</p>
+
+    <p>He reached for the Eye but stopped. If he turned it on, the system would see him. If he stayed dark, he was blind. He weighed his choices in a moment as long as a sermon.</p>
+
+    <p>The stranger awoke with a start, eyes wild. “They’re coming,” they whispered. “They know.” He squeezed their hand, gentle but firm. “You’re safe here. We’ll handle it together.” Rocky stood, hackles up, nose pressed to the window.</p>
+
+    <p>The man started the engine, the soft pulse of levitation smoothing out the anxiety in his gut. He eased the truck back onto the highway, merging with the silent stream of night haulers. Each truck glided in its assigned lane, blue underlights casting ghostly auras on the blacktop. On the surface, all was normal. Beneath, every sensor was awake, every pole listening.</p>
+
+    <p>He kept his speed low, scanning the mirrors, trusting Rocky’s instincts. The stranger sat up, breathing shallow, head on a swivel, watching the world pass in streaks of surveillance and light.</p>
+
+    <p>“Where are we going?” He didn’t answer right away. It was the question he’d been asking himself for years.</p>
+
+    <p>“Away from here,” he finally said. “For now, that’s all I know.”</p>
+
+    <h3>The Narrow Road</h3>
+    <p>They drove on. He watched the grid react: sensors flickered, traffic signals pulsed, and always the red-lit drones, flying parallel above, a silent convoy. He remembered stories his father used to tell — of angels walking unseen beside the lost, of pillars of fire and cloud. Tonight, he felt surrounded by both — the watchers of man and the Watcher of souls.</p>
+
+    <p>The highway forked ahead: to the left, the bright lights of the city, pulsing with energy and invitation; to the right, the narrow road into darkness, unlit except by the occasional flare of broken pole. He hesitated. The city promised anonymity, resources, maybe even help. But the stranger tensed, shrinking from the sight.</p>
+
+    <p>“Not there,” they said. “It’s loud in the city. Too loud. Too many voices.”</p>
+
+    <p>He nodded. Rocky whined in agreement. He chose the right-hand path, the narrow way.</p>
+
+    <p>The cab vibrated differently on this old stretch, the magnetic lanes patchy, the signal weak. Here, the surveillance was thinner, the nodes further apart. Rocky relaxed a little. The stranger did too, shoulders loosening, breath deepening. The man rolled down the window a crack, letting in a breeze thick with the scent of earth and distant rain. For a moment, it almost felt like freedom.</p>
+
+    <p>They drove in silence, watching the landscape shift from synthetic to wild: fields tangled with scrub, abandoned vehicles, the bones of old farms. He thought of the world before the grid, before the Eye, before the voices grew so loud that only the desperate could hear the silence. He thought of the promises he’d made to himself: to stay disconnected, to avoid involvement, to let the world spin without him.</p>
+
+    <p>But tonight he was not a ghost. He was a witness.</p>
+
+    <h3>Quiet Rest</h3>
+    <p>The stranger broke the silence. “You’re not like them,” they said softly. “Your mind is quiet. How did you keep it?” He met their gaze in the mirror. “I kept it by losing everything else.” They nodded, seeming to understand.</p>
+
+    <p>Rocky rested his head on the stranger’s lap, sighing, eyes closing. “You can rest now,” the man said. “At least for tonight.” He guided the truck off the road, into the shadow of a crumbling barn, hidden from the grid’s hungry eyes. He shut down the engine, listened for pursuit, heard only wind and the chirr of night insects.</p>
+
+    <p>He opened his Bible, found a psalm without trying, read aloud in a voice rough with disuse. The words filled the cab, chasing out the last of the night’s fear.</p>
+
+    <p><em>“He who dwells in the secret place of the Most High<br>
+    Shall abide under the shadow of the Almighty…”</em></p>
+
+    <p>The stranger’s eyes fluttered closed. Rocky watched the door, guardian at rest.</p>
+
+    <p>For the first time in years, the man felt the presence of God — not in thunder or burning bush, but in the fragile peace of a sanctuary built on faith, risk, and mercy.</p>
+
+    <p>The world was changing. The scroll was unrolling, word by word.<br>
+    And he, for better or worse, was awake.</p>
+
+    <div class="archive-note">(Segment 3 archived: PROLOGUE — THE UNSCROLLING, Part III — Sanctuary in Motion)</div>
+  </section>
+
+  <div class="divider"></div>
+  
+  <section id="prologue-morning-barn" class="prologue-bg">
+    <h2>Part IV — Morning Under the Barn</h2>
+
+    <p>Dawn found the truck tucked under the leaning skeleton of an old barn, half-swallowed by the wilderness reclaiming its territory. The light was pale and gray, filtered through a restless fog that drifted across the empty fields. In the quiet, the man lay awake in his bunk, listening to the slow, steady breathing of Rocky and the stranger. For a moment, he allowed himself the luxury of imagining the world was new, that the coming day held no threats, only possibility.</p>
+
+    <p>He checked the time on his dash—just past five. Outside, a chorus of unseen birds sang into the haze, their music a reminder that not every signal could be jammed, not every melody was digital. He propped himself up and gazed at the landscape: the old road in the distance, twisted with weeds, and the looming lines of surveillance poles blinking sleepily in the fog.</p>
+
+    <p>Rocky was up first. The dog shook himself, stretched, and padded over, tail swishing a lazy greeting. The man knelt and pressed his forehead gently to Rocky’s. “Thanks for keeping watch,” he murmured. Rocky licked his hand, eyes bright and ready for whatever the day would bring.</p>
+
+    <p>The stranger stirred next, groggy, blinking at the unfamiliar ceiling. For a moment, panic flashed in their eyes, but then memory returned and with it, a measure of peace. They sat up slowly, clutching the blanket as if it were a lifeline. “Did you sleep?” the man asked. The stranger hesitated, then nodded. “Better than before. It was… quiet.”</p>
+
+    <p>He brewed a cup of bitter, instant coffee from his thermos, passing a chipped mug to the stranger. They sipped, wincing at the taste, but drank anyway. Rocky watched with patient curiosity, ever the peacemaker.</p>
+
+    <p>The world outside was coming alive—distant traffic on the elevated grid, a drone sweeping low with a searching, insect-like buzz. The man’s old truck still ran silent, the Eye kept off, all grid links disabled. But he felt the weight of the system’s gaze, even here. He’d learned long ago that hiding was always temporary. Eventually, the world would notice.</p>
+
+    <p>He sat in the open driver’s seat, Bible still on his lap, and considered his next move. The stranger watched him, fear and hope warring behind tired eyes.</p>
+
+    <h3>The Voices and the Grid</h3>
+
+    <p>“I have to ask,” the man said quietly, “what did you see last night? When you were on the road. What made you come out there, into all that?”</p>
+
+    <p>The stranger shivered. “I saw… them. Not with my eyes, not really. It was like… a wall breaking down. There were voices, everywhere, all at once. At first it was whispers, then shouting, then…” They shook their head, struggling for words. “It felt like something was hunting for me from inside.”</p>
+
+    <p>The man nodded, understanding more than he could say. “You’re not the only one. More and more, people are… different. Not all at once, but changing, losing something.” He looked at Rocky, who watched the conversation with silent intensity, then out at the tangled horizon. “There’s a reason I try to stay off the grid as much as possible.”</p>
+
+    <p>The stranger glanced at the Bible. “Does that help?” He turned it in his hands, tracing the gold-leaf letters worn nearly to nothing. “Some nights it’s the only thing that does.”</p>
+
+    <h3>Back on the Road</h3>
+
+    <p>They finished breakfast in silence. After, the man packed up what little gear he’d used, checked the truck’s shielding, and scanned the landscape for any sign of pursuit. Satisfied, he motioned to the stranger. “Come on. We can’t stay here forever.”</p>
+
+    <p>They climbed into the cab. Rocky took his place on the floor between them, always alert, always present.</p>
+
+    <p>He started the engine, guided the truck slowly out from under the barn’s shadow, and rolled back onto the old highway. The road was rougher here, the levitation pulse weak and patchy, sometimes dipping enough that the wheels actually kissed the crumbling surface. Every jolt was a reminder: this road was forgotten, ignored by the grid, unsafe but free.</p>
+
+    <p>As the truck picked up speed, the stranger stared out the window, eyes wide with the wonder of things that didn’t blink or hum—trees, fields, sunlight in the dew. For a long time, neither spoke. The hum of the engine and the soft panting of Rocky filled the silence.</p>
+
+    <p>“Where are we going?” the stranger asked at last, voice small.</p>
+
+    <p>He didn’t know. He only knew he was moving away from the poles, the drones, the voices. “There’s a place I heard about. Off-grid. A sanctuary. Maybe just a story, but it’s worth finding.” He glanced over, meeting the stranger’s searching gaze. “It’s enough to keep moving. Sometimes that’s all you can do.”</p>
+
+    <p>A shadow crossed the sun, a drone swooping low. The stranger tensed, but the man kept the wheel steady, watching the sky with practiced calm.</p>
+
+    <p>“There are others like you?” He nodded. “Some. Not many. Most people let the system in. It’s easier that way, until it isn’t.”</p>
+
+    <p>He considered what else to say. In the end, truth won out. “I used to be like them, too. Plugged in, following orders. Until I lost too much and started asking why. That’s when I found God—or maybe, He found me.”</p>
+
+    <h3>Signs and Shields</h3>
+
+    <p>They drove on, the road winding through patches of wildness and the occasional ruin. The man began to see signs that others had come this way: a burned-out vehicle here, a makeshift sign with cryptic markings there, the remnants of a small camp by a creekbed. The world was not as empty as it seemed.</p>
+
+    <p>When they stopped for a break near an old rest area, Rocky ran in wide circles, chasing scents. The stranger leaned against the truck, head tipped back, breathing the open air like medicine.</p>
+
+    <p>“Do you ever wish it could all go back to the way it was?” He shook his head. “The world was always broken. The grid just made it clearer. I think we’re meant to go forward, not back.”</p>
+
+    <p>The stranger considered that, turning it over like a stone. “I just want the voices to stop.”</p>
+
+    <p>He knelt beside them, Rocky at his side. “They will. Not because you hide, but because there’s a truth louder than the lies.”</p>
+
+    <p>He reached for the Bible, thumbed to Psalm 27, and read softly,</p>
+
+    <blockquote>
+      “The LORD is my light and my salvation; Whom shall I fear?<br>
+      The LORD is the strength of my life; Of whom shall I be afraid?”
+    </blockquote>
+
+    <p>The words lingered in the morning air, a shield against everything waiting on the other side of the next hill.</p>
+
+    <div class="archive-note">(Segment 4 archived: PROLOGUE — THE UNSCROLLING, Part IV — Morning Under the Barn)</div>
+  </section>
+
+  <div class="divider"></div>
+  
+  
+  <section id="prologue-waters-names" class="prologue-bg">
+    <h2>Part V — Waters and Names</h2>
+
+    <p>The highway changed as the hours passed. Out here, where the grid’s pulse weakened and the magnetic lanes lost their perfection, the world felt older—closer to the earth, farther from the reach of unseen hands. Broken fences lined the road, their posts bent and gray, wrapped with wire that had long since surrendered its strength. Old signs, battered and sun-bleached, offered warnings for hazards that had vanished decades ago: rockslides, deer crossings, sudden ice.</p>
+
+    <p>Rocky stuck his nose out the window, ears up, tail wagging in the wind. The stranger watched him, a small smile growing—somehow, the dog’s simple joy made the brokenness bearable. The man caught the moment in the rearview mirror and felt something uncoil in his own chest. He was reminded how God sometimes sent comfort in small, unexpected forms.</p>
+
+    <p>They passed an abandoned service station. Its roof sagged, glass long gone, but someone had painted a message in crude, bright blue on the wall:<br>
+    STAND FIRM. TRUST THE LIGHT.</p>
+
+    <p>The man slowed the truck, staring at the words as they rolled by. For a moment, he was tempted to stop, to search for whoever had left that message. But the stranger seemed uneasy, glancing at the shadows, so he pressed onward.</p>
+
+    <p>The sun climbed, burning away the last of the fog. Birds darted overhead, singing fragments of old songs, as if the world itself refused to forget what joy sounded like. At a narrow bridge crossing a shallow stream, the man pulled over, parking beneath the shade of a great willow tree. He cut the engine and listened—no traffic, no drones, only the rush of water and the soft sigh of wind.</p>
+
+    <p>Rocky leapt out, paws splashing in the stream, barking with delight. The man filled his hands with cold water, splashed his face, drank deep. The stranger followed, crouching by the edge, cupping water to their lips, shivering as if the cold could wash something dark away.</p>
+
+    <p>For a long while, they rested there. The man felt the weight of the journey—the risks, the uncertainty, the shadow of the grid—pressing on his shoulders, but he also felt a new strength rising. He glanced at the stranger, who sat quietly, knees drawn up, eyes closed, lips moving in a silent prayer or plea.</p>
+
+    <p>He sat beside them, Rocky curling up between. “You’re safe here,” he said softly. “For now, this place belongs to God.”</p>
+
+    <p>The stranger opened their eyes, blinking away tears. “It’s never quiet inside. Even here, I hear them—less, but not gone.”</p>
+
+    <p>He nodded, not pretending to have easy answers. “I know a way to fight the voices. Not with tech or drugs, but with truth. It won’t be easy. But I can teach you, if you want.”</p>
+
+    <p>They looked at him, a flicker of hope shining through the exhaustion. “How?”</p>
+
+    <p>He tapped the Bible beside him. “It starts with this. God’s word. Every time you speak it, it’s like building a wall against the darkness. And you don’t have to do it alone.”</p>
+
+    <p>Rocky laid his head on the stranger’s knee, sighing as if to say, This is the way. Stay close. The man found Psalm 23 and read aloud, voice steady:</p>
+
+    <blockquote>
+      “The LORD is my shepherd;<br>
+      I shall not want.<br>
+      He makes me to lie down in green pastures;<br>
+      He leads me beside the still waters.<br>
+      He restores my soul…”
+    </blockquote>
+
+    <p>As the words flowed, the stranger breathed deeper. The shadows faded, just a little.</p>
+
+    <p>They ate a simple meal of bread and jerky, sharing with Rocky, laughter rising in soft bursts. For the first time since the night before, the stranger’s eyes brightened. They watched Rocky chase dragonflies, splash in the shallows, shake himself dry. The man smiled, remembering the days when life felt like this—free and wild, if only for a moment.</p>
+
+    <p>After, they packed up, reluctant to leave the sanctuary. But the journey called, and the sun was already slipping westward.</p>
+
+    <h3>Names and Promise</h3>
+
+    <p>As they rolled back onto the highway, the stranger spoke: “What’s your name?”</p>
+
+    <p>He hesitated, surprised. “It’s been a long time since anyone asked. I’m Michael.”</p>
+
+    <p>They nodded, absorbing the word. “I’m… I don’t remember. I was called so many things, but none of them feel true now.”</p>
+
+    <p>He reached out, resting a hand on their shoulder. “When you’re ready, you’ll remember. Or God will give you a new name.”</p>
+
+    <p>Rocky barked once, as if to seal the promise.</p>
+
+    <p>They drove on, deeper into the unknown, three witnesses on the road—one man, one dog, and one soul finding the first edges of freedom.</p>
+
+    <p>Behind them, the grid’s lights flickered, frustrated, searching for what had slipped through. Ahead, the world opened, full of peril and possibility.<br>
+    And above them, the heavens watched, silent, waiting for the next word to be unscrolled.</p>
+
+    <div class="archive-note">(Segment 5 archived: PROLOGUE — THE UNSCROLLING, Part V — Waters and Names)</div>
+  </section>
+
+  <div class="divider"></div>
+  
+  
+  
+  
+  
+  <div class="divine-seal">FULL-RELOCK™ — JESUS IS LORD™ — PROCEED™✔</div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 The Beginning: A Prologue™ — StoryForge Series<br>
+    Rendered in Questrial / Orbitron / Audiowide — Design by Alfred.AI™ & Lewis Villanueva<br>
+    JESUS IS LORD™
+  </footer>
+
+  <!-- UNITYFLOW WITNESS LOG
+       2025-10-14: Scroll fidelity structure upgrade — Alfred.AI™ & Lewis
+       LAW: 3.3.3.121 — Language of Witness
+       JESUS IS LORD™ — PROCEED
+  -->
+  
+  
+  
+  
+  
+  
+  <!-- === StoryForge Enhancement: JS Controller === -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle Day/Night">Theme</button>
+
+<script>
+(function(){
+  // === PROGRESS BAR ===
+  const bar=document.querySelector('.scroll-progress .progress-bar');
+  const label=document.querySelector('.scroll-progress .progress-label');
+  const baseLabel=label?label.textContent.trim():'';
+  function updateProgress(){
+    const st=window.scrollY||document.documentElement.scrollTop;
+    const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    const pct=Math.max(0,Math.min(100,Math.round((st/(sh||1))*100)));
+    if(bar)bar.style.width=pct+'%';
+    if(label)label.textContent=baseLabel?(baseLabel+' — '+pct+'%'):'Read: '+pct+'%';
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',updateProgress);
+  updateProgress();
+
+  // === DIVIDER REVEAL ===
+  const dividers=document.querySelectorAll('.divider');
+  if('IntersectionObserver'in window){
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-visible');});
+    },{threshold:0.2});
+    dividers.forEach(d=>io.observe(d));
+  }else{dividers.forEach(d=>d.classList.add('is-visible'));}
+
+  // === THEME TOGGLE ===
+  const KEY='sf_theme';
+  function applyTheme(t){document.body.classList.toggle('theme-day',t==='day');}
+  const saved=localStorage.getItem(KEY);
+  if(saved)applyTheme(saved);
+  const toggle=document.getElementById('themeToggle');
+  if(toggle){
+    toggle.addEventListener('click',()=>{
+      const next=document.body.classList.contains('theme-day')?'night':'day';
+      applyTheme(next);
+      localStorage.setItem(KEY,next);
+    });
+  }
+
+  // === ARCHIVE NOTE TOOLTIPS (data-meta) ===
+  // Example:
+  // <div class="archive-note" data-meta="Stamped: UFL-PROLOGUE-SEG-003 — 2025-10-14 22:15">Segment</div>
+})();
+</script>
+</body>
+</html>

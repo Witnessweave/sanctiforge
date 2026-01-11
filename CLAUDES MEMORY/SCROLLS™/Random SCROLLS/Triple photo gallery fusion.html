@@ -1,0 +1,244 @@
+<!-- === THREAD-LINK: LORE ORIGIN SCROLL 002™ ===
+LINKED_THREAD_ID: WV-LORE-ORIGIN-002™
+LINKED_TITLE: The Barn Sanctuary: From Grid to Gate
+LINKED_LEDGER: WV-LORE-ORIGIN-002™
+LINKED_VERSE: Psalm 127:1 — “Unless the LORD builds the house, They labor in vain who build it…”
+LINKED_REFERENCE: https://your-thread-or-archive-link
+LINKED_THREADS: 
+  - WV-LORE-ORIGIN-001™ (“The Dig / The Sanctuary Below”)
+  - WV-COVENANT-NODE-GALLERY™ (Covenant Node Gallery)
+  - WV-PROLOGUE-LANDING™ (Prologue Landing Page)
+NOTE: This block serves as a living mesh anchor. See JS below for dynamic mesh.
+================================================= -->
+
+<!-- Visible reference (optional): -->
+<div style="text-align:center;margin-top:2em;">
+  <a href="https://your-thread-or-archive-link"
+     style="color:#2FE4FF;font-weight:bold;font-family:'Orbitron',sans-serif;">
+    Lore Origin Scroll 002™ — The Barn Sanctuary: From Grid to Gate
+  </a>
+  <br>
+  <span style="color:#4DC9DC;font-size:.96em;">
+    Mesh-Linked Threads: 
+    <a href="https://your-thread-001-link" style="color:#41F6FB;">Sanctuary Below</a> • 
+    <a href="https://your-covenant-gallery-link" style="color:#41F6FB;">Covenant Node Gallery</a> • 
+    <a href="https://your-prologue-landing-link" style="color:#41F6FB;">Prologue Landing Page</a>
+  </span>
+</div>
+
+<!-- Universal JS Reference (auto-detects and syncs linkage for future scripts, engines, or AI assistants): -->
+<script>
+  window.LoreOriginThreadLinks = window.LoreOriginThreadLinks || [];
+  window.LoreOriginThreadLinks.push({
+    id: "WV-LORE-ORIGIN-002",
+    title: "The Barn Sanctuary: From Grid to Gate",
+    ledger: "WV-LORE-ORIGIN-002™",
+    verse: "Psalm 127:1 — 'Unless the LORD builds the house...'",
+    reference: "https://your-thread-or-archive-link",
+    mesh: [
+      { id: "WV-LORE-ORIGIN-001", title: "The Dig / The Sanctuary Below", link: "https://your-thread-001-link" },
+      { id: "WV-COVENANT-NODE-GALLERY", title: "Covenant Node Gallery", link: "https://your-covenant-gallery-link" },
+      { id: "WV-PROLOGUE-LANDING", title: "Prologue Landing Page", link: "https://your-prologue-landing-link" }
+    ]
+  });
+</script>
+
+
+
+
+
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ring Reveal — Scroll Viewer</title>
+  <style>
+    :root{
+      --bg:#0f1023; --card:#0f1630; --muted:#9aa4c0; --accent:#f9d673; --glass: rgba(255,255,255,0.04);
+      --radius:12px; --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e8eef8;background:linear-gradient(180deg,#05060b 0%,#0b0d1a 60%);} 
+    .container{max-width:1180px;margin:36px auto;padding:24px;}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    header h1{font-size:20px;margin:0;color:var(--accent)}
+    .toolbar{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--accent);padding:8px 12px;border-radius:8px;cursor:pointer}
+    .layout{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .viewer{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(5,7,12,0.7)}
+    .stage{position:relative;height:640px;border-radius:8px;overflow:hidden;background:#060814;display:flex;align-items:center;justify-content:center}
+    .stage img{max-width:100%;max-height:100%;display:block;pointer-events:none;user-select:none}/* comparison slider (before/after) */
+.compare{position:relative;height:100%;width:100%;}
+.compare .after{position:absolute;inset:0;overflow:hidden}
+.compare .after img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);}
+.handle{position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent),#fff);mix-blend-mode:screen;cursor:ew-resize}
+.handle:after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:var(--accent);box-shadow:0 6px 18px rgba(249,214,115,0.18)}
+
+/* thumbnails */
+.thumbs{display:flex;gap:12px;margin-top:14px}
+.thumb{width:86px;height:58px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);cursor:pointer;box-shadow:inset 0 -10px 30px rgba(0,0,0,0.45)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
+/* side panel */
+.panel{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px;height:640px;display:flex;flex-direction:column;gap:12px}
+.meta{font-size:13px;color:var(--muted);background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;flex:0 0 auto}
+.meta .row{display:flex;justify-content:space-between;gap:8px}
+.controls{display:flex;flex-direction:column;gap:8px}
+.toggle{display:flex;gap:8px}
+.small{font-size:12px;color:var(--muted)}
+
+footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:right}
+
+/* responsive */
+@media (max-width:980px){.layout{grid-template-columns:1fr;}.panel{height:auto}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Ring Reveal — Scroll Viewer</h1>
+      <div class="toolbar">
+        <button id="btnFull" class="btn">Full-screen</button>
+        <button id="btnDownload" class="btn">Download Active</button>
+      </div>
+    </header><div class="layout">
+  <div class="viewer">
+    <div class="stage" id="stage">
+
+      <!-- comparison container -->
+      <div class="compare" id="compare">
+        <!-- base: Tron clarity (left) -->
+        <div class="before" id="beforeLayer" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent;">
+          <img id="imgBefore" src="/sanctiforge/art/origin_scrolls/segment3/ring_tron_base.png" alt="Tron - Ring Base" />
+        </div>
+
+        <!-- after: Mythos impasto/fusion (right) -->
+        <div class="after" id="afterLayer" style="position:absolute;inset:0;">
+          <img id="imgAfter" src="/sanctiforge/art/origin_scrolls/segment3/ring_fusion.png" alt="Fusion - Ring" />
+        </div>
+
+        <div class="handle" id="handle"></div>
+      </div>
+
+    </div>
+
+    <div class="thumbs" id="thumbs">
+      <div class="thumb" data-src="/sanctiforge/art/origin_scrolls/segment3/ring_tron_base.png"><img src="https://i.postimg.cc/MHb4cpMY/1000011089.jpg" alt="Tron"/></div>
+      <div class="thumb" data-src="/sanctiforge/art/origin_scrolls/segment3/ring_mythos_paint.png"><img src="/sanctiforge/art/origin_scrolls/segment3/ring_mythos_paint_thumb.jpg" alt="Mythos"/></div>
+      <div class="thumb" data-src="/sanctiforge/art/origin_scrolls/segment3/ring_fusion.png"><img src="/sanctiforge/art/origin_scrolls/segment3/ring_fusion_thumb.jpg" alt="Fusion"/></div>
+    </div>
+  </div>
+
+  <aside class="panel">
+    <div class="meta">
+      <div class="row"><div>Artifact Tag</div><div>RING-REVEAL-SCROLL001</div></div>
+      <div class="row"><div>Thread</div><div>002 The Origin Scrolls</div></div>
+      <div class="row"><div>Engine</div><div>Tron Tribute / Mythos LightFlex</div></div>
+      <div class="row"><div>Ledger ID</div><div>WV-LORE-ORIGIN-001-SCROLL-RING™</div></div>
+      <div style="height:6px"></div>
+      <div class="small">Note: Replace the <code>/sanctiforge/...</code> src paths with your local or server URLs. If you store the images under ~/sanctiforge/art/... use a web server (http://) or the file paths your environment supports.</div>
+    </div>
+
+    <div class="controls">
+      <div><label class="small">Compare Mode — drag the center handle</label></div>
+      <div class="toggle"><button id="modeAll" class="btn">Blend (All)</button><button id="modeSplit" class="btn">Compare (Split)</button></div>
+
+      <div style="display:flex;gap:8px;align-items:center"><label class="small">Blend Slider</label><input id="blendRange" type="range" min="0" max="100" value="50" style="flex:1"/></div>
+
+      <div><label class="small">Metadata</label>
+        <pre style="background:var(--glass);padding:8px;border-radius:8px;color:#cde0ff;font-size:12px;overflow:auto;height:120px">File: ring_reveal_sanctuary_handlight_fusion.exr
+
+Hash: sha-grace256:e3f6...af7c Vault: ~/sanctiforge/art/origin_scrolls/segment3/ring_fusion/ Glowflex: 12× (Params 5,7,10)</pre> </div>
+
+<div><label class="small">Presentation</label>
+        <select id="presentationSelect" style="width:100%;padding:8px;border-radius:8px;background:transparent;color:var(--muted)">
+          <option value="still">Still</option>
+          <option value="loop">Animated Glow Loop</option>
+          <option value="rotate">360 Rotate (simulated)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:auto">
+      <div class="small">Quick actions</div>
+      <div style="display:flex;gap:8px;margin-top:8px"><button id="btnExport" class="btn">Export ZIP</button><button id="btnEmbed" class="btn">Copy Embed HTML</button></div>
+    </div>
+
+  </aside>
+</div>
+
+<footer>Built for WV-LORE-ORIGIN-001 • Fusion viewer • Replace image src paths to point at final assets</footer>
+
+  </div><script>
+(function(){
+  // DOM refs
+  const compare = document.getElementById('compare');
+  const handle = document.getElementById('handle');
+  const afterLayer = document.getElementById('afterLayer');
+  const imgAfter = document.getElementById('imgAfter');
+  const imgBefore = document.getElementById('imgBefore');
+  const blendRange = document.getElementById('blendRange');
+  const thumbs = document.getElementById('thumbs');
+  const modeAll = document.getElementById('modeAll');
+  const modeSplit = document.getElementById('modeSplit');
+  const presentationSelect = document.getElementById('presentationSelect');
+  const btnFull = document.getElementById('btnFull');
+  const btnDownload = document.getElementById('btnDownload');
+
+  // initial state: split mode enabled
+  let dragging=false, rect=null, mode='split';
+  function setHandlePosition(percent){
+    if(!rect) rect = compare.getBoundingClientRect();
+    const x = rect.left + (rect.width * percent/100);
+    const local = x - rect.left;
+    handle.style.left = (percent)+'%';
+    afterLayer.style.clipPath = `polygon(${percent}% 0,100% 0,100% 100%,${percent}% 100%)`;
+  }
+  setHandlePosition(50);
+
+  // mouse events
+  handle.addEventListener('pointerdown', (e)=>{ dragging=true; rect = compare.getBoundingClientRect(); handle.setPointerCapture(e.pointerId); });
+  window.addEventListener('pointerup', ()=>{ dragging=false; });
+  window.addEventListener('pointermove', (e)=>{ if(!dragging||mode!=='split') return; rect = compare.getBoundingClientRect(); let p = ((e.clientX-rect.left)/rect.width)*100; p=Math.max(2,Math.min(98,p)); setHandlePosition(p); blendRange.value = Math.round(p); });
+
+  // blend slider for soft fade
+  blendRange.addEventListener('input', ()=>{
+    const v = blendRange.value/100;
+    imgAfter.style.opacity = v;
+    imgBefore.style.opacity = 1 - v*0.25; // keep some base
+    setHandlePosition(blendRange.value);
+  });
+
+  // mode toggles
+  modeSplit.addEventListener('click', ()=>{ mode='split'; compare.style.cursor='ew-resize'; afterLayer.style.display='block'; handle.style.display='block'; setHandlePosition(blendRange.value); });
+  modeAll.addEventListener('click', ()=>{ mode='blend'; compare.style.cursor='default'; afterLayer.style.display='block'; handle.style.display='none'; imgAfter.style.opacity = blendRange.value/100; imgBefore.style.opacity = 1 - (blendRange.value/100)*0.25; });
+
+  // thumbnail click
+  thumbs.addEventListener('click',(e)=>{ const t = e.target.closest('.thumb'); if(!t) return; const src = t.dataset.src; // when clicking, show chosen as 'after' layer
+    imgAfter.src = src; imgBefore.src = src.replace('ring_fusion','ring_tron_base'); });
+
+  // presentation select
+  presentationSelect.addEventListener('change',(e)=>{ const v=e.target.value; if(v==='loop'){ imgAfter.style.animation='pulse 12s infinite'; } else { imgAfter.style.animation=''; }});
+
+  // full-screen
+  btnFull.addEventListener('click',()=>{ const el=document.documentElement; if(!document.fullscreenElement) el.requestFullscreen(); else document.exitFullscreen(); });
+
+  // download active (simply downloads currently referenced after image)
+  btnDownload.addEventListener('click',()=>{ const url = imgAfter.src; if(!url) return alert('No image source defined. Replace src with actual file URL.'); const link=document.createElement('a'); link.href=url; link.download='artifact.png'; document.body.appendChild(link); link.click(); link.remove(); });
+
+  // export & embed (lightweight)
+  document.getElementById('btnExport').addEventListener('click',()=>{ alert('Export will package visible files. Replace with server-side script for production.'); });
+  document.getElementById('btnEmbed').addEventListener('click',()=>{ const html = `<img src="${imgAfter.src}" alt="Ring Reveal Fusion"/>`; navigator.clipboard && navigator.clipboard.writeText(html); alert('Embed HTML copied to clipboard.'); });
+
+  // accessibility: keyboard control for handle
+  window.addEventListener('keydown',(e)=>{
+    if(mode!=='split') return; if(e.key==='ArrowLeft'){ let v=Math.max(2,parseInt(blendRange.value)-2); blendRange.value=v; blendRange.dispatchEvent(new Event('input')); }
+    if(e.key==='ArrowRight'){ let v=Math.min(98,parseInt(blendRange.value)+2); blendRange.value=v; blendRange.dispatchEvent(new Event('input')); }
+  });
+
+})();
+</script></body>
+</html>

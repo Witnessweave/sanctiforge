@@ -1,0 +1,113 @@
+<!--
+  Template ID: 07
+  Name: Pilgrim’s Journey
+  Emotion: Progress & Encouragement
+  Modules: Scroll Snap ScrollCards™, Timed Color Echoes, Anchor-In Table of Contents, Fade-to-Shadow
+  Placeholders: {{STEP1_TITLE}}, {{STEP1_DESC}}, {{STEP1_SCRIPTURE}}, … up to STEP4
+--><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pilgrim’s Journey — Scroll Template</title>
+  <style>
+    /* Emotion Theme Variables */
+    :root {
+      --card-bg-odd:   #4A148C;
+      --card-bg-even:  #6A1B9A;
+      --echo-color:    rgba(249,214,115,0.6);
+      --toc-bg:        rgba(0,0,0,0.5);
+      --footer-color:  #FFFFFF;
+    }
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      color: #fff;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+    nav.toc {
+      position: fixed;
+      top: 1rem; left: 50%; transform: translateX(-50%);
+      background: var(--toc-bg);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      z-index: 10;
+    }
+    nav.toc a {
+      color: #fff;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+    .scroll-cards {
+      scroll-snap-type: y mandatory;
+    }
+    section.card {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 1s ease-in;
+    }
+    section.card:nth-child(odd) {
+      background: linear-gradient(to bottom, var(--card-bg-odd), var(--card-bg-even));
+    }
+    section.card:nth-child(even) {
+      background: linear-gradient(to bottom, var(--card-bg-even), var(--card-bg-odd));
+    }
+    section.card h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    section.card p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    section.card footer {
+      margin-top: auto;
+      font-style: italic;
+    }
+    section.card { border-left: 8px solid var(--echo-color); }
+    section.card { animation: echoBorder 10s infinite; }
+    @keyframes echoBorder {
+      0%,100% { border-color: var(--echo-color); }
+      50%   { border-color: #fff; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);} to{opacity:1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <nav class="toc">
+    <a href="#step1">1</a>
+    <a href="#step2">2</a>
+    <a href="#step3">3</a>
+    <a href="#step4">4</a>
+  </nav>
+  <div class="scroll-cards">
+    <section id="step1" class="card">
+      <h2>Step 1: {{STEP1_TITLE}}</h2>
+      <p>{{STEP1_DESC}}</p>
+      <footer>{{STEP1_SCRIPTURE}}</footer>
+    </section>
+    <section id="step2" class="card">
+      <h2>Step 2: {{STEP2_TITLE}}</h2>
+      <p>{{STEP2_DESC}}</p>
+      <footer>{{STEP2_SCRIPTURE}}</footer>
+    </section>
+    <section id="step3" class="card">
+      <h2>Step 3: {{STEP3_TITLE}}</h2>
+      <p>{{STEP3_DESC}}</p>
+      <footer>{{STEP3_SCRIPTURE}}</footer>
+    </section>
+    <section id="step4" class="card">
+      <h2>Step 4: {{STEP4_TITLE}}</h2>
+      <p>{{STEP4_DESC}}</p>
+      <footer>{{STEP4_SCRIPTURE}}</footer>
+    </section>
+  </div>
+</body>
+</html>

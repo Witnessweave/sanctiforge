@@ -1,0 +1,373 @@
+<!-- Pegar TODO este bloque dentro del <body> -->
+<style>
+  :root{
+    --bg:#f6efe2;
+    --paper:#fffaf0;
+    --accent:#6b3a2a;
+    --muted:#6b6b6b;
+    --gold:#d8b06a;
+    --shadow: 0 8px 30px rgba(13,11,9,0.12);
+    --radius:18px;
+    --maxw:900px;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+  }
+  html,body{ height:100%; margin:0; }
+  body{ background: linear-gradient(180deg,#fbf7f2 0%, var(--bg) 100%); font-family:var(--serif); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+  /* Outer centering container */
+  .scroll-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:28px 16px;
+    min-height:100vh;
+    box-sizing:border-box;
+  }
+
+  /* The scroll card (will be scaled for zoom) */
+  .scroll {
+    width:100%;
+    max-width:var(--maxw);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), var(--paper));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:28px;
+    border:1px solid rgba(120,90,60,0.06);
+    color:#222;
+    box-sizing:border-box;
+    transform-origin: top center; /* scale around center-top for predictable layout */
+    will-change: transform;
+    overflow:visible;
+  }
+
+  /* Header area */
+  .scroll-header{ text-align:center; margin-bottom:12px; }
+  .title{ font-size:1.25rem; color:var(--accent); margin:0 0 6px 0; font-weight:700; }
+  .subtitle{ margin:0; font-size:0.9rem; color:var(--muted); font-family:var(--sans); }
+
+  /* Verse / meta (full width, centered) */
+  .meta { display:flex; flex-direction:column; align-items:center; gap:10px; margin:12px 0 18px 0; }
+  .verse {
+    width:100%;
+    max-width:820px;
+    padding:10px 14px;
+    border-left:4px solid var(--gold);
+    border-radius:10px;
+    background: rgba(255,255,255,0.6);
+    font-size:0.95rem;
+    color:#111;
+    box-sizing:border-box;
+  }
+
+  /* Controls: centered and responsive */
+  .controls-center {
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    max-width:820px;
+    margin:8px auto 18px auto;
+    box-sizing:border-box;
+  }
+  .access-controls{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    padding:8px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.75);
+    border:1px solid rgba(107,58,42,0.06);
+    box-sizing:border-box;
+  }
+  .btn{
+    cursor:pointer;
+    border:0;
+    padding:7px 10px;
+    border-radius:8px;
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--accent);
+    background:transparent;
+  }
+  .fontsize-display, .zoom-display{ font-size:13px; color:var(--muted); min-width:46px; text-align:center; }
+
+  /* Article text */
+  .lead{ font-size:16px; line-height:1.65; margin:8px 0 18px 0; }
+  .dropcap::first-letter{ float:left; font-size:3.3rem; line-height:0.8; padding-right:10px; color:var(--accent); font-weight:700; }
+
+  section{ margin:14px 0; padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35)); border-radius:10px; border:1px solid rgba(120,90,60,0.04); }
+  section h3{ margin:0 0 8px 0; color:var(--accent); font-size:1.05rem; }
+  .scripture{ margin:8px 0; padding:10px 12px; border-left:4px solid var(--accent); background:rgba(107,58,42,0.03); border-radius:8px; font-style:italic; color:#2b2b2b; }
+
+  .small{ color:var(--muted); font-size:0.9rem; }
+
+  footer{ margin-top:12px; color:var(--muted); font-size:0.9rem; text-align:center; }
+
+  /* Responsive smaller screens */
+  @media (max-width:640px){
+    .lead { font-size:15px; }
+    .dropcap::first-letter{ font-size:2.6rem; }
+    .verse, .controls-center { padding:8px; }
+  }
+
+  /* Prevent default pinch-zoom on desktop mobile browsers interfering when handling touches */
+  /* We'll allow vertical pan but intercept two-finger gestures in JS */
+  .scroll-wrap, .scroll { touch-action: pan-y; -ms-touch-action: pan-y; }
+
+  /* Ensure no horizontal overflow on the page */
+  html,body { overflow-x:hidden; }
+</style>
+
+<article class="scroll-wrap" id="outer-wrap">
+  <div id="scrollCard" class="scroll" role="main" aria-labelledby="scrollTitle" data-fontsize="16" data-zoom="100">
+    <header class="scroll-header">
+      <h1 id="scrollTitle" class="title">El flujo sagrado de la sangre: pacto bíblico y verdad biológica</h1>
+      <p class="subtitle">Traducción al español (México) — estudio teológico y evidencia clínica sobre sangre, familia y medicina transfusional.</p>
+    </header>
+
+    <div class="meta">
+      <div class="verse">
+        <strong>Versos clave (NKJV):</strong><br>
+        Mateo 26:28 — "For this is My blood of the new covenant, which is shed for many for the remission of sins."
+        <span class="small"> · Levítico 17:11 · Génesis 4:10</span>
+      </div>
+
+      <!-- Controls centered -->
+      <div class="controls-center" role="toolbar" aria-label="Controles de accesibilidad">
+        <div class="access-controls" role="group" aria-label="Tamaño de fuente y zoom">
+          <button class="btn" title="Disminuir tamaño de letra" onclick="changeFontSize(-1)">A−</button>
+          <div class="fontsize-display" id="fontsizeDisplay">16px</div>
+          <button class="btn" title="Aumentar tamaño de letra" onclick="changeFontSize(1)">A+</button>
+          <button class="btn" title="Restablecer tamaño" onclick="resetFontAndZoom()">Reset</button>
+
+          <div style="width:10px;"></div>
+
+          <label for="zoomRange" style="font-size:13px;color:var(--muted); margin-right:6px;">Zoom</label>
+          <input id="zoomRange" type="range" min="80" max="150" step="5" value="100" aria-label="Zoom del scroll" oninput="setZoom(this.value)" />
+          <div class="zoom-display" id="zoomDisplay">100%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio player (hidden controls, small) -->
+    <div style="text-align:center; margin-bottom:10px;">
+      <audio id="scrollAudio" src="https://files.catbox.moe/chl4f0.wav" preload="auto"></audio>
+      <div class="small" style="margin-top:6px;">El audio se reproducirá la primera vez que comiences a desplazarte.</div>
+    </div>
+<!-- AUDIO PLAYER SNIPPET BEGIN -->
+<div style="text-align: center; margin: 24px 0;">
+  <audio id="myAudio" src="https://files.catbox.moe/chl4f0.wav" preload="auto"></audio>
+  <button onclick="toggleAudio()" style="padding: 10px 18px; font-size: 14px; border: none; border-radius: 8px; background-color: #6b3a2a; color: white; cursor: pointer;">
+    ▶ Reproducir Audio
+  </button>
+</div>
+
+<script>
+  const audio = document.getElementById('myAudio');
+  const btn = document.querySelector('button[onclick="toggleAudio()"]');
+
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = '⏸ Pausar Audio';
+    } else {
+      audio.pause();
+      btn.textContent = '▶ Reproducir Audio';
+    }
+  }
+</script>
+<!-- AUDIO PLAYER SNIPPET END -->
+    <!-- Content -->
+    <p class="lead dropcap">
+      Desde la Escritura hasta la ciencia, la sangre simboliza la vida y la conexión. La Biblia declara “la vida de la carne está en la sangre” y proclama que Cristo “hizo la paz por la sangre de su cruz”. La fisiología moderna coincide: los glóbulos rojos transportan oxígeno a cada tejido, haciendo que la sangre sea literalmente dadora de vida. El sacrificio de Cristo inauguró un “nuevo pacto” en su sangre, recordando Éxodo 24:8 y Mateo 26:28 (NKJV). Así, la sangre es a la vez un puente espiritual y un conducto físico de vida. La unión de estas verdades ancla nuestro estudio.
+    </p>
+
+    <section id="sec-I">
+      <h3>I. La sangre del pacto y la vida del primogénito</h3>
+      <div class="scripture"><strong>Mateo 26:28 (NKJV)</strong> — "For this is My blood of the new covenant, which is shed for many for the remission of sins."</div>
+      <p>La sangre juega un papel central en los pactos de Dios. Los pactos antiguos se ratificaban con sacrificios de sangre, y Jesucristo es llamado nuestro Sumo Sacerdote “por su propia sangre” (Hebreos 9:11–14) que establece un pacto duradero. Colosenses 1:20 afirma que Cristo “habiendo hecho la paz por la sangre de su cruz”.</p>
+      <p>En la práctica, la cena de comunión celebra todavía su cuerpo y su sangre entregados para vida. Así como la sangre de Abel demandó justicia (Génesis 4:10), la sangre de Cristo trae reconciliación y vida.</p>
+    </section>
+
+    <section id="sec-II">
+      <h3>II. Lazos genéticos: la familia como parentesco biológico</h3>
+      <p>La naturaleza confirma que los miembros de una familia comparten gran parte de su “sangre”. Genéticamente, un hijo hereda un alelo del tipo sanguíneo de cada padre (ABO). Antígenos como Rh y HLA tienden a ser similares entre parientes; por ejemplo, un hijo recibe la mitad de los marcadores HLA de cada padre.</p>
+      <div class="small">Durante el embarazo, células fetales cruzan la placenta y pueden persistir años en la madre (microquimerismo fetal), contribuyendo a tolerancia inmune.</div>
+    </section>
+
+    <section id="sec-III">
+      <h3>III. Urgencia médica: cuando la sangre debe ser reemplazada</h3>
+      <p>En enfermedad renal crónica (ESRD) los pacientes pierden producción de eritropoyetina, lo que causa anemia. Aunque las ESA redujeron las transfusiones desde los 90s, muchos pacientes en diálisis aún requieren sustitución por pérdidas crónicas asociadas al tratamiento.</p>
+      <p class="small">Investigación reciente sugiere que en pacientes sépticos con ERC, transfundir glóbulos rojos redujo mortalidad (HR≈0.60, ~40% reducción a 28 días).</p>
+    </section>
+
+    <section id="sec-IV">
+      <h3>IV. Motivos de lucro y barreras sistémicas</h3>
+      <p>Parte de la desincentivación a donaciones familiares se explica por incentivos económicos: fármacos como la eritropoyetina alcanzaron ventas multimillonarias, mientras que la sangre donada genera poco margen para centros con pagos paquetizados.</p>
+    </section>
+
+    <section id="sec-V">
+      <h3>V. Lógica, ética y la verdad simple</h3>
+      <p>Más allá del lucro, la ética favorece aceptar donaciones familiares: la solución más simple y amorosa suele ser la adecuada.</p>
+    </section>
+
+    <section id="sec-VI">
+      <h3>VI. Historias ocultas y evidencia</h3>
+      <p>Estudios y relatos sugieren que las transfusiones pueden marcar la diferencia; anécdotas familiares hablan de “milagros” tras donación de sangre. Espiritualmente, Salmo 51 y los evangelios valoran el corazón contrito y la fe humilde.</p>
+      <div class="scripture"><strong>Salmo 51:17 (NKJV)</strong> — "The sacrifices of God are a broken spirit, A broken and a contrite heart—These, O God, You will not despise."</div>
+      <p style="margin-top:8px;">Conclusión: la vida fluye en la sangre y en el amor. Biología, medicina y fe convergen: la donación familiar compatible puede ser un medio legítimo y santo para preservar la vida.</p>
+    </section>
+
+    <footer>Referencias: versículos y estudios se mencionan en el texto; adjunta las citas específicas si necesitas la lista completa.</footer>
+  </div>
+</article>
+
+<script>
+  (function(){
+    const card = document.getElementById('scrollCard');
+    const fontsizeDisplay = document.getElementById('fontsizeDisplay');
+    const zoomDisplay = document.getElementById('zoomDisplay');
+    const zoomRange = document.getElementById('zoomRange');
+    const audio = document.getElementById('scrollAudio');
+    const outer = document.getElementById('outer-wrap');
+
+    // Load saved prefs
+    let fontSize = parseInt(localStorage.getItem('scroll_fontsize') || card.getAttribute('data-fontsize') || 16, 10);
+    let zoomPercent = parseInt(localStorage.getItem('scroll_zoom') || card.getAttribute('data-zoom') || 100, 10);
+
+    // Apply with safe clamping
+    function applyFontSize(px){
+      px = Math.max(12, Math.min(28, px));
+      card.style.fontSize = px + 'px';
+      fontsizeDisplay.innerText = px + 'px';
+      card.setAttribute('data-fontsize', px);
+      try{ localStorage.setItem('scroll_fontsize', px); }catch(e){}
+    }
+
+    function applyZoom(percent){
+      // clamp
+      let p = Math.max(80, Math.min(150, percent));
+      // But ensure the scaled width fits into viewport with small margin (40px)
+      const viewportW = Math.max(window.innerWidth || document.documentElement.clientWidth, 320);
+      // measure unscaled width (use offsetWidth)
+      const naturalW = Math.min(card.offsetWidth, parseInt(getComputedStyle(card).maxWidth) || card.offsetWidth);
+      // If naturalW is 0 (not rendered yet), postpone
+      let maxAllowed = (viewportW - 40) / Math.max(1, naturalW) * 100;
+      if(!isFinite(maxAllowed) || maxAllowed <= 0) maxAllowed = 150;
+      // finalPercent cannot exceed computed maxAllowed (but also not below 80)
+      let final = Math.min(p, Math.max(80, Math.floor(maxAllowed)));
+      // if user requested less than final, use user's (p)
+      if(p < final) final = p;
+      card.style.transform = `scale(${final/100})`;
+      zoomDisplay.innerText = final + '%';
+      card.setAttribute('data-zoom', final);
+      try{ localStorage.setItem('scroll_zoom', final); }catch(e){}
+      zoomRange.value = final;
+    }
+
+    // Init
+    applyFontSize(fontSize);
+    applyZoom(zoomPercent);
+
+    // Controls
+    window.changeFontSize = function(delta){
+      const cur = parseInt(getComputedStyle(card).fontSize,10) || 16;
+      applyFontSize(cur + delta);
+    };
+    window.resetFontAndZoom = function(){
+      applyFontSize(16);
+      applyZoom(100);
+      try{ localStorage.removeItem('scroll_fontsize'); localStorage.removeItem('scroll_zoom'); }catch(e){}
+    };
+    window.setZoom = function(v){
+      applyZoom(parseInt(v,10));
+    };
+
+    // Recompute on resize to ensure content always fits
+    window.addEventListener('resize', () => {
+      // reapply current zoom to enforce clamp
+      const cur = parseInt(card.getAttribute('data-zoom')||100,10);
+      applyZoom(cur);
+    });
+
+    // PINCH-TO-ZOOM handling (two-finger)
+    let pinch = {running:false, startDist:0, startZoom:parseInt(card.getAttribute('data-zoom')||100,10)};
+    function distance(t0, t1){
+      const dx = t0.clientX - t1.clientX;
+      const dy = t0.clientY - t1.clientY;
+      return Math.hypot(dx,dy);
+    }
+    outer.addEventListener('touchstart', (ev) => {
+      if(ev.touches && ev.touches.length === 2){
+        pinch.running = true;
+        pinch.startDist = distance(ev.touches[0], ev.touches[1]);
+        pinch.startZoom = parseInt(card.getAttribute('data-zoom')||100,10);
+      }
+    }, {passive:false});
+    outer.addEventListener('touchmove', (ev) => {
+      if(pinch.running && ev.touches && ev.touches.length === 2){
+        ev.preventDefault(); // intercept browser pinch
+        const d = distance(ev.touches[0], ev.touches[1]);
+        if(pinch.startDist > 0){
+          const ratio = d / pinch.startDist;
+          let newZoom = Math.round(pinch.startZoom * ratio);
+          newZoom = Math.max(80, Math.min(150, newZoom));
+          applyZoom(newZoom);
+        }
+      }
+    }, {passive:false});
+    outer.addEventListener('touchend', (ev) => {
+      if(ev.touches && ev.touches.length < 2) pinch.running = false;
+    });
+
+    // Also support wheel + ctrl as zoom (user expectation)
+    outer.addEventListener('wheel', (ev) => {
+      // if Ctrl pressed or touchpad pinch (ctrlKey often true for pinch on some browsers), adjust zoom
+      if(ev.ctrlKey){
+        ev.preventDefault();
+        const delta = ev.deltaY > 0 ? -5 : 5;
+        const cur = parseInt(card.getAttribute('data-zoom')||100,10);
+        applyZoom(cur + delta);
+      }
+    }, {passive:false});
+
+    // AUDIO: autoplay once user interacts (scroll / key / touch)
+    let audioPlayed = false;
+    function tryPlayAudio(){
+      if(audioPlayed) return;
+      // attempt to play (user has interacted)
+      audio.play().catch(()=>{/* play may still fail */});
+      audioPlayed = true;
+      // remove listeners
+      window.removeEventListener('scroll', onFirstUserScroll, true);
+      window.removeEventListener('wheel', onFirstUserScroll, true);
+      window.removeEventListener('touchstart', onFirstUserScroll, true);
+      window.removeEventListener('pointerdown', onFirstUserScroll, true);
+    }
+    function onFirstUserScroll(e){
+      tryPlayAudio();
+    }
+    // Listen for first meaningful interaction: scroll, wheel, touchstart, pointerdown
+    window.addEventListener('scroll', onFirstUserScroll, true);
+    window.addEventListener('wheel', onFirstUserScroll, {passive:true, capture:true});
+    window.addEventListener('touchstart', onFirstUserScroll, {passive:true, capture:true});
+    window.addEventListener('pointerdown', onFirstUserScroll, {passive:true, capture:true});
+
+    // small safeguard: if audio fails to load, ignore
+    audio.addEventListener('error', () => {
+      console.warn('Audio failed to load or play.');
+    });
+
+    // Ensure card is centered and block doesn't overflow horizontally after transform
+    function clampToView(){
+      // Re-apply last zoom to enforce the clamp logic
+      const cur = parseInt(card.getAttribute('data-zoom')||100,10);
+      applyZoom(cur);
+    }
+    window.addEventListener('orientationchange', clampToView);
+    window.addEventListener('resize', clampToView);
+  })();
+</script>
+<!-- Fin del bloque -->

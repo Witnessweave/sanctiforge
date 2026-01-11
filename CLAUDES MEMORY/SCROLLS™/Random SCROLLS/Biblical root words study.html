@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASVAB Root Workshop — Alfred.AI™ Study Forge</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --accent: #0ea5e9;
+      --accent-2: #22c55e;
+      --border: #e5e7eb;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --ring: 0 0 0 3px rgba(14,165,233,0.25);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --card: #0f172a;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #34d399;
+      --border: #1f2937;
+      --shadow: 0 8px 30px rgba(0,0,0,0.35);
+      --ring: 0 0 0 3px rgba(56,189,248,0.25);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0 auto;
+      max-width: 1100px;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.5;
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--bg);
+      padding: 12px 0 8px; margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: 0.2px; }
+    .muted { color: var(--muted); }
+    .pill { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; }
+    .btn { cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--ink);
+           padding: 8px 12px; border-radius: 8px; box-shadow: var(--shadow); }
+    .btn:hover { outline: var(--ring); }
+    .btn.primary { background: var(--accent); color: #0b1220; border-color: transparent; }
+    .btn.success { background: var(--accent-2); color: #052e16; border-color: transparent; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 16px; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+    .search { flex: 1 1 240px; display: flex; gap: 8px; }
+    input[type="text"], select {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--card); color: var(--ink);
+    }
+    textarea {
+      width: 100%; min-height: 70px; resize: vertical; padding: 10px 12px;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--ink);
+    }
+    label { font-weight: 700; margin-top: 8px; display: block; }
+    code { background: rgba(148,163,184,0.12); padding: 2px 6px; border-radius: 6px; font-family: var(--mono); }
+    details { border: 1px dashed var(--border); border-radius: 10px; padding: 10px 12px; margin-top: 10px; }
+    details > summary { cursor: pointer; font-weight: 700; }
+    .root-block { scroll-margin-top: 90px; }
+    .kicker { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .hr { height: 1px; background: var(--border); margin: 24px 0; }
+    .two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .three { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .progress { height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .progress > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; transition: width 300ms ease; }
+    nav { position: sticky; top: 66px; align-self: start; max-height: calc(100vh - 90px); overflow:auto; }
+    nav a { display: block; padding: 6px 8px; color: var(--muted); text-decoration: none; border-radius: 8px; }
+    nav a:hover { background: rgba(56,189,248,0.15); color: var(--ink); }
+    .realm { background: linear-gradient(180deg, rgba(56,189,248,0.10), transparent); border-left: 4px solid var(--accent); padding-left: 12px; border-radius: 8px; }
+    .realm h2 { border: none; margin: 0 0 8px; }
+    .checkline { display:flex; gap:8px; align-items:center; }
+    .badge { font-size: 12px; background: rgba(34,197,94,0.12); color: #166534; padding: 2px 8px; border-radius: 999px; border:1px solid rgba(34,197,94,0.3); }
+    .danger { background: rgba(239,68,68,0.12); color:#7f1d1d; border:1px solid rgba(239,68,68,0.3); }
+    .print-only { display:none; }
+    @media print {
+      header, .toolbar, nav, .controls, .hr, .btn { display: none !important; }
+      .print-only { display: block; }
+      body { max-width: none; }
+      details { border: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="card">
+    <div class="row">
+      <div class="title">ASVAB Root Workshop — <span class="muted">Alfred.AI™ Study Forge</span></div>
+      <span class="pill">NKJV Anchors • Real Words Only</span>
+      <span class="pill">Autosave On</span>
+    </div>
+    <div class="row toolbar" style="margin-top:10px;">
+      <div class="search">
+        <input id="q" type="text" placeholder="Search roots, meanings, or example words… (e.g., 'light', 'photo', 'bene')" />
+        <button class="btn" id="clearSearch">Clear</button>
+      </div>
+      <button class="btn" id="theme">Toggle Theme</button>
+      <button class="btn primary" id="save">Save</button>
+      <button class="btn" id="load">Load</button>
+      <button class="btn danger" id="reset">Reset All</button>
+      <button class="btn" id="export">Export JSON</button>
+      <label class="btn" style="cursor:pointer;">
+        Import JSON<input id="import" type="file" accept="application/json" style="display:none;" />
+      </label>
+    </div>
+    <div class="row" style="margin-top:10px; gap:16px; align-items:center;">
+      <div style="flex:1;">
+        <div class="kicker">Overall Progress</div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <div class="muted" style="font-size:12px; margin-top:4px;">
+          <span id="progressText">0 / 0 fields saved</span>
+        </div>
+      </div>
+      <div class="print-only">Printed on: <span id="printedDate"></span></div>
+    </div>
+  </header>  <div class="grid">
+    <nav class="card" style="grid-column: span 3;">
+      <div class="kicker">Navigation</div>
+      <a href="#intro">Intro</a>
+      <a href="#realm1">Realm I — Sight & Light</a>
+      <a href="#realm2">Realm II — Speech & Sound</a>
+      <a href="#realm3">Realm III — Motion & Making</a>
+      <a href="#realm4">Realm IV — Life & Body</a>
+      <a href="#realm5">Realm V — Time & Measure</a>
+      <div class="hr"></div>
+      <a href="#prefixes">Prefix Engine</a>
+      <a href="#suffixes">Suffix Engine</a>
+      <a href="#quizzes">Checkpoint Quizzes</a>
+      <a href="#glossary">Glossary Builder</a>
+      <a href="#scripture">Gospel Lens</a>
+    </nav><main style="grid-column: span 9; display:flex; flex-direction:column; gap:16px;">
+
+  <section id="intro" class="card">
+    <h2>Welcome</h2>
+    <p><strong>Purpose:</strong> Train real root-based vocabulary for ASVAB Word Knowledge™ and Paragraph Comprehension™, using proven techniques: decode by roots, apply in sentences, and reflect. “Wisdom is the principal thing; Therefore get wisdom. And in all your getting, get understanding.” <em>(Proverbs 4:7, NKJV)</em></p>
+    <div class="two">
+      <div>
+        <h3>How to Use</h3>
+        <ol>
+          <li>For each root, enter a <strong>real word</strong>, write a <strong>sentence</strong>, and <strong>break down</strong> the root’s contribution.</li>
+          <li>Toggle <strong>Examples</strong> to see common word families and sample breakdowns.</li>
+          <li>Use <strong>Prefix/Suffix</strong> engines after each realm to expand mastery.</li>
+          <li>Hit <strong>Save</strong> often (autosave also records as you type).</li>
+          <li>Print for pen-and-paper drills (print-optimized).</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Study Targets</h3>
+        <ul>
+          <li>Accuracy ≥ <strong>80%</strong> in quizzes</li>
+          <li>Fluency: <strong>60 sec</strong> per question cap</li>
+          <li>Recall: <strong>90%+</strong> of core roots on cold start</li>
+        </ul>
+        <div class="badge">Autosave ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REALM I -->
+  <section id="realm1" class="card realm">
+    <h2>Realm I — Sight & Light</h2>
+    <p class="muted">vid/vis • spec/spect • photo • scope • tele • micro • macro • astr • clar</p>
+  </section>
+
+  <div id="roots"></div>
+
+  <!-- REALM II marker will be injected at index position -->
+  <section id="realm2" class="card realm">
+    <h2>Realm II — Speech & Sound</h2>
+    <p class="muted">dict • voc/vok • phon • log/logue • graph/gram • aud • claim/clam • ora/orat • noun/nunc • lex</p>
+  </section>
+
+  <section id="prefixes" class="card">
+    <h2>Prefix Engine</h2>
+    <p class="muted">Fill with <strong>real words</strong>. Break down prefix → core meaning.</p>
+    <div class="three" id="prefixGrid"></div>
+  </section>
+
+  <section id="suffixes" class="card">
+    <h2>Suffix Engine</h2>
+    <p class="muted">Identify part-of-speech shifts and meaning changes.</p>
+    <div class="three" id="suffixGrid"></div>
+  </section>
+
+  <section id="realm3" class="card realm">
+    <h2>Realm III — Motion & Making</h2>
+    <p class="muted">port • ject • tract • duc/duct • fac/fec/fic • mit/mis • vert/vers • pos/pon • cap/cip/cept • tend/tens</p>
+  </section>
+
+  <section id="quizzes" class="card">
+    <h2>Checkpoint Quizzes</h2>
+    <p class="muted">Self-test. No auto-grading — use to diagnose and then reflect.</p>
+    <details>
+      <summary>Match — Roots to Meanings (Set A)</summary>
+      <div class="two">
+        <div>
+          <ol>
+            <li>photo</li>
+            <li>dict</li>
+            <li>port</li>
+            <li>geo</li>
+            <li>cred</li>
+          </ol>
+        </div>
+        <div>
+          <ol type="A">
+            <li>earth</li>
+            <li>believe</li>
+            <li>light</li>
+            <li>carry</li>
+            <li>speak</li>
+          </ol>
+        </div>
+      </div>
+      <label>Write your matches (e.g., 1-C, 2-E …)</label>
+      <textarea data-save="quiz-match-a"></textarea>
+    </details>
+    <details>
+      <summary>Fill-in — Use any root to craft a real word and sentence</summary>
+      <label>Real word:</label><textarea data-save="quiz-fill-word"></textarea>
+      <label>Sentence:</label><textarea data-save="quiz-fill-sent"></textarea>
+    </details>
+  </section>
+
+  <section id="realm4" class="card realm">
+    <h2>Realm IV — Life & Body</h2>
+    <p class="muted">bio • vit/viv • mort • ped/pod • manu • dent • derm • cardio • neur • opt</p>
+  </section>
+
+  <section id="glossary" class="card">
+    <h2>Glossary Builder</h2>
+    <p class="muted">Document the best examples you discovered.</p>
+    <div class="two">
+      <div>
+        <label>Root</label>
+        <textarea data-save="g-root"></textarea>
+        <label>Example Word</label>
+        <textarea data-save="g-word"></textarea>
+      </div>
+      <div>
+        <label>Definition (your words)</label>
+        <textarea data-save="g-def"></textarea>
+        <label>Sentence</label>
+        <textarea data-save="g-sent"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section id="realm5" class="card realm">
+    <h2>Realm V — Time & Measure</h2>
+    <p class="muted">chrono • meter • ann/enn • temp • grad/gress • seq • stat/sta/sist • ord • numer • scale</p>
+  </section>
+
+  <section id="scripture" class="card">
+    <h2>Gospel Lens</h2>
+    <blockquote>
+      “Your word I have hidden in my heart, That I might not sin against You.” — <strong>Psalm 119:11</strong> (NKJV)
+    </blockquote>
+    <label>Reflection</label>
+    <textarea data-save="lens-reflect" placeholder="How does mastering word-roots help you hear, read, and obey more clearly?"></textarea>
+  </section>
+
+  <section class="card">
+    <h2>Controls</h2>
+    <div class="controls toolbar">
+      <button class="btn" id="toTop">Back to Top</button>
+      <button class="btn success" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </section>
+
+  <footer class="card" style="margin-top:8px;">
+    © 2025 — Built with Alfred.AI™ & Lily.AI™ for Lewis — <strong>JESUS IS LORD™</strong>
+  </footer>
+</main>
+
+  </div>  <script>
+    // ===== DATA: ROOTS (50 real roots, each with examples) =====
+    const ROOTS = [
+      { id: 'bene', root: 'bene', meaning: 'good', examples: ['benefit','benevolent','benediction'] },
+      { id: 'mal', root: 'mal', meaning: 'bad/evil', examples: ['malfunction','malicious','malady'] },
+      { id: 'dict', root: 'dict', meaning: 'say/speak', examples: ['dictate','verdict','predict','contradict','edict'] },
+      { id: 'aud', root: 'aud', meaning: 'hear', examples: ['audio','audience','audible','audit'] },
+      { id: 'vidvis', root: 'vid/vis', meaning: 'see', examples: ['video','visual','evidence','revise'] },
+      { id: 'spec', root: 'spec/spect', meaning: 'look/examine', examples: ['inspect','spectator','prospect','respect'] },
+      { id: 'photo', root: 'photo', meaning: 'light', examples: ['photograph','photosynthesis','photometer'] },
+      { id: 'scope', root: 'scope', meaning: 'view/look', examples: ['microscope','telescope','endoscope'] },
+      { id: 'tele', root: 'tele', meaning: 'far', examples: ['telephone','telegraph','television'] },
+      { id: 'micro', root: 'micro', meaning: 'small', examples: ['microscope','microbe','microcosm'] },
+      { id: 'macro', root: 'macro', meaning: 'large', examples: ['macrocosm','macroeconomics'] },
+      { id: 'astr', root: 'astr', meaning: 'star', examples: ['astronomy','astronaut','asteroid'] },
+      { id: 'clar', root: 'clar', meaning: 'clear', examples: ['clarify','clarity','declaration'] },
+      { id: 'voc', root: 'voc/vok', meaning: 'call/voice', examples: ['vocal','invoke','provoke','advocate'] },
+      { id: 'phon', root: 'phon', meaning: 'sound', examples: ['symphony','phonetic','telephone'] },
+      { id: 'log', root: 'log/logue', meaning: 'word/speech', examples: ['dialogue','monologue','logic'] },
+      { id: 'graph', root: 'graph/gram', meaning: 'write/draw', examples: ['autograph','telegram','graphic'] },
+      { id: 'geo', root: 'geo', meaning: 'earth', examples: ['geography','geology','geothermal'] },
+      { id: 'therm', root: 'therm', meaning: 'heat', examples: ['thermometer','thermal','isotherm'] },
+      { id: 'form', root: 'form', meaning: 'shape', examples: ['uniform','reform','formation'] },
+      { id: 'port', root: 'port', meaning: 'carry', examples: ['transport','portable','export','import'] },
+      { id: 'scrib', root: 'scrib/script', meaning: 'write', examples: ['describe','manuscript','inscription'] },
+      { id: 'ject', root: 'ject', meaning: 'throw', examples: ['eject','project','inject','object'] },
+      { id: 'tract', root: 'tract', meaning: 'drag/pull', examples: ['attract','detract','tractor','traction'] },
+      { id: 'duct', root: 'duc/duct', meaning: 'lead', examples: ['conduct','educate','induce','ductile'] },
+      { id: 'fac', root: 'fac/fec/fic', meaning: 'make/do', examples: ['factory','manufacture','efficient','beneficial'] },
+      { id: 'mit', root: 'mit/mis', meaning: 'send', examples: ['transmit','permit','dismiss','mission'] },
+      { id: 'vert', root: 'vert/vers', meaning: 'turn', examples: ['invert','convert','reverse','version'] },
+      { id: 'pon', root: 'pos/pon', meaning: 'put/place', examples: ['position','postpone','component','deposit'] },
+      { id: 'cap', root: 'cap/cip/cept', meaning: 'take/seize', examples: ['capture','recipient','accept','intercept'] },
+      { id: 'tend', root: 'tend/tens', meaning: 'stretch/strain', examples: ['extend','tension','intense','tendency'] },
+      { id: 'cred', root: 'cred', meaning: 'believe', examples: ['credible','credit','credence','incredible'] },
+      { id: 'bio', root: 'bio', meaning: 'life', examples: ['biology','biography','biome'] },
+      { id: 'vit', root: 'vit/viv', meaning: 'life', examples: ['vital','revive','vivacious'] },
+      { id: 'mort', root: 'mort', meaning: 'death', examples: ['mortal','mortuary','mortality'] },
+      { id: 'ped', root: 'ped/pod', meaning: 'foot', examples: ['pedal','tripod','podium'] },
+      { id: 'pedi', root: 'pedi/pedo', meaning: 'child', examples: ['pediatrics','pedagogy'] },
+      { id: 'manu', root: 'man/manu', meaning: 'hand', examples: ['manual','manufacture','manuscript'] },
+      { id: 'dent', root: 'dent', meaning: 'tooth', examples: ['dentist','dental','edentate'] },
+      { id: 'derm', root: 'derm', meaning: 'skin', examples: ['dermatology','epidermis','hypodermic'] },
+      { id: 'cardio', root: 'cardio', meaning: 'heart', examples: ['cardiology','cardiogram','cardiovascular'] },
+      { id: 'neur', root: 'neur', meaning: 'nerve', examples: ['neuron','neurology','neural'] },
+      { id: 'opt', root: 'opt/ops', meaning: 'eye/see', examples: ['optical','optometrist','synopsis'] },
+      { id: 'rupt', root: 'rupt', meaning: 'break/burst', examples: ['rupture','erupt','interrupt','corrupt'] },
+      { id: 'sect', root: 'sect/sec', meaning: 'cut', examples: ['section','dissect','sector'] },
+      { id: 'stat', root: 'stat/sta/sist', meaning: 'stand/place', examples: ['station','assist','resist','static'] },
+      { id: 'fer', root: 'fer', meaning: 'bear/carry', examples: ['transfer','ferry','offer','conference'] },
+      { id: 'ann', root: 'ann/enn', meaning: 'year', examples: ['annual','annuity','centennial'] },
+      { id: 'temp', root: 'temp', meaning: 'time/season', examples: ['temporary','temperate','tempo'] },
+      { id: 'grad', root: 'grad/gress', meaning: 'step/go', examples: ['graduate','progress','aggression','gradual'] },
+      { id: 'seq', root: 'seq', meaning: 'follow', examples: ['sequence','sequel','consecutive'] }
+    ];
+
+    // ===== DATA: Prefixes & Suffixes (real only) =====
+    const PREFIXES = [
+      ['pre-','before','preview','predetermine','preexisting'],
+      ['re-','again/back','rewrite','return','rebuild'],
+      ['un-','not','unknown','unsafe','untrue'],
+      ['dis-','not/apart','disagree','disallow','disengage'],
+      ['mis-','wrongly/badly','misplace','misinterpret','misjudge'],
+      ['non-','not/without','nonsense','nonfiction','nonstop'],
+      ['in-/im-/il-/ir-','not','inaccurate','impossible','illegal'],
+      ['inter-','between','international','interstate','interact'],
+      ['sub-','under','submarine','subsoil','submerge'],
+      ['trans-','across','transport','transmit','transatlantic'],
+      ['super-','above/beyond','superhuman','superstructure','superimpose'],
+      ['semi-','half/partly','semicircle','semiannual','semiopaque'],
+      ['anti-','against','antidote','antibiotic','antiwar'],
+      ['de-','down/off/reverse','deflate','devalue','deactivate'],
+      ['post-','after','postwar','postscript','postseason'],
+      ['pro-','forward/for','proceed','promote','proactive'],
+      ['con- / co- / com-','with/together','connect','cooperate','combine'],
+      ['over-','too much/above','overheat','overreact','overcharge'],
+      ['under-','too little/below','underfed','underestimate','underpay']
+    ];
+    
+        const SUFFIXES = [
+      ['-tion / -sion','act/process','creation','expansion','transition'],
+      ['-ment','state/result','agreement','movement','development'],
+      ['-ness','state/quality','kindness','darkness','firmness'],
+      ['-ity / -ty','state/condition','clarity','activity','electricity'],
+      ['-er / -or','one who','teacher','actor','editor'],
+      ['-ist','one who practices','artist','biologist','pianist'],
+      ['-ism','belief/practice','realism','patriotism','baptism'],
+      ['-able / -ible','capable of','portable','edible','legible'],
+      ['-ful','full of','hopeful','graceful','thoughtful'],
+      ['-less','without','powerless','fearless','homeless'],
+      ['-ous / -eous / -ious','having/quality of','curious','courageous','nutritious'],
+      ['-ive','tending to','active','creative','protective'],
+      ['-al','related to','cultural','governmental','seasonal'],
+      ['-ic','having quality of','heroic','poetic','magnetic'],
+      ['-ance / -ence','state/quality','resistance','presence','confidence'],
+      ['-ate','to make','activate','decorate','separate'],
+      ['-ize / -ise','to make/become','realize','organize','prioritize'],
+      ['-ly','in the manner of (adv.)','quickly','slowly','boldly'],
+      ['-y','characterized by','rainy','windy','sticky'],
+      ['-ward / -wise','direction/manner','forward','backward','clockwise']
+    ];
+
+    // ===== Render Roots =====
+    const rootsContainer = document.getElementById('roots');
+
+    function rootBlockTemplate(idx, r) {
+      const num = String(idx+1).padStart(2,'0');
+      const ex = r.examples.join(', ');
+      const id = `root-${num}-${r.id}`;
+      return `
+        <section id="${id}" class="card root-block">
+          <div class="kicker">Root ${num}</div>
+          <h2><code>${r.root}</code> — ${r.meaning}</h2>
+          <label for="${id}-word">1) Real Word</label>
+          <textarea id="${id}-word" data-save="${id}-word" placeholder="Choose one from the family (e.g., ${r.examples[0]})"></textarea>
+          <label for="${id}-sent">2) Sentence Using Your Word</label>
+          <textarea id="${id}-sent" data-save="${id}-sent" placeholder="Write a clear sentence that shows meaning in context."></textarea>
+          <label for="${id}-break">3) Breakdown (root → meaning contribution)</label>
+          <textarea id="${id}-break" data-save="${id}-break" placeholder="Example: '${r.root}' = ${r.meaning}; so '${r.examples[0]}' means …"></textarea>
+          <div class="checkline">
+            <input type="checkbox" id="${id}-done" data-save="${id}-done" />
+            <label for="${id}-done" style="font-weight:600;">Mark as reviewed</label>
+          </div>
+          <details>
+            <summary>Examples & Hints</summary>
+            <div class="muted">Family: ${ex}</div>
+            <div style="margin-top:8px;">
+              <label>Sample Breakdown (optional)</label>
+              <textarea data-save="${id}-hint" placeholder="Try writing one sample breakdown here."></textarea>
+            </div>
+          </details>
+        </section>
+      `;
+    }
+
+    ROOTS.forEach((r, idx) => {
+      rootsContainer.insertAdjacentHTML('beforeend', rootBlockTemplate(idx, r));
+      // Inject realm separators at logical points
+      if (idx === 12) { // after ~13 roots
+        rootsContainer.insertAdjacentHTML('beforeend', '<div class="hr"></div>');
+      }
+    });
+
+    // ===== Render Prefixes/Suffixes =====
+    function affixCard(kind, data, i){
+      const id = `${kind}-${i}`;
+      return `
+        <div class="card">
+          <div class="kicker">${kind === 'prefix' ? 'Prefix' : 'Suffix'}</div>
+          <h3><code>${data[0]}</code> — ${data[1]}</h3>
+          <details><summary>Examples</summary><div class="muted">${data.slice(2).join(', ')}</div></details>
+          <label for="${id}-word">Real Word</label>
+          <textarea id="${id}-word" data-save="${id}-word" placeholder="Pick one example or add another real word"></textarea>
+          <label for="${id}-sent">Sentence</label>
+          <textarea id="${id}-sent" data-save="${id}-sent" placeholder="Use the word in context"></textarea>
+          <label for="${id}-break">Breakdown</label>
+          <textarea id="${id}-break" data-save="${id}-break" placeholder="Explain how the ${kind} shifts meaning"></textarea>
+          <div class="checkline"><input type="checkbox" id="${id}-done" data-save="${id}-done" /> <label for="${id}-done">Reviewed</label></div>
+        </div>
+      `;
+    }
+
+    const prefixGrid = document.getElementById('prefixGrid');
+    PREFIXES.forEach((p,i)=> prefixGrid.insertAdjacentHTML('beforeend', affixCard('prefix', p, i)) );
+
+    const suffixGrid = document.getElementById('suffixGrid');
+    SUFFIXES.forEach((s,i)=> suffixGrid.insertAdjacentHTML('beforeend', affixCard('suffix', s, i)) );
+
+    // ===== STORAGE / AUTOSAVE =====
+    const STORAGE_KEY = 'ASVAB_ROOT_WORKSHOP_V1';
+    function serialize(){
+      const nodes = document.querySelectorAll('[data-save]');
+      const data = {};
+      nodes.forEach(n=>{
+        if(n.type === 'checkbox') data[n.getAttribute('data-save')] = n.checked;
+        else data[n.getAttribute('data-save')] = n.value;
+      });
+      return data;
+    }
+    function deserialize(data){
+      const nodes = document.querySelectorAll('[data-save]');
+      nodes.forEach(n=>{
+        const k = n.getAttribute('data-save');
+        if(!(k in data)) return;
+        if(n.type === 'checkbox') n.checked = !!data[k];
+        else n.value = data[k];
+      });
+      updateProgress();
+    }
+    function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(serialize())); updateProgress(); }
+    function load(){ const raw = localStorage.getItem(STORAGE_KEY); if(!raw) return; try{ deserialize(JSON.parse(raw)); }catch(e){} }
+    function resetAll(){ if(confirm('Clear all saved fields?')){ localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('[data-save]').forEach(n=>{ if(n.type==='checkbox') n.checked=false; else n.value=''; }); updateProgress(); }}
+
+    document.addEventListener('input', evt=>{
+      if(evt.target.matches('[data-save]')) save();
+    });
+
+    document.getElementById('save').addEventListener('click', save);
+    document.getElementById('load').addEventListener('click', load);
+    document.getElementById('reset').addEventListener('click', resetAll);
+
+    // ===== EXPORT / IMPORT =====
+    document.getElementById('export').addEventListener('click', ()=>{
+      const blob = new Blob([JSON.stringify(serialize(), null, 2)], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'asvab_root_workshop.json'; a.click();
+    });
+    document.getElementById('import').addEventListener('change', (e)=>{
+      const file = e.target.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => { try{ const data = JSON.parse(ev.target.result); deserialize(data); save(); } catch(err){ alert('Invalid JSON.'); } };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    // ===== SEARCH =====
+    const q = document.getElementById('q');
+    const clearBtn = document.getElementById('clearSearch');
+    function applySearch(){
+      const term = q.value.toLowerCase().trim();
+      document.querySelectorAll('.root-block').forEach(sec=>{
+        const text = sec.innerText.toLowerCase();
+        sec.style.display = term && !text.includes(term) ? 'none' : '';
+      });
+    }
+    q.addEventListener('input', applySearch);
+    clearBtn.addEventListener('click', ()=>{ q.value=''; applySearch(); });
+
+    // ===== THEME TOGGLE =====
+    const themeBtn = document.getElementById('theme');
+    themeBtn.addEventListener('click', ()=>{
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+      save();
+    });
+
+    // ===== PROGRESS =====
+    function updateProgress(){
+      const fields = document.querySelectorAll('[data-save]');
+      const total = fields.length;
+      let filled = 0;
+      fields.forEach(n=>{
+        if(n.type==='checkbox') filled += n.checked ? 1 : 0;
+        else filled += n.value && n.value.trim().length>0 ? 1 : 0;
+      });
+      const pct = total? Math.round((filled/total)*100) : 0;
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = `${filled} / ${total} fields saved (${pct}%)`;
+    }
+
+    // ===== UTIL =====
+    document.getElementById('toTop').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}) );
+    document.getElementById('printedDate').textContent = new Date().toLocaleString();
+
+    // init
+    load();
+    updateProgress();
+  </script>
+  
+  
+  <script>
+/* ================== ALFRED.AI™ FIDELITY PACK™ v1.0 ==================
+   Guards the canon (ROOTS, PREFIXES, SUFFIXES) while letting you study freely.
+   Adds: Baseline Hash • Protected Mode • BlackSheep™ Drift • DescentLadder™
+         Changelog • Snapshots • RealWordsOnly scan • Self-tests • Footer Seal
+   Safe to paste below your existing script. Requires the globals you already have:
+   ROOTS, PREFIXES, SUFFIXES, [data-save] fields.
+====================================================================== */
+(function(){
+  const APP_VERSION = "1.0.0";
+  const SCHEMA_VERSION = 1;
+  const K = {
+    baseline: "ASVAB_BASELINE_HASH_V1",
+    state:    "ASVAB_ROOT_WORKSHOP_V1",
+    slots:    "ASVAB_SNAPSHOT_SLOTS_V1",
+    prefs:    "ASVAB_PREFS_V1",
+    changelog:"ASVAB_CHANGELOG_V1",
+    drift:    "ASVAB_DRIFT_STRIKES_V1"
+  };
+
+  const prefs = read(K.prefs, { protectedMode: true, realWordsOnly: true });
+  const changelog = read(K.changelog, []);
+  const slots = read(K.slots, []);
+  let driftStrikes = +localStorage.getItem(K.drift) || 0;
+
+  // === UI controls in header
+  const header = document.querySelector("header");
+  const row = document.createElement("div");
+  row.className = "row"; row.style.marginTop = "8px";
+  row.innerHTML = `
+    <span id="fidelityBadge" class="pill">Fidelity: …</span>
+    <button class="btn" id="toggleProtected">${prefs.protectedMode ? "Protected: ON" : "Protected: OFF"}</button>
+    <button class="btn" id="toggleReal">${prefs.realWordsOnly ? "RealWordsOnly: ON" : "RealWordsOnly: OFF"}</button>
+    <button class="btn" id="verifyCanon">Verify Canon</button>
+    <button class="btn" id="snapshot">Snapshot</button>
+    <button class="btn" id="revertBaseline">Revert to Baseline</button>
+  `;
+  header.appendChild(row);
+
+  // === Hash
+  async function sha256(text){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  function canonJSON(){
+    const R = (window.ROOTS||[]).map(r=>({id:r.id, root:r.root, meaning:r.meaning, examples:r.examples}));
+    const P = (window.PREFIXES||[]).map(p=>p.slice(0,2));
+    const S = (window.SUFFIXES||[]).map(s=>s.slice(0,2));
+    return JSON.stringify({R,P,S});
+  }
+
+  // === IO
+  function read(k, d){ try{ return JSON.parse(localStorage.getItem(k)) ?? d; }catch{ return d; } }
+  function write(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
+
+  // === Protect canon (soft lock)
+  function protect(){
+    if(!prefs.protectedMode) return;
+    try{
+      if(window.ROOTS){ Object.freeze(window.ROOTS); window.ROOTS.forEach(Object.freeze); }
+      if(window.PREFIXES){ Object.freeze(window.PREFIXES); }
+      if(window.SUFFIXES){ Object.freeze(window.SUFFIXES); }
+    }catch{}
+  }
+
+  // === Self-tests
+  function selfTests(){
+    const issues = [];
+    const ids = new Set();
+    (ROOTS||[]).forEach(r=>{
+      if(!r.id||!r.root||!r.meaning) issues.push("Missing field: "+JSON.stringify(r));
+      if(ids.has(r.id)) issues.push("Duplicate id: "+r.id);
+      ids.add(r.id);
+      if(!Array.isArray(r.examples)||r.examples.length===0) issues.push("No examples for: "+r.root);
+    });
+    return issues;
+  }
+
+  // === Real-words-only scan (heuristic)
+  function looksReal(w){
+    if(!w) return false;
+    if(/[0-9_]/.test(w)) return false;
+    if(/^[A-Z][a-z]+[A-Z]/.test(w)) return false; // camel-case trap
+    return /^[a-zA-Z-]{2,}$/.test(w);
+  }
+  function scanRealWords(){
+    if(!prefs.realWordsOnly) return [];
+    const bad = [];
+    document.querySelectorAll('.root-block textarea[id$="-word"]').forEach(t=>{
+      const v = (t.value||"").trim();
+      if(v && !looksReal(v)) bad.push({id:t.id, value:v});
+    });
+    return bad;
+  }
+
+  // === Black Sheep™ (drift) + Descent Ladder™ (auto-lock)
+  async function verifyCanon(reason="manual"){
+    const current = await sha256(canonJSON());
+    let baseline = localStorage.getItem(K.baseline);
+    if(!baseline){
+      localStorage.setItem(K.baseline, current);
+      baseline = current;
+      log("baseline.set", {hash:current});
+    }
+    const ok = (current===baseline);
+    const badge = document.getElementById("fidelityBadge");
+    badge.textContent = ok ? `Fidelity: VERIFIED (${current.slice(0,8)}…)` : `Fidelity: DRIFT (${current.slice(0,8)}…)`;
+    badge.className = "pill"; if(!ok) badge.classList.add("danger");
+
+    if(!ok){
+      driftStrikes++; localStorage.setItem(K.drift, String(driftStrikes));
+      log("canon.drift", {reason,current,baseline,driftStrikes});
+      if(driftStrikes>=2){
+        prefs.protectedMode = true; write(K.prefs, prefs); protect();
+        alert("Canon drift seen twice. Protected Mode enforced.");
+      }
+    } else {
+      driftStrikes = 0; localStorage.setItem(K.drift, "0");
+    }
+
+    const flags = scanRealWords();
+    if(flags.length) log("realwords.flags", {count:flags.length, sample: flags.slice(0,5)});
+    return ok;
+  }
+
+  // === Changelog
+  function log(kind, detail){ changelog.push({ts:new Date().toISOString(), kind, detail}); write(K.changelog, changelog); }
+
+  // === Snapshot (exports study state w/ meta)
+  async function snapshot(){
+    const meta = {when:new Date().toISOString(), appVersion:APP_VERSION, schemaVersion:SCHEMA_VERSION, baselineHash:localStorage.getItem(K.baseline)};
+    const state = localStorage.getItem(K.state) || "{}";
+    const blob = new Blob([JSON.stringify({meta, state: JSON.parse(state)}, null, 2)], {type:'application/json'});
+    const id = `snapshot_${Date.now()}`;
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${id}.json`; a.click();
+    slots.unshift({id, timestamp: meta.when, meta}); if(slots.length>12) slots.pop(); write(K.slots, slots);
+    log("snapshot.save", meta);
+  }
+
+  async function revertBaseline(){
+    if(!confirm("Revert to baseline? (Study entries stay)")) return;
+    prefs.protectedMode = true; write(K.prefs, prefs); protect();
+    await verifyCanon("revert");
+    alert("Baseline enforced. (Canon edits require code review.)");
+  }
+
+  // === Wire buttons
+  document.getElementById("toggleProtected").addEventListener('click', ()=>{
+    prefs.protectedMode = !prefs.protectedMode; write(K.prefs, prefs); protect();
+    document.getElementById("toggleProtected").textContent = prefs.protectedMode ? "Protected: ON" : "Protected: OFF";
+    log("protected.toggle", {on:prefs.protectedMode});
+  });
+  document.getElementById("toggleReal").addEventListener('click', ()=>{
+    prefs.realWordsOnly = !prefs.realWordsOnly; write(K.prefs, prefs);
+    document.getElementById("toggleReal").textContent = prefs.realWordsOnly ? "RealWordsOnly: ON" : "RealWordsOnly: OFF";
+    log("realwords.toggle", {on:prefs.realWordsOnly});
+  });
+  document.getElementById("verifyCanon").addEventListener('click', ()=>verifyCanon());
+  document.getElementById("snapshot").addEventListener('click', snapshot);
+  document.getElementById("revertBaseline").addEventListener('click', revertBaseline);
+
+  // === Footer seal
+  async function seal(){
+    const ok = await verifyCanon("boot");
+    document.querySelectorAll("footer.card, footer").forEach(el=>{
+      const seal = document.createElement('div');
+      seal.style.marginTop = "6px"; seal.style.fontSize = "12px";
+      seal.style.color = ok ? "#16a34a" : "#b91c1c";
+      seal.textContent = ok ? "FIDELITY VERIFIED — Baseline matched." : "FIDELITY WARNING — Canon drift detected.";
+      el.appendChild(seal);
+    });
+  }
+
+  // Init
+  protect();
+  const issues = selfTests();
+  if(issues.length){
+    log("selftest.fail",{issues});
+    const b = document.getElementById("fidelityBadge");
+    b.classList.add("danger"); b.textContent = "Fidelity: SELF-TEST FAIL";
+    console.warn("FidelityPack Self-Tests:", issues);
+  } else {
+    log("selftest.pass",{});
+  }
+  seal();
+
+})();
+</script>
+</body>
+</html>
