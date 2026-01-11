@@ -71,3 +71,4 @@ vault/system/
 # - .seed (witness seeds)
 # - .log (logs)
 # ===========================================
+__pycache__/
