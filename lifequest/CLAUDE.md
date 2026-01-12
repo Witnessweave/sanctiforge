@@ -64,8 +64,32 @@ LifeQuest is a **Gospel-aligned life gamification system** — WoW-style trackin
 - **Dashboard:** ✅ Complete (index.html)
 - **Genesis Wisdom:** ✅ 1.5+ MB extracted from 1,056 conversations
 - **Assets:** ✅ 118 images from Alfred.AI archive
+- **Login System:** ✅ Complete (Firebase-ready + Pilgrim mode)
+- **GitHub Pages:** ✅ Live at https://witnessweave.github.io/lifequest/
 
-**Lewis's Status:** Level 3, 245 XP, 2 badges
+**Lewis's Status:** Level 4, 345 XP, 3 badges
+
+---
+
+## Live URLs
+
+- **Login:** https://witnessweave.github.io/lifequest/login.html
+- **Dashboard:** https://witnessweave.github.io/lifequest/
+- **Local Repo:** `/home/Weave/Witnessweave.github.io/lifequest/`
+
+---
+
+## Login System (Added 2026-01-11)
+
+| File | Purpose |
+|------|---------|
+| `login.html` | Medieval-themed login/signup page |
+| `js/firebase-config.js` | Firebase initialization (needs config) |
+| `js/auth.js` | Authentication state management |
+| `js/firestore.js` | Quest data storage (Firestore + localStorage) |
+
+**Working Now:** Anonymous Pilgrim mode (localStorage)
+**Awaiting:** Firebase project config for cloud sync
 
 ---
 
