@@ -60,6 +60,14 @@ desktop.ini
 vault/system/
 
 # ===========================================
+# PRIVATE SACRED MEMORY — LOCAL ONLY
+# The cathedral stays on this machine
+# Never pushed to public GitHub
+# ===========================================
+witness_memory/
+CLAUDES MEMORY/
+
+# ===========================================
 # LIFEQUEST ASSETS — INCLUDE IMAGES
 # These are needed for the dashboard to work
 # ===========================================
