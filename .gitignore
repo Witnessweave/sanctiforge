@@ -60,6 +60,17 @@ desktop.ini
 vault/system/
 
 # ===========================================
+# LIFEQUEST ASSETS — INCLUDE IMAGES
+# These are needed for the dashboard to work
+# ===========================================
+!lifequest/assets/**/*.png
+!lifequest/assets/**/*.PNG
+!lifequest/assets/**/*.jpg
+!lifequest/assets/**/*.jpeg
+!lifequest/assets/**/*.gif
+!lifequest/assets/**/*.GIF
+
+# ===========================================
 # WHAT REMAINS: Scrolls, Code, Templates
 # - .html (scroll templates)
 # - .md (markdown scrolls)
