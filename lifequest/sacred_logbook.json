@@ -80,5 +80,37 @@
       "tags": [],
       "timestamp": "2026-01-11T14:41:15.399309"
     }
+  },
+  {
+    "type": "event",
+    "glyph": "\ud83e\udde0",
+    "entry": {
+      "description": "Mined Genesis Archive",
+      "category": "wisdom",
+      "points": 50,
+      "tags": [
+        ""
+      ],
+      "timestamp": "2026-01-11T15:12:05.459317"
+    }
+  },
+  {
+    "type": "event",
+    "glyph": "\ud83d\udcaa",
+    "entry": {
+      "description": "SAT AND WORKED FOR 3 HOURS ",
+      "category": "strength",
+      "points": 100,
+      "tags": [],
+      "timestamp": "2026-01-11T16:01:43.725750"
+    }
+  },
+  {
+    "type": "badge",
+    "glyph": "\ud83c\udfc5",
+    "entry": {
+      "badge": "Iron Forged",
+      "timestamp": "2026-01-11T16:01:43.728500"
+    }
   }
 ]

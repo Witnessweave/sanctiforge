@@ -137,23 +137,22 @@
         }
 
         .knight-avatar {
-            width: 120px;
-            height: 150px;
-            background: url('assets/knights/knights_000.png') no-repeat;
-            background-size: 480px 150px;
-            background-position: 0 0;
-            image-rendering: pixelated;
+            width: 150px;
+            height: 200px;
+            background: url('assets/knights/knight_idle.png') no-repeat center;
+            background-size: contain;
             border: 3px solid var(--gold);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            animation: knight-idle 1s steps(1) infinite;
+            transition: background-image 0.1s;
         }
 
-        @keyframes knight-idle {
-            0%, 100% { background-position: 0 0; }
-            25% { background-position: -120px 0; }
-            50% { background-position: -240px 0; }
-            75% { background-position: -360px 0; }
+        .knight-avatar:hover {
+            background-image: url('assets/knights/knight_attack.gif');
+        }
+
+        .knight-avatar.attacking {
+            background-image: url('assets/knights/knight_attack.gif');
         }
 
         .character-info {
@@ -856,6 +855,15 @@
             }
         }
 
+        // Trigger knight attack animation
+        function triggerKnightAttack() {
+            const knight = document.querySelector('.knight-avatar');
+            knight.classList.add('attacking');
+            setTimeout(() => {
+                knight.classList.remove('attacking');
+            }, 500);
+        }
+
         // Show notification
         function showNotification(title, message, isLevelUp = false) {
             const notif = document.getElementById('notification');
@@ -885,6 +893,9 @@
                 });
 
                 const result = await response.json();
+
+                // Trigger knight attack animation
+                triggerKnightAttack();
 
                 if (result.leveled_up) {
                     showNotification('⬆️ LEVEL UP!', `You are now Level ${result.new_level}!`, true);
